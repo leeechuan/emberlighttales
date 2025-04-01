@@ -1,0 +1,272 @@
+package tile;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+import javax.imageio.ImageIO;
+
+import main.emberlight.GamePanel;
+import main.emberlight.UtilityTool;
+
+public class TileManager {
+
+    GamePanel gp;
+    public Tile[] tile;
+    public int mapTileNum[][][];
+    boolean drawPath = true;
+    
+    public TileManager(GamePanel gp) {
+        this.gp = gp;
+        tile = new Tile[700]; // Increase as needed for different tile variants
+        mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
+
+        getTileImages();
+        loadMap("/maps/world01.txt", 0);
+        loadMap("/maps/interior01.txt", 1);
+        loadMap("/maps/dungeon01.txt", 2);
+        loadMap("/maps/bossdungeon01.txt", 3);
+    }
+
+    public void getTileImages() {
+        // Predefine collision rules using a boolean array
+        boolean[] collisionFlags = new boolean[432];
+
+        // Default all to true
+        Arrays.fill(collisionFlags, false);
+        
+        // Set specific indices to false
+        collisionFlags[0] = true; //water
+        collisionFlags[55] = true; //water
+        collisionFlags[56] = true; //water
+        collisionFlags[57] = true; //water
+        collisionFlags[134] = true; //cliff
+        collisionFlags[136] = true; //cliff
+        collisionFlags[137] = true; //cliff
+        collisionFlags[138] = true; //cliff
+        collisionFlags[143] = true; //cliff
+        collisionFlags[144] = true; //cliff
+        collisionFlags[145] = true; //cliff
+        collisionFlags[152] = true; //cliff
+        collisionFlags[153] = true; //cliff
+        collisionFlags[154] = true; //cliff
+        collisionFlags[159] = true; //cliff
+        collisionFlags[160] = true; //cliff
+        collisionFlags[161] = true; //cliff
+        collisionFlags[193] = true; //bridge
+        collisionFlags[194] = true; //bridge
+        collisionFlags[195] = true; //bridge
+        collisionFlags[196] = true; //bridge
+        collisionFlags[197] = true; //bridge
+        collisionFlags[198] = true; //bridge
+        collisionFlags[199] = true; //bridge
+        collisionFlags[200] = true; //bridge
+        collisionFlags[206] = true; //bridge
+        collisionFlags[207] = true; //bridge
+        collisionFlags[208] = true; //bridge
+        collisionFlags[209] = true; //bridge
+        collisionFlags[252] = true; //cliff
+        collisionFlags[253] = true; //cliff
+        collisionFlags[254] = true; //cliff
+        collisionFlags[259] = true; //cliff
+        collisionFlags[260] = true; //cliff
+        collisionFlags[261] = true; //cliff
+        collisionFlags[264] = true; //cliff
+        collisionFlags[265] = true; //cliff
+        collisionFlags[266] = true; //cliff
+        collisionFlags[267] = true; //cliff
+        collisionFlags[270] = true; //cliff
+        collisionFlags[271] = true; //cliff
+        collisionFlags[272] = true; //cliff
+        collisionFlags[273] = true; //cliff
+        collisionFlags[280] = true; //cliff
+        collisionFlags[281] = true; //cliff
+        
+        collisionFlags[287] = true; //dungeon
+        collisionFlags[288] = true; //dungeon
+        collisionFlags[289] = true; //dungeon
+        collisionFlags[290] = true; //dungeon
+        collisionFlags[296] = true; //dungeon
+        collisionFlags[297] = true; //dungeon
+        collisionFlags[298] = true; //dungeon
+        collisionFlags[305] = true; //dungeon
+        collisionFlags[306] = true; //dungeon
+        collisionFlags[307] = true; //dungeon
+        collisionFlags[308] = true; //dungeon
+        collisionFlags[316] = true; //dungeon
+        collisionFlags[317] = true; //dungeon
+        collisionFlags[318] = true; //dungeon
+        collisionFlags[319] = true; //dungeon
+        collisionFlags[326] = true; //dungeon
+        collisionFlags[327] = true; //dungeon
+        collisionFlags[328] = true; //dungeon
+        collisionFlags[329] = true; //dungeon
+        
+        collisionFlags[364] = true; //dungeon
+//        collisionFlags[365] = true; //dungeon
+//        collisionFlags[366] = true; //dungeon
+//        collisionFlags[367] = true; //dungeon
+        collisionFlags[368] = true; //dungeon
+        collisionFlags[372] = true; //dungeon
+        collisionFlags[373] = true; //dungeon
+        collisionFlags[374] = true; //dungeon
+//        collisionFlags[376] = true; //dungeon
+        collisionFlags[380] = true; //dungeon
+        collisionFlags[382] = true; //dungeon
+        collisionFlags[383] = true; //dungeon
+        collisionFlags[384] = true; //dungeon
+        collisionFlags[386] = true; //dungeon
+        collisionFlags[390] = true; //dungeon
+        collisionFlags[392] = true; //dungeon
+        collisionFlags[393] = true; //dungeon
+        collisionFlags[394] = true; //dungeon
+        collisionFlags[396] = true; //dungeon
+        collisionFlags[400] = true; //dungeon
+        collisionFlags[406] = true; //dungeon
+        collisionFlags[407] = true; //dungeon
+        collisionFlags[408] = true; //dungeon
+        collisionFlags[409] = true; //dungeon
+        collisionFlags[410] = true; //dungeon
+        collisionFlags[413] = true; //dungeon
+        collisionFlags[414] = true; //dungeon
+        collisionFlags[415] = true; //dungeon
+        
+        collisionFlags[416] = true; //fence
+        collisionFlags[417] = true; //fence
+        collisionFlags[418] = true; //fence
+        collisionFlags[419] = true; //fence
+        collisionFlags[420] = true; //fence
+        collisionFlags[421] = true; //fence
+        collisionFlags[422] = true; //fence
+        collisionFlags[423] = true; //fence
+        collisionFlags[424] = true; //fence
+        collisionFlags[425] = true; //fence
+        collisionFlags[426] = true; //fence
+        collisionFlags[427] = true; //fence
+        collisionFlags[428] = true; //fence
+        collisionFlags[429] = true; //fence
+        collisionFlags[430] = true; //fence
+        collisionFlags[431] = true; //fence
+
+        
+
+
+        for (int i = 0; i < collisionFlags.length; i++) {
+            setup(i, String.format("%04d", i), collisionFlags[i]);
+        }
+    }
+    
+    public void setup(int index, String imagePath, boolean collision) {
+    	
+    	UtilityTool uTool = new UtilityTool();
+    	
+    	try {
+    		tile[index] = new Tile();
+    		tile[index].image = ImageIO.read(getClass().getResourceAsStream("/tiles/"+ imagePath + ".png"));
+    		tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
+    		tile[index].collision = collision;
+    		
+    	}catch(IOException e) {
+    		e.printStackTrace();
+    	}
+    }
+    
+
+    public void loadMap(String filePath, int map) {
+        try {
+            InputStream is = getClass().getResourceAsStream(filePath);
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+            int col = 0;
+            int row = 0;
+
+            while (col < gp.maxWorldCol && row < gp.maxWorldRow) {
+                String line = br.readLine();
+
+                while (col < gp.maxWorldCol) {
+                    String numbers[] = line.split(" ");
+                    int num = Integer.parseInt(numbers[col]);
+                    mapTileNum[map][col][row] = num;
+                    col++;
+                }
+
+                if (col == gp.maxWorldCol) {
+                    col = 0;
+                    row++;
+                }
+            }
+            br.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void draw(Graphics2D g2) {
+        int worldCol = 0;
+        int worldRow = 0;
+
+        while (worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow) {
+            int tileNum = mapTileNum[gp.currentMap][worldCol][worldRow];
+
+            int worldX = worldCol * gp.tileSize;
+            int worldY = worldRow * gp.tileSize;
+            int screenX = worldX - gp.player.worldX + gp.player.screenX;
+            int screenY = worldY - gp.player.worldY + gp.player.screenY;
+
+            // Optimization: Render only visible tiles
+            if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX && 
+                worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
+                worldY + gp.tileSize > gp.player.worldY - gp.player.screenY && 
+                worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
+
+                // Draw the tile image
+                g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+                
+                if (gp.keyH.showDebugText) {
+                    // Highlight collision tiles with a semi-transparent red overlay
+                    if (tile[tileNum].collision) {
+                        g2.setColor(new Color(255, 0, 0, 100));
+                        g2.fillRect(screenX, screenY, gp.tileSize, gp.tileSize);
+                    }
+                    
+                    // Use translucent white text for the tile number
+                    g2.setColor(new Color(255, 255, 255, 100));
+                    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 7)); // Use current font, set to size 14
+                    
+                    // Approximate centering manually
+                    int textX = screenX + gp.tileSize / 4 + 4; // Rough horizontal centering
+                    int textY = screenY + (gp.tileSize / 2) + 4; // Adjust for vertical centering
+                    g2.drawString(String.valueOf(tileNum), textX, textY);
+                }
+            }
+
+            worldCol++;
+
+            if (worldCol == gp.maxWorldCol) {
+                worldCol = 0;
+                worldRow++;
+            }
+        }
+
+        // Pathfinding visualization (if enabled)
+        if (drawPath) {
+            g2.setColor(new Color(255, 0, 0, 70));
+            for (int i = 0; i < gp.pFinder.pathList.size(); i++) {
+                int worldX = gp.pFinder.pathList.get(i).col * gp.tileSize;
+                int worldY = gp.pFinder.pathList.get(i).row * gp.tileSize;
+                int screenX = worldX - gp.player.worldX + gp.player.screenX;
+                int screenY = worldY - gp.player.worldY + gp.player.screenY;
+
+                g2.fillRect(screenX, screenY, gp.tileSize, gp.tileSize);
+            }
+        }
+    }
+}
+    

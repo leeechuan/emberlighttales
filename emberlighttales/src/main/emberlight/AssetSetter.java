@@ -1,0 +1,521 @@
+package main.emberlight;
+
+import data.Progress;
+import entity.NPC_Husband;
+import entity.NPC_Bee;
+import entity.NPC_Chicken;
+import entity.NPC_Dungeon_Rock;
+import entity.NPC_Elder;
+import entity.NPC_Farmer;
+import entity.NPC_GymBro;
+import entity.NPC_Wife;
+import entity.NPC_Mayor;
+import entity.NPC_Merchant;
+import entity.NPC_Punk;
+import entity.NPC_Scientist;
+import entity.NPC_Witch;
+import mob.MOB_Orc_Chief;
+import mob.MOB_PinkSlime;
+import mob.MOB_Skeleton_Mage;
+import object.OBJ_Bed;
+import object.OBJ_Bench;
+import object.OBJ_BigTorch;
+import object.OBJ_Broom;
+import object.OBJ_Campfire;
+import object.OBJ_Cauldron;
+import object.OBJ_Chest;
+import object.OBJ_Coin;
+import object.OBJ_DungeonDeco;
+import object.OBJ_DungeonDoor;
+import object.OBJ_EmberlightPearl;
+import object.OBJ_FenceGate;
+import object.OBJ_Flower;
+import object.OBJ_Fruit_Juice;
+import object.OBJ_GoldenChest;
+import object.OBJ_Haybale;
+import object.OBJ_Heart;
+import object.OBJ_LampPost;
+import object.OBJ_Lantern;
+import object.OBJ_ManaCrystal;
+import object.OBJ_Rabbit_Shield_2;
+import object.OBJ_Rabbit_Shield_3;
+import object.OBJ_Scarecrow;
+import object.OBJ_Sewer;
+import object.OBJ_Sign;
+import object.OBJ_SmallTorch;
+import object.OBJ_Spike_Gate;
+import object.OBJ_Stone_Axe;
+import object.OBJ_Stone_Sword;
+import object.OBJ_Torch;
+import object.OBJ_Waterfall;
+import object.OBJ_Well;
+import object.OBJ_WoodBridge;
+import tile_interactive.IT_Abandon_House_1;
+import tile_interactive.IT_Barn;
+import tile_interactive.IT_Beehive;
+import tile_interactive.IT_CaveEntrance;
+import tile_interactive.IT_ChickenCoop;
+import tile_interactive.IT_DungeonTintWindows;
+import tile_interactive.IT_Fountain;
+import tile_interactive.IT_Horse_Stable_1;
+import tile_interactive.IT_House;
+import tile_interactive.IT_Planter;
+import tile_interactive.IT_PressurePlate;
+import tile_interactive.IT_Tree;
+import tile_interactive.IT_Spike;
+import tile_interactive.IT_Witch_Hut;
+
+public class AssetSetter {
+	
+	GamePanel gp;
+	
+	public AssetSetter(GamePanel gp) {
+		this.gp = gp;
+		
+	}
+	
+	public void setObject() {
+
+		int mapNum = 0;
+		int i = 0;
+		
+		gp.obj[mapNum][i] = new OBJ_Chest(gp);
+		gp.obj[mapNum][i].setLoot(new OBJ_Fruit_Juice(gp));
+		gp.obj[mapNum][i].worldX = 89 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 66 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_GoldenChest(gp);
+		gp.obj[mapNum][i].worldX = 18 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 15 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Stone_Axe(gp);
+		gp.obj[mapNum][i].worldX = 21 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Rabbit_Shield_2(gp);
+		gp.obj[mapNum][i].worldX = 23 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Rabbit_Shield_3(gp);
+		gp.obj[mapNum][i].worldX = 24 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Fruit_Juice(gp);
+		gp.obj[mapNum][i].worldX = 25 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Coin(gp);
+		gp.obj[mapNum][i].worldX = 29 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Coin(gp);
+		gp.obj[mapNum][i].worldX = 30 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Heart(gp);
+		gp.obj[mapNum][i].worldX = 33 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_ManaCrystal(gp);
+		gp.obj[mapNum][i].worldX = 34 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_DungeonDoor(gp);
+		gp.obj[mapNum][i].worldX = 36 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Lantern(gp);
+		gp.obj[mapNum][i].worldX = 36 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 20 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Torch(gp);
+		gp.obj[mapNum][i].worldX = 37 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 20 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Bed(gp);
+		gp.obj[mapNum][i].worldX = 55 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 60 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Waterfall(gp); //Waterfall
+		gp.obj[mapNum][i].worldX = 62 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 56 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Waterfall(gp); //Waterfall
+		gp.obj[mapNum][i].worldX = 65 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 56 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Sign(gp, 0); //Sign
+		gp.obj[mapNum][i].worldX = 69 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 60 * gp.tileSize;
+		i++;
+
+		gp.obj[mapNum][i] = new OBJ_Campfire(gp);
+		gp.obj[mapNum][i].worldX = 23 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 86 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_BigTorch(gp);
+		gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 53 * gp.tileSize;
+		i++;
+		
+		//Emberville
+		gp.obj[mapNum][i] = new OBJ_LampPost(gp, 1, 2);
+		gp.obj[mapNum][i].worldX = 74 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 66 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_LampPost(gp, 2, 3);
+		gp.obj[mapNum][i].worldX = 77 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 62 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_LampPost(gp, 1, 3);
+		gp.obj[mapNum][i].worldX = 82 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 76 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_LampPost(gp, 1, 2);
+		gp.obj[mapNum][i].worldX = 64 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 74 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_LampPost(gp, 2, 2);
+		gp.obj[mapNum][i].worldX = 84 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 64 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_LampPost(gp, 1, 1);
+		gp.obj[mapNum][i].worldX = 88 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 72 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_LampPost(gp, 1, 1);
+		gp.obj[mapNum][i].worldX = 59 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 85 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Scarecrow(gp);
+		gp.obj[mapNum][i].worldX = 89 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 77 * gp.tileSize;
+		i++;
+//		gp.obj[mapNum][i] = new OBJ_Broom(gp);
+//		gp.obj[mapNum][i].worldX = 84 * gp.tileSize;
+//		gp.obj[mapNum][i].worldY = 85 * gp.tileSize;
+//		i++;
+//		gp.obj[mapNum][i] = new OBJ_Cauldron(gp);
+//		gp.obj[mapNum][i].worldX = 80 * gp.tileSize;
+//		gp.obj[mapNum][i].worldY = 85 * gp.tileSize;
+//		i++;
+		
+		//Emberville Farm
+		gp.obj[mapNum][i] = new OBJ_LampPost(gp, 2, 1);
+		gp.obj[mapNum][i].worldX = 86 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 52 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_LampPost(gp, 1, 2);
+		gp.obj[mapNum][i].worldX = 82 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_Bench(gp, 1);
+		gp.obj[mapNum][i].worldX = 82 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 60 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Flower(gp, 0, 4);
+		gp.obj[mapNum][i].worldX = 69 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 59 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Flower(gp, 2, 8);
+		gp.obj[mapNum][i].worldX = 68 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 61 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Well(gp);
+		gp.obj[mapNum][i].worldX = 70 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 66 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Haybale(gp, 0);
+		gp.obj[mapNum][i].worldX = 77 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 78 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Haybale(gp, 1);
+		gp.obj[mapNum][i].worldX = 72 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 77 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_FenceGate(gp, false);
+		gp.obj[mapNum][i].worldX = 74 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 79 * gp.tileSize;
+		i++;
+		
+		//Dungeon
+		mapNum = 2;
+		
+		gp.obj[mapNum][i] = new OBJ_DungeonDeco(gp, 7);
+		gp.obj[mapNum][i].worldX = 16 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 27 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_DungeonDeco(gp, 4);
+		gp.obj[mapNum][i].worldX = 34 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 22 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_DungeonDeco(gp, 3);
+		gp.obj[mapNum][i].worldX = 39 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 13 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Spike_Gate(gp);
+		gp.obj[mapNum][i].worldX = 34 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 18 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_WoodBridge(gp, false);
+		gp.obj[mapNum][i].worldX = 24 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 24 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Sewer(gp);
+		gp.obj[mapNum][i].worldX = 18 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 23 * gp.tileSize;
+		i++;
+		
+		//Boss Dungeon
+		mapNum = 3;
+		
+		gp.obj[mapNum][i] = new OBJ_EmberlightPearl(gp);
+		gp.obj[mapNum][i].worldX = 50 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 34 * gp.tileSize;
+		i++;
+	}
+	
+	public void setNPC() {
+		
+		int mapNum = 0;
+		int i = 0;
+		
+		gp.npc[mapNum][i] = new NPC_Husband(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*80;
+		gp.npc[mapNum][i].worldY = gp.tileSize*65;
+		i++;
+		gp.npc[mapNum][i] = new NPC_Wife(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*85;
+		gp.npc[mapNum][i].worldY = gp.tileSize*65;
+		i++;
+		gp.npc[mapNum][i] = new NPC_Punk(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*78;
+		gp.npc[mapNum][i].worldY = gp.tileSize*65;
+		i++;
+		gp.npc[mapNum][i] = new NPC_GymBro(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*72;
+		gp.npc[mapNum][i].worldY = gp.tileSize*64;
+		i++;
+		gp.npc[mapNum][i] = new NPC_Farmer(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*75;
+		gp.npc[mapNum][i].worldY = gp.tileSize*65;
+		i++;
+		gp.npc[mapNum][i] = new NPC_Mayor(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*68;
+		gp.npc[mapNum][i].worldY = gp.tileSize*65;
+		i++;
+		gp.npc[mapNum][i] = new NPC_Scientist(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*70;
+		gp.npc[mapNum][i].worldY = gp.tileSize*68;
+		i++;
+		gp.npc[mapNum][i] = new NPC_Witch(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*83;
+		gp.npc[mapNum][i].worldY = gp.tileSize*86;
+		i++;
+		gp.npc[mapNum][i] = new NPC_Merchant(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*78;
+		gp.npc[mapNum][i].worldY = gp.tileSize*60;
+		i++;
+		
+		gp.npc[mapNum][i] = new NPC_Bee(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*75;
+		gp.npc[mapNum][i].worldY = gp.tileSize*47;
+		i++;
+		gp.npc[mapNum][i] = new NPC_Chicken(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*77;
+		gp.npc[mapNum][i].worldY = gp.tileSize*48;
+		i++;
+		mapNum = 1;
+		i = 0;
+
+		
+		//Dungeon
+		mapNum = 2;
+		i = 0;
+		gp.npc[mapNum][i] = new NPC_Dungeon_Rock(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*33;
+		gp.npc[mapNum][i].worldY = gp.tileSize*39;
+		i++;
+		gp.npc[mapNum][i] = new NPC_Dungeon_Rock(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*74;
+		gp.npc[mapNum][i].worldY = gp.tileSize*32;
+		i++;
+	}
+	
+	public void setMobs() {
+		
+		int mapNum = 0;
+		int i = 0;
+		
+		gp.mob[mapNum][i] = new MOB_PinkSlime(gp);
+		gp.mob[mapNum][i].worldX = gp.tileSize*31;
+		gp.mob[mapNum][i].worldY = gp.tileSize*21;
+		i++;
+		gp.mob[mapNum][i] = new MOB_PinkSlime(gp);
+		gp.mob[mapNum][i].worldX = gp.tileSize*33;
+		gp.mob[mapNum][i].worldY = gp.tileSize*23;
+		i++;
+		gp.mob[mapNum][i] = new MOB_PinkSlime(gp);
+		gp.mob[mapNum][i].worldX = gp.tileSize*33;
+		gp.mob[mapNum][i].worldY = gp.tileSize*24;
+		i++;
+		gp.mob[mapNum][i] = new MOB_PinkSlime(gp);
+		gp.mob[mapNum][i].worldX = gp.tileSize*33;
+		gp.mob[mapNum][i].worldY = gp.tileSize*25;
+		i++;
+		gp.mob[mapNum][i] = new MOB_Skeleton_Mage(gp);
+		gp.mob[mapNum][i].worldX = gp.tileSize*16;
+		gp.mob[mapNum][i].worldY = gp.tileSize*28;
+		i++;
+		
+		//Boss Dungeon
+		mapNum = 3;
+		i = 0;
+		
+		if(Progress.gameStage < Progress.STAGE_ORC_CHIEF_DEFEATED) {
+			gp.mob[mapNum][i] = new MOB_Orc_Chief(gp);
+			gp.mob[mapNum][i].worldX = gp.tileSize*48;
+			gp.mob[mapNum][i].worldY = gp.tileSize*46;
+			i++;
+		}
+
+	}
+	public void setInteractiveTile() {
+		
+		int mapNum = 0;
+		int i = 0;
+		
+
+		
+		gp.iTile[mapNum][i] = new IT_House(gp, 15, 25, 1, 5);
+		i++;
+		
+		//Emberville Deco
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 65, 80, 4);
+		i++;
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 63, 85, 4);
+		i++;
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 57, 82, 4);
+		i++;
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 55, 88, 4);
+		i++;
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 64, 74, 4);
+		i++;
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 71, 66, 4);
+		i++;
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 77, 61, 4);
+		i++;
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 76, 84, 4);
+		i++;
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 74, 86, 4);
+		i++;
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 82, 86, 5);
+		i++;
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 81, 74, 4);
+		i++;
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 85, 67, 4);
+		i++;
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 83, 64, 5);
+		i++;
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 88, 65, 4);
+		i++;
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 78, 51, 4);
+		i++;
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 88, 54, 4);
+		i++;
+		
+		//Emberville Houses
+		gp.iTile[mapNum][i] = new IT_House(gp, 70, 74, 2, 4); //Player Home
+		i++;
+		gp.iTile[mapNum][i] = new IT_Planter(gp, 74, 74, 0, 3); //Planter
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_House(gp, 83, 72, 1, 5); //Small House
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_House(gp, 57, 78, 4, 2); //Medium House
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_House(gp, 83, 60, 3, 2); //Big House top
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_House(gp, 67, 86, 2, 5); //Big House bottom
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_House(gp, 50, 83, 2, 4); //Big House bottom
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_House(gp, 70, 52, 2, 2); //Big House farm
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_House(gp, 86, 50, 1, 2); //Small House farm
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Barn(gp, 80, 44);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Fountain(gp, 79, 68);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Horse_Stable_1(gp, 71, 60);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Witch_Hut(gp, 82, 83);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_ChickenCoop(gp, 77, 46);
+		i++;
+		gp.iTile[mapNum][i] = new IT_Beehive(gp, 74, 46, 1);
+		i++;
+		gp.iTile[mapNum][i] = new IT_Beehive(gp, 75, 46, 0);
+		i++;
+		
+		//Emberville outskirts
+		gp.iTile[mapNum][i] = new IT_Abandon_House_1(gp, 23, 76);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_CaveEntrance(gp, 47, 53);
+		i++;
+		
+		//Dungeon
+		mapNum = 2;
+		
+		
+		gp.iTile[mapNum][i] = new IT_DungeonTintWindows(gp, 26, 25, 0);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_DungeonTintWindows(gp, 27, 25, 1);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_DungeonTintWindows(gp, 28, 25, 5);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_DungeonTintWindows(gp, 29, 25, 2);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_DungeonTintWindows(gp, 30, 25, 2);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_DungeonTintWindows(gp, 31, 25, 6);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_DungeonTintWindows(gp, 32, 25, 3);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_DungeonTintWindows(gp, 33, 25, 4);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_PressurePlate(gp, 37, 20);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_PressurePlate(gp, 68, 30);
+		i++;
+		
+//		gp.iTile[mapNum][i] = new IT_Spike(gp, 45, 34);
+//		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Spike(gp, 45, 35);
+		i++;
+	}
+}
