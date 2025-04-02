@@ -45,7 +45,7 @@ public class GamePanel extends JPanel implements Runnable{
 	//WORLD SETTINGS
 	public final int maxWorldCol = 100;
 	public final int maxWorldRow = 100;
-	public final int maxMap = 10;
+	public final int maxMap = 25;
 	public int currentMap = 0;
 	//FOR FULL SCREEN
 	int screenWidth2 = screenWidth;
@@ -71,7 +71,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public EventHandler eHandler = new EventHandler(this);
 	Config config = new Config(this);
 	public PathFinder pFinder = new PathFinder(this);
-	EnvironmentManager eManager = new EnvironmentManager(this);
+	public EnvironmentManager eManager = new EnvironmentManager(this);
 	Map map = new Map(this);
 	SaveLoad saveLoad = new SaveLoad(this);
 	public EntityGenerator eGenerator = new EntityGenerator(this);
@@ -90,6 +90,9 @@ public class GamePanel extends JPanel implements Runnable{
 	public ArrayList<Entity> particleList = new ArrayList<>();
 	public ArrayList<Entity> entityList = new ArrayList<>();
 	
+	//SCHEDULE LIMITER
+	private int scheduleCounter = 0;
+	private final int SCHEDULE_INTERVAL = 120;
 	
 	//GAME STATE
 	public int gameState;
@@ -231,12 +234,25 @@ public class GamePanel extends JPanel implements Runnable{
 			//PLAYER
 			player.update();
 			
-			//NPC
+//			//NPC
 			for(int i = 0; i < npc[1].length; i++) {
 				if(npc[currentMap][i] != null) {
 					npc[currentMap][i].update();
 				}
 			}
+			// Update NPCs for all maps (unoptimised)
+			scheduleCounter++;
+			if(scheduleCounter >= SCHEDULE_INTERVAL) {
+				scheduleCounter = 0;
+				for (int map = 0; map < npc.length; map++) {
+				    for (int i = 0; i < npc[map].length; i++) {
+				        if (npc[map][i] != null && npc[map][i].homeMapNum != 0) {
+				            npc[map][i].npcScheduleAndBoundaries();
+				        }
+				    }
+				}
+			}
+
 			
 			//MOB
 			for(int i = 0; i < mob[1].length; i++) {
@@ -445,11 +461,11 @@ public class GamePanel extends JPanel implements Runnable{
 				playMusic(0);
 			}
 			if(nextArea == indoor) {
-				playMusic(20); //TODO
+				playMusic(20);
 			}
 			if(nextArea == dungeon) {
 				aSetter.setNPC();
-				playMusic(21); //TODO
+				playMusic(21);
 			}
 			
 		}

@@ -91,6 +91,7 @@ public class Entity {
 	public boolean sleep = false;
 	public boolean drawing = true;
 	public boolean gate_open_state = false;
+	public boolean isIndoors = false;
 	
 	//COUNTER
 	public int spriteCounter = 0;
@@ -136,6 +137,7 @@ public class Entity {
 	public Entity currentLight;
 	public Projectile projectile;
 	public boolean boss;
+	public Rectangle roamingArea;
 	
 	//ITEM ATTRIBUTES
     public ArrayList<Entity> inventory = new ArrayList<>();
@@ -150,6 +152,14 @@ public class Entity {
 	public boolean stackable = false;
 	public int amount = 1;
 	public int lightRadius;
+	
+	//NPC SCHEDULE
+	public int homeWorldX;
+	public int homeWorldY;
+	public int outsideWorldX;
+	public int outsideWorldY;
+	public int homeMapNum;
+	public int townNum; // 0 - Emberville, 1 - Gildenshore
 
 	//TYPE
 	public int type; // 0 - player, 1 - npc, 2 - mob
@@ -361,8 +371,8 @@ public class Entity {
 				checkCollision();
 				
 				isWalking = true;
-			    // If collision is detected with an object or another NPC, stop walking
-			    if (this.collisionOn) {
+			    // If collision is detected with an object or another NPC OR speed is 0, stop walking
+			    if (this.collisionOn || speed == 0) {
 			        isWalking = false; // NPC is stuck or colliding, stop walking
 			    }
 			    else {
@@ -408,6 +418,9 @@ public class Entity {
 	        		offBalanceCounter = 0;
 	        	}
 	        }
+		}
+		if(homeMapNum != 0) {
+			npcScheduleAndBoundaries();
 		}
 		
 	}
@@ -1084,4 +1097,112 @@ public class Entity {
     	return index;
     }
 	public void setDialogue() {}
+	public void changeNPCMap(String npcName, int newMap, int newCol, int newRow) {
+//		System.out.println(npcName + "---" + newCol + "---" + newRow);
+	    // Iterate over all map layers
+	    for (int m = 0; m < gp.npc.length; m++) {
+	        for (int i = 0; i < gp.npc[m].length; i++) {
+	            Entity npc = gp.npc[m][i];
+	            if (npc != null && npc.name.equals(npcName)) {
+	                // Found the NPC; remove it from the current map's array
+	                gp.npc[m][i] = null;
+	                
+	                // Update the NPC's world coordinates
+	                npc.worldX = newCol * gp.tileSize;
+	                npc.worldY = newRow * gp.tileSize;
+	                
+	                // npc.currentMap = newMap;
+	                
+	                // Place the NPC in the new map's npc array (find the first available slot)
+	                for (int j = 0; j < gp.npc[newMap].length; j++) {
+	                    if (gp.npc[newMap][j] == null) {
+	                        gp.npc[newMap][j] = npc;
+	                        return;
+	                    }
+	                }
+	            }
+	        }
+	    }
+	}
+	public void moveBackIntoRoamingArea() {
+		System.out.println(name + " is moving back");
+		System.out.println(name + " roaming Area =" + roamingArea);
+	    // Left boundary
+	    if (worldX < roamingArea.x) {
+	        worldX = roamingArea.x;
+	        direction = "right";
+	    }
+	    // Right boundary
+	    else if (worldX > roamingArea.x + roamingArea.width) {
+	        worldX = roamingArea.x + roamingArea.width;
+	        direction = "left";
+	    }
+
+	    // Top boundary
+	    if (worldY < roamingArea.y) {
+	        worldY = roamingArea.y;
+	        direction = "down";
+	    }
+	    // Bottom boundary
+	    else if (worldY > roamingArea.y + roamingArea.height) {
+	        worldY = roamingArea.y + roamingArea.height;
+	        direction = "up";
+	    }
+	}
+	
+	public void npcScheduleAndBoundaries() {
+		
+		if (roamingArea == null) {
+		    roamingArea = new Rectangle();
+		}
+	    
+	    //Dawn
+	    if (gp.eManager.lighting.dayState == gp.eManager.lighting.dawn) {
+	        if (Math.abs(worldX - gp.tileSize * homeWorldX) < gp.tileSize && Math.abs(worldY - gp.tileSize * homeWorldY) < gp.tileSize) {
+	        	isIndoors = false;
+	            changeNPCMap(name, 0, outsideWorldX, outsideWorldY + 1);
+	        } else {
+	            pathfindTo(homeWorldX, homeWorldY, "down");
+	        }
+	    } 
+	    
+	    //Day
+	    else if (gp.eManager.lighting.dayState == gp.eManager.lighting.day) {
+	    	if(townNum == 0) {
+	    		roamingArea.setBounds(gp.tileSize * 48, gp.tileSize * 43, gp.tileSize * 50, gp.tileSize * 50);
+	    	}
+	    	else {
+	    		roamingArea.setBounds(gp.tileSize * 0, gp.tileSize * 0, gp.tileSize * 100, gp.tileSize * 100);
+	    	}
+	        
+	        if(isIndoors) {
+	        	isIndoors = false;
+	        	changeNPCMap(name, 0, outsideWorldX, outsideWorldY + 1);
+	        }
+	    } 
+	    
+	    //Dusk
+	    else if (gp.eManager.lighting.dayState == gp.eManager.lighting.dusk) {
+	        if (Math.abs(worldX - gp.tileSize * outsideWorldX) < gp.tileSize && Math.abs(worldY - gp.tileSize * outsideWorldY) < gp.tileSize) {
+	        	isIndoors = true;
+	            changeNPCMap(name, homeMapNum, homeWorldX, homeWorldY - 3);
+	        } else {
+	            pathfindTo(outsideWorldX, outsideWorldY, "up");
+	        }
+	    }
+	    
+	    //Night
+	    else {
+	    	roamingArea.setBounds(gp.tileSize * 0, gp.tileSize * 0, gp.tileSize * 100, gp.tileSize * 100);
+	        if(!isIndoors) {
+	        	isIndoors = true;
+	        	changeNPCMap(name, homeMapNum, homeWorldX, homeWorldY - 3);
+	        }
+	    }
+	    
+	    //Test for out of bounds
+	    if (!roamingArea.contains(worldX, worldY) && (gp.eManager.lighting.dayState == gp.eManager.lighting.day || gp.eManager.lighting.dayState == gp.eManager.lighting.night)) {
+	    	moveBackIntoRoamingArea();
+	    }
+	}
 }

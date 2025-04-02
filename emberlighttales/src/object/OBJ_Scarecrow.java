@@ -24,7 +24,6 @@ public class OBJ_Scarecrow extends Entity{
 		type = type_obstacle;
 		name = objName;
 		for (int i = 0; i < animatedFrames.length; i++) {
-			System.out.println(i);
 	        animatedFrames[i] = setup("/animated_object/scarecrow_" + i, 3, 2);
 	    }
 		solidArea.x = (int) (gp.tileSize * 0.9);

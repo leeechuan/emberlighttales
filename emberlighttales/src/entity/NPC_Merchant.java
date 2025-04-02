@@ -23,6 +23,13 @@ public class NPC_Merchant extends Entity{
         solidArea = new Rectangle(18, 24, gp.tileSize - 16, gp.tileSize - 16);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+        
+    	homeWorldX = 54;
+    	homeWorldY = 51;
+    	outsideWorldX = 61;
+    	outsideWorldY = 78;
+    	homeMapNum = 6;
+    	townNum = 0;
 		
 		getImage();
 		setDialogue();
@@ -60,26 +67,38 @@ public class NPC_Merchant extends Entity{
 	public void setAction() {
 		
 		actionLockCounter++;
-		
+        
 		if(actionLockCounter == 120) {
 			Random random = new Random();
 			int i = random.nextInt(100) + 1; //pick number from 1 to 100
 			
-			if(i <= 25) {
+			if(i <= 20) {
 				direction = "up";
+				isWalking = true;
+				speed = defaultSpeed;
 			}
-			if(i > 25 && i <= 50) {
+			if(i > 20 && i <= 40) {
 				direction = "down";
+				isWalking = true;
+				speed = defaultSpeed;
 			}
-			if(i > 50 && i <= 75) {
+			if(i > 40 && i <= 60) {
 				direction = "left";
+				isWalking = true;
+				speed = defaultSpeed;
 			}
-			if(i > 75 && i <= 100) {
+			if(i > 60 && i <= 80) {
 				direction = "right";
+				isWalking = true;
+				speed = defaultSpeed;
+			}
+			if(i > 80 && i <= 100) {
+				speed = 0;
+				isWalking = false;
 			}
 			
 			actionLockCounter = 0;
-		}		
+		}	
 	}
 	
 	public void speak() {
@@ -88,6 +107,6 @@ public class NPC_Merchant extends Entity{
 		gp.gameState = gp.tradeState;
 		gp.ui.npc = this;
 	}
-	
+
 
 }

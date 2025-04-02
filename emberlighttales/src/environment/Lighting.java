@@ -160,7 +160,6 @@ public class Lighting {
         }
     }
     public void draw(Graphics2D g2) {
-    	
         if (gp.currentArea == gp.outside) {
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, filterAlpha));
         }

@@ -472,6 +472,27 @@ public class Player extends Entity {
 						break;
 				}
             }
+           // If collision is detected, allow sliding along walls
+           else {
+               if (direction.equals("up") || direction.equals("down")) {
+                   // If moving vertically and colliding, try horizontal movement
+                   collisionOn = false;
+                   gp.cChecker.checkTile(this);
+                   if (!collisionOn) {
+                       if (keyH.leftPressed) worldX -= speed;
+                       else if (keyH.rightPressed) worldX += speed;
+                   }
+               } 
+               else if (direction.equals("left") || direction.equals("right")) {
+                   // If moving horizontally and colliding, try vertical movement
+                   collisionOn = false;
+                   gp.cChecker.checkTile(this);
+                   if (!collisionOn) {
+                       if (keyH.upPressed) worldY -= speed;
+                       else if (keyH.downPressed) worldY += speed;
+                   }
+               }
+           }
            
            if(keyH.enterPressed == true && attackCancelled == false) {
         	   gp.playSE(4);

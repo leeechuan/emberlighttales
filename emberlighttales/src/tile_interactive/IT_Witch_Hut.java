@@ -14,11 +14,11 @@ public class IT_Witch_Hut extends InteractiveTile{
 		super(gp, col, row);
 		this.gp = gp;
 		
-		this.worldX = gp.tileSize * col ;
+		this.worldX = gp.tileSize * col - 10;
 		this.worldY = gp.tileSize * row;
 		solidArea.x = (int) (gp.tileSize * 0.75);
 		solidArea.y = -(int) (gp.tileSize * 1.25);
-		solidArea.width = (int) (gp.tileSize * 5);
+		solidArea.width = (int) (gp.tileSize * 5.75);
 		solidArea.height = (int) (gp.tileSize * 2.25);
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;

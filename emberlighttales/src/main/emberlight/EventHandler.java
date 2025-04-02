@@ -101,6 +101,94 @@ public class EventHandler{
 			else if(hit(0, 74, 80,"any") == true || hit(0, 75, 80,"any") == true || hit(0, 76, 80,"any") == true) {
 				TownhallScene();
 			}
+			
+			//Witch house
+			else if(hit(0, 83, 84,"up") == true) {
+				teleport(4, 43, 53, gp.indoor);
+				gp.playSE(14);
+			}
+			else if(hit(4, 43, 54,"any") == true) {
+				teleport(0, 83, 84, gp.outside);
+				gp.playSE(14);
+			}
+			else if(hit(4, 50, 44,"any") == true || hit(4, 51, 44,"any") == true) {
+				teleport(4, 50, 24, gp.indoor);
+				gp.playSE(14);
+			}
+			else if(hit(4, 50, 25,"any") == true || hit(4, 51, 25,"any") == true) {
+				teleport(4, 50, 45, gp.indoor);
+				gp.playSE(14);
+			}
+			
+			//Mayor house
+			else if(hit(0, 51, 84,"up") == true) {
+				teleport(5, 50, 50, gp.indoor);
+				gp.playSE(14);
+			}
+			else if(hit(5, 50, 51,"any") == true) {
+				teleport(0, 51, 85, gp.outside);
+				gp.playSE(14);
+			}
+			
+			//Merchant house
+			else if(hit(0, 61, 78,"up") == true) {
+				teleport(6, 54, 50, gp.indoor);
+				gp.playSE(14);
+			}
+			else if(hit(6, 54, 51,"any") == true) {
+				teleport(0, 61, 79, gp.outside);
+				gp.playSE(14);
+			}
+			
+			//Couple house
+			else if(hit(0, 68, 87,"up") == true) {
+				teleport(7, 50, 50, gp.indoor);
+				gp.playSE(14);
+			}
+			else if(hit(7, 50, 51,"any") == true) {
+				teleport(0, 68, 88, gp.outside);
+				gp.playSE(14);
+			}
+
+			//Punk house
+			else if(hit(0, 84, 73,"up") == true) {
+				teleport(8, 50, 50, gp.indoor);
+				gp.playSE(14);
+			}
+			else if(hit(8, 50, 51,"any") == true) {
+				teleport(0, 84, 74, gp.outside);
+				gp.playSE(14);
+			}
+			
+			//Gymbro house
+			else if(hit(0, 87, 61,"up") == true) {
+				teleport(9, 50, 50, gp.indoor);
+				gp.playSE(14);
+			}
+			else if(hit(9, 50, 51,"any") == true) {
+				teleport(0, 87, 62, gp.outside);
+				gp.playSE(14);
+			}
+			
+			//Scientist house
+			else if(hit(0, 71, 53,"up") == true) {
+				teleport(10, 50, 50, gp.indoor);
+				gp.playSE(14);
+			}
+			else if(hit(10, 50, 51,"any") == true) {
+				teleport(0, 71, 54, gp.outside);
+				gp.playSE(14);
+			}
+			
+			//Farmer house
+			else if(hit(0, 87, 51,"up") == true) {
+				teleport(11, 50, 50, gp.indoor);
+				gp.playSE(14);
+			}
+			else if(hit(11, 50, 51,"any") == true) {
+				teleport(0, 87, 52, gp.outside);
+				gp.playSE(14);
+			}
 		}
 
 	}

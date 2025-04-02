@@ -28,6 +28,13 @@ public class NPC_Wife extends Entity {
         
         dialogueSet = -1;
 		
+    	homeWorldX = 50;
+    	homeWorldY = 51;
+    	outsideWorldX = 68;
+    	outsideWorldY = 87;
+    	homeMapNum = 7;
+    	townNum = 0;
+        
 		getImage();
 		setDialogue();
 	}
@@ -75,26 +82,38 @@ public class NPC_Wife extends Entity {
 		}
 		else {
 			actionLockCounter++;
-		
+            
 			if(actionLockCounter == 120) {
 				Random random = new Random();
 				int i = random.nextInt(100) + 1; //pick number from 1 to 100
 				
-				if(i <= 25) {
+				if(i <= 20) {
 					direction = "up";
+					isWalking = true;
+					speed = defaultSpeed;
 				}
-				if(i > 25 && i <= 50) {
+				if(i > 20 && i <= 40) {
 					direction = "down";
+					isWalking = true;
+					speed = defaultSpeed;
 				}
-				if(i > 50 && i <= 75) {
+				if(i > 40 && i <= 60) {
 					direction = "left";
+					isWalking = true;
+					speed = defaultSpeed;
 				}
-				if(i > 75 && i <= 100) {
+				if(i > 60 && i <= 80) {
 					direction = "right";
+					isWalking = true;
+					speed = defaultSpeed;
+				}
+				if(i > 80 && i <= 100) {
+					speed = 0;
+					isWalking = false;
 				}
 				
 				actionLockCounter = 0;
-			}		
+			}	
 		}
 
 	}
@@ -113,5 +132,5 @@ public class NPC_Wife extends Entity {
 		
 		onPath = true;
 	}
-	
+
 }

@@ -32,11 +32,19 @@ public class TileManager {
         loadMap("/maps/interior01.txt", 1);
         loadMap("/maps/dungeon01.txt", 2);
         loadMap("/maps/bossdungeon01.txt", 3);
+        loadMap("/maps/witchhut.txt", 4);
+        loadMap("/maps/mayorhouse.txt", 5);
+        loadMap("/maps/merchanthouse.txt", 6);
+        loadMap("/maps/couplehouse.txt", 7);
+        loadMap("/maps/punkhouse.txt", 8);
+        loadMap("/maps/gymbrohouse.txt", 9);
+        loadMap("/maps/scientisthouse.txt", 10);
+        loadMap("/maps/farmerhouse.txt", 11);
     }
 
     public void getTileImages() {
         // Predefine collision rules using a boolean array
-        boolean[] collisionFlags = new boolean[432];
+        boolean[] collisionFlags = new boolean[526];
 
         // Default all to true
         Arrays.fill(collisionFlags, false);
@@ -153,6 +161,11 @@ public class TileManager {
         collisionFlags[429] = true; //fence
         collisionFlags[430] = true; //fence
         collisionFlags[431] = true; //fence
+        
+        for (int i = 436; i <= 493; i++) {
+            collisionFlags[i] = true; // Mark as wall
+        }
+
 
         
 
