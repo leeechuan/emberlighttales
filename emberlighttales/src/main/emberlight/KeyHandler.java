@@ -3,6 +3,8 @@ package main.emberlight;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import data.Progress;
+
 public class KeyHandler implements KeyListener {
 	
 	GamePanel gp;
@@ -169,6 +171,12 @@ public class KeyHandler implements KeyListener {
 			else if(showDebugText == true) {
 				showDebugText= false;
 			}
+		}
+		if(code == KeyEvent.VK_UP && showDebugText) {
+			Progress.gameStage++;
+		}
+		if(code == KeyEvent.VK_DOWN && showDebugText) {
+			Progress.gameStage--;
 		}
 		if(code ==  KeyEvent.VK_R) {
 			switch(gp.currentMap) {

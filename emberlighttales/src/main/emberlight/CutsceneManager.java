@@ -553,6 +553,8 @@ public class CutsceneManager {
 				sceneNum = NA;
 				scenePhase = 0;
 				gp.gameState = gp.playState;
+				gp.pManager.addNotification("Journal Updated");
+				gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Bound By Blood And Magic"));
 				Progress.gameStage = Progress.STAGE_TRANSFORMATION;
 	            break;
 		}

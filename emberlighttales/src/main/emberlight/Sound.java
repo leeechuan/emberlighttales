@@ -44,6 +44,9 @@ public class Sound {
 			soundURL[24]= getClass().getResource("/sound/enter-cave.wav");
 			soundURL[25]= getClass().getResource("/sound/emberlight-credits.wav");
 			soundURL[26]= getClass().getResource("/sound/player-transformation.wav");
+			soundURL[27]= getClass().getResource("/sound/popup.wav");
+			soundURL[28]= getClass().getResource("/sound/popdown.wav");
+			soundURL[29]= getClass().getResource("/sound/journalupdate.wav");
 		}
 		
 		public void setFile(int i) {

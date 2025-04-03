@@ -24,6 +24,7 @@ import entity.Player;
 import entity.SmokeParticle;
 import environment.EnvironmentManager;
 import environment.LightSource;
+import popup.PopupManager;
 import tile.Map;
 import tile.TileManager;
 import tile_interactive.IT_PressurePlate;
@@ -77,6 +78,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public EntityGenerator eGenerator = new EntityGenerator(this);
 	public CutsceneManager csManager = new CutsceneManager(this);
 	public QuestManager qManager = new QuestManager(this);
+	public PopupManager pManager = new PopupManager(this);
 	Thread gameThread;
 	
 	//Entity and object and mobs
@@ -301,6 +303,7 @@ public class GamePanel extends JPanel implements Runnable{
 		        }
 		    }
 		    eManager.update();
+		    pManager.update();
 		}
 		if(gameState == pauseState) {
 			
@@ -414,6 +417,8 @@ public class GamePanel extends JPanel implements Runnable{
 			csManager.draw(g2);
 			//UI
 			ui.draw(g2);
+			//POPUP
+			pManager.draw(g2);
 		}
 		
 		//DEBUG

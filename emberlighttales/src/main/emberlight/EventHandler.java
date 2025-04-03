@@ -189,6 +189,13 @@ public class EventHandler{
 				teleport(0, 87, 52, gp.outside);
 				gp.playSE(14);
 			}
+			
+			
+			//Emberville
+			else if(hit(0, 66, 62,"riight") == true || hit(0, 66, 63,"right") == true || hit(0, 66, 64,"right") == true) {
+				popup("Emberville");
+			}
+			
 		}
 
 	}
@@ -263,6 +270,11 @@ public class EventHandler{
 		tempMap = map;
 		tempCol = col;
 		tempRow = row;
+		canTouchEvent = false;
+	}
+	public void popup(String message) {
+		
+		gp.pManager.addPopup(message);
 		canTouchEvent = false;
 	}
 	public void speak(Entity entity) {

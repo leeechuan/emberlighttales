@@ -20,6 +20,7 @@ import mob.MOB_Skeleton_Mage;
 import object.OBJ_Bed;
 import object.OBJ_Bench;
 import object.OBJ_BigTorch;
+import object.OBJ_BridgeRubble;
 import object.OBJ_Broom;
 import object.OBJ_Campfire;
 import object.OBJ_Cauldron;
@@ -79,6 +80,7 @@ public class AssetSetter {
 		int mapNum = 0;
 		int i = 0;
 		
+		//DEV AREA
 		gp.obj[mapNum][i] = new OBJ_Chest(gp);
 		gp.obj[mapNum][i].setLoot(new OBJ_Fruit_Juice(gp));
 		gp.obj[mapNum][i].worldX = 89 * gp.tileSize;
@@ -148,6 +150,8 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldX = 69 * gp.tileSize;
 		gp.obj[mapNum][i].worldY = 60 * gp.tileSize;
 		i++;
+		
+		//SOUTH COAST
 
 		gp.obj[mapNum][i] = new OBJ_Campfire(gp);
 		gp.obj[mapNum][i].worldX = 23 * gp.tileSize;
@@ -190,6 +194,10 @@ public class AssetSetter {
 		gp.obj[mapNum][i] = new OBJ_Scarecrow(gp);
 		gp.obj[mapNum][i].worldX = 89 * gp.tileSize;
 		gp.obj[mapNum][i].worldY = 77 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_BridgeRubble(gp);
+		gp.obj[mapNum][i].worldX = 64 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 62 * gp.tileSize - gp.tileSize/3;
 		i++;
 //		gp.obj[mapNum][i] = new OBJ_Broom(gp);
 //		gp.obj[mapNum][i].worldX = 84 * gp.tileSize;
@@ -238,6 +246,8 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldX = 74 * gp.tileSize;
 		gp.obj[mapNum][i].worldY = 79 * gp.tileSize;
 		i++;
+		
+		
 		
 		//Dungeon
 		mapNum = 2;

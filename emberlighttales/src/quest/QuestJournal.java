@@ -30,7 +30,9 @@ public class QuestJournal {
         }
     }
     public void addQuest(Quest quest) {
-        activeQuests.add(quest);
+    	if(!activeQuests.contains(quest) && !completedQuests.contains(quest) && quest != null) {
+    		activeQuests.add(quest);
+    	}
     }
 
     public void completeQuest(Quest quest) {

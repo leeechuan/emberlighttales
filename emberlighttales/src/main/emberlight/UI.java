@@ -336,7 +336,7 @@ public class UI {
 		    }
 		    
 		    // Draw version number on the bottom right
-		    String versionText = "Alpha v1.0.10";
+		    String versionText = "Alpha v1.0.11";
 		    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 10F));
 		    g2.setColor(Color.white);  // Use white color for the version text
 		    int versionX = gp.screenWidth - g2.getFontMetrics().stringWidth(versionText) - 10;  // Right-aligned
@@ -1376,7 +1376,6 @@ public class UI {
 	        }
 	    }
 	}
-
 	public void scrollUp() {
 	    int activeCount = gp.qManager.getQuestJournal().getActiveQuests().size();
 
@@ -1393,7 +1392,6 @@ public class UI {
 	        }
 	    }
 	}
-	// Method to display the expanded quest details on the right side
 	private void drawExpandedQuestDetails(Graphics2D g2, int selectedIndex) {
 	    int rightFrameX = gp.screenWidth * 5/10 - 50; // Right side of the screen
 	    int rightFrameY = 20;
@@ -1553,7 +1551,7 @@ public class UI {
         g2.setStroke(new BasicStroke(4));
         g2.drawRoundRect(x + 4, y + 4, width - 8, height - 8, 20, 20);
     }
-	public int getXforCenteredText(String text) {
+    public int getXforCenteredText(String text) {
 		
 		int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
 		int x = gp.screenWidth/2 - length/2;

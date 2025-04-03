@@ -144,27 +144,13 @@ public class NPC_Mayor extends Entity {
 		
 		facePlayer();
 
-		if (gp.qManager.getQuestJournal().getActiveQuests().stream().noneMatch(quest -> quest.getName().equals("Bound By Blood And Magic"))) {
-	        // Start the quest if it's not already active
-	        Quest mainQuest1 = gp.qManager.getQuestJournal().getQuestByName("Bound By Blood And Magic");
-	        if (mainQuest1 != null && !mainQuest1.isCompleted()) {
-	        	gp.qManager.getQuestJournal().addQuest(mainQuest1);
-//	        	mainQuest1.advanceStage();
-	        	startDialogue(this, 1); // Show the quest starting dialogue
-	        }
-	    }
+		startDialogue(this, dialogueSet);
 		
+		dialogueSet++;
 		
-		
-		else {
-			startDialogue(this, dialogueSet);
+		if(dialogues[dialogueSet][0] == null) {
 			
-			dialogueSet++;
-			
-			if(dialogues[dialogueSet][0] == null) {
-				
-				dialogueSet--;
-			}
+			dialogueSet--;
 		}
 
 //		onPath = true;
