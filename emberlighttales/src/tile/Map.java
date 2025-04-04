@@ -73,8 +73,8 @@ public class Map extends TileManager{
 	    for (int i = 0; i < gp.iTile[gp.currentMap].length; i++) {
 	        InteractiveTile tile = gp.iTile[gp.currentMap][i];
 	        if (tile != null) {  // assuming similar property for interactive tiles
-	            int tileX = (int)(x + tile.worldX / scale);
-	            int tileY = (int)(y + tile.worldY / scale);
+	            int tileX = (int)(x + tile.worldX / scale + 10);
+	            int tileY = (int)(y + tile.worldY / scale - 3);
 	            int tileSize = (int)(gp.tileSize / 2); // adjust size as needed
 	            g2.drawImage(tile.image1, tileX - 8, tileY - 8, tileSize, tileSize, null);
 	        }

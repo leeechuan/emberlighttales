@@ -7,19 +7,28 @@ import entity.NPC_Chicken;
 import entity.NPC_Dungeon_Rock;
 import entity.NPC_Elder;
 import entity.NPC_Farmer;
+import entity.NPC_FirstLady;
+import entity.NPC_Fisherman;
 import entity.NPC_GymBro;
 import entity.NPC_Wife;
 import entity.NPC_Mayor;
 import entity.NPC_Merchant;
+import entity.NPC_President;
 import entity.NPC_Punk;
 import entity.NPC_Scientist;
+import entity.NPC_Scout;
+import entity.NPC_Shopkeeper;
+import entity.NPC_Son;
+import entity.NPC_Thief;
 import entity.NPC_Witch;
+import entity.NPC_Woodcutter;
 import mob.MOB_Orc_Chief;
 import mob.MOB_PinkSlime;
 import mob.MOB_Skeleton_Mage;
 import object.OBJ_Bed;
 import object.OBJ_Bench;
 import object.OBJ_BigTorch;
+import object.OBJ_Boat;
 import object.OBJ_BridgeRubble;
 import object.OBJ_Broom;
 import object.OBJ_Campfire;
@@ -38,6 +47,7 @@ import object.OBJ_Heart;
 import object.OBJ_LampPost;
 import object.OBJ_Lantern;
 import object.OBJ_ManaCrystal;
+import object.OBJ_Palisade;
 import object.OBJ_Rabbit_Shield_2;
 import object.OBJ_Rabbit_Shield_3;
 import object.OBJ_Scarecrow;
@@ -51,6 +61,7 @@ import object.OBJ_Torch;
 import object.OBJ_Waterfall;
 import object.OBJ_Well;
 import object.OBJ_WoodBridge;
+import object.OBJ_DungeonWoodBridge;
 import tile_interactive.IT_Abandon_House_1;
 import tile_interactive.IT_Barn;
 import tile_interactive.IT_Beehive;
@@ -81,59 +92,55 @@ public class AssetSetter {
 		int i = 0;
 		
 		//DEV AREA
-		gp.obj[mapNum][i] = new OBJ_Chest(gp);
-		gp.obj[mapNum][i].setLoot(new OBJ_Fruit_Juice(gp));
-		gp.obj[mapNum][i].worldX = 89 * gp.tileSize;
-		gp.obj[mapNum][i].worldY = 66 * gp.tileSize;
-		i++;
-		gp.obj[mapNum][i] = new OBJ_GoldenChest(gp);
-		gp.obj[mapNum][i].worldX = 18 * gp.tileSize;
-		gp.obj[mapNum][i].worldY = 15 * gp.tileSize;
-		i++;
-		gp.obj[mapNum][i] = new OBJ_Stone_Axe(gp);
-		gp.obj[mapNum][i].worldX = 21 * gp.tileSize;
-		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
-		i++;
-		gp.obj[mapNum][i] = new OBJ_Rabbit_Shield_2(gp);
-		gp.obj[mapNum][i].worldX = 23 * gp.tileSize;
-		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
-		i++;
-		gp.obj[mapNum][i] = new OBJ_Rabbit_Shield_3(gp);
-		gp.obj[mapNum][i].worldX = 24 * gp.tileSize;
-		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
-		i++;
-		gp.obj[mapNum][i] = new OBJ_Fruit_Juice(gp);
-		gp.obj[mapNum][i].worldX = 25 * gp.tileSize;
-		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
-		i++;
-		gp.obj[mapNum][i] = new OBJ_Coin(gp);
-		gp.obj[mapNum][i].worldX = 29 * gp.tileSize;
-		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
-		i++;
-		gp.obj[mapNum][i] = new OBJ_Coin(gp);
-		gp.obj[mapNum][i].worldX = 30 * gp.tileSize;
-		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
-		i++;
-		gp.obj[mapNum][i] = new OBJ_Heart(gp);
-		gp.obj[mapNum][i].worldX = 33 * gp.tileSize;
-		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
-		i++;
-		gp.obj[mapNum][i] = new OBJ_ManaCrystal(gp);
-		gp.obj[mapNum][i].worldX = 34 * gp.tileSize;
-		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
-		i++;
-		gp.obj[mapNum][i] = new OBJ_DungeonDoor(gp);
-		gp.obj[mapNum][i].worldX = 36 * gp.tileSize;
-		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
-		i++;
-		gp.obj[mapNum][i] = new OBJ_Lantern(gp);
-		gp.obj[mapNum][i].worldX = 36 * gp.tileSize;
-		gp.obj[mapNum][i].worldY = 20 * gp.tileSize;
-		i++;
-		gp.obj[mapNum][i] = new OBJ_Torch(gp);
-		gp.obj[mapNum][i].worldX = 37 * gp.tileSize;
-		gp.obj[mapNum][i].worldY = 20 * gp.tileSize;
-		i++;
+//		gp.obj[mapNum][i] = new OBJ_GoldenChest(gp);
+//		gp.obj[mapNum][i].worldX = 18 * gp.tileSize;
+//		gp.obj[mapNum][i].worldY = 15 * gp.tileSize;
+//		i++;
+//		gp.obj[mapNum][i] = new OBJ_Stone_Axe(gp);
+//		gp.obj[mapNum][i].worldX = 21 * gp.tileSize;
+//		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
+//		i++;
+//		gp.obj[mapNum][i] = new OBJ_Rabbit_Shield_2(gp);
+//		gp.obj[mapNum][i].worldX = 23 * gp.tileSize;
+//		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
+//		i++;
+//		gp.obj[mapNum][i] = new OBJ_Rabbit_Shield_3(gp);
+//		gp.obj[mapNum][i].worldX = 24 * gp.tileSize;
+//		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
+//		i++;
+//		gp.obj[mapNum][i] = new OBJ_Fruit_Juice(gp);
+//		gp.obj[mapNum][i].worldX = 25 * gp.tileSize;
+//		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
+//		i++;
+//		gp.obj[mapNum][i] = new OBJ_Coin(gp);
+//		gp.obj[mapNum][i].worldX = 29 * gp.tileSize;
+//		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
+//		i++;
+//		gp.obj[mapNum][i] = new OBJ_Coin(gp);
+//		gp.obj[mapNum][i].worldX = 30 * gp.tileSize;
+//		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
+//		i++;
+//		gp.obj[mapNum][i] = new OBJ_Heart(gp);
+//		gp.obj[mapNum][i].worldX = 33 * gp.tileSize;
+//		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
+//		i++;
+//		gp.obj[mapNum][i] = new OBJ_ManaCrystal(gp);
+//		gp.obj[mapNum][i].worldX = 34 * gp.tileSize;
+//		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
+//		i++;
+//		gp.obj[mapNum][i] = new OBJ_DungeonDoor(gp);
+//		gp.obj[mapNum][i].worldX = 36 * gp.tileSize;
+//		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
+//		i++;
+//		gp.obj[mapNum][i] = new OBJ_Lantern(gp);
+//		gp.obj[mapNum][i].worldX = 36 * gp.tileSize;
+//		gp.obj[mapNum][i].worldY = 20 * gp.tileSize;
+//		i++;
+//		gp.obj[mapNum][i] = new OBJ_Torch(gp);
+//		gp.obj[mapNum][i].worldX = 37 * gp.tileSize;
+//		gp.obj[mapNum][i].worldY = 20 * gp.tileSize;
+//		i++;
+		
 		gp.obj[mapNum][i] = new OBJ_Bed(gp);
 		gp.obj[mapNum][i].worldX = 55 * gp.tileSize;
 		gp.obj[mapNum][i].worldY = 60 * gp.tileSize;
@@ -199,6 +206,11 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldX = 64 * gp.tileSize;
 		gp.obj[mapNum][i].worldY = 62 * gp.tileSize - gp.tileSize/3;
 		i++;
+		gp.obj[mapNum][i] = new OBJ_Chest(gp);
+		gp.obj[mapNum][i].setLoot(new OBJ_Fruit_Juice(gp));
+		gp.obj[mapNum][i].worldX = 89 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 66 * gp.tileSize;
+		i++;
 //		gp.obj[mapNum][i] = new OBJ_Broom(gp);
 //		gp.obj[mapNum][i].worldX = 84 * gp.tileSize;
 //		gp.obj[mapNum][i].worldY = 85 * gp.tileSize;
@@ -247,7 +259,53 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldY = 79 * gp.tileSize;
 		i++;
 		
+		//GildenShore
+		gp.obj[mapNum][i] = new OBJ_LampPost(gp, 2, 5);
+		gp.obj[mapNum][i].worldX = 29 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 31 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_LampPost(gp, 1, 6);
+		gp.obj[mapNum][i].worldX = 27 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 24 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_LampPost(gp, 2, 6);
+		gp.obj[mapNum][i].worldX = 21 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 36 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_LampPost(gp, 2, 6);
+		gp.obj[mapNum][i].worldX = 21 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 36 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_LampPost(gp, 2, 4);
+		gp.obj[mapNum][i].worldX = 38 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 14 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_LampPost(gp, 1, 5);
+		gp.obj[mapNum][i].worldX = 40 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 26 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_LampPost(gp, 1, 4);
+		gp.obj[mapNum][i].worldX = 25 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Bench(gp, 1);
+		gp.obj[mapNum][i].worldX = 37 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 21 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Boat(gp);
+		gp.obj[mapNum][i].worldX = 10 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 26 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_WoodBridge(gp);
+		gp.obj[mapNum][i].worldX = 12 * gp.tileSize - gp.tileSize/3;
+		gp.obj[mapNum][i].worldY = 26 * gp.tileSize - gp.tileSize/3;
+		i++;
 		
+		//Orc Camp
+		gp.obj[mapNum][i] = new OBJ_Palisade(gp);
+		gp.obj[mapNum][i].worldX = 74 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 29 * gp.tileSize;
+		i++;
 		
 		//Dungeon
 		mapNum = 2;
@@ -268,7 +326,7 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldX = 34 * gp.tileSize;
 		gp.obj[mapNum][i].worldY = 18 * gp.tileSize;
 		i++;
-		gp.obj[mapNum][i] = new OBJ_WoodBridge(gp, false);
+		gp.obj[mapNum][i] = new OBJ_DungeonWoodBridge(gp, false);
 		gp.obj[mapNum][i].worldX = 24 * gp.tileSize;
 		gp.obj[mapNum][i].worldY = 24 * gp.tileSize;
 		i++;
@@ -291,6 +349,7 @@ public class AssetSetter {
 		int mapNum = 0;
 		int i = 0;
 		
+		//Emberville
 		gp.npc[mapNum][i] = new NPC_Husband(gp);
 		gp.npc[mapNum][i].worldX = gp.tileSize*80;
 		gp.npc[mapNum][i].worldY = gp.tileSize*65;
@@ -299,6 +358,10 @@ public class AssetSetter {
 		gp.npc[mapNum][i].worldX = gp.tileSize*85;
 		gp.npc[mapNum][i].worldY = gp.tileSize*65;
 		i++;
+//		gp.npc[mapNum][i] = new NPC_Son(gp);
+//		gp.npc[mapNum][i].worldX = gp.tileSize*62;
+//		gp.npc[mapNum][i].worldY = gp.tileSize*87;
+//		i++;
 		gp.npc[mapNum][i] = new NPC_Punk(gp);
 		gp.npc[mapNum][i].worldX = gp.tileSize*78;
 		gp.npc[mapNum][i].worldY = gp.tileSize*65;
@@ -320,8 +383,8 @@ public class AssetSetter {
 		gp.npc[mapNum][i].worldY = gp.tileSize*68;
 		i++;
 		gp.npc[mapNum][i] = new NPC_Witch(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*83;
-		gp.npc[mapNum][i].worldY = gp.tileSize*86;
+		gp.npc[mapNum][i].worldX = gp.tileSize*89;
+		gp.npc[mapNum][i].worldY = gp.tileSize*76;
 		i++;
 		gp.npc[mapNum][i] = new NPC_Merchant(gp);
 		gp.npc[mapNum][i].worldX = gp.tileSize*78;
@@ -336,6 +399,41 @@ public class AssetSetter {
 		gp.npc[mapNum][i].worldX = gp.tileSize*77;
 		gp.npc[mapNum][i].worldY = gp.tileSize*48;
 		i++;
+		
+		//Gildenshore
+		gp.npc[mapNum][i] = new NPC_President(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*37;
+		gp.npc[mapNum][i].worldY = gp.tileSize*14;
+		i++;
+		gp.npc[mapNum][i] = new NPC_FirstLady(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*35;
+		gp.npc[mapNum][i].worldY = gp.tileSize*15;
+		i++;
+		gp.npc[mapNum][i] = new NPC_Scout(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*31;
+		gp.npc[mapNum][i].worldY = gp.tileSize*17;
+		i++;
+		gp.npc[mapNum][i] = new NPC_Fisherman(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*20;
+		gp.npc[mapNum][i].worldY = gp.tileSize*25;
+		i++;
+		gp.npc[mapNum][i] = new NPC_Thief(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*21;
+		gp.npc[mapNum][i].worldY = gp.tileSize*34;
+		i++;
+		gp.npc[mapNum][i] = new NPC_Woodcutter(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*35;
+		gp.npc[mapNum][i].worldY = gp.tileSize*34;
+		i++;
+		gp.npc[mapNum][i] = new NPC_Elder(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*46;
+		gp.npc[mapNum][i].worldY = gp.tileSize*30;
+		i++;
+		gp.npc[mapNum][i] = new NPC_Shopkeeper(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*12;
+		gp.npc[mapNum][i].worldY = gp.tileSize*40;
+		i++;
+		
 		mapNum = 1;
 		i = 0;
 
@@ -358,26 +456,26 @@ public class AssetSetter {
 		int mapNum = 0;
 		int i = 0;
 		
-		gp.mob[mapNum][i] = new MOB_PinkSlime(gp);
-		gp.mob[mapNum][i].worldX = gp.tileSize*31;
-		gp.mob[mapNum][i].worldY = gp.tileSize*21;
-		i++;
-		gp.mob[mapNum][i] = new MOB_PinkSlime(gp);
-		gp.mob[mapNum][i].worldX = gp.tileSize*33;
-		gp.mob[mapNum][i].worldY = gp.tileSize*23;
-		i++;
-		gp.mob[mapNum][i] = new MOB_PinkSlime(gp);
-		gp.mob[mapNum][i].worldX = gp.tileSize*33;
-		gp.mob[mapNum][i].worldY = gp.tileSize*24;
-		i++;
-		gp.mob[mapNum][i] = new MOB_PinkSlime(gp);
-		gp.mob[mapNum][i].worldX = gp.tileSize*33;
-		gp.mob[mapNum][i].worldY = gp.tileSize*25;
-		i++;
-		gp.mob[mapNum][i] = new MOB_Skeleton_Mage(gp);
-		gp.mob[mapNum][i].worldX = gp.tileSize*16;
-		gp.mob[mapNum][i].worldY = gp.tileSize*28;
-		i++;
+//		gp.mob[mapNum][i] = new MOB_PinkSlime(gp);
+//		gp.mob[mapNum][i].worldX = gp.tileSize*31;
+//		gp.mob[mapNum][i].worldY = gp.tileSize*21;
+//		i++;
+//		gp.mob[mapNum][i] = new MOB_PinkSlime(gp);
+//		gp.mob[mapNum][i].worldX = gp.tileSize*33;
+//		gp.mob[mapNum][i].worldY = gp.tileSize*23;
+//		i++;
+//		gp.mob[mapNum][i] = new MOB_PinkSlime(gp);
+//		gp.mob[mapNum][i].worldX = gp.tileSize*33;
+//		gp.mob[mapNum][i].worldY = gp.tileSize*24;
+//		i++;
+//		gp.mob[mapNum][i] = new MOB_PinkSlime(gp);
+//		gp.mob[mapNum][i].worldX = gp.tileSize*33;
+//		gp.mob[mapNum][i].worldY = gp.tileSize*25;
+//		i++;
+//		gp.mob[mapNum][i] = new MOB_Skeleton_Mage(gp);
+//		gp.mob[mapNum][i].worldX = gp.tileSize*16;
+//		gp.mob[mapNum][i].worldY = gp.tileSize*28;
+//		i++;
 		
 		//Boss Dungeon
 		mapNum = 3;
@@ -398,8 +496,7 @@ public class AssetSetter {
 		
 
 		
-		gp.iTile[mapNum][i] = new IT_House(gp, 15, 25, 1, 5);
-		i++;
+
 		
 		//Emberville Deco
 		gp.iTile[mapNum][i] = new IT_Tree(gp, 65, 80, 4);
@@ -481,13 +578,55 @@ public class AssetSetter {
 		gp.iTile[mapNum][i] = new IT_Beehive(gp, 75, 46, 0);
 		i++;
 		
-		//Emberville outskirts
+		//Emberville Outskirts
 		gp.iTile[mapNum][i] = new IT_Abandon_House_1(gp, 23, 76);
 		i++;
 		
 		gp.iTile[mapNum][i] = new IT_CaveEntrance(gp, 47, 53);
 		i++;
 		
+		//Gildenshore Houses
+		gp.iTile[mapNum][i] = new IT_House(gp, 11, 38, 2, 1); //Big House bottom
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_House(gp, 20, 32, 1, 4); //Small House
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_House(gp, 31, 33, 4, 7); //Medium Yellow House
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_House(gp, 43, 29, 3, 4); //Big House
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_House(gp, 16, 24, 4, 8); //Medium Yellow House
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_House(gp, 28, 16, 4, 7); //Medium Yellow House
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_House(gp, 35, 11, 2, 4); //Big House Top
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Planter(gp, 22, 36, 0, 3); //Planter
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Planter(gp, 32, 36, 0, 3); //Planter
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Planter(gp, 42, 31, 0, 3); //Planter
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Planter(gp, 17, 27, 0, 4); //Planter
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Planter(gp, 31, 19, 2, 0); //Planter
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Planter(gp, 22, 24, 3, 0); //Planter
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Planter(gp, 16, 38, 3, 2); //Planter
+		i++;
 		//Dungeon
 		mapNum = 2;
 		

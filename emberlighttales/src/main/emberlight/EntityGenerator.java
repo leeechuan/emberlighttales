@@ -5,6 +5,7 @@ import object.OBJ_Arrow;
 import object.OBJ_Bed;
 import object.OBJ_Bench;
 import object.OBJ_BigTorch;
+import object.OBJ_Boat;
 import object.OBJ_Broom;
 import object.OBJ_Campfire;
 import object.OBJ_Cauldron;
@@ -37,6 +38,7 @@ import object.OBJ_Torch;
 import object.OBJ_Waterfall;
 import object.OBJ_Well;
 import object.OBJ_WoodBridge;
+import object.OBJ_DungeonWoodBridge;
 
 public class EntityGenerator {
 	
@@ -53,6 +55,7 @@ public class EntityGenerator {
 		case OBJ_Bed.objName: obj = new OBJ_Bed(gp); break;
 		case OBJ_Bench.objName: obj = new OBJ_Bench(gp, 0); break;
 		case OBJ_BigTorch.objName: obj = new OBJ_BigTorch(gp); break;
+		case OBJ_Boat.objName: obj = new OBJ_Boat(gp); break;
 		case OBJ_Broom.objName: obj = new OBJ_Broom(gp); break;
 		case OBJ_Campfire.objName: obj = new OBJ_Campfire(gp); break;
 		case OBJ_Cauldron.objName: obj = new OBJ_Cauldron(gp); break;
@@ -60,6 +63,7 @@ public class EntityGenerator {
 		case OBJ_Coin.objName: obj = new OBJ_Coin(gp); break;
 		case OBJ_DungeonDeco.objName: obj = new OBJ_DungeonDeco(gp, 0); break;
 		case OBJ_DungeonDoor.objName: obj = new OBJ_DungeonDoor(gp); break;
+		case OBJ_DungeonWoodBridge.objName: obj = new OBJ_DungeonWoodBridge(gp, false); break;
 		case OBJ_EmberlightPearl.objName: obj = new OBJ_EmberlightPearl(gp); break;
 		case OBJ_FenceGate.objName: obj = new OBJ_FenceGate(gp, false); break;
 		case OBJ_Flower.objName: obj = new OBJ_Flower(gp, 0, 0); break;
@@ -84,7 +88,7 @@ public class EntityGenerator {
 		case OBJ_Torch.objName: obj = new OBJ_Torch(gp); break;
 		case OBJ_Waterfall.objName: obj = new OBJ_Waterfall(gp); break;
 		case OBJ_Well.objName: obj = new OBJ_Well(gp); break;
-		case OBJ_WoodBridge.objName: obj = new OBJ_WoodBridge(gp, false); break;
+		case OBJ_WoodBridge.objName: obj = new OBJ_WoodBridge(gp); break;
 		
 		
 		}

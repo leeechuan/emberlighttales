@@ -27,6 +27,13 @@ public class NPC_Elder extends Entity {
         solidAreaDefaultY = solidArea.y;
         
         dialogueSet = -1;
+        
+    	homeWorldX = 50;
+    	homeWorldY = 50;
+    	outsideWorldX = 47;
+    	outsideWorldY = 30;
+    	homeMapNum = 17;
+    	townNum = 1;
 		
 		getImage();
 		setDialogue();
@@ -49,50 +56,35 @@ public class NPC_Elder extends Entity {
 	}
 	public void setDialogue() {
 		
-		if(gp.csManager.sceneNum == gp.csManager.townhall) {
-			dialogues[0][0] = "The Pearl? But without it...";			
-		}
-		else {
-			dialogues[0][0] = "Hmmm?";		
-			dialogues[0][1] = "My advice?";	
-			dialogues[0][2] = "Stay away from those caverns...";	
-		}
+		dialogues[0][0] = "Hmmm...";
+		dialogues[1][0] = "You're different... I can tell...";
+
+		dialogues[1][0] = "Yes?";
 
 	}
 	public void setAction() {
 		
-		if(onPath == true) {
-			
-//			int goalCol = 18;
-//			int goalRow = 19;
-			int goalCol = (gp.player.worldX + gp.player.solidArea.x)/gp.tileSize;
-			int goalRow = (gp.player.worldY + gp.player.solidArea.y)/gp.tileSize;
-			
-			searchPath(goalCol, goalRow);
-		}
-		else {
-			actionLockCounter++;
+		actionLockCounter++;
 		
-			if(actionLockCounter == 120) {
-				Random random = new Random();
-				int i = random.nextInt(100) + 1; //pick number from 1 to 100
-				
-				if(i <= 25) {
-					direction = "up";
-				}
-				if(i > 25 && i <= 50) {
-					direction = "down";
-				}
-				if(i > 50 && i <= 75) {
-					direction = "left";
-				}
-				if(i > 75 && i <= 100) {
-					direction = "right";
-				}
-				
-				actionLockCounter = 0;
-			}		
-		}
+		if(actionLockCounter == 120) {
+			Random random = new Random();
+			int i = random.nextInt(100) + 1; //pick number from 1 to 100
+			
+			if(i <= 25) {
+				direction = "up";
+			}
+			if(i > 25 && i <= 50) {
+				direction = "down";
+			}
+			if(i > 50 && i <= 75) {
+				direction = "left";
+			}
+			if(i > 75 && i <= 100) {
+				direction = "right";
+			}
+			
+			actionLockCounter = 0;
+		}		
 
 	}
 	
@@ -107,8 +99,6 @@ public class NPC_Elder extends Entity {
 			
 			dialogueSet--;
 		}
-		
-		onPath = true;
 	}
 	
 }

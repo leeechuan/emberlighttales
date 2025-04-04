@@ -70,48 +70,39 @@ public class NPC_Witch extends Entity {
 	}
 	public void setAction() {
 		
-		if(onPath == true) {
+		actionLockCounter++;
+        
+		if(actionLockCounter == 120) {
+			Random random = new Random();
+			int i = random.nextInt(100) + 1; //pick number from 1 to 100
 			
-			int goalCol = (gp.player.worldX + gp.player.solidArea.x)/gp.tileSize;
-			int goalRow = (gp.player.worldY + gp.player.solidArea.y)/gp.tileSize;
+			if(i <= 20) {
+				direction = "up";
+				isWalking = true;
+				speed = defaultSpeed;
+			}
+			if(i > 20 && i <= 40) {
+				direction = "down";
+				isWalking = true;
+				speed = defaultSpeed;
+			}
+			if(i > 40 && i <= 60) {
+				direction = "left";
+				isWalking = true;
+				speed = defaultSpeed;
+			}
+			if(i > 60 && i <= 80) {
+				direction = "right";
+				isWalking = true;
+				speed = defaultSpeed;
+			}
+			if(i > 80 && i <= 100) {
+				speed = 0;
+				isWalking = false;
+			}
 			
-			searchPath(goalCol, goalRow);
-		}
-		else {
-			actionLockCounter++;
-            
-			if(actionLockCounter == 120) {
-				Random random = new Random();
-				int i = random.nextInt(100) + 1; //pick number from 1 to 100
-				
-				if(i <= 20) {
-					direction = "up";
-					isWalking = true;
-					speed = defaultSpeed;
-				}
-				if(i > 20 && i <= 40) {
-					direction = "down";
-					isWalking = true;
-					speed = defaultSpeed;
-				}
-				if(i > 40 && i <= 60) {
-					direction = "left";
-					isWalking = true;
-					speed = defaultSpeed;
-				}
-				if(i > 60 && i <= 80) {
-					direction = "right";
-					isWalking = true;
-					speed = defaultSpeed;
-				}
-				if(i > 80 && i <= 100) {
-					speed = 0;
-					isWalking = false;
-				}
-				
-				actionLockCounter = 0;
-			}		
-		}
+			actionLockCounter = 0;
+		}	
 
 	}
 	public void speak() {
@@ -119,7 +110,6 @@ public class NPC_Witch extends Entity {
 		facePlayer();
 		startDialogue(this, dialogueSet);
 		
-		onPath = true;
 	}
 
 }

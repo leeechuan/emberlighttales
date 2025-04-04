@@ -65,42 +65,31 @@ public class EventHandler{
 		}
 		
 		if(canTouchEvent == true) {
-			if(hit(0, 27, 18,"right") == true) {
-				damagePit(gp.dialogueState);
-			}
-			else if(hit(0, 28, 21,"any") == true) {
-				healingPool(gp.dialogueState);
-			}
-			else if(hit(0, 16, 26,"any") == true) {
-				teleport(1, 50, 50, gp.indoor);
-				gp.playSE(14);
-			}
-			else if(hit(1, 50, 50,"any") == true) {
-				teleport(0, 16, 26, gp.outside);
-				gp.playSE(14);
-			}
-			else if(hit(0, 47, 54,"any") == true || hit(0, 48, 54,"any") == true) {
-				teleport(2, 20, 30, gp.dungeon);
-				gp.playSE(24);
-			}
-			else if(hit(2, 20, 30,"any") == true || hit(2, 21, 30,"any") == true) {
-				teleport(0, 47, 55, gp.outside);
-				gp.playSE(24);
-			}
-			else if(hit(2, 16, 21,"any") == true) {
-				teleport(3, 50, 67, gp.dungeon);
-				gp.playSE(24);
-			}
-			else if(hit(3, 50, 67,"any") == true) {
-				teleport(2, 16, 21, gp.dungeon);
-				gp.playSE(24);
-			}
-			else if(hit(3, 50, 58,"any") == true) {
+//			if(hit(0, 27, 18,"right") == true) {
+//				damagePit(gp.dialogueState);
+//			}
+//			else if(hit(0, 28, 21,"any") == true) {
+//				healingPool(gp.dialogueState);
+//			}
+//			else if(hit(0, 16, 26,"any") == true) {
+//				teleport(1, 50, 50, gp.indoor);
+//				gp.playSE(14);
+//			}
+//			else if(hit(1, 50, 50,"any") == true) {
+//				teleport(0, 16, 26, gp.outside);
+//				gp.playSE(14);
+//			}
+//			
+			//CUTSCENES
+
+			if(hit(3, 50, 58,"any") == true) {
 				OrcChiefBattle();
 			}
 			else if(hit(0, 74, 80,"any") == true || hit(0, 75, 80,"any") == true || hit(0, 76, 80,"any") == true) {
 				TownhallScene();
 			}
+			
+			//EMBERVILLE
 			
 			//Witch house
 			else if(hit(0, 83, 84,"up") == true) {
@@ -190,10 +179,124 @@ public class EventHandler{
 				gp.playSE(14);
 			}
 			
+			//GILDENSHORE
 			
+			//President house
+			else if(hit(0, 36, 12,"up") == true) {
+				teleport(12, 50, 50, gp.indoor);
+				gp.playSE(14);
+			}
+			else if(hit(12, 50, 51,"any") == true) {
+				teleport(0, 36, 13, gp.outside);
+				gp.playSE(14);
+			}
+			
+			//Scout house
+			else if(hit(0, 32, 16,"up") == true) {
+				teleport(13, 54, 50, gp.indoor);
+				gp.playSE(14);
+			}
+			else if(hit(13, 54, 51,"any") == true) {
+				teleport(0, 32, 17, gp.outside);
+				gp.playSE(14);
+			}
+			
+			//Fisherman house
+			else if(hit(0, 20, 24,"up") == true) {
+				teleport(14, 54, 50, gp.indoor);
+				gp.playSE(14);
+			}
+			else if(hit(14, 54, 51,"any") == true) {
+				teleport(0, 20, 25, gp.outside);
+				gp.playSE(14);
+			}
+			
+			//Thief house
+			else if(hit(0, 21, 33,"up") == true) {
+				teleport(15, 50, 50, gp.indoor);
+				gp.playSE(14);
+			}
+			else if(hit(15, 50, 51,"any") == true) {
+				teleport(0, 21, 34, gp.outside);
+				gp.playSE(14);
+			}
+			
+			//Woodcutter house
+			else if(hit(0, 35, 33,"up") == true) {
+				teleport(16, 54, 50, gp.indoor);
+				gp.playSE(14);
+			}
+			else if(hit(16, 54, 51,"any") == true) {
+				teleport(0, 35, 34, gp.outside);
+				gp.playSE(14);
+			}
+			
+			//Elder house
+			else if(hit(0, 47, 30,"up") == true) {
+				teleport(17, 50, 50, gp.indoor);
+				gp.playSE(14);
+			}
+			else if(hit(17, 50, 51,"any") == true) {
+				teleport(0, 47, 31, gp.outside);
+				gp.playSE(14);
+			}
+			
+			//Shopkeeper house
+			else if(hit(0, 12, 39,"up") == true) {
+				teleport(18, 50, 50, gp.indoor);
+				gp.playSE(14);
+			}
+			else if(hit(18, 50, 51,"any") == true) {
+				teleport(0, 12, 39, gp.outside);
+				gp.playSE(14);
+			}
+			
+			//Dungeon 1
+			
+			else if(hit(0, 47, 54,"any") == true || hit(0, 48, 54,"any") == true) {
+				teleport(2, 20, 30, gp.dungeon);
+				gp.playSE(24);
+			}
+			else if(hit(2, 20, 30,"any") == true || hit(2, 21, 30,"any") == true) {
+				teleport(0, 47, 55, gp.outside);
+				gp.playSE(24);
+			}
+			else if(hit(2, 16, 21,"any") == true) {
+				teleport(3, 50, 67, gp.dungeon);
+				gp.playSE(24);
+			}
+			else if(hit(3, 50, 67,"any") == true) {
+				teleport(2, 16, 21, gp.dungeon);
+				gp.playSE(24);
+			}
+			
+			//GILDENSHORE
+			
+			
+			//TOWN WELCOMES
 			//Emberville
-			else if(hit(0, 66, 62,"riight") == true || hit(0, 66, 63,"right") == true || hit(0, 66, 64,"right") == true) {
+			else if(hit(0, 66, 62,"right") == true || hit(0, 66, 63,"right") == true || hit(0, 66, 64,"right") == true) {
 				popup("Emberville");
+			}
+			//South Coast
+			else if(hit(0, 63, 62,"left") == true || hit(0, 63, 63,"left") == true || hit(0, 63, 64,"left") == true) {
+				popup("South Coast");
+			}
+			//South Coast
+			else if(hit(0, 33, 64,"down") == true || hit(0, 34, 64,"down") == true || hit(0, 35, 64,"down") == true || hit(0, 36, 64,"down") == true || hit(0, 37, 64,"down") == true) {
+				popup("South Coast");
+			}
+			//Gildenshore
+			else if(hit(0, 33, 64,"up") == true || hit(0, 34, 64,"up") == true || hit(0, 35, 64,"up") == true || hit(0, 36, 64,"up") == true || hit(0, 37, 64,"up") == true) {
+				popup("Gildenshore");
+			}
+			//Gildenshore
+			else if(hit(0, 56, 35,"left") == true || hit(0, 56, 36,"left") == true || hit(0, 56, 37,"left") == true) {
+				popup("Gildenshore");
+			}
+			//Orc Camp
+			else if(hit(0, 65, 35,"right") == true || hit(0, 65, 36,"right") == true || hit(0, 65, 37,"right") == true) {
+				popup("Orc Camp");
 			}
 			
 		}

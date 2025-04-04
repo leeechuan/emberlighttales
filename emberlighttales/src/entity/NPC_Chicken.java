@@ -48,62 +48,37 @@ public class NPC_Chicken extends Entity {
 	}
 	public void setDialogue() {
 		
-		dialogues[0][0] = "Buzzzz";		
+		dialogues[0][0] = "Bok";		
 		
-		dialogues[1][0] = "Buzzzzzzzz";		
-		dialogues[1][1] = "Buzz buzzzzzzzz";
+		dialogues[1][0] = "Bokkkkkkkkk";		
+		dialogues[1][1] = "Bok Bok";
 
 	}
 	public void setAction() {
 		
-		if(onPath == true) {
-			
-//			int goalCol = 18;
-//			int goalRow = 19;
-			int goalCol = (gp.player.worldX + gp.player.solidArea.x)/gp.tileSize;
-			int goalRow = (gp.player.worldY + gp.player.solidArea.y)/gp.tileSize;
-			
-			searchPath(goalCol, goalRow);
-		}
-		else {
-			actionLockCounter++;
+		actionLockCounter++;
 		
-			if(actionLockCounter == 120) {
-				Random random = new Random();
-				int i = random.nextInt(100) + 1; //pick number from 1 to 100
-				
-				if(i <= 25) {
-					direction = "up";
-				}
-				if(i > 25 && i <= 50) {
-					direction = "down";
-				}
-				if(i > 50 && i <= 75) {
-					direction = "left";
-				}
-				if(i > 75 && i <= 100) {
-					direction = "right";
-				}
-				
-				actionLockCounter = 0;
-			}		
-		}
+		if(actionLockCounter == 120) {
+			Random random = new Random();
+			int i = random.nextInt(100) + 1; //pick number from 1 to 100
+			
+			if(i <= 25) {
+				direction = "up";
+			}
+			if(i > 25 && i <= 50) {
+				direction = "down";
+			}
+			if(i > 50 && i <= 75) {
+				direction = "left";
+			}
+			if(i > 75 && i <= 100) {
+				direction = "right";
+			}
+			
+			actionLockCounter = 0;
+		}		
 
 	}
-	
-//	public void speak() {
-//		
-//		facePlayer();
-//		startDialogue(this, dialogueSet);
-//		
-//		dialogueSet++;
-//		
-//		if(dialogues[dialogueSet][0] == null) {
-//			
-//			dialogueSet--;
-//		}
-//		
-//		onPath = true;
-//	}
+
 	
 }

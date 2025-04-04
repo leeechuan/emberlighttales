@@ -1171,6 +1171,9 @@ public class Entity {
 	    	if(townNum == 0) {
 	    		roamingArea.setBounds(gp.tileSize * 48, gp.tileSize * 43, gp.tileSize * 50, gp.tileSize * 50);
 	    	}
+	    	if(townNum == 1) {
+	    		roamingArea.setBounds(gp.tileSize * 5, gp.tileSize * 5, gp.tileSize * 45, gp.tileSize * 37);
+	    	}
 	    	else {
 	    		roamingArea.setBounds(gp.tileSize * 0, gp.tileSize * 0, gp.tileSize * 100, gp.tileSize * 100);
 	    	}

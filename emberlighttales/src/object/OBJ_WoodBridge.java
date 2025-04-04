@@ -15,7 +15,7 @@ public class OBJ_WoodBridge extends Entity{
 	GamePanel gp;
 	public static final String objName = "Wood Bridge";
 	
-	public OBJ_WoodBridge(GamePanel gp, boolean rotate) {
+	public OBJ_WoodBridge(GamePanel gp) {
 	    
 	    super(gp);
 	    this.gp = gp;
@@ -23,14 +23,15 @@ public class OBJ_WoodBridge extends Entity{
 	    type = type_obstacle;
 	    name = objName;
 
-	    
-	    if (rotate) {
-	    	image1 = setup("/dungeon_objects/wood_bridge_0", 1, 5);
-	    } else {
-	    	image1 = setup("/dungeon_objects/wood_bridge_1", 5, 1);
-	    }
-	    
-	    collision = false;
+	    image1 = setup("/decoration/woodbridge", 3, 3);
+		solidArea.x = gp.tileSize*0;
+		solidArea.y = gp.tileSize*0;
+		solidArea.width = gp.tileSize*0;
+		solidArea.height = gp.tileSize*0;
+		solidAreaDefaultX = solidArea.x;
+		solidAreaDefaultY = solidArea.y;
+		collision = true;
+
 	}
 
 }

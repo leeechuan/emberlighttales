@@ -24,7 +24,7 @@ public class TileManager {
     
     public TileManager(GamePanel gp) {
         this.gp = gp;
-        tile = new Tile[700]; // Increase as needed for different tile variants
+        tile = new Tile[1000]; // Increase as needed for different tile variants
         mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImages();
@@ -40,11 +40,18 @@ public class TileManager {
         loadMap("/maps/gymbrohouse.txt", 9);
         loadMap("/maps/scientisthouse.txt", 10);
         loadMap("/maps/farmerhouse.txt", 11);
+        loadMap("/maps/presidenthouse.txt", 12);
+        loadMap("/maps/scouthouse.txt", 13);
+        loadMap("/maps/fishermanhouse.txt", 14);
+        loadMap("/maps/thiefhouse.txt", 15);
+        loadMap("/maps/woodcutterhouse.txt", 16);
+        loadMap("/maps/elderhouse.txt", 17);
+        loadMap("/maps/shopkeeperhouse.txt", 18);
     }
 
     public void getTileImages() {
         // Predefine collision rules using a boolean array
-        boolean[] collisionFlags = new boolean[526];
+        boolean[] collisionFlags = new boolean[610];
 
         // Default all to true
         Arrays.fill(collisionFlags, false);
@@ -165,9 +172,47 @@ public class TileManager {
         for (int i = 436; i <= 493; i++) {
             collisionFlags[i] = true; // Mark as wall
         }
-
-
         
+        collisionFlags[527] = true; //palisade
+        collisionFlags[528] = true; //palisade
+        collisionFlags[529] = true; //palisade
+        collisionFlags[532] = true; //palisade
+        collisionFlags[533] = true; //palisade
+        collisionFlags[534] = true; //palisade
+        collisionFlags[537] = true; //palisade
+        collisionFlags[538] = true; //palisade
+        collisionFlags[541] = true; //palisade
+        collisionFlags[542] = true; //palisade
+        collisionFlags[543] = true; //palisade
+        collisionFlags[546] = true; //palisade
+        collisionFlags[547] = true; //palisade
+        collisionFlags[548] = true; //palisade
+        collisionFlags[550] = true; //palisade
+        collisionFlags[551] = true; //palisade
+        collisionFlags[552] = true; //palisade
+        collisionFlags[553] = true; //palisade
+        collisionFlags[555] = true; //palisade
+        collisionFlags[557] = true; //palisade
+        collisionFlags[560] = true; //palisade
+        collisionFlags[562] = true; //palisade
+        collisionFlags[569] = true; //palisade
+        collisionFlags[570] = true; //palisade
+        collisionFlags[571] = true; //palisade
+        collisionFlags[574] = true; //palisade
+        collisionFlags[575] = true; //palisade
+        collisionFlags[576] = true; //palisade
+        collisionFlags[579] = true; //palisade
+        collisionFlags[580] = true; //palisade
+        collisionFlags[583] = true; //palisade
+        collisionFlags[584] = true; //palisade
+        collisionFlags[585] = true; //palisade
+        collisionFlags[588] = true; //palisade
+        collisionFlags[589] = true; //palisade
+        collisionFlags[590] = true; //palisade
+        collisionFlags[592] = true; //palisade
+        collisionFlags[593] = true; //palisade
+        collisionFlags[594] = true; //palisade
+        collisionFlags[595] = true; //palisade
 
 
         for (int i = 0; i < collisionFlags.length; i++) {
