@@ -89,7 +89,7 @@ public class EventHandler{
 				TownhallScene();
 			}
 			else if(hit(0, 64, 62,"any") == true || hit(0, 64, 63,"any") == true || hit(0, 64, 64,"any") == true) {
-				TownhallScene();
+				GuardSpeak();
 			}
 			
 			//EMBERVILLE
@@ -409,12 +409,12 @@ public class EventHandler{
 			
 		}
 	}
-	public void GuardScene() {
+	public void GuardSpeak() {
 		
 		if(Progress.gameStage == Progress.STAGE_BRIDGE_RUBBLE_REMOVED) {
 			gp.gameState = gp.cutsceneState;
 			gp.csManager.scenePhase = 0;
-			gp.csManager.sceneNum = gp.csManager.townhall;
+			gp.csManager.sceneNum = gp.csManager.guardSpeak;
 			
 		}
 	}

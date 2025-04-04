@@ -269,7 +269,6 @@ public class Entity {
 		}
 	}
 	public void startDialogue(Entity entity, int setNum) {
-		System.out.print(entity.name + " - " +setNum);
 		gp.gameState = gp.dialogueState;
 		gp.ui.npc = entity;
 		dialogueSet = setNum;

@@ -68,7 +68,9 @@ public class NPC_Guard extends Entity {
 			dialogues[0][8] = "You should look into it. If the orcs\nare planning something else… we’ll need to know.";
 			dialogues[0][9] = "Good luck out there... whatever you are.";
 		}
-		dialogues[0][0] = "Yes? What do you need?";
+		else {
+			dialogues[0][0] = "Yes? What do you need?";
+		}
 		
 	}
 	public void setAction() {

@@ -101,7 +101,7 @@ public class CutsceneManager {
 			cutsceneMaster.dialogues[5][0] = "All ready! Adventure awaits.";
 		}
 		if(sceneNum == witchSerum) {
-			cutsceneMaster.dialogues[0][0] = "A shock of heat runs through your body.\nVision blurs. Muscles tense. Shadows\nripple nunnaturally across the floor.";
+			cutsceneMaster.dialogues[0][0] = "A shock of heat runs through your\nbody. Vision blurs. Muscles tense.\nShadows ripple nunnaturally across\nthe floor.";
 			cutsceneMaster.dialogues[0][1] = "(Press Q to transform)";
 		}
 

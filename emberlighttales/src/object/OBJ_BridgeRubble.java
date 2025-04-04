@@ -50,7 +50,7 @@ public class OBJ_BridgeRubble extends Entity{
 			gp.pManager.addNotification("Quest Completed!");
 			gp.qManager.progressQuest("Bound By Blood And Magic");
 			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Bound By Blood And Magic"));
-			Progress.gameStage = Progress.STAGE_ORC_LIEUTENANT;
+			Progress.gameStage = Progress.STAGE_BRIDGE_RUBBLE_REMOVED;
 		}
 	}
 	
