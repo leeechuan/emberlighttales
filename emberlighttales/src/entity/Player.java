@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import data.Progress;
 import main.emberlight.GamePanel;
 import main.emberlight.KeyHandler;
 import main.emberlight.UtilityTool;
@@ -66,10 +67,10 @@ public class Player extends Entity {
         setDefaultValues();
     }
     public void setDefaultValues() {
-//        worldX = gp.tileSize * 75;
-//        worldY = gp.tileSize * 78;
-        worldX = gp.tileSize * 27;
-        worldY = gp.tileSize * 26;
+        worldX = gp.tileSize * 75;
+        worldY = gp.tileSize * 78;
+//        worldX = gp.tileSize * 27;
+//        worldY = gp.tileSize * 26;
         defaultSpeed = 5;
         speed = defaultSpeed;
         direction = "down";
@@ -104,10 +105,10 @@ public class Player extends Entity {
     public void setDefaultPositions() {
     	
     	gp.currentMap = 0;
-//        worldX = gp.tileSize * 75;
-//        worldY = gp.tileSize * 78;
-        worldX = gp.tileSize * 27;
-        worldY = gp.tileSize * 26;
+        worldX = gp.tileSize * 75;
+        worldY = gp.tileSize * 78;
+//        worldX = gp.tileSize * 27;
+//        worldY = gp.tileSize * 26;
         direction = "down";
     }
     public void setDialogue() {
@@ -303,7 +304,7 @@ public class Player extends Entity {
         }
     }
     public void gremlinMode() {
-    	if (keyH.gremlinPressed) {
+    	if (keyH.gremlinPressed && Progress.gameStage >= Progress.STAGE_SERUM_GIVEN) {
     	    if (!gremlinKeyPreviouslyPressed) {  // Ensures toggle happens only once per press
     	        isGremlin = !isGremlin;
     	        //Smoke particles for transition

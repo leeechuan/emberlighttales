@@ -51,7 +51,7 @@ public class TileManager {
 
     public void getTileImages() {
         // Predefine collision rules using a boolean array
-        boolean[] collisionFlags = new boolean[610];
+        boolean[] collisionFlags = new boolean[611];
 
         // Default all to true
         Arrays.fill(collisionFlags, false);
@@ -61,6 +61,7 @@ public class TileManager {
         collisionFlags[55] = true; //water
         collisionFlags[56] = true; //water
         collisionFlags[57] = true; //water
+        collisionFlags[89] = true; //blank
         collisionFlags[134] = true; //cliff
         collisionFlags[136] = true; //cliff
         collisionFlags[137] = true; //cliff

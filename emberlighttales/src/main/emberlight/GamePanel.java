@@ -24,6 +24,7 @@ import entity.Player;
 import entity.SmokeParticle;
 import environment.EnvironmentManager;
 import environment.LightSource;
+import environment.Lighting;
 import popup.PopupManager;
 import tile.Map;
 import tile.TileManager;
@@ -174,6 +175,7 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	public void startNewGame() {
 	    qManager.getQuestJournal().resetQuestJournal();
+	    Progress.gameStage = Progress.STAGE_TUTORIAL;
 	    resetGame(true);
 	}
 	public void loadSavedGame() {
@@ -432,6 +434,7 @@ public class GamePanel extends JPanel implements Runnable{
 			g2.drawString("Tile               : " + ((player.worldX + player.solidArea.x)/tileSize) + "," + ((player.worldY + player.solidArea.y)/tileSize), 10, 440);
 			g2.drawString("God Mode           : " + keyH.godModeOn, 10, 460);
 			g2.drawString("Game Stage         : " + Progress.gameStage, 10, 480);
+			g2.drawString("Time Speed         : " + eManager.lighting.timeSpeed, 10, 500);
 			
 			System.out.println("Draw Time: " + passed);
 		}
@@ -492,7 +495,16 @@ public class GamePanel extends JPanel implements Runnable{
 	public void updateNPCDialogues() {
 	    for (int i = 0; i < npc[currentMap].length; i++) {
 	        if (npc[currentMap][i] != null) {
-	            npc[currentMap][i].setDialogue(); // Refresh NPC dialogues
+	        	
+	        	//Reset Dialogue
+	            for (int row = 0; row < npc[currentMap][i].dialogues.length; row++) {
+	                for (int col = 0; col < npc[currentMap][i].dialogues[row].length; col++) {
+	                    npc[currentMap][i].dialogues[row][col] = null;
+	                    npc[currentMap][i].dialogueSet = -1;
+	                }
+	            }
+	        	
+	            npc[currentMap][i].setDialogue();
 	        }
 	    }
 	}

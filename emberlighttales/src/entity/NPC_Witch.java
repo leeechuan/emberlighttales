@@ -7,6 +7,7 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+import data.Progress;
 import main.emberlight.GamePanel;
 
 public class NPC_Witch extends Entity {
@@ -59,10 +60,28 @@ public class NPC_Witch extends Entity {
 			dialogues[0][1] = "If we are to fight the orcs, if we\nare to take back what was stolen...\nyou will need more than steel and courage.";
 			dialogues[0][2] = "For those who truly wish to change\nEmberville’s fate... come to my house\nafter dark.";
 			dialogues[0][3] = "But be warned—what I offer does not\ncome without consequence.";
-		} else {
+		} 
+		else if(gp.csManager.sceneNum == gp.csManager.witchSerum) {
+			dialogues[0][0] = "So... you came. Good.";
+			dialogues[0][1] = "You wish to face the orcs.\nTo go beyond the wall. ";
+			dialogues[0][2] = "But brute strength alone won’t be enough—\nnot against what guards that Pearl.";
+			dialogues[0][3] = "(She steps closer, holding up a vial filled\nwith thick, glowing green serum\nthat swirls unnaturally.)";
+			dialogues[0][4] = "This… is my own design. A serum forged\nfrom gremlin essence, distilled through\nforgotten rites.";
+			dialogues[0][5] = "Know this — once taken, you will never\nbe the same. You will be more than\nhuman... and less.";
+			dialogues[0][6] = "But with this gift... you will be\nable to clear the rubble blocking\nthe eastern pass.";
+			dialogues[0][7] = "And begin your journey to reclaim what\nwas lost.";
+		}
+		else if(Progress.gameStage == Progress.STAGE_MEET_WITCH && gp.eManager.lighting.dayState != gp.eManager.lighting.night) {
+			dialogues[0][0] = "Not yet...";	
+			dialogues[0][1] = "Meet me at night in my hut...";
+			
+			dialogues[1][0] = "Did you not hear what I just said?";	
+			dialogues[1][1] = "Meet me at night in my hut...";
+
+		} 
+		else {
 			dialogues[0][0] = "Hue hue!";	
-			dialogues[0][1] = "Need Sumthn";			
-			dialogues[0][2] = "Yes?";
+			dialogues[0][1] = "Need Sumthn";
 			
 			dialogues[1][0] = "WEEHU!";
 		}
@@ -107,8 +126,26 @@ public class NPC_Witch extends Entity {
 	}
 	public void speak() {
 		
-		facePlayer();
-		startDialogue(this, dialogueSet);
+		if(Progress.gameStage == Progress.STAGE_MEET_WITCH && gp.eManager.lighting.dayState == gp.eManager.lighting.night) {
+			gp.csManager.sceneNum = gp.csManager.witchSerum;
+			gp.csManager.setDialogue();
+			gp.csManager.scenePhase = 0;
+			gp.gameState = gp.cutsceneState;
+
+		}
+		else {
+			setDialogue();
+			facePlayer();
+			startDialogue(this, dialogueSet);
+			
+			dialogueSet++;
+			
+			if(dialogues[dialogueSet][0] == null) {
+				
+				dialogueSet = 0;
+			}
+		}
+
 		
 	}
 

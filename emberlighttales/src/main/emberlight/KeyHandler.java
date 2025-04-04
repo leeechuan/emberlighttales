@@ -178,6 +178,12 @@ public class KeyHandler implements KeyListener {
 		if(code == KeyEvent.VK_DOWN && showDebugText) {
 			Progress.gameStage--;
 		}
+		if(code == KeyEvent.VK_RIGHT && showDebugText) {
+			gp.eManager.lighting.timeSpeed++;
+		}
+		if(code == KeyEvent.VK_LEFT && showDebugText) {
+			gp.eManager.lighting.timeSpeed--;
+		}
 		if(code ==  KeyEvent.VK_R) {
 			switch(gp.currentMap) {
 			case 0: gp.tileM.loadMap("/maps/world01.txt", 0);

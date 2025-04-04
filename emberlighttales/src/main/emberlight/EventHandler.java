@@ -88,6 +88,9 @@ public class EventHandler{
 			else if(hit(0, 74, 80,"any") == true || hit(0, 75, 80,"any") == true || hit(0, 76, 80,"any") == true) {
 				TownhallScene();
 			}
+			else if(hit(0, 64, 62,"any") == true || hit(0, 64, 63,"any") == true || hit(0, 64, 64,"any") == true) {
+				TownhallScene();
+			}
 			
 			//EMBERVILLE
 			
@@ -399,7 +402,16 @@ public class EventHandler{
 	}
 	public void TownhallScene() {
 		
-		if(Progress.gameStage == Progress.STAGE_INTRODUCTION || false) {
+		if(Progress.gameStage == Progress.STAGE_INTRODUCTION) {
+			gp.gameState = gp.cutsceneState;
+			gp.csManager.scenePhase = 0;
+			gp.csManager.sceneNum = gp.csManager.townhall;
+			
+		}
+	}
+	public void GuardScene() {
+		
+		if(Progress.gameStage == Progress.STAGE_BRIDGE_RUBBLE_REMOVED) {
 			gp.gameState = gp.cutsceneState;
 			gp.csManager.scenePhase = 0;
 			gp.csManager.sceneNum = gp.csManager.townhall;

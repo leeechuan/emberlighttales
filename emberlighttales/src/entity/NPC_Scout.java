@@ -41,18 +41,18 @@ public class NPC_Scout extends Entity {
 	
 	public void getImage() {
 		     for (int i = 0; i < 6; i++) {
-	                frontStanding[i] = setup("/npc_firstlady/firstlady_down_" + i, 1.5f, 1.5f);
-	                rightStanding[i] = setup("/npc_firstlady/firstlady_right_" +i, 1.5f, 1.5f);
-	                backStanding[i] = setup("/npc_firstlady/firstlady_up_" + i, 1.5f, 1.5f);
-	                frontWalking[i] = setup("/npc_firstlady/firstlady_movedown_" + i, 1.5f, 1.5f);
-	                rightWalking[i] = setup("/npc_firstlady/firstlady_moveright_" + i, 1.5f, 1.5f);
-	                backWalking[i] = setup("/npc_firstlady/firstlady_moveup_" + i, 1.5f, 1.5f);
+	                frontStanding[i] = setup("/npc_scout/scout_down_" + i, 1.5f, 1.5f);
+	                rightStanding[i] = setup("/npc_scout/scout_right_" +i, 1.5f, 1.5f);
+	                backStanding[i] = setup("/npc_scout/scout_up_" + i, 1.5f, 1.5f);
+	                frontWalking[i] = setup("/npc_scout/scout_movedown_" + i, 1.5f, 1.5f);
+	                rightWalking[i] = setup("/npc_scout/scout_moveright_" + i, 1.5f, 1.5f);
+	                backWalking[i] = setup("/npc_scout/scout_moveup_" + i, 1.5f, 1.5f);
 	            }
 	         for (int i = 0; i < 6; i++) {
 	                leftStanding[i] = invertImage(rightStanding[i]);
 	                leftWalking[i] = invertImage(rightWalking[i]);
 	          	}
-	         portrait = setup("/artwork/firstlady_portrait", 3f, 3f);
+	         portrait = setup("/artwork/scout_portrait", 3f, 3f);
 	}
 	public void setDialogue() {
 		

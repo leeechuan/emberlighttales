@@ -88,8 +88,6 @@ public class NPC_Mayor extends Entity {
 				dialogues[0][0] = "Good day!";		
 				dialogues[0][1] = "Perfect weather for a stroll!";	
 			}
-			dialogues[1][0] = "Mission!";		
-			dialogues[1][1] = "Do it!";	
 		}
 	}
 	public void setAction() {

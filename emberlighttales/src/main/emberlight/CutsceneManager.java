@@ -9,6 +9,7 @@ import data.Progress;
 import entity.Entity;
 import entity.NPC_Elder;
 import entity.NPC_Farmer;
+import entity.NPC_Guard;
 import entity.NPC_GymBro;
 import entity.NPC_Mayor;
 import entity.NPC_Punk;
@@ -39,8 +40,10 @@ public class CutsceneManager {
 	public final int NA = 0;
 	public final int tutorial = 1;
 	public final int townhall = 2;
-	public final int orcChief = 3;
-	public final int ending = 4;
+	public final int witchSerum = 3;
+	public final int guardSpeak = 4;
+	public final int orcChief = 5;
+	public final int ending = 6;
 	
 	public CutsceneManager(GamePanel gp) {
 		this.gp = gp;
@@ -70,6 +73,8 @@ public class CutsceneManager {
 		switch(sceneNum) {
 		case tutorial: scene_tutorial(); break;
 		case townhall: scene_townhall(); break;
+		case witchSerum : scene_witchSerum(); break;
+		case guardSpeak : scene_guardSpeak(); break;
 		case orcChief : scene_orcChief(); break;
 		case ending: scene_ending(); break;
 		}
@@ -79,21 +84,25 @@ public class CutsceneManager {
 			cutsceneMaster.dialogues[0][0] = "Yawnnnnnnnnnnn";
 			cutsceneMaster.dialogues[0][1] = "That was a good nap...";
 			cutsceneMaster.dialogues[0][2] = "Let me stretch my legs...";
-			cutsceneMaster.dialogues[0][3] = "Press WASD to move";
+			cutsceneMaster.dialogues[0][3] = "(Press WASD to move)";
 			
 			cutsceneMaster.dialogues[1][0] = "Can't wait to take my sword on a spin...";
-			cutsceneMaster.dialogues[1][1] = "Press ENTER to attack/interact";
+			cutsceneMaster.dialogues[1][1] = "(Press ENTER to attack/interact)";
 			
 			cutsceneMaster.dialogues[2][0] = "Hmm, if an enemy is far, I could use some\nrange...";
-			cutsceneMaster.dialogues[2][1] = "Press E to shoot an arrow.";
+			cutsceneMaster.dialogues[2][1] = "(Press E to shoot an arrow.)";
 			
 			cutsceneMaster.dialogues[3][0] = "With the power of your plush toy\nPablo the rabbit...";
 			cutsceneMaster.dialogues[3][1] = "...hold spacebar to block incoming attacks!";
 			
 			cutsceneMaster.dialogues[4][0] = "Nice!";
-			cutsceneMaster.dialogues[4][1] = "Press C to open your inventory";
+			cutsceneMaster.dialogues[4][1] = "(Press C to open your inventory)";
 			
 			cutsceneMaster.dialogues[5][0] = "All ready! Adventure awaits.";
+		}
+		if(sceneNum == witchSerum) {
+			cutsceneMaster.dialogues[0][0] = "A shock of heat runs through your body.\nVision blurs. Muscles tense. Shadows\nripple nunnaturally across the floor.";
+			cutsceneMaster.dialogues[0][1] = "(Press Q to transform)";
 		}
 
 	}
@@ -253,7 +262,7 @@ public class CutsceneManager {
 			            }
 			            if (npc != null && npc.name.equals("Corvin Green")) {
 		                	npc.update();
-		                    npc.pathfindTo(84, 70, "left");
+		                    npc.pathfindTo(82, 70, "left");
 			            }
 			            if (npc != null && npc.name.equals("Vex Cragstone")) {
 		                	npc.update();
@@ -555,10 +564,104 @@ public class CutsceneManager {
 				gp.gameState = gp.playState;
 				gp.pManager.addNotification("Journal Updated");
 				gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Bound By Blood And Magic"));
-				Progress.gameStage = Progress.STAGE_TRANSFORMATION;
+				gp.updateNPCDialogues();
+				Progress.gameStage = Progress.STAGE_MEET_WITCH;
 	            break;
 		}
 		
+	}
+	public void scene_witchSerum() {
+		switch(scenePhase) {
+		case 0:
+			cutsceneMaster.setDialogue();
+			//Search for the Witch
+			for(int i = 0; i < gp.npc[1].length; i++) {
+				
+				if(gp.npc[gp.currentMap][i] != null &&
+						gp.npc[gp.currentMap][i].name == NPC_Witch.npcName) {
+					
+					gp.npc[gp.currentMap][i].sleep = false;
+					gp.ui.npc = gp.npc[gp.currentMap][i];
+					scenePhase++;
+					break;
+				}
+			}
+			break;
+		case 1:
+			if(scenePhase == 1) {
+				//Witch Speak
+				gp.ui.npc.dialogueSet = 0;
+				gp.ui.npc.setDialogue();
+				gp.ui.drawDialogueScreen();
+			}
+			break;
+        case 2: // Display cutscene
+        	Progress.gameStage = Progress.STAGE_SERUM_GIVEN;
+			gp.pManager.addNotification("Journal Updated");
+			gp.qManager.progressQuest("Bound By Blood And Magic");
+            cutsceneMaster.dialogueSet = 0; // Reset to the starting dialogue set
+            cutsceneMaster.dialogueIndex = 0; // Reset to the first dialogue
+        	cutsceneMaster.startDialogue(cutsceneMaster, 0);
+        	scenePhase++;
+            break;
+        
+        case 3: //transform tutorial
+            if (counter == 0) { 
+                // First time a movement key is pressed, start the timer
+                if (gp.keyH.gremlinPressed) {
+                    counter = 1;  // Start counting frames
+                }
+            } else if (counterReached(60)) { 
+                // If 1 seconds (60 frames) have passed since first key press, proceed
+                scenePhase++;
+                counter = 0;
+            }
+            break;
+		case 4:
+			sceneNum = NA;
+			scenePhase = 0;
+			gp.gameState = gp.playState;
+			gp.pManager.addNotification("Journal Updated");
+			gp.qManager.progressQuest("Bound By Blood And Magic");
+			gp.updateNPCDialogues();
+            break;
+		}
+	}
+	public void scene_guardSpeak() {
+		switch(scenePhase) {
+		case 0:
+			//Search for the Guard
+			for(int i = 0; i < gp.npc[1].length; i++) {
+				
+				if(gp.npc[gp.currentMap][i] != null &&
+						gp.npc[gp.currentMap][i].name == NPC_Guard.npcName) {
+					
+					gp.npc[gp.currentMap][i].sleep = false;
+					gp.ui.npc = gp.npc[gp.currentMap][i];
+					scenePhase++;
+					break;
+				}
+			}
+			break;
+		case 1:
+			if(scenePhase == 1) {
+				//Guard Speak
+				gp.ui.npc.dialogueSet = 0;
+				gp.ui.npc.setDialogue();
+				gp.ui.drawDialogueScreen();
+			}
+			break;
+
+		case 2:
+			sceneNum = NA;
+			scenePhase = 0;
+			gp.gameState = gp.playState;
+			gp.pManager.addNotification("Journal Updated");
+			gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Beneath Enemy Lines"));
+			gp.updateNPCDialogues();
+			Progress.gameStage = Progress.STAGE_BRIDGE_RUBBLE_REMOVED;
+            break;
+		}
 	}
 	public void scene_orcChief() {
 		

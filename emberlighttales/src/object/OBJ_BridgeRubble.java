@@ -33,9 +33,29 @@ public class OBJ_BridgeRubble extends Entity{
 		collision = true;
 
 	}
+    public void setDialogue() {
+    	if(gp.player.isGremlin) {
+    		dialogues[0][0] = "(You stand before the rubble. Eyes glowing,\nclaws twitching, body humming with\ngremlin energy.)";
+    	}
+    	else {
+    		dialogues[0][0] = "It’s too heavy... I could push for hours\nand this thing wouldn’t budge an inch.";
+    	}
+		
+    }
+	public void interact() {
+		setDialogue();
+		startDialogue(this, 0);
+		
+		if(gp.player.isGremlin) {
+			gp.pManager.addNotification("Quest Completed!");
+			gp.qManager.progressQuest("Bound By Blood And Magic");
+			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Bound By Blood And Magic"));
+			Progress.gameStage = Progress.STAGE_ORC_LIEUTENANT;
+		}
+	}
 	
 	public void update() {
-		if (Progress.gameStage > Progress.STAGE_TRANSFORMATION) {
+		if (Progress.gameStage > Progress.STAGE_SERUM_GIVEN) {
 			collision = false;
 			solidArea.width = 0;
 			solidArea.height = 0;
