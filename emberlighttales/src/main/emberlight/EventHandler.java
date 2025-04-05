@@ -257,6 +257,10 @@ public class EventHandler{
 			//Dungeon 1
 			
 			else if(hit(0, 47, 54,"any") == true || hit(0, 48, 54,"any") == true) {
+				if(Progress.gameStage == Progress.STAGE_FIND_ORC_LIEUTENANT && gp.qManager.getQuestJournal().getQuestByName("Beneath Enemy Lines").getCurrentStageIndex() == 0){
+					gp.qManager.progressQuest("Beneath Enemy Lines");
+					gp.pManager.addNotification("Journal Updated");
+				}
 				teleport(2, 20, 30, gp.dungeon);
 				gp.playSE(24);
 			}

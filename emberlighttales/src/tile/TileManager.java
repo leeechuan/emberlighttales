@@ -123,6 +123,10 @@ public class TileManager {
         collisionFlags[327] = true; //dungeon
         collisionFlags[328] = true; //dungeon
         collisionFlags[329] = true; //dungeon
+        collisionFlags[333] = true; //dungeon
+        collisionFlags[334] = true; //dungeon
+        collisionFlags[335] = true; //dungeon
+        collisionFlags[336] = true; //dungeon
         
         collisionFlags[364] = true; //dungeon
 //        collisionFlags[365] = true; //dungeon

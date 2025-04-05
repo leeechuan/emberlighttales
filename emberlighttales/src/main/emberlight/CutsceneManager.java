@@ -103,6 +103,8 @@ public class CutsceneManager {
 		if(sceneNum == witchSerum) {
 			cutsceneMaster.dialogues[0][0] = "A shock of heat runs through your\nbody. Vision blurs. Muscles tense.\nShadows ripple nunnaturally across\nthe floor.";
 			cutsceneMaster.dialogues[0][1] = "(Press Q to transform)";
+			cutsceneMaster.dialogues[0][2] = null;
+			cutsceneMaster.dialogues[0][3] = null;
 		}
 
 	}
@@ -659,7 +661,7 @@ public class CutsceneManager {
 			gp.pManager.addNotification("Journal Updated");
 			gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Beneath Enemy Lines"));
 			gp.updateNPCDialogues();
-			Progress.gameStage = Progress.STAGE_BRIDGE_RUBBLE_REMOVED;
+			Progress.gameStage = Progress.STAGE_FIND_ORC_LIEUTENANT;
             break;
 		}
 	}

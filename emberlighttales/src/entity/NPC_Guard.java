@@ -57,15 +57,15 @@ public class NPC_Guard extends Entity {
 	public void setDialogue() {
 		
 		if(gp.csManager.sceneNum == gp.csManager.guardSpeak) {
-			dialogues[0][0] = "By the Ember...\nWh-what in the blazes—!?";
-			dialogues[0][1] = "That... that form...\nyou're not—are you still—";
-			dialogues[0][2] = "You're... one of us. Still you. Right?";
-			dialogues[0][3] = "Look, I—I don’t know what the witch did\nto you, but if you’re not here to\neat my face... I could actually use your help.";
+			dialogues[0][0] = "By the Ember...Wh-what in the blazes—!?";
+			dialogues[0][1] = "That... that form...you're not—are you\nstill—";
+			dialogues[0][2] = "You're... one of us. Still you.\nRight?";
+			dialogues[0][3] = "Look, I—I don’t know what the witch did\nto you, but if you’re not here to eat my\nface... I could actually use your help.";
 			dialogues[0][4] = "There’s been movement near one of the\nold caves east of here. Tracks.\nBroken branches. Orc markings.";
 			dialogues[0][5] = "I was going to check it out myself, but...";
 			dialogues[0][6] = "You seem... a lot more qualified now";
 			dialogues[0][7] = "(He takes a breath and nods respectfully.)";
-			dialogues[0][8] = "You should look into it. If the orcs\nare planning something else… we’ll need to know.";
+			dialogues[0][8] = "You should look into it. If the orcs\nare planning something else... we’ll\nneed to know.";
 			dialogues[0][9] = "Good luck out there... whatever you are.";
 		}
 		else {

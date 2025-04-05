@@ -84,7 +84,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	//Entity and object and mobs
 	public Player player = new Player(this, keyH);
-	public Entity obj[][] = new Entity[maxMap][50];
+	public Entity obj[][] = new Entity[maxMap][100];
 	public Entity npc[][] = new Entity[maxMap][30];
 	public Entity mob[][] = new Entity[maxMap][30];
 	public InteractiveTile iTile[][] = new InteractiveTile[maxMap][100];
@@ -495,7 +495,6 @@ public class GamePanel extends JPanel implements Runnable{
 	public void updateNPCDialogues() {
 	    for (int i = 0; i < npc[currentMap].length; i++) {
 	        if (npc[currentMap][i] != null) {
-	        	
 	        	//Reset Dialogue
 	            for (int row = 0; row < npc[currentMap][i].dialogues.length; row++) {
 	                for (int col = 0; col < npc[currentMap][i].dialogues[row].length; col++) {

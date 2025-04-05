@@ -13,7 +13,7 @@ import object.OBJ_Spike_Gate;
 public class MOB_Orc_Chief extends Entity {
 	
 	GamePanel gp;
-	public static final String mobName = "Orc Chief";
+	public static final String mobName = "Orc Chief Ghorath Bloodbane";
 	
 	public MOB_Orc_Chief(GamePanel gp) {
 		super(gp);
