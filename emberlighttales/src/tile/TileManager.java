@@ -47,11 +47,12 @@ public class TileManager {
         loadMap("/maps/woodcutterhouse.txt", 16);
         loadMap("/maps/elderhouse.txt", 17);
         loadMap("/maps/shopkeeperhouse.txt", 18);
+        loadMap("/maps/desert01.txt", 19);
     }
 
     public void getTileImages() {
         // Predefine collision rules using a boolean array
-        boolean[] collisionFlags = new boolean[611];
+        boolean[] collisionFlags = new boolean[645];
 
         // Default all to true
         Arrays.fill(collisionFlags, false);

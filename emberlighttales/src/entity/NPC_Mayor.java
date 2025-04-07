@@ -79,6 +79,13 @@ public class NPC_Mayor extends Entity {
 			dialogues[4][1] = "I need brave souls — those willing\nto track the orcs,to find where\nthey’ve taken the Emberlight Pearl.";	
 			dialogues[4][2] = "If we act quickly, we may have a\nchance to reclaim it before it’s\nlost forever.";
 		}
+		else if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril"))&&
+				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 2) {
+			dialogues[0][0] = "You’ve seen it firsthand, haven’t you?\nThe way they fight... the way\nthey’re organized.";		
+			dialogues[0][1] = "Emberville may be small, but we are strong.\nWe’ve had our differences with Gildenshore,\nbut their survival is critical.";	
+			dialogues[0][2] = "Tell them we’ll send supplies. Food, tools,\nand enough fighters to make sure they\nstand a chance.";		
+			dialogues[0][3] = "I won’t let Emberville stand by and watch\nanother town burn—no matter the history.";
+		}
 		else {
 			if(gp.player.isGremlin) {
 				dialogues[0][0] = "GREMLIN!";		
@@ -128,6 +135,13 @@ public class NPC_Mayor extends Entity {
 
 	}
 	public void speak() {
+		
+		if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril")) &&
+				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 2 &&
+				!gp.player.isGremlin) {
+			gp.qManager.progressQuest("Sands of Peril");
+			gp.pManager.addNotification("Journal Updated");
+		}
 		
 		facePlayer();
 

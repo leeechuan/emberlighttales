@@ -145,7 +145,7 @@ public class MOB_Orc_Chief extends Entity {
 		
 		//Restore previous music
 		gp.stopMusic();
-		gp.playMusic(0);
+		gp.playMusic(21);
 		
 		//Remove the iron doors
 		for(int i = 0; i < gp.obj[1].length; i++) {

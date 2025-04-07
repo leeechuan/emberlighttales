@@ -905,7 +905,7 @@ public class Entity {
             }
             
             //Shadow for NPC
-            if(type == type_npc && name != "Dungeon Rock") {
+            if((type == type_npc && name != "Dungeon Rock") || name == "Dummy") {
                 g2.setColor(new Color(0, 0, 0, 100));
                 g2.fillOval(screenX + 20, screenY + 47, 30, 10);
             }

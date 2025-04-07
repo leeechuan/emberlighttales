@@ -48,6 +48,12 @@ public class OBJ_Boat extends Entity{
 		setDialogue();
 		startDialogue(this, 0);
 		gp.eHandler.sleep();
+		if(gp.currentMap == 0) {
+			gp.eHandler.teleport(19, 71, 69, gp.outside);
+		}
+		else if(gp.currentMap == 19) {
+			gp.eHandler.teleport(0, 12, 26, gp.outside);
+		}
 	}
 	public void draw(Graphics2D g2) {
 		

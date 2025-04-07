@@ -41,13 +41,13 @@ public class QuestManager {
     	);
     	Quest mainQuest3 = new Quest(
     	    "Sands of Peril",
-    	    "Found some important information\nabout the orc chief's upcoming attack,\nwe need to inform Gildenshore!",
+    	    "Found some important information\nabout the orc's upcoming attack,\nwe need to inform Gildenshore!",
     	    true,
     	    Arrays.asList(
     	        new QuestStage("Find some important information about the\norc chief's upcoming attack"),
     	        new QuestStage("Make way to Gildenshore to warn about\nthe attack"),
     	        new QuestStage("Help the politician ask Emberville Mayor\nfor resources"),
-    	        new QuestStage("Help out with 3 quests around Emberville"),
+//    	        new QuestStage("Help out with 3 quests around Emberville"),
     	        new QuestStage("Tell politician that Emberville will send\nresources"),
     	        new QuestStage("Speak to scout who will point direction\nto next orc camp")
     	    ),
@@ -55,10 +55,10 @@ public class QuestManager {
     	);
     	Quest mainQuest4 = new Quest(
     	    "Second's Fall",
-    	    "Gildenshore's scout has told me about\na nearby orc camp.",
+    	    "Gildenshore's scout has told me\nabout a nearby orc camp.",
     	    true,
     	    Arrays.asList(
-    	        new QuestStage("Go to orc camp east for Gildenshore"),
+    	        new QuestStage("Go to orc camp east of Gildenshore"),
     	        new QuestStage("Fight through orc horde"),
     	        new QuestStage("Defeat orc chief second in command")
     	    ),

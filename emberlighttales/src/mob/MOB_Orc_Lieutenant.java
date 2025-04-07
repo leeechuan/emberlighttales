@@ -28,10 +28,10 @@ public class MOB_Orc_Lieutenant extends Entity {
 		life = maxLife;
 		attack = 0;
 		defense = 2;
-		exp = 10;
+		exp = 1;
 		knockBackPower = 5;
 		name = mobName;
-//		sleep = true;
+		sleep = true;
 		direction = "up";
 		
 //		solidArea.x = gp.tileSize*3/8;
@@ -94,8 +94,8 @@ public class MOB_Orc_Lieutenant extends Entity {
    }
     public void setDialogue() {
     	
-    	dialogues[0][0] = "I have been waiting for you...";
-    	dialogues[0][1] = "I'm craving human tonight...";
+    	dialogues[0][0] = "You wear the stink of the witch’s serum.\nA gift, was it? Or a curse you\nswallowed without reading the label?";
+    	dialogues[0][1] = "Doesn’t matter. You wouldn’t understand\nwhat it cost... what we lost";
     }
 	public void setAction() {
 		
@@ -142,19 +142,19 @@ public class MOB_Orc_Lieutenant extends Entity {
 	}
 	public void checkDrop() {
 		gp.bossBattleOn = false;
-//		Progress.updateStage(Progress.STAGE_ORC_CHIEF_DEFEATED);
+		Progress.updateStage(Progress.STAGE_ORC_LIEUTENANT_DEFEATED);
+		gp.qManager.progressQuest("Beneath Enemy Lines");
+		gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Beneath Enemy Lines"));
+		gp.pManager.addNotification("Quest Completed!");
+
 		
 		//Restore previous music
 		gp.stopMusic();
-		gp.playMusic(0);
+		gp.playMusic(21);
 		
-		//Remove the iron doors
-		for(int i = 0; i < gp.obj[1].length; i++) {
-			if(gp.obj[gp.currentMap][i] != null && gp.obj[gp.currentMap][i].name.equals(OBJ_Spike_Gate.objName)) {
-				gp.playSE(18);
-				gp.obj[gp.currentMap][i] = null;
-			}
-		}
+		gp.gameState = gp.cutsceneState;
+		gp.csManager.scenePhase = 0;
+		gp.csManager.sceneNum = gp.csManager.orcLieutenantDefeated;
 	}
 	public Color getParticleColor() {
 		Color color = new Color(25, 0, 50);

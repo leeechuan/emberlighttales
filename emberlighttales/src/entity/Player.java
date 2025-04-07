@@ -67,10 +67,10 @@ public class Player extends Entity {
         setDefaultValues();
     }
     public void setDefaultValues() {
-        worldX = gp.tileSize * 75;
-        worldY = gp.tileSize * 78;
-//        worldX = gp.tileSize * 27;
-//        worldY = gp.tileSize * 26;
+//        worldX = gp.tileSize * 75;
+//        worldY = gp.tileSize * 78;
+        worldX = gp.tileSize * 51;
+        worldY = gp.tileSize * 63;
         defaultSpeed = 5;
         speed = defaultSpeed;
         direction = "down";
@@ -105,10 +105,10 @@ public class Player extends Entity {
     public void setDefaultPositions() {
     	
     	gp.currentMap = 0;
-        worldX = gp.tileSize * 75;
-        worldY = gp.tileSize * 78;
-//        worldX = gp.tileSize * 27;
-//        worldY = gp.tileSize * 26;
+//        worldX = gp.tileSize * 75;
+//        worldY = gp.tileSize * 78;
+        worldX = gp.tileSize * 51;
+        worldY = gp.tileSize * 63;
         direction = "down";
     }
     public void setDialogue() {
@@ -954,9 +954,12 @@ public class Player extends Entity {
         	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
         }
         
-        //Shadow
-        g2.setColor(new Color(0, 0, 0, 100));
-        g2.fillOval(screenX + 8, screenY + 37, 30, 10);
+        if(!gp.csManager.usingDummyPlayer) {
+            //Shadow
+            g2.setColor(new Color(0, 0, 0, 100));
+            g2.fillOval(screenX + 8, screenY + 37, 30, 10);
+        }
+
         
         // Calculate offsets to keep character centered
         if(image != null) { //To prevent null pointer exception

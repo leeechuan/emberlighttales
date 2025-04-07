@@ -338,9 +338,9 @@ public class UI {
 		    // Draw version number on the bottom right
 		    String versionText = "Alpha v1.0.15";
 		    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 10F));
-		    g2.setColor(Color.white);  // Use white color for the version text
-		    int versionX = gp.screenWidth - g2.getFontMetrics().stringWidth(versionText) - 10;  // Right-aligned
-		    int versionY = gp.screenHeight - 10;  // 10 pixels from the bottom
+		    g2.setColor(Color.white);
+		    int versionX = gp.screenWidth - g2.getFontMetrics().stringWidth(versionText) - 10;
+		    int versionY = gp.screenHeight - 10;
 		    g2.drawString(versionText, versionX, versionY);
 		}
 		else if(titleScreenState == 1) {

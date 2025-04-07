@@ -81,7 +81,10 @@ public class EventHandler{
 //			}
 //			
 			//CUTSCENES
-
+			
+			if(hit(2, 59, 79,"any") == true || hit(2, 60, 79,"any") == true ) {
+				OrcLieutenantBattle();
+			}
 			if(hit(3, 50, 58,"any") == true) {
 				OrcChiefBattle();
 			}
@@ -277,6 +280,8 @@ public class EventHandler{
 				gp.playSE(24);
 			}
 			
+			//SOLARA
+			
 			//GILDENSHORE
 			
 			
@@ -401,6 +406,19 @@ public class EventHandler{
 			gp.gameState = gp.cutsceneState;
 			gp.csManager.scenePhase = 0;
 			gp.csManager.sceneNum = gp.csManager.orcChief;
+			
+		}
+	}
+	public void OrcLieutenantBattle() {
+		
+		if(gp.bossBattleOn == false && Progress.gameStage < Progress.STAGE_ORC_LIEUTENANT_DEFEATED) {
+			if(gp.qManager.getQuestJournal().getQuestByName("Beneath Enemy Lines").getCurrentStageIndex() < 2) {
+				gp.qManager.progressQuest("Beneath Enemy Lines");
+				gp.pManager.addNotification("Journal Updated");
+			}
+			gp.gameState = gp.cutsceneState;
+			gp.csManager.scenePhase = 0;
+			gp.csManager.sceneNum = gp.csManager.orcLieutenant;
 			
 		}
 	}

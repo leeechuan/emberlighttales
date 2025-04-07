@@ -7,6 +7,7 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+import data.Progress;
 import main.emberlight.GamePanel;
 
 public class NPC_President extends Entity {
@@ -56,11 +57,31 @@ public class NPC_President extends Entity {
 	}
 	public void setDialogue() {
 		
-		dialogues[0][0] = "Hello there!";		
-		dialogues[0][1] = "Need Sumthin?";	
 		
+		if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril"))&&
+				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 1) {
+			dialogues[0][0] = "A planned assault? East of here...";		
+			dialogues[0][1] = "So it's begun. Ghorath moves faster\nthan we feared.";
+			dialogues[0][2] = "You defeated Skarr? Then you've done more\nthan most of my guards. We owe you.";
+			dialogues[0][3] = "But this won't stop the tide.\nIt was only the first wave.";
+			dialogues[0][4] = "Please, go return to Emberville and tell\nMayor Oren we need supplies... and fast.\nReinforcements, if they can spare them.";
+			dialogues[0][5] = "We can stand on our own—but not forever.\nLet’s not fall apart in silence.";
+		}
+		else if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril"))&&
+				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 3) {
+			dialogues[0][0] = "That's a relief. We can't afford\nto face this alone.";		
+			dialogues[0][1] = "Now we need to strike back before they\ncan hit us again. ";
+			dialogues[0][2] = "One of my scouts spotted another orc camp\neast of here. If we want to stop this,\nwe need to know what they’re planning.";
+			dialogues[0][3] = "Go speak to Scout Rowan. He’s been tracking\ntheir movements and can point you\nto the camp’s location.";
+			dialogues[0][4] = "The sooner we hit them, the better...";
+		}
+		else {
+			dialogues[0][0] = "Hello there!";		
+			dialogues[0][1] = "Need Sumthin?";
 
-		dialogues[1][0] = "Yes?";
+			dialogues[1][0] = "Yes?";
+		}
+
 	}
 	public void setAction() {
 		
@@ -102,6 +123,13 @@ public class NPC_President extends Entity {
 	
 	public void speak() {
 		
+		if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril")) &&
+				(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 1  || 
+				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 3)) {
+			gp.qManager.progressQuest("Sands of Peril");
+			gp.pManager.addNotification("Journal Updated");
+		}
+//		setDialogue();
 		facePlayer();
 		startDialogue(this, dialogueSet);
 		
@@ -111,6 +139,7 @@ public class NPC_President extends Entity {
 			
 			dialogueSet--;
 		}
+
 		
 	}
 

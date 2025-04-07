@@ -456,6 +456,21 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldX = 50 * gp.tileSize;
 		gp.obj[mapNum][i].worldY = 34 * gp.tileSize;
 		i++;
+		
+		
+		//Solara
+		
+		mapNum = 19;
+		
+		gp.obj[mapNum][i] = new OBJ_Boat(gp);
+		gp.obj[mapNum][i].worldX = 74 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 69 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_WoodBridge(gp);
+		gp.obj[mapNum][i].worldX = 74 * gp.tileSize - gp.tileSize/3;
+		gp.obj[mapNum][i].worldY = 69 * gp.tileSize - gp.tileSize/3;
+		i++;
+		
 	}
 	
 	public void setNPC() {
@@ -497,8 +512,8 @@ public class AssetSetter {
 		gp.npc[mapNum][i].worldY = gp.tileSize*66;
 		i++;
 		gp.npc[mapNum][i] = new NPC_Scientist(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*73;
-		gp.npc[mapNum][i].worldY = gp.tileSize*67;
+		gp.npc[mapNum][i].worldX = gp.tileSize*82;
+		gp.npc[mapNum][i].worldY = gp.tileSize*65;
 		i++;
 		gp.npc[mapNum][i] = new NPC_Witch(gp);
 		gp.npc[mapNum][i].worldX = gp.tileSize*89;
@@ -580,7 +595,7 @@ public class AssetSetter {
 		i++;
 		
 		gp.mob[mapNum][i] = new MOB_Orc_Grunt(gp);
-		gp.mob[mapNum][i].worldX = gp.tileSize*50;
+		gp.mob[mapNum][i].worldX = gp.tileSize*49;
 		gp.mob[mapNum][i].worldY = gp.tileSize*56;
 		i++;
 		
@@ -609,15 +624,14 @@ public class AssetSetter {
 		mapNum = 2;
 		i = 0;
 		
-		gp.mob[mapNum][i] = new MOB_Orc_Lieutenant(gp);
-		gp.mob[mapNum][i].worldX = gp.tileSize*59;
-		gp.mob[mapNum][i].worldY = gp.tileSize*87;
-		i++;
+		if(Progress.gameStage < Progress.STAGE_ORC_LIEUTENANT_DEFEATED) {
+			gp.mob[mapNum][i] = new MOB_Orc_Lieutenant(gp);
+			gp.mob[mapNum][i].worldX = gp.tileSize*59;
+			gp.mob[mapNum][i].worldY = gp.tileSize*87;
+			i++;
+		}
+
 		
-		gp.mob[mapNum][i] = new MOB_Orc_Second(gp);
-		gp.mob[mapNum][i].worldX = gp.tileSize*70;
-		gp.mob[mapNum][i].worldY = gp.tileSize*30;
-		i++;
 		
 		
 		//Boss Dungeon
