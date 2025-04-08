@@ -52,7 +52,7 @@ public class TileManager {
 
     public void getTileImages() {
         // Predefine collision rules using a boolean array
-        boolean[] collisionFlags = new boolean[645];
+        boolean[] collisionFlags = new boolean[754];
 
         // Default all to true
         Arrays.fill(collisionFlags, false);
@@ -219,6 +219,43 @@ public class TileManager {
         collisionFlags[593] = true; //palisade
         collisionFlags[594] = true; //palisade
         collisionFlags[595] = true; //palisade
+        
+        collisionFlags[611] = true; //desert
+        collisionFlags[612] = true; //desert
+        collisionFlags[613] = true; //desert
+        collisionFlags[616] = true; //desert
+        collisionFlags[618] = true; //desert
+        collisionFlags[621] = true; //desert
+        collisionFlags[622] = true; //desert
+        collisionFlags[623] = true; //desert
+        collisionFlags[637] = true; //desert
+        collisionFlags[646] = true; //desert
+        collisionFlags[647] = true; //desert
+        collisionFlags[648] = true; //desert
+        collisionFlags[653] = true; //desert
+        collisionFlags[654] = true; //desert
+        
+        collisionFlags[661] = true; //desert
+        collisionFlags[662] = true; //desert
+        collisionFlags[663] = true; //desert
+        collisionFlags[664] = true; //desert
+        collisionFlags[665] = true; //desert
+
+        collisionFlags[670] = true; //desert
+        collisionFlags[671] = true; //desert
+        collisionFlags[672] = true; //desert
+        collisionFlags[673] = true; //desert
+        collisionFlags[674] = true; //desert
+        collisionFlags[675] = true; //desert
+        collisionFlags[676] = true; //desert
+        collisionFlags[677] = true; //desert
+        collisionFlags[742] = true; //desert
+        collisionFlags[743] = true; //desert
+        collisionFlags[744] = true; //desert
+        collisionFlags[745] = true; //desert
+        collisionFlags[746] = true; //desert
+        collisionFlags[747] = true; //desert
+
 
 
         for (int i = 0; i < collisionFlags.length; i++) {

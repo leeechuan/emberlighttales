@@ -36,7 +36,10 @@ import object.OBJ_BigTorch;
 import object.OBJ_Boat;
 import object.OBJ_BridgeRubble;
 import object.OBJ_Broom;
+import object.OBJ_CampDeco;
+import object.OBJ_CampLookoutTower;
 import object.OBJ_Campfire;
+import object.OBJ_CampfirePot;
 import object.OBJ_Cauldron;
 import object.OBJ_Chest;
 import object.OBJ_Coin;
@@ -80,6 +83,7 @@ import tile_interactive.IT_Planter;
 import tile_interactive.IT_PressurePlate;
 import tile_interactive.IT_Tree;
 import tile_interactive.IT_Spike;
+import tile_interactive.IT_Tent;
 import tile_interactive.IT_Witch_Hut;
 
 public class AssetSetter {
@@ -310,6 +314,108 @@ public class AssetSetter {
 		gp.obj[mapNum][i] = new OBJ_Palisade(gp);
 		gp.obj[mapNum][i].worldX = 74 * gp.tileSize;
 		gp.obj[mapNum][i].worldY = 29 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampfirePot(gp);
+		gp.obj[mapNum][i].worldX = 79 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 34 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampfirePot(gp);
+		gp.obj[mapNum][i].worldX = 64 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 22 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampDeco(gp, 13);
+		gp.obj[mapNum][i].worldX = 63 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 12 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampDeco(gp, 14);
+		gp.obj[mapNum][i].worldX = 65 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 12 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampDeco(gp, 16);
+		gp.obj[mapNum][i].worldX = 74 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 16 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampDeco(gp, 11);
+		gp.obj[mapNum][i].worldX = 63 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 14 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampDeco(gp, 12);
+		gp.obj[mapNum][i].worldX = 65 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 13 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampDeco(gp, 3);
+		gp.obj[mapNum][i].worldX = 79 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 23 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampDeco(gp, 5);
+		gp.obj[mapNum][i].worldX = 79 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 25 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampDeco(gp, 7);
+		gp.obj[mapNum][i].worldX = 78 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 33 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampDeco(gp, 10);
+		gp.obj[mapNum][i].worldX = 71 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 32 * gp.tileSize;
+		i++;		
+		
+		gp.obj[mapNum][i] = new OBJ_CampDeco(gp, 1);
+		gp.obj[mapNum][i].worldX = 71 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 34 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampDeco(gp, 1);
+		gp.obj[mapNum][i].worldX = 76 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 35 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampDeco(gp, 2);
+		gp.obj[mapNum][i].worldX = 72 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 37 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_Chest(gp);
+		gp.obj[mapNum][i].setLoot(new OBJ_Fruit_Juice(gp));
+		gp.obj[mapNum][i].worldX = 83 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 19 * gp.tileSize;
+		i++;
+
+		gp.obj[mapNum][i] = new OBJ_Chest(gp);
+		gp.obj[mapNum][i].setLoot(new OBJ_Fruit_Juice(gp));
+		gp.obj[mapNum][i].worldX = 55 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 13 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampLookoutTower(gp, 0);
+		gp.obj[mapNum][i].worldX = 71 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 28 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampLookoutTower(gp, 7);
+		gp.obj[mapNum][i].worldX = 81 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 28 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampLookoutTower(gp, 3);
+		gp.obj[mapNum][i].worldX = 61 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 22 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampLookoutTower(gp, 2);
+		gp.obj[mapNum][i].worldX = 83 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 15 * gp.tileSize;
 		i++;
 		
 		//Dungeon
@@ -567,6 +673,9 @@ public class AssetSetter {
 		gp.npc[mapNum][i].worldY = gp.tileSize*40;
 		i++;
 		
+		//Orc Camp
+		
+		
 		mapNum = 1;
 		i = 0;
 
@@ -784,6 +893,23 @@ public class AssetSetter {
 		
 		gp.iTile[mapNum][i] = new IT_Planter(gp, 16, 38, 3, 2); //Planter
 		i++;
+		
+		//Orc Camp
+		gp.iTile[mapNum][i] = new IT_Tent(gp, 69, 17, 0, 0);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Tent(gp, 75, 17, 3, 1);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Tent(gp, 63, 21, 4, 3);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Tent(gp, 67, 23, 4, 3);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Tent(gp, 56, 15, 1, 2);
+		i++;
+		
 		
 		//Dungeon
 		mapNum = 2;
