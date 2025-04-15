@@ -59,7 +59,6 @@ public class QuestManager {
     	    true,
     	    Arrays.asList(
     	        new QuestStage("Go to orc camp east of Gildenshore"),
-    	        new QuestStage("Fight through orc horde"),
     	        new QuestStage("Defeat orc chief second in command")
     	    ),
             gp

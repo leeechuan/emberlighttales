@@ -11,9 +11,10 @@ public class Progress {
     public static final int STAGE_SERUM_GIVEN = 4;
     public static final int STAGE_BRIDGE_RUBBLE_REMOVED = 5;
     public static final int STAGE_FIND_ORC_LIEUTENANT = 6;
-    public static final int STAGE_ORC_LIEUTENANT_DEFEATED = 8;
-    public static final int STAGE_FIND_ORC_SECONDINCOMMAND = 9;
-    public static final int STAGE_ORC_SECONDINCOMMAND_DEFEATED = 10;
+    public static final int STAGE_ORC_LIEUTENANT_DEFEATED = 7;
+    public static final int STAGE_FIND_ORC_SECONDINCOMMAND = 8;
+    public static final int STAGE_ORC_SECONDINCOMMAND_DEFEATED = 9;
+    public static final int STAGE_DISABLED_FORCE_FIELD = 10;
     public static final int STAGE_FIND_ORC_CHIEF = 11;
     public static final int STAGE_ORC_CHIEF_DEFEATED = 12;
 	

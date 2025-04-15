@@ -113,6 +113,11 @@ public class NPC_Scout extends Entity {
 	
 	public void speak() {
 		
+		
+		facePlayer();
+		setDialogue();
+		startDialogue(this, dialogueSet);
+		
 		if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril"))&&
 				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 4) {
 			gp.qManager.progressQuest("Sands of Peril");
@@ -121,9 +126,7 @@ public class NPC_Scout extends Entity {
 			gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Second's Fall"));
 			
 		}
-		
-		facePlayer();
-		startDialogue(this, dialogueSet);
+
 		
 		dialogueSet++;
 		

@@ -4,6 +4,7 @@ import data.Progress;
 import entity.NPC_Husband;
 import entity.NPC_Bee;
 import entity.NPC_Chicken;
+import entity.NPC_Desert_Trader;
 import entity.NPC_Dungeon_Rock;
 import entity.NPC_Elder;
 import entity.NPC_Farmer;
@@ -73,8 +74,10 @@ import object.OBJ_DungeonWoodBridge;
 import tile_interactive.IT_Abandon_House_1;
 import tile_interactive.IT_Barn;
 import tile_interactive.IT_Beehive;
+import tile_interactive.IT_BossTent;
 import tile_interactive.IT_CaveEntrance;
 import tile_interactive.IT_ChickenCoop;
+import tile_interactive.IT_DesertHouse;
 import tile_interactive.IT_DungeonTintWindows;
 import tile_interactive.IT_Fountain;
 import tile_interactive.IT_Horse_Stable_1;
@@ -691,6 +694,16 @@ public class AssetSetter {
 		gp.npc[mapNum][i].worldX = gp.tileSize*74;
 		gp.npc[mapNum][i].worldY = gp.tileSize*32;
 		i++;
+		
+		//Solara
+		mapNum = 19;
+		i = 0;
+		
+		gp.npc[mapNum][i] = new NPC_Desert_Trader(gp);
+		gp.npc[mapNum][i].worldX = gp.tileSize*42;
+		gp.npc[mapNum][i].worldY = gp.tileSize*56;
+		i++;
+				
 	}
 	
 	public void setMobs() {
@@ -728,6 +741,34 @@ public class AssetSetter {
 //		gp.mob[mapNum][i].worldX = gp.tileSize*16;
 //		gp.mob[mapNum][i].worldY = gp.tileSize*28;
 //		i++;
+		
+		if(Progress.gameStage < Progress.STAGE_ORC_SECONDINCOMMAND_DEFEATED) {
+			gp.mob[mapNum][i] = new MOB_Orc_Second(gp);
+			gp.mob[mapNum][i].worldX = gp.tileSize*63;
+			gp.mob[mapNum][i].worldY = gp.tileSize*16;
+			i++;
+		}
+		
+		gp.mob[mapNum][i] = new MOB_Orc_Grunt(gp);
+		gp.mob[mapNum][i].worldX = gp.tileSize*79;
+		gp.mob[mapNum][i].worldY = gp.tileSize*19;
+		i++;
+		
+		gp.mob[mapNum][i] = new MOB_Orc_Archer(gp);
+		gp.mob[mapNum][i].worldX = gp.tileSize*73;
+		gp.mob[mapNum][i].worldY = gp.tileSize*27;
+		i++;
+		
+		gp.mob[mapNum][i] = new MOB_Orc_Grunt(gp);
+		gp.mob[mapNum][i].worldX = gp.tileSize*67;
+		gp.mob[mapNum][i].worldY = gp.tileSize*15;
+		i++;
+
+		gp.mob[mapNum][i] = new MOB_Orc_Grunt(gp);
+		gp.mob[mapNum][i].worldX = gp.tileSize*75;
+		gp.mob[mapNum][i].worldY = gp.tileSize*38;
+		i++;
+		
 		
 		//Dungeon
 		mapNum = 2;
@@ -907,7 +948,7 @@ public class AssetSetter {
 		gp.iTile[mapNum][i] = new IT_Tent(gp, 67, 23, 4, 3);
 		i++;
 		
-		gp.iTile[mapNum][i] = new IT_Tent(gp, 56, 15, 1, 2);
+		gp.iTile[mapNum][i] = new IT_BossTent(gp, 56, 15);
 		i++;
 		
 		
@@ -950,5 +991,21 @@ public class AssetSetter {
 		
 		gp.iTile[mapNum][i] = new IT_Spike(gp, 45, 35);
 		i++;
+		
+		//Solara
+		mapNum = 19;
+		
+		gp.iTile[mapNum][i] = new IT_DesertHouse(gp, 27, 57, 2, 3);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_DesertHouse(gp, 59, 48, 1, 2);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_DesertHouse(gp, 50, 39, 3, 1);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_DesertHouse(gp, 36, 42, 0, 2);
+		i++;
+		
 	}
 }

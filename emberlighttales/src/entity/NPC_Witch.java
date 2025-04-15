@@ -79,6 +79,18 @@ public class NPC_Witch extends Entity {
 			dialogues[1][1] = "Meet me at night in my hut...";
 
 		} 
+		else if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield"))&&
+				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 0) {
+			dialogues[0][0] = "You’re back. I felt a shift in\nthe wind... something violent.";	
+			dialogues[0][1] = "(She finally turns, eyes scanning\nthe player.)";
+			dialogues[0][2] = "You faced him, didn’t you?\nZulgar...";	
+			dialogues[0][3] = "But the chief remains hidden. Of\ncourse he does";
+			dialogues[0][4] = "The barrier protecting him... it's not\nsimple magic. Old. Layered. Possibly bound\nto the Emberlight Pearl itself.";
+			dialogues[0][5] = "To unbind it without... consequences,\nI’ll need something rare.";
+			dialogues[0][6] = "Sunmire Glassroot. Grows only in the\nsalt-glass dunes near Solara, a desert\ntown west of here.";
+			dialogues[0][7] = "You’ll find a trader there that sells\nit... Bring me the root, and I’ll\ncast the spell.";
+
+		} 
 		else {
 			dialogues[0][0] = "Hue hue!";	
 			dialogues[0][1] = "Need Sumthn";

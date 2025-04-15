@@ -31,7 +31,8 @@ public class MOB_Orc_Second extends Entity {
 		exp = 10;
 		knockBackPower = 5;
 		name = mobName;
-//		sleep = true;
+		direction = "down";
+		sleep = true;
 		
 //		solidArea.x = gp.tileSize*3/8;
 //		solidArea.y = gp.tileSize*3/8;
@@ -93,8 +94,11 @@ public class MOB_Orc_Second extends Entity {
    }
     public void setDialogue() {
     	
-    	dialogues[0][0] = "I have been waiting for you...";
-    	dialogues[0][1] = "I'm craving human tonight...";
+    	dialogues[0][0] = "The little gremlin from Emberville....";
+    	dialogues[0][1] = "(He snorts, cracking his neck.)";
+    	dialogues[0][2] = "You’ve been making trouble. Slaughtering\ngood men. Stirring up old wounds.";
+    	dialogues[0][3] = "You think you’re ready to face\nChief Ghorath?";
+    	dialogues[0][4] = "You’re not. Because he carries more\nthan strength. He carries truth.\nAnd you lot aren’t ready for that.";
     }
 	public void setAction() {
 		
@@ -141,19 +145,17 @@ public class MOB_Orc_Second extends Entity {
 	}
 	public void checkDrop() {
 		gp.bossBattleOn = false;
-//		Progress.updateStage(Progress.STAGE_ORC_CHIEF_DEFEATED);
+		Progress.updateStage(Progress.STAGE_ORC_SECONDINCOMMAND_DEFEATED);
+		gp.qManager.progressQuest("Second's Fall");
+		gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Second's Fall"));
+		gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield"));
+		gp.pManager.addNotification("Journal Updated");
 		
 		//Restore previous music
 		gp.stopMusic();
 		gp.playMusic(0);
 		
-		//Remove the iron doors
-		for(int i = 0; i < gp.obj[1].length; i++) {
-			if(gp.obj[gp.currentMap][i] != null && gp.obj[gp.currentMap][i].name.equals(OBJ_Spike_Gate.objName)) {
-				gp.playSE(18);
-				gp.obj[gp.currentMap][i] = null;
-			}
-		}
+
 	}
 	public Color getParticleColor() {
 		Color color = new Color(25, 0, 50);

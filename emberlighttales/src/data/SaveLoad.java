@@ -149,6 +149,10 @@ public class SaveLoad {
 	        // Load completed quests
 	        for (String questName : ds.completedQuestNames) {
 	            Quest quest = gp.qManager.getQuestJournal().getQuestByName(questName);
+                if (quest != null) {
+                    gp.qManager.getQuestJournal().addQuest(quest);
+                }
+
 	            if (quest != null && !quest.isCompleted()) {
 	                while (!quest.isCompleted()) {
 	                    quest.advanceStage();

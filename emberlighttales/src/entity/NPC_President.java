@@ -59,7 +59,8 @@ public class NPC_President extends Entity {
 		
 		
 		if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril"))&&
-				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 1) {
+				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 1 &&
+				!gp.player.isGremlin) {
 			dialogues[0][0] = "A planned assault? East of here...";		
 			dialogues[0][1] = "So it's begun. Ghorath moves faster\nthan we feared.";
 			dialogues[0][2] = "You defeated Skarr? Then you've done more\nthan most of my guards. We owe you.";
@@ -68,7 +69,8 @@ public class NPC_President extends Entity {
 			dialogues[0][5] = "We can stand on our own—but not forever.\nLet’s not fall apart in silence.";
 		}
 		else if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril"))&&
-				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 3) {
+				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 3 &&
+				!gp.player.isGremlin) {
 			dialogues[0][0] = "That's a relief. We can't afford\nto face this alone.";		
 			dialogues[0][1] = "Now we need to strike back before they\ncan hit us again. ";
 			dialogues[0][2] = "One of my scouts spotted another orc camp\neast of here. If we want to stop this,\nwe need to know what they’re planning.";
@@ -125,7 +127,8 @@ public class NPC_President extends Entity {
 		
 		if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril")) &&
 				(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 1  || 
-				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 3)) {
+				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 3) &&
+				!gp.player.isGremlin) {
 			gp.qManager.progressQuest("Sands of Peril");
 			gp.pManager.addNotification("Journal Updated");
 		}

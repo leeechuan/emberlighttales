@@ -53,6 +53,7 @@ public class EventHandler{
 		
 		eventMaster.dialogues[0][0] = "You fell into a pit!";
 		eventMaster.dialogues[1][0] = "You drank some water.\nHP and mana is restored";
+		eventMaster.dialogues[2][0] = "There is a werid energy stopping you\nfrom entering.";
 	}
 	public void checkEvent() {
 		
@@ -85,7 +86,10 @@ public class EventHandler{
 			if(hit(2, 59, 79,"any") == true || hit(2, 60, 79,"any") == true ) {
 				OrcLieutenantBattle();
 			}
-			if(hit(3, 50, 58,"any") == true) {
+			else if(hit(0, 74, 29,"any") == true || hit(0, 75, 29, "any") == true || hit(0, 76, 29,"any") == true) {
+				OrcSecondBattle();
+			}
+			else if(hit(3, 50, 58,"any") == true) {
 				OrcChiefBattle();
 			}
 			else if(hit(0, 74, 80,"any") == true || hit(0, 75, 80,"any") == true || hit(0, 76, 80,"any") == true) {
@@ -257,6 +261,22 @@ public class EventHandler{
 				gp.playSE(14);
 			}
 			
+			//Orc Camp
+			else if(hit(0, 58, 15,"up") == true) {
+//				teleport(18, 50, 50, gp.indoor);
+				if(Progress.gameStage < Progress.STAGE_DISABLED_FORCE_FIELD) {
+					gp.gameState = gp.dialogueState;
+					eventMaster.startDialogue(eventMaster, 2);
+					canTouchEvent = false;
+					
+				}
+				gp.playSE(14);
+			}
+//			else if(hit(18, 50, 51,"any") == true) {
+//				teleport(0, 12, 39, gp.outside);
+//				gp.playSE(14);
+//			}
+			
 			//Dungeon 1
 			
 			else if(hit(0, 47, 54,"any") == true || hit(0, 48, 54,"any") == true) {
@@ -308,6 +328,11 @@ public class EventHandler{
 			}
 			//Orc Camp
 			else if(hit(0, 65, 35,"right") == true || hit(0, 65, 36,"right") == true || hit(0, 65, 37,"right") == true) {
+				if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Second's Fall")) &&
+						gp.qManager.getQuestJournal().getQuestByName("Second's Fall").getCurrentStageIndex() == 0){
+					gp.qManager.progressQuest("Second's Fall");
+					gp.pManager.addNotification("Journal Updated");
+				}
 				popup("Orc Camp");
 			}
 			
@@ -415,11 +440,21 @@ public class EventHandler{
 			if(gp.qManager.getQuestJournal().getQuestByName("Beneath Enemy Lines").getCurrentStageIndex() < 2) {
 				gp.qManager.progressQuest("Beneath Enemy Lines");
 				gp.pManager.addNotification("Journal Updated");
+				gp.gameState = gp.cutsceneState;
+				gp.csManager.scenePhase = 0;
+				gp.csManager.sceneNum = gp.csManager.orcLieutenant;
 			}
-			gp.gameState = gp.cutsceneState;
-			gp.csManager.scenePhase = 0;
-			gp.csManager.sceneNum = gp.csManager.orcLieutenant;
-			
+		}
+	}
+	public void OrcSecondBattle() {
+		
+		if(gp.bossBattleOn == false && Progress.gameStage < Progress.STAGE_ORC_SECONDINCOMMAND_DEFEATED) {
+			if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Second's Fall")) &&
+					gp.qManager.getQuestJournal().getQuestByName("Second's Fall").getCurrentStageIndex() == 1) {
+				gp.gameState = gp.cutsceneState;
+				gp.csManager.scenePhase = 0;
+				gp.csManager.sceneNum = gp.csManager.orcSecond;
+			}
 		}
 	}
 	public void TownhallScene() {

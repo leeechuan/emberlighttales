@@ -47,8 +47,10 @@ public class CutsceneManager {
 	public final int guardSpeak = 4;
 	public final int orcLieutenant = 5;
 	public final int orcLieutenantDefeated = 6;
-	public final int orcChief = 7;
-	public final int ending = 8;
+	public final int orcSecond = 7;
+	public final int orcSecondDefeated = 8;
+	public final int orcChief = 9;
+	public final int ending = 10;
 	
 	public CutsceneManager(GamePanel gp) {
 		this.gp = gp;
@@ -82,6 +84,8 @@ public class CutsceneManager {
 		case guardSpeak : scene_guardSpeak(); break;
 		case orcLieutenant: scene_orcLieutenant(); break;
 		case orcLieutenantDefeated: scene_orcLieutenantDefeated(); break;
+		case orcSecond: scene_orcSecond(); break;
+		case orcSecondDefeated: scene_orcSecondDefeated(); break;
 		case orcChief : scene_orcChief(); break;
 		case ending: scene_ending(); break;
 		}
@@ -758,6 +762,9 @@ public class CutsceneManager {
 				//Change boss music 
 				gp.stopMusic();
 				gp.playMusic(19);
+				
+				gp.qManager.progressQuest("Second's Fall");
+				gp.pManager.addNotification("Journal Updated");
 			}
 	}
 	public void scene_orcLieutenantDefeated() {
@@ -781,6 +788,121 @@ public class CutsceneManager {
 	        	cutsceneMaster.startDialogue(cutsceneMaster, 0);
 	        	gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril"));
 	        	gp.qManager.progressQuest("Sands of Peril");
+	        	gp.pManager.addNotification("Journal Updated");
+	        	scenePhase++;
+			}
+		}
+        
+	}
+	public void scene_orcSecond() {
+		System.out.println(scenePhase);
+		if(scenePhase == 0) {
+			
+			gp.bossBattleOn = true;
+			
+			//Search a vacant slot for player dummy
+			for(int i = 0; i < gp.npc[1].length; i++) {
+				
+				if(gp.npc[gp.currentMap][i] == null) {
+					gp.npc[gp.currentMap][i] = new PlayerDummy(gp);
+					gp.npc[gp.currentMap][i].worldX = gp.player.worldX;
+					gp.npc[gp.currentMap][i].worldY = gp.player.worldY;
+					gp.npc[gp.currentMap][i].direction = gp.player.direction;
+					usingDummyPlayer = true;
+					break;
+				}
+			}
+			
+			gp.player.drawing = false;
+			
+			scenePhase++;
+			}
+		
+			if (scenePhase == 1) {
+				
+				if (gp.player.worldY <= gp.tileSize * 16) {
+					gp.player.worldX -= 2;
+					if (gp.player.worldX <= gp.tileSize * 63) {
+						scenePhase++;
+					}
+				}else {
+					gp.player.worldY -= 2;
+				}
+			}
+			if(scenePhase == 2) {
+				
+				//Search for the boss
+				for(int i = 0; i < gp.mob[1].length; i++) {
+					
+					if(gp.mob[gp.currentMap][i] != null &&
+						gp.mob[gp.currentMap][i].name == MOB_Orc_Second.mobName) {
+						
+							gp.mob[gp.currentMap][i].sleep = false;
+							gp.ui.npc = gp.mob[gp.currentMap][i];
+							scenePhase++;
+							break;
+					}
+				}
+			}
+			if(scenePhase == 3) {
+				
+				//Boss Speak
+				gp.ui.npc.dialogueSet = 0;
+				gp.ui.npc.setDialogue();
+				gp.ui.drawDialogueScreen();
+			}
+			if(scenePhase == 4) {
+				
+				//Return camera to player
+				
+				//Search for dummy player
+				for(int i = 0; i < gp.obj[1].length; i++) {
+					
+					if(gp.npc[gp.currentMap][i] != null && gp.npc[gp.currentMap][i].name.equals(PlayerDummy.npcName)) {
+						//Restore the player position
+						gp.player.worldX = gp.npc[gp.currentMap][i].worldX;
+						gp.player.worldY = gp.npc[gp.currentMap][i].worldY;
+						//Delete dummy
+						gp.npc[gp.currentMap][i] = null;
+						usingDummyPlayer = false;
+						break;
+					}
+				}
+				
+				//Start drawing the player
+				gp.player.drawing = true;
+				
+				//Reset
+				sceneNum = NA;
+				scenePhase = 0;
+				gp.gameState = gp.playState;
+				
+				//Change boss music 
+				gp.stopMusic();
+				gp.playMusic(19);
+			}
+	}
+	public void scene_orcSecondDefeated() {
+		System.out.println(scenePhase);
+		switch(scenePhase) {
+		case 0:
+			gp.gameState = gp.playState;
+			if (counter == 0) { 
+	            // First time a shoot key is pressed, start the timer
+	            if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.leftPressed || gp.keyH.rightPressed) {
+	        		gp.csManager.setDialogue();
+	                counter = 1;  // Start counting frames
+	            }
+	        } else if (counterReached(60)) { 
+	            // If 1 second (60 frames) have passed since first key press, proceed
+	            scenePhase++;
+	            counter = 0;
+	        }
+		case 1:
+			if(scenePhase == 1) {
+	        	cutsceneMaster.startDialogue(cutsceneMaster, 0);
+	        	gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield"));
+	        	gp.qManager.progressQuest("Second's Fall");
 	        	gp.pManager.addNotification("Journal Updated");
 	        	scenePhase++;
 			}

@@ -34,6 +34,7 @@ import object.OBJ_SmallTorch;
 import object.OBJ_Spike_Gate;
 import object.OBJ_Stone_Axe;
 import object.OBJ_Stone_Sword;
+import object.OBJ_SunmireGlassroot;
 import object.OBJ_Torch;
 import object.OBJ_Waterfall;
 import object.OBJ_Well;
@@ -85,6 +86,7 @@ public class EntityGenerator {
 		case OBJ_Spike_Gate.objName: obj = new OBJ_Spike_Gate(gp); break;
 		case OBJ_Stone_Axe.objName: obj = new OBJ_Stone_Axe(gp); break;
 		case OBJ_Stone_Sword.objName: obj = new OBJ_Stone_Sword(gp); break;
+		case OBJ_SunmireGlassroot.objName: obj = new OBJ_SunmireGlassroot(gp); break;
 		case OBJ_Torch.objName: obj = new OBJ_Torch(gp); break;
 		case OBJ_Waterfall.objName: obj = new OBJ_Waterfall(gp); break;
 		case OBJ_Well.objName: obj = new OBJ_Well(gp); break;
