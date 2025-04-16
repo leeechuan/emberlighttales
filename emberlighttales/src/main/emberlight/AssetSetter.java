@@ -791,7 +791,7 @@ public class AssetSetter {
 		
 		if(Progress.gameStage < Progress.STAGE_ORC_CHIEF_DEFEATED) {
 			gp.mob[mapNum][i] = new MOB_Orc_Chief(gp);
-			gp.mob[mapNum][i].worldX = gp.tileSize*48;
+			gp.mob[mapNum][i].worldX = gp.tileSize*50;
 			gp.mob[mapNum][i].worldY = gp.tileSize*46;
 			i++;
 		}

@@ -256,6 +256,13 @@ public class TileManager {
         collisionFlags[745] = true; //desert
         collisionFlags[746] = true; //desert
         collisionFlags[747] = true; //desert
+        
+        collisionFlags[754] = true; //tent
+        collisionFlags[755] = true; //tent
+        collisionFlags[756] = true; //tent
+        collisionFlags[757] = true; //tent
+        collisionFlags[758] = true; //tent
+        collisionFlags[759] = true; //tent
 
 
 

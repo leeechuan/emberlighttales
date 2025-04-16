@@ -59,9 +59,9 @@ public class CutsceneManager {
 		
 		cutsceneMaster = new Entity(gp);
 		
-		endCredit = "Program\n"
+		endCredit = "Programming & Game Design\n"
 				+"Lee Chuan\n\n"
-				+"Music/SFX\n"
+				+"Base Music/SFX\n"
 				+"Lee Chuan\n\n"
 				+"Art\n"
 				+"Lee Chuan/@KenmiPixelArt\n"
@@ -70,9 +70,9 @@ public class CutsceneManager {
 				+"@RyiSnow\n"
 				+"for intuitive tutorials\n\n"
 				+"SUNO\n"
-				+"for music gneration\n\n"
+				+"for amplifying my\noriginal music\n\n"
 				+"voidless.dev\n"
-				+"for title screen\n\n\n\n\n\n\n\n"
+				+"more complicated unique\nsprites\n\n\n\n\n\n\n\n"
 				+"Thank you for playing!";
 				
 	}
@@ -698,8 +698,8 @@ public class CutsceneManager {
 				
 				if(gp.npc[gp.currentMap][i] == null) {
 					gp.npc[gp.currentMap][i] = new PlayerDummy(gp);
-					gp.npc[gp.currentMap][i].worldX = gp.player.worldX;
-					gp.npc[gp.currentMap][i].worldY = gp.player.worldY;
+					gp.npc[gp.currentMap][i].worldX = gp.player.worldX - (gp.tileSize/4);
+					gp.npc[gp.currentMap][i].worldY = gp.player.worldY - (gp.tileSize/4);
 					gp.npc[gp.currentMap][i].direction = gp.player.direction;
 					usingDummyPlayer = true;
 					break;
@@ -809,8 +809,8 @@ public class CutsceneManager {
 				
 				if(gp.npc[gp.currentMap][i] == null) {
 					gp.npc[gp.currentMap][i] = new PlayerDummy(gp);
-					gp.npc[gp.currentMap][i].worldX = gp.player.worldX;
-					gp.npc[gp.currentMap][i].worldY = gp.player.worldY;
+					gp.npc[gp.currentMap][i].worldX = gp.player.worldX  - (gp.tileSize/4);
+					gp.npc[gp.currentMap][i].worldY = gp.player.worldY  - (gp.tileSize/4);
 					gp.npc[gp.currentMap][i].direction = gp.player.direction;
 					usingDummyPlayer = true;
 					break;
@@ -951,8 +951,8 @@ public class CutsceneManager {
 				
 				if(gp.npc[gp.currentMap][i] == null) {
 					gp.npc[gp.currentMap][i] = new PlayerDummy(gp);
-					gp.npc[gp.currentMap][i].worldX = gp.player.worldX;
-					gp.npc[gp.currentMap][i].worldY = gp.player.worldY;
+					gp.npc[gp.currentMap][i].worldX = gp.player.worldX - (gp.tileSize/4);
+					gp.npc[gp.currentMap][i].worldY = gp.player.worldY - (gp.tileSize/4);
 					gp.npc[gp.currentMap][i].direction = gp.player.direction;
 					usingDummyPlayer = true;
 					break;
@@ -1112,7 +1112,7 @@ public class CutsceneManager {
 			//Scrolling the credits
 			y--;
 			drawString(1f, 16f, y, endCredit, 40);
-			if(counterReached(1000) == true) {
+			if(counterReached(2000) == true) {
 				scenePhase++;
 				gp.gameState = gp.titleState;
 				gp.stopMusic();
@@ -1159,13 +1159,13 @@ public class CutsceneManager {
 			
 			String text = "The hero left the tent in silence,\n"
 			        + "the Pearl untouched, the truth heavier than any blade.\n"
-			        + "No songs were sung that day, but something deeper stirred—\n"
+			        + "No songs were sung that day, but something deeper moved—\n"
 			        + "a quiet shift in stories yet to be told.\n"
 			        + "And in the shadows of old wrongs, a fragile hope\n"
 			        + "began to take root.";
 			drawString(alpha, 16f, 120, text, 70);
 			
-			if(counterReached(600) == true) {
+			if(counterReached(720) == true) {
 				scenePhase++;
 			}
 		}
@@ -1197,7 +1197,7 @@ public class CutsceneManager {
 			//Scrolling the credits
 			y--;
 			drawString(1f, 16f, y, endCredit, 40);
-			if(counterReached(1000) == true) {
+			if(counterReached(2000) == true) {
 				scenePhase++;
 				gp.gameState = gp.titleState;
 				gp.stopMusic();
@@ -1284,7 +1284,7 @@ public class CutsceneManager {
 			y--;
 			drawString(1f, 16f, y, endCredit, 40);
 			
-			if(counterReached(1000) == true) {
+			if(counterReached(2000) == true) {
 				scenePhase++;
 				gp.gameState = gp.titleState;
 				gp.stopMusic();
