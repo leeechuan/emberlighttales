@@ -65,10 +65,10 @@ public class QuestManager {
     	);
     	Quest mainQuest5 = new Quest(
     	    "Fissures in the Shield",
-    	    "The Orc Chief is protected by a Magical Shield.\nPerhaps the witch would have an idea.",
+    	    "The Orc Chief is protected by a\nMagical Shield. Perhaps the witch\nwould have an idea.",
     	    true,
     	    Arrays.asList(
-    	        new QuestStage("Speak with the witch on how to break through magical shield."),
+    	        new QuestStage("Speak with the witch on how to break through\nthe magical shield."),
     	        new QuestStage("Travel to Solara to obtain ingredients."),
     	        new QuestStage("Report back to the witch")
     	    ),
@@ -79,9 +79,9 @@ public class QuestManager {
     	    "The time has come to face\nthe orc chief.",
     	    true,
     	    Arrays.asList(
-    	        new QuestStage("Enter final dungeon"),
-    	        new QuestStage("Defeat orc chief"),
-    	        new QuestStage("Retrieve emberlight pearl")
+    	        new QuestStage("Investigate Chief's Tent"),
+    	        new QuestStage("Defeat orc chief or walk away"),
+    	        new QuestStage("Retrieve emberlight pearl or walk away")
     	    ),
             gp
     	);

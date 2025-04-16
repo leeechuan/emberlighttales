@@ -16,6 +16,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import data.Progress;
 import object.OBJ_BigTorch;
 import object.OBJ_Campfire;
 import object.OBJ_Coin;
@@ -336,7 +337,7 @@ public class UI {
 		    }
 		    
 		    // Draw version number on the bottom right
-		    String versionText = "Alpha v1.1.2";
+		    String versionText = "Alpha v1.1.3";
 		    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 10F));
 		    g2.setColor(Color.white);
 		    int versionX = gp.screenWidth - g2.getFontMetrics().stringWidth(versionText) - 10;
@@ -431,6 +432,24 @@ public class UI {
 			else { //If no text is in the array
 				npc.dialogueIndex = 0;
 				
+				//Mission handling
+				if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield"))&&
+						gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield").getCurrentStageIndex() == 0) {
+					gp.qManager.progressQuest("Fissures in the Shield");
+					gp.pManager.addNotification("Journal Updated");
+					
+				}
+				else if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield"))&&
+						gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield").getCurrentStageIndex() == 2 &&
+						gp.player.searchItemInInventory("Sunmire Glassroot") != 999) {
+					gp.qManager.progressQuest("Fissures in the Shield");
+					gp.pManager.addNotification("Quest Completed!");
+					gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("The Price of War"));
+					Progress.gameStage = Progress.STAGE_DISABLED_FORCE_FIELD;
+				}
+					
+				
+				//State handling
 				if(gp.gameState == gp.dialogueState) {
 					gp.gameState = gp.playState;
 				}
@@ -1092,6 +1111,15 @@ public class UI {
 			if(gp.keyH.enterPressed == true) {
 				commandNum = 0;
 				npc.startDialogue(npc, 1);
+				
+				//Mission handling (check if bought item)
+				if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield"))&&
+						gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield").getCurrentStageIndex() == 1 &&
+						gp.player.searchItemInInventory("Sunmire Glassroot") != 999) {
+					gp.qManager.progressQuest("Fissures in the Shield");
+					gp.pManager.addNotification("Journal Updated");
+					
+				}
 			}
 		}
 	}

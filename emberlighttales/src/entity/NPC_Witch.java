@@ -80,7 +80,7 @@ public class NPC_Witch extends Entity {
 
 		} 
 		else if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield"))&&
-				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 0) {
+				gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield").getCurrentStageIndex() == 0) {
 			dialogues[0][0] = "You’re back. I felt a shift in\nthe wind... something violent.";	
 			dialogues[0][1] = "(She finally turns, eyes scanning\nthe player.)";
 			dialogues[0][2] = "You faced him, didn’t you?\nZulgar...";	
@@ -89,6 +89,31 @@ public class NPC_Witch extends Entity {
 			dialogues[0][5] = "To unbind it without... consequences,\nI’ll need something rare.";
 			dialogues[0][6] = "Sunmire Glassroot. Grows only in the\nsalt-glass dunes near Solara, a desert\ntown west of here.";
 			dialogues[0][7] = "You’ll find a trader there that sells\nit... Bring me the root, and I’ll\ncast the spell.";
+
+		} 
+		else if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield"))&&
+				gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield").getCurrentStageIndex() == 2) {
+			if(gp.player.searchItemInInventory("Sunmire Glassroot") != 999) {
+				dialogues[0][0] = "Ah... I feel it. You’ve returned";	
+				dialogues[0][1] = "Sunmire Glassroot. Still intact too.\nI’m impressed";
+				dialogues[0][2] = "(She carefully places it into a small\nmortar and begins grinding it with\nslow, deliberate motions.)";	
+				dialogues[0][3] = "This... will do. The ashes, once burned,\nwill cling to the old magic around\nGhorath's tent.";
+				dialogues[0][4] = "Expose the seams. Let you in.";
+				dialogues[0][5] = "(She tosses the ground root into the\ncauldron. It hisses, then bursts into\na sudden flash of blue flame.)";
+				dialogues[0][6] = "It is done...";
+				dialogues[0][7] = "But understand this... barriers like that\naren’t just built to keep others out... Take care.";
+			}
+			else {
+				dialogues[0][0] = "Sunmire Glassroot... I sense\nyou had it?";	
+				dialogues[0][1] = "Bring it to me... else I wont\nbe able to help you...";
+				dialogues[0][2] = null;	
+				dialogues[0][3] = null;
+				dialogues[0][4] = null;
+				dialogues[0][5] = null;
+				dialogues[0][6] = null;
+				dialogues[0][7] = null;
+			}
+
 
 		} 
 		else {

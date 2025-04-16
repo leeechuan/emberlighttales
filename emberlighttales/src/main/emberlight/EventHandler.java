@@ -92,6 +92,20 @@ public class EventHandler{
 			else if(hit(3, 50, 58,"any") == true) {
 				OrcChiefBattle();
 			}
+			else if(hit(3, 50, 60,"down") == true) {
+				if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("The Price of War")) &&
+						gp.qManager.getQuestJournal().getQuestByName("The Price of War").getCurrentStageIndex() == 1) {
+					gp.gameState = gp.cutsceneState;
+					gp.csManager.scenePhase = 0;
+					gp.csManager.sceneNum = gp.csManager.ending2;
+				}
+				else if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("The Price of War")) &&
+						gp.qManager.getQuestJournal().getQuestByName("The Price of War").getCurrentStageIndex() == 2) {
+					gp.gameState = gp.cutsceneState;
+					gp.csManager.scenePhase = 0;
+					gp.csManager.sceneNum = gp.csManager.ending3;
+				}
+			}
 			else if(hit(0, 74, 80,"any") == true || hit(0, 75, 80,"any") == true || hit(0, 76, 80,"any") == true) {
 				TownhallScene();
 			}
@@ -268,14 +282,20 @@ public class EventHandler{
 					gp.gameState = gp.dialogueState;
 					eventMaster.startDialogue(eventMaster, 2);
 					canTouchEvent = false;
-					
 				}
-				gp.playSE(14);
+				else {
+					teleport(20, 50, 50, gp.indoor);
+					gp.playSE(24);
+				}
 			}
-//			else if(hit(18, 50, 51,"any") == true) {
-//				teleport(0, 12, 39, gp.outside);
-//				gp.playSE(14);
-//			}
+			else if(hit(20, 50, 47,"any") == true) {
+				teleport(3, 50, 67, gp.dungeon);
+				gp.playSE(24);
+			}
+			else if(hit(3, 50, 67,"any") == true) {
+				teleport(20, 50, 47, gp.indoor);
+				gp.playSE(24);
+			}
 			
 			//Dungeon 1
 			
@@ -291,14 +311,7 @@ public class EventHandler{
 				teleport(0, 47, 55, gp.outside);
 				gp.playSE(24);
 			}
-			else if(hit(2, 16, 21,"any") == true) {
-				teleport(3, 50, 67, gp.dungeon);
-				gp.playSE(24);
-			}
-			else if(hit(3, 50, 67,"any") == true) {
-				teleport(2, 16, 21, gp.dungeon);
-				gp.playSE(24);
-			}
+
 			
 			//SOLARA
 			

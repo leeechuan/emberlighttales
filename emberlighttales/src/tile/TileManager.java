@@ -48,11 +48,12 @@ public class TileManager {
         loadMap("/maps/elderhouse.txt", 17);
         loadMap("/maps/shopkeeperhouse.txt", 18);
         loadMap("/maps/desert01.txt", 19);
+        loadMap("/maps/chieftent.txt", 20);
     }
 
     public void getTileImages() {
         // Predefine collision rules using a boolean array
-        boolean[] collisionFlags = new boolean[754];
+        boolean[] collisionFlags = new boolean[770];
 
         // Default all to true
         Arrays.fill(collisionFlags, false);

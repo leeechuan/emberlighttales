@@ -181,6 +181,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public void loadSavedGame() {
 	    resetGame(false);
 	    saveLoad.load();
+		aSetter.setMobs();
 	}
 	public void setFullScreen() {
 		
@@ -305,11 +306,12 @@ public class GamePanel extends JPanel implements Runnable{
 		        }
 		    }
 		    eManager.update();
-		    pManager.update();
+		    
 		}
 		if(gameState == pauseState) {
 			
 		}
+		pManager.update();
 	}
 	public void drawToTempScreen() {
 

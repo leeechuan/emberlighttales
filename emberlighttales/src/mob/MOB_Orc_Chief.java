@@ -93,8 +93,21 @@ public class MOB_Orc_Chief extends Entity {
    }
     public void setDialogue() {
     	
-    	dialogues[0][0] = "I have been waiting for you...";
-    	dialogues[0][1] = "I'm craving human tonight...";
+    	dialogues[0][0] = "So... you made it past the barrier. I\nsuppose Morgra still weaves her tricks.";
+    	dialogues[0][1] = "You think you’re here to take back what's\nyours. But you never knew what it\nwas to begin with.";
+    	dialogues[0][2] = "(He gestures to the Pearl behind the\ngate. Light more subdued than before.)";
+    	dialogues[0][3] = "This... this was ours. Long before\nEmberville grew greedy. Before they\ncalled it a pearl.";
+    	dialogues[0][4] = "To us, it was Na’tharin — our heartfire.\nA gift that kept our lands alive.\nBalanced. Pure.";
+    	dialogues[0][5] = "Then your people came. Took it. Said\nthey needed it more. Said we were savages.\nBut we weren’t. We were just... different.";
+    	dialogues[0][6] = "Morgra led the charge. Back then, she\nwasn’t a witch—she was your mayor.\n";
+    	dialogues[0][7] = "She used her cursed serum on our\nvillage head... my mother.";
+    	dialogues[0][8] = "Said it would ‘even the odds.’ It twisted\nher... made her strong. But not human.";
+    	dialogues[0][9] = "And the rest of us? Born like this.\nBorn monsters. Not by choice. By poison.";
+    	dialogues[0][10] = "I stole the Pearl not for war, but hope.\nMaybe with it, I could buy peace.\nForce a cure...";
+    	dialogues[0][11] = "So tell me, gremlin-blood. Do you really\nthink you’re so different from me?";
+    	dialogues[0][12] = "You can strike me down. Take the Pearl.\nReturn a hero to those who never questioned\nthe stories they were told.";
+    	dialogues[0][13] = "Or you can walk away. Leave this place\nknowing the truth—and letting it matter\nmore than vengeance ever could.";
+    	dialogues[0][14] = "The choice is yours.";
     }
 	public void setAction() {
 		
@@ -153,6 +166,11 @@ public class MOB_Orc_Chief extends Entity {
 				gp.playSE(18);
 				gp.obj[gp.currentMap][i] = null;
 			}
+		}
+		if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("The Price of War")) &&
+				gp.qManager.getQuestJournal().getQuestByName("The Price of War").getCurrentStageIndex() == 1) {
+			gp.qManager.progressQuest("The Price of War");
+			gp.pManager.addNotification("Journal Updated");
 		}
 	}
 	public Color getParticleColor() {

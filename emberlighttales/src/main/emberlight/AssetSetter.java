@@ -743,6 +743,7 @@ public class AssetSetter {
 //		i++;
 		
 		if(Progress.gameStage < Progress.STAGE_ORC_SECONDINCOMMAND_DEFEATED) {
+			System.out.println(Progress.gameStage);
 			gp.mob[mapNum][i] = new MOB_Orc_Second(gp);
 			gp.mob[mapNum][i].worldX = gp.tileSize*63;
 			gp.mob[mapNum][i].worldY = gp.tileSize*16;

@@ -51,6 +51,8 @@ public class CutsceneManager {
 	public final int orcSecondDefeated = 8;
 	public final int orcChief = 9;
 	public final int ending = 10;
+	public final int ending2 = 11;
+	public final int ending3 = 12;
 	
 	public CutsceneManager(GamePanel gp) {
 		this.gp = gp;
@@ -88,6 +90,8 @@ public class CutsceneManager {
 		case orcSecondDefeated: scene_orcSecondDefeated(); break;
 		case orcChief : scene_orcChief(); break;
 		case ending: scene_ending(); break;
+		case ending2: scene_ending2(); break;
+		case ending3: scene_ending3(); break;
 		}
 	}
 	public void setDialogue() {
@@ -916,19 +920,19 @@ public class CutsceneManager {
 			gp.bossBattleOn = true;
 			
 			//Shut Door 1
-			for(int i = 0; i < gp.obj[1].length; i++) {
-				
-				if(gp.obj[gp.currentMap][i] == null) {
-					gp.obj[gp.currentMap][i] = new OBJ_Spike_Gate(gp);
-					gp.obj[gp.currentMap][i].worldX = gp.tileSize*49;
-					gp.obj[gp.currentMap][i].worldY = gp.tileSize*63;
-					gp.obj[gp.currentMap][i].temp = true;
-			        // Ensure the gate starts closing
-			        gp.obj[gp.currentMap][i].gate_open_state = false;
-					gp.playSE(18);
-					break;
-				}
-			}
+//			for(int i = 0; i < gp.obj[1].length; i++) {
+//				
+//				if(gp.obj[gp.currentMap][i] == null) {
+//					gp.obj[gp.currentMap][i] = new OBJ_Spike_Gate(gp);
+//					gp.obj[gp.currentMap][i].worldX = gp.tileSize*49;
+//					gp.obj[gp.currentMap][i].worldY = gp.tileSize*63;
+//					gp.obj[gp.currentMap][i].temp = true;
+//			        // Ensure the gate starts closing
+//			        gp.obj[gp.currentMap][i].gate_open_state = false;
+//					gp.playSE(18);
+//					break;
+//				}
+//			}
 			//Shut Door 2
 			for(int i = 0; i < gp.obj[1].length; i++) {
 				
@@ -950,6 +954,7 @@ public class CutsceneManager {
 					gp.npc[gp.currentMap][i].worldX = gp.player.worldX;
 					gp.npc[gp.currentMap][i].worldY = gp.player.worldY;
 					gp.npc[gp.currentMap][i].direction = gp.player.direction;
+					usingDummyPlayer = true;
 					break;
 				}
 			}
@@ -998,6 +1003,7 @@ public class CutsceneManager {
 						gp.player.worldY = gp.npc[gp.currentMap][i].worldY;
 						//Delete dummy
 						gp.npc[gp.currentMap][i] = null;
+						usingDummyPlayer = false;
 						break;
 					}
 				}
@@ -1013,6 +1019,9 @@ public class CutsceneManager {
 				//Change boss music 
 				gp.stopMusic();
 				gp.playMusic(19);
+				
+				gp.qManager.progressQuest("The Price of War");
+				gp.pManager.addNotification("Journal Updated");
 			}
 	}
 	public void scene_ending() {
@@ -1030,7 +1039,8 @@ public class CutsceneManager {
 		if(scenePhase == 2) {
 			
 			//Play fanfare
-			gp.playSE(25);
+			gp.stopMusic();
+			gp.playMusic(25);
 			scenePhase++;
 		}
 		if(scenePhase == 3) {
@@ -1071,7 +1081,6 @@ public class CutsceneManager {
 			drawString(alpha, 16f, 120, text, 70);
 			
 			if(counterReached(600) == true) {
-				gp.playMusic(0);
 				scenePhase++;
 			}
 		}
@@ -1081,7 +1090,7 @@ public class CutsceneManager {
 			
 			drawString(1f, 40f, gp.screenHeight/2, "Emberlight Tales", 40);
 			
-			if(counterReached(480) == true) {
+			if(counterReached(360) == true) {
 				scenePhase++;
 			}
 		}
@@ -1103,6 +1112,183 @@ public class CutsceneManager {
 			//Scrolling the credits
 			y--;
 			drawString(1f, 16f, y, endCredit, 40);
+			if(counterReached(1000) == true) {
+				scenePhase++;
+				gp.gameState = gp.titleState;
+				gp.stopMusic();
+			}
+		}
+	}
+	public void scene_ending2() {
+		
+		if(scenePhase == 0) {
+			
+			//Play fanfare
+			gp.stopMusic();
+			gp.playMusic(25);
+			scenePhase++;
+		}
+		if(scenePhase == 1) {
+			
+			//Wait until sound effect ends
+			if(counterReached(100) == true) {
+				scenePhase++;
+			}
+		}
+		if(scenePhase == 2) {
+			
+			//Screen gets darker
+			alpha += 0.005f;
+			if(alpha > 1f) {
+				alpha = 1f;
+			}
+			drawBlackBackground(alpha);
+			
+			if(alpha == 1f) {
+				alpha = 0;
+				scenePhase++;
+			}
+		}
+		if(scenePhase == 3) {
+			
+			drawBlackBackground(1f);
+			alpha += 0.005f;
+			if(alpha > 1f) {
+				alpha = 1f;
+			}
+			
+			String text = "The hero left the tent in silence,\n"
+			        + "the Pearl untouched, the truth heavier than any blade.\n"
+			        + "No songs were sung that day, but something deeper stirred—\n"
+			        + "a quiet shift in stories yet to be told.\n"
+			        + "And in the shadows of old wrongs, a fragile hope\n"
+			        + "began to take root.";
+			drawString(alpha, 16f, 120, text, 70);
+			
+			if(counterReached(600) == true) {
+				scenePhase++;
+			}
+		}
+		if(scenePhase == 4) {
+			
+			drawBlackBackground(1f);
+			
+			drawString(1f, 40f, gp.screenHeight/2, "Emberlight Tales", 40);
+			
+			if(counterReached(360) == true) {
+				scenePhase++;
+			}
+		}
+		if(scenePhase == 5) {
+			
+			drawBlackBackground(1f);
+			
+			y = gp.screenHeight/4;
+			drawString(1f, 16f, y, endCredit, 40);
+			
+			if(counterReached(480) == true) {
+				scenePhase++;
+			}
+		}
+		if(scenePhase == 6) {
+			
+			drawBlackBackground(1f);
+			
+			//Scrolling the credits
+			y--;
+			drawString(1f, 16f, y, endCredit, 40);
+			if(counterReached(1000) == true) {
+				scenePhase++;
+				gp.gameState = gp.titleState;
+				gp.stopMusic();
+			}
+		}
+	}
+	public void scene_ending3() {
+		
+		if(scenePhase == 0) {
+			
+			//Play fanfare
+			gp.stopMusic();
+			gp.playMusic(25);
+			scenePhase++;
+		}
+		if(scenePhase == 1) {
+			
+			//Wait until sound effect ends
+			if(counterReached(100) == true) {
+				scenePhase++;
+			}
+		}
+		if(scenePhase == 2) {
+			
+			//Screen gets darker
+			alpha += 0.005f;
+			if(alpha > 1f) {
+				alpha = 1f;
+			}
+			drawBlackBackground(alpha);
+			
+			if(alpha == 1f) {
+				alpha = 0;
+				scenePhase++;
+			}
+		}
+		if(scenePhase == 3) {
+			
+			drawBlackBackground(1f);
+			alpha += 0.005f;
+			if(alpha > 1f) {
+				alpha = 1f;
+			}
+			
+			String text = "The battle was won, but the Pearl remained.\n"
+			        + "The hero stood over it, the weight of its glow\n"
+			        + "no longer a prize, but a question.\n"
+			        + "No cheers followed, only silence—as if the land\n"
+			        + "itself paused to wonder what came next.\n"
+			        + "Some victories, it seemed, were meant to be unfinished.";
+			
+			drawString(alpha, 16f, 120, text, 70);
+			
+			if(counterReached(600) == true) {
+				scenePhase++;
+			}
+		}
+		if(scenePhase == 4) {
+			
+			drawBlackBackground(1f);
+			
+			drawString(1f, 40f, gp.screenHeight/2, "Emberlight Tales", 40);
+			
+			if(counterReached(360) == true) {
+				scenePhase++;
+			}
+		}
+		if(scenePhase == 5) {
+			
+			drawBlackBackground(1f);
+			
+			y = gp.screenHeight/4;
+			drawString(1f, 16f, y, endCredit, 40);
+			
+			if(counterReached(480) == true) {
+				scenePhase++;
+			}
+		}
+		if(scenePhase == 6) {
+			
+			drawBlackBackground(1f);
+			
+			//Scrolling the credits
+			y--;
+			drawString(1f, 16f, y, endCredit, 40);
+			
+			if(counterReached(1000) == true) {
+				scenePhase++;
+				gp.gameState = gp.titleState;
+				gp.stopMusic();
+			}
 		}
 	}
 	public boolean counterReached(int target) {
