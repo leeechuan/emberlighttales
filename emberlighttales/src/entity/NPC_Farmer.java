@@ -56,12 +56,39 @@ public class NPC_Farmer extends Entity {
 	}
 	public void setDialogue() {
 		
+
 		if(gp.csManager.sceneNum == gp.csManager.townhall) {
-			dialogues[0][0] = "The Pearl? But without it...";			
+			dialogues[0][0] = "The Pearl? But without it...";
+			dialogues[0][1] = null;
+			dialogues[0][2] = null;
+			dialogues[0][3] = null;
+			dialogues[0][4] = null;
+		}
+		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger"))&&
+				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger"))&&
+				!gp.player.isGremlin) {
+			dialogues[0][0] = "You! You're quick on your feet, right?";
+			dialogues[0][1] = "After the orc raid, my poor chickens\npanicked and scattered everywhere like\nfeathered fools!";
+			dialogues[0][2] = "They’re out there—hiding in bushes, behind\ncrates...";
+			dialogues[0][3] = "I’d go get 'em myself, but my back’s\ngot more cracks than a dry loaf\nof cornbread.";
+			dialogues[0][4] = "Be a good soul and round them up for\nme, would ya?";
+		}
+		else if (!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger"))&&
+				gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger").getCurrentStageIndex() == 3 &&
+				!gp.player.isGremlin) {
+			dialogues[0][0] = "Well I’ll be! You found the whole flock!";
+			dialogues[0][1] = "They’re filthy, scared, and loud...\njust how I left ‘em.";
+			dialogues[0][2] = "You’ve done this old farmer a world of\ngood. Couldn’t let those orc-lovin’\negg layers run wild.";
+			dialogues[0][3] = "Here take this. It ain’t much, but\nit’s honest thanks.";
+			dialogues[0][4] = "Oh, and if one of 'em follows you home...\nthat one's yours now.";
 		}
 		else {
 			dialogues[0][0] = "Hmmm...";		
 			dialogues[0][1] = "Hope it rains soon...";
+			dialogues[1][2] = null;
+			dialogues[1][3] = null;
+			dialogues[1][4] = null;
 		}
 	}
 	public void setAction() {
@@ -104,8 +131,24 @@ public class NPC_Farmer extends Entity {
 	
 	public void speak() {
 		
+		setDialogue();
 		facePlayer();
 		startDialogue(this, dialogueSet);
+		
+		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger"))&&
+				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger"))&&
+				!gp.player.isGremlin) {
+			gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger"));
+			gp.pManager.addNotification("Journal Updated");
+		}
+		else if (!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger"))&&
+				gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger").getCurrentStageIndex() == 3 &&
+				!gp.player.isGremlin) {
+			gp.qManager.progressQuest("Cluck and Dagger");
+			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger"));
+			gp.pManager.addNotification("Quest Completed!");
+		}
 		
 		dialogueSet++;
 		

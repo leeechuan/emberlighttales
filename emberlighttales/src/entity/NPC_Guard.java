@@ -70,6 +70,15 @@ public class NPC_Guard extends Entity {
 		}
 		else {
 			dialogues[0][0] = "Yes? What do you need?";
+			dialogues[0][1] = null;
+			dialogues[0][2] = null;
+			dialogues[0][3] = null;
+			dialogues[0][4] = null;
+			dialogues[0][5] = null;
+			dialogues[0][6] = null;
+			dialogues[0][7] = null;
+			dialogues[0][8] = null;
+			dialogues[0][9] = null;
 		}
 		
 	}

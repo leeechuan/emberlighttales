@@ -99,17 +99,19 @@ public class QuestManager {
             gp
     	);
     	Quest sideQuest2 = new Quest(
-    	    "The Missing Chickens",
-    	    "Farmer has claimed to lose his chickens after the orc attack.\nHelp him chase them down.",
+    	    "Cluck and Dagger",
+    	    "The farmer has lost his chickens\nafter the orc attack.\nHelp him chase them down.",
     	    false,
     	    Arrays.asList(
-    	        new QuestStage("Gather chickens"),
+    	        new QuestStage("Gather first chicken"),
+    	        new QuestStage("Gather second chicken"),
+    	        new QuestStage("Gather last chicken"),
     	        new QuestStage("Report back to the farmer")
     	    ),
             gp
     	);
     	Quest sideQuest3 = new Quest(
-    	    "A Lost Heirloom",
+    	    "Lost Heirloom",
     	    "Elder has lost his family heirloom\nduring orc raid.",
     	    false,
     	    Arrays.asList(
@@ -120,7 +122,7 @@ public class QuestManager {
     	);
 
     	Quest sideQuest4 = new Quest(
-    	    "The Rogue Bandits",
+    	    "No Rest for the Wicked",
     	    "A group of bandits has been raiding caravans along the road to the south.\nThe local authorities are overwhelmed, and it's up to you to put an end to their reign of terror.",
     	    false,
     	    Arrays.asList(
@@ -132,69 +134,16 @@ public class QuestManager {
     	);
 
     	Quest sideQuest5 = new Quest(
-    	    "The Cursed Forest",
-    	    "The once-beautiful forest nearby has been cursed. Creatures are becoming aggressive,\nand strange lights are seen every night. Investigate the cause of the curse.",
-    	    false,
-    	    Arrays.asList(
-    	        new QuestStage("Enter the cursed forest and explore."),
-    	        new QuestStage("Find the source of the curse."),
-    	        new QuestStage("Defeat the cursed creature guarding the forest."),
-    	        new QuestStage("Return to the village and inform the elder.")
-    	    ),
-            gp
+    		    "Where’s Wibby?",
+    		    "A worried father in Emberville pleads for help.\nHis young son went missing in the\nchaos following the orc raid. Perhaps I\nshould look outside the village..",
+    		    false,
+    		    Arrays.asList(
+    		        new QuestStage("Search the cave for any clues."),
+    		        new QuestStage("Bring Wibby back to his father.")
+    		    ),
+    		    gp
     	);
 
-    	Quest sideQuest6 = new Quest(
-    	    "The Thief in the Night",
-    	    "A thief has been stealing from the local villagers during the night.\nIt's up to you to find the culprit and bring them to justice.",
-    	    false,
-    	    Arrays.asList(
-    	        new QuestStage("Speak with the villagers to gather information."),
-    	        new QuestStage("Follow the thief's trail."),
-    	        new QuestStage("Confront and apprehend the thief."),
-    	        new QuestStage("Return the stolen goods and report to the village chief.")
-    	    ),
-            gp
-    	);
-
-    	Quest sideQuest7 = new Quest(
-    	    "The Forgotten Temple",
-    	    "An old and forgotten temple lies hidden deep in the mountains.\nThe temple is said to contain great treasures,\nbut it is also rumored to be cursed.",
-    	    false,
-    	    Arrays.asList(
-    	        new QuestStage("Find the location of the hidden temple."),
-    	        new QuestStage("Navigate the dangerous ruins of the temple."),
-    	        new QuestStage("Retrieve the treasure from the temple."),
-    	        new QuestStage("Return to the village and warn them of the curse.")
-    	    ),
-            gp
-    	);
-
-    	Quest sideQuest8 = new Quest(
-    	    "The Druid's Request",
-    	    "A local druid has asked for your help in restoring the balance of nature,\nwhich has been disturbed by strange creatures in the nearby woods.",
-    	    false,
-    	    Arrays.asList(
-    	        new QuestStage("Meet with the druid and hear their request."),
-    	        new QuestStage("Find and defeat the corrupted creatures in the woods."),
-    	        new QuestStage("Collect the necessary ingredients for the druid."),
-    	        new QuestStage("Return the ingredients and restore the balance.")
-    	    ),
-            gp
-    	);
-
-    	Quest sideQuest9 = new Quest(
-    	    "The Lost Expedition",
-    	    "A group of explorers went missing while mapping out the ruins in the far north.\nYour task is to find out what happened to them.",
-    	    false,
-    	    Arrays.asList(
-    	        new QuestStage("Track down the missing expedition team."),
-    	        new QuestStage("Search the ruins for clues."),
-    	        new QuestStage("Rescue any survivors or report their fate."),
-    	        new QuestStage("Return to the village and report your findings.")
-    	    ),
-            gp
-    	);
     	
     	gp.qManager.getQuestJournal().initQuest(mainQuest1);
     	gp.qManager.getQuestJournal().initQuest(mainQuest2);
@@ -207,10 +156,6 @@ public class QuestManager {
     	gp.qManager.getQuestJournal().initQuest(sideQuest3);
     	gp.qManager.getQuestJournal().initQuest(sideQuest4);
     	gp.qManager.getQuestJournal().initQuest(sideQuest5);
-    	gp.qManager.getQuestJournal().initQuest(sideQuest6);
-    	gp.qManager.getQuestJournal().initQuest(sideQuest7);
-    	gp.qManager.getQuestJournal().initQuest(sideQuest8);
-    	gp.qManager.getQuestJournal().initQuest(sideQuest9);
     }
 
     public void progressQuest(String questName) {

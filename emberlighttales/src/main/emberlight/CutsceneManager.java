@@ -795,6 +795,10 @@ public class CutsceneManager {
 	        	gp.pManager.addNotification("Journal Updated");
 	        	scenePhase++;
 			}
+		case 2:
+			sceneNum = NA;
+			scenePhase = 0;
+			gp.gameState = gp.playState;
 		}
         
 	}
@@ -910,6 +914,10 @@ public class CutsceneManager {
 	        	gp.pManager.addNotification("Journal Updated");
 	        	scenePhase++;
 			}
+		case 2:
+			sceneNum = NA;
+			scenePhase = 0;
+			gp.gameState = gp.playState;
 		}
         
 	}

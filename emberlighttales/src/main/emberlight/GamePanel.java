@@ -20,6 +20,9 @@ import ai.PathFinder;
 import data.Progress;
 import data.SaveLoad;
 import entity.Entity;
+import entity.NPC_Chicken1;
+import entity.NPC_Chicken2;
+import entity.NPC_Chicken3;
 import entity.Player;
 import entity.SmokeParticle;
 import environment.EnvironmentManager;
@@ -30,6 +33,7 @@ import tile.Map;
 import tile.TileManager;
 import tile_interactive.IT_PressurePlate;
 import tile_interactive.InteractiveTile;
+import quest.Quest;
 import quest.QuestManager;
 
 public class GamePanel extends JPanel implements Runnable{
@@ -176,12 +180,14 @@ public class GamePanel extends JPanel implements Runnable{
 	public void startNewGame() {
 	    qManager.getQuestJournal().resetQuestJournal();
 	    Progress.gameStage = Progress.STAGE_TUTORIAL;
+	    player.isGremlin = false;
 	    resetGame(true);
 	}
 	public void loadSavedGame() {
 	    resetGame(false);
 	    saveLoad.load();
 		aSetter.setMobs();
+		moveChickens();
 	}
 	public void setFullScreen() {
 		
@@ -333,8 +339,6 @@ public class GamePanel extends JPanel implements Runnable{
 		else {
 			//TILE
 			tileM.draw(g2);
-			
-
 			
 			//ADD ENTITIES TO LIST
 			//PLAYER
@@ -506,6 +510,50 @@ public class GamePanel extends JPanel implements Runnable{
 	            }
 	        	
 	            npc[currentMap][i].setDialogue();
+	        }
+	    }
+	}
+	public void moveChickens() {
+	    Quest cluckQuest = qManager.getQuestJournal().getQuestByName("Cluck and Dagger");
+	    boolean questActive = qManager.getQuestJournal().getActiveQuests().contains(cluckQuest);
+	    boolean questCompleted = qManager.getQuestJournal().getCompletedQuests().contains(cluckQuest);
+	    int stage = (cluckQuest != null) ? cluckQuest.getCurrentStageIndex() : -1;
+
+	    for (int i = 0; i < npc[0].length; i++) {
+	        if (npc[0][i] == null || npc[0][i].name == null) continue;
+
+	        String npcName = npc[0][i].name;
+
+	        switch (npcName) {
+	            case NPC_Chicken1.npcName:
+	                if (!questCompleted && questActive && stage < 1) {
+	                    npc[0][i].worldX = tileSize * 89;
+	                    npc[0][i].worldY = tileSize * 67;
+	                } else {
+	                    npc[0][i].worldX = tileSize * 76;
+	                    npc[0][i].worldY = tileSize * 47;
+	                }
+	                break;
+
+	            case NPC_Chicken2.npcName:
+	                if (!questCompleted && questActive && stage < 2) {
+	                    npc[0][i].worldX = tileSize * 64;
+	                    npc[0][i].worldY = tileSize * 76;
+	                } else {
+	                    npc[0][i].worldX = tileSize * 77;
+	                    npc[0][i].worldY = tileSize * 48;
+	                }
+	                break;
+
+	            case NPC_Chicken3.npcName:
+	                if (!questCompleted && questActive && stage < 3) {
+	                    npc[0][i].worldX = tileSize * 73;
+	                    npc[0][i].worldY = tileSize * 54;
+	                } else {
+	                    npc[0][i].worldX = tileSize * 79;
+	                    npc[0][i].worldY = tileSize * 47;
+	                }
+	                break;
 	        }
 	    }
 	}

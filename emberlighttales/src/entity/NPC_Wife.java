@@ -58,7 +58,8 @@ public class NPC_Wife extends Entity {
 	public void setDialogue() {
 		
 		if(gp.csManager.sceneNum == gp.csManager.townhall) {
-			dialogues[0][0] = "*gasps*";	
+			dialogues[0][0] = "*gasps*";
+			dialogues[0][1] = null;	
 		}
 		else {
 			dialogues[0][0] = "Hehe!";		

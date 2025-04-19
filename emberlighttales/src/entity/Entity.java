@@ -1168,12 +1168,19 @@ public class Entity {
 	    //Day
 	    else if (gp.eManager.lighting.dayState == gp.eManager.lighting.day) {
 	    	if(townNum == 0) {
+	    		//EMBERVILLE
 	    		roamingArea.setBounds(gp.tileSize * 48, gp.tileSize * 43, gp.tileSize * 50, gp.tileSize * 50);
 	    	}
 	    	if(townNum == 1) {
+	    		//GILDENSHORE
 	    		roamingArea.setBounds(gp.tileSize * 5, gp.tileSize * 5, gp.tileSize * 45, gp.tileSize * 37);
 	    	}
+	    	if(townNum == 2) {
+	    		//CHICKEN COOP
+	    		roamingArea.setBounds(gp.tileSize * 75, gp.tileSize * 47, gp.tileSize * 5, gp.tileSize * 2);
+	    	}
 	    	else {
+	    		//ENTIRE WORLD MAP
 	    		roamingArea.setBounds(gp.tileSize * 0, gp.tileSize * 0, gp.tileSize * 100, gp.tileSize * 100);
 	    	}
 	        

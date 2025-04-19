@@ -9,11 +9,12 @@ import javax.imageio.ImageIO;
 
 import main.emberlight.GamePanel;
 
-public class NPC_Chicken extends Entity {
+public class NPC_Chicken1 extends Entity {
 	
-	public static final String npcName = "Henry the Bee";
+	public static final String npcName = "Henjamin Featherworth";
+	public boolean caught = false;
 	
-	public NPC_Chicken(GamePanel gp) {
+	public NPC_Chicken1(GamePanel gp) {
 		super(gp);
 		
 		type = type_npc;
@@ -27,6 +28,19 @@ public class NPC_Chicken extends Entity {
         solidAreaDefaultY = solidArea.y;
         
         dialogueSet = -1;
+        this.roamingArea = new Rectangle();
+        
+        if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger"))&&
+				gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger").getCurrentStageIndex() < 1) {
+        	worldX = 89 * gp.tileSize;
+        	worldY = 67 * gp.tileSize;
+        }
+        else {
+        	worldX = 76 * gp.tileSize;
+        	worldY = 47 * gp.tileSize;
+        }
+
 		
 		getImage();
 		setDialogue();
@@ -80,5 +94,36 @@ public class NPC_Chicken extends Entity {
 
 	}
 
+	public void speak() {
+		
+		if(!caught) {
+			caught = true;
+		}
+		
+		if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger"))) {
+			gp.qManager.progressQuest("Cluck and Dagger");
+			gp.pManager.addNotification("Journal Updated");
+	        if(!caught) {
+	        	worldX = 86 * gp.tileSize;
+	        	worldY = 69 * gp.tileSize;
+	        }
+	        else {
+	        	worldX = 76 * gp.tileSize;
+	        	worldY = 47 * gp.tileSize;
+	        }
+		}
+
+		
+		facePlayer();
+
+		startDialogue(this, dialogueSet);
+		
+		dialogueSet++;
+		
+		if(dialogues[dialogueSet][0] == null) {
+			
+			dialogueSet--;
+		}
+	}
 	
 }

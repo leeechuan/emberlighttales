@@ -11,7 +11,7 @@ import main.emberlight.GamePanel;
 
 public class NPC_Fisherman extends Entity {
 	
-	public static final String npcName = "Rowan Swiftfoot";
+	public static final String npcName = "Erik Mossveil";
 	
 	public NPC_Fisherman(GamePanel gp) {
 		super(gp);

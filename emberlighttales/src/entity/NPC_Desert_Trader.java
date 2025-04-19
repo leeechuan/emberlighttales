@@ -10,7 +10,7 @@ import object.OBJ_SunmireGlassroot;
 
 public class NPC_Desert_Trader extends Entity{
 	
-	public static final String npcName = "Korrin Greendale";
+	public static final String npcName = "Desert Trader";
 
 	public NPC_Desert_Trader(GamePanel gp) {
 		super(gp);

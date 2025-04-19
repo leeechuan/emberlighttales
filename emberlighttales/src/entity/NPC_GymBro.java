@@ -57,7 +57,8 @@ public class NPC_GymBro extends Entity {
 	public void setDialogue() {
 		
 		if(gp.csManager.sceneNum == gp.csManager.townhall) {
-			dialogues[0][0] = "They were lucky I was a sleep...\nelse I would have smashed their skulls in!";			
+			dialogues[0][0] = "They were lucky I was a sleep...\nelse I would have smashed their skulls in!";	
+			dialogues[0][1] = null;
 		}
 		else {
 			dialogues[0][0] = "Just hit my PR yesterday...";		

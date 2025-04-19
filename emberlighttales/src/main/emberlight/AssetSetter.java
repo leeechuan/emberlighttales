@@ -3,7 +3,9 @@ package main.emberlight;
 import data.Progress;
 import entity.NPC_Husband;
 import entity.NPC_Bee;
-import entity.NPC_Chicken;
+import entity.NPC_Chicken1;
+import entity.NPC_Chicken2;
+import entity.NPC_Chicken3;
 import entity.NPC_Desert_Trader;
 import entity.NPC_Dungeon_Rock;
 import entity.NPC_Elder;
@@ -588,93 +590,163 @@ public class AssetSetter {
 		int i = 0;
 		
 		//Emberville
-		gp.npc[mapNum][i] = new NPC_Guard(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*68;
-		gp.npc[mapNum][i].worldY = gp.tileSize*62;
-		i++;
-		gp.npc[mapNum][i] = new NPC_Husband(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*80;
-		gp.npc[mapNum][i].worldY = gp.tileSize*65;
-		i++;
-		gp.npc[mapNum][i] = new NPC_Wife(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*85;
-		gp.npc[mapNum][i].worldY = gp.tileSize*65;
-		i++;
+		if (!npcExists(NPC_Guard.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Guard(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*68;
+			gp.npc[mapNum][i].worldY = gp.tileSize*62;
+			i++;
+		}
+		if (!npcExists(NPC_Husband.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Husband(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*80;
+			gp.npc[mapNum][i].worldY = gp.tileSize*65;
+			i++;
+		}
+		if (!npcExists(NPC_Wife.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Wife(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*85;
+			gp.npc[mapNum][i].worldY = gp.tileSize*65;
+			i++;
+		}
+
 //		gp.npc[mapNum][i] = new NPC_Son(gp);
 //		gp.npc[mapNum][i].worldX = gp.tileSize*62;
 //		gp.npc[mapNum][i].worldY = gp.tileSize*87;
 //		i++;
-		gp.npc[mapNum][i] = new NPC_Punk(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*84;
-		gp.npc[mapNum][i].worldY = gp.tileSize*67;
-		i++;
-		gp.npc[mapNum][i] = new NPC_GymBro(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*84;
-		gp.npc[mapNum][i].worldY = gp.tileSize*65;
-		i++;
-		gp.npc[mapNum][i] = new NPC_Farmer(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*70;
-		gp.npc[mapNum][i].worldY = gp.tileSize*68;
-		i++;
-		gp.npc[mapNum][i] = new NPC_Mayor(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*77;
-		gp.npc[mapNum][i].worldY = gp.tileSize*66;
-		i++;
-		gp.npc[mapNum][i] = new NPC_Scientist(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*82;
-		gp.npc[mapNum][i].worldY = gp.tileSize*65;
-		i++;
-		gp.npc[mapNum][i] = new NPC_Witch(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*89;
-		gp.npc[mapNum][i].worldY = gp.tileSize*76;
-		i++;
-		gp.npc[mapNum][i] = new NPC_Merchant(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*89;
-		gp.npc[mapNum][i].worldY = gp.tileSize*69;
-		i++;
 		
-		gp.npc[mapNum][i] = new NPC_Bee(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*75;
-		gp.npc[mapNum][i].worldY = gp.tileSize*47;
-		i++;
-		gp.npc[mapNum][i] = new NPC_Chicken(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*77;
-		gp.npc[mapNum][i].worldY = gp.tileSize*48;
-		i++;
+		if (!npcExists(NPC_Punk.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Punk(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*84;
+			gp.npc[mapNum][i].worldY = gp.tileSize*67;
+			i++;
+		}
+
+		if (!npcExists(NPC_GymBro.npcName)) {
+			gp.npc[mapNum][i] = new NPC_GymBro(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*84;
+			gp.npc[mapNum][i].worldY = gp.tileSize*65;
+			i++;
+		}
+
+		if (!npcExists(NPC_Farmer.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Farmer(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*70;
+			gp.npc[mapNum][i].worldY = gp.tileSize*68;
+			i++;
+		}
+		
+		if (!npcExists(NPC_Mayor.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Mayor(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*77;
+			gp.npc[mapNum][i].worldY = gp.tileSize*66;
+			i++;
+		}
+
+		if (!npcExists(NPC_Scientist.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Scientist(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*82;
+			gp.npc[mapNum][i].worldY = gp.tileSize*65;
+			i++;
+		}
+		
+		if (!npcExists(NPC_Witch.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Witch(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*89;
+			gp.npc[mapNum][i].worldY = gp.tileSize*76;
+			i++;
+		}
+
+		if (!npcExists(NPC_Merchant.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Merchant(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*89;
+			gp.npc[mapNum][i].worldY = gp.tileSize*69;
+			i++;
+		}
+
+		if (!npcExists(NPC_Bee.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Bee(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*75;
+			gp.npc[mapNum][i].worldY = gp.tileSize*47;
+			i++;
+		}
+
+		if (!npcExists(NPC_Chicken1.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Chicken1(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*89;
+			gp.npc[mapNum][i].worldY = gp.tileSize*67;
+			i++;
+		}
+		if (!npcExists(NPC_Chicken2.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Chicken2(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*64;
+			gp.npc[mapNum][i].worldY = gp.tileSize*76;
+			i++;
+		}
+		if (!npcExists(NPC_Chicken3.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Chicken3(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*73;
+			gp.npc[mapNum][i].worldY = gp.tileSize*54;
+			i++;
+		}
+
 		
 		//Gildenshore
-		gp.npc[mapNum][i] = new NPC_President(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*37;
-		gp.npc[mapNum][i].worldY = gp.tileSize*14;
-		i++;
-		gp.npc[mapNum][i] = new NPC_FirstLady(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*35;
-		gp.npc[mapNum][i].worldY = gp.tileSize*15;
-		i++;
-		gp.npc[mapNum][i] = new NPC_Scout(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*31;
-		gp.npc[mapNum][i].worldY = gp.tileSize*17;
-		i++;
-		gp.npc[mapNum][i] = new NPC_Fisherman(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*20;
-		gp.npc[mapNum][i].worldY = gp.tileSize*25;
-		i++;
-		gp.npc[mapNum][i] = new NPC_Thief(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*21;
-		gp.npc[mapNum][i].worldY = gp.tileSize*34;
-		i++;
-		gp.npc[mapNum][i] = new NPC_Woodcutter(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*35;
-		gp.npc[mapNum][i].worldY = gp.tileSize*34;
-		i++;
-		gp.npc[mapNum][i] = new NPC_Elder(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*46;
-		gp.npc[mapNum][i].worldY = gp.tileSize*30;
-		i++;
-		gp.npc[mapNum][i] = new NPC_Shopkeeper(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*12;
-		gp.npc[mapNum][i].worldY = gp.tileSize*40;
-		i++;
+		if (!npcExists(NPC_President.npcName)) {
+			gp.npc[mapNum][i] = new NPC_President(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*37;
+			gp.npc[mapNum][i].worldY = gp.tileSize*14;
+			i++;
+		}
+		
+		if (!npcExists(NPC_FirstLady.npcName)) {
+			gp.npc[mapNum][i] = new NPC_FirstLady(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*35;
+			gp.npc[mapNum][i].worldY = gp.tileSize*15;
+			i++;
+		}
+
+		if (!npcExists(NPC_Scout.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Scout(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*31;
+			gp.npc[mapNum][i].worldY = gp.tileSize*17;
+			i++;
+		}
+		
+		if (!npcExists(NPC_Fisherman.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Fisherman(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*20;
+			gp.npc[mapNum][i].worldY = gp.tileSize*25;
+			i++;
+		}
+
+		if (!npcExists(NPC_Thief.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Thief(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*21;
+			gp.npc[mapNum][i].worldY = gp.tileSize*34;
+			i++;
+		}
+
+		if (!npcExists(NPC_Woodcutter.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Woodcutter(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*35;
+			gp.npc[mapNum][i].worldY = gp.tileSize*34;
+			i++;
+		}
+		
+		if (!npcExists(NPC_Elder.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Elder(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*46;
+			gp.npc[mapNum][i].worldY = gp.tileSize*30;
+			i++;
+		}
+
+		if (!npcExists(NPC_Shopkeeper.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Shopkeeper(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*12;
+			gp.npc[mapNum][i].worldY = gp.tileSize*40;
+			i++;
+		}
+
 		
 		//Orc Camp
 		
@@ -690,6 +762,7 @@ public class AssetSetter {
 		gp.npc[mapNum][i].worldX = gp.tileSize*33;
 		gp.npc[mapNum][i].worldY = gp.tileSize*39;
 		i++;
+		
 		gp.npc[mapNum][i] = new NPC_Dungeon_Rock(gp);
 		gp.npc[mapNum][i].worldX = gp.tileSize*74;
 		gp.npc[mapNum][i].worldY = gp.tileSize*32;
@@ -699,10 +772,12 @@ public class AssetSetter {
 		mapNum = 19;
 		i = 0;
 		
-		gp.npc[mapNum][i] = new NPC_Desert_Trader(gp);
-		gp.npc[mapNum][i].worldX = gp.tileSize*42;
-		gp.npc[mapNum][i].worldY = gp.tileSize*56;
-		i++;
+		if (!npcExists(NPC_Desert_Trader.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Desert_Trader(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*42;
+			gp.npc[mapNum][i].worldY = gp.tileSize*56;
+			i++;
+		}
 				
 	}
 	
@@ -1008,5 +1083,16 @@ public class AssetSetter {
 		gp.iTile[mapNum][i] = new IT_DesertHouse(gp, 36, 42, 0, 2);
 		i++;
 		
+	}
+	
+	public boolean npcExists(String name) {
+	    for (int m = 0; m < gp.npc.length; m++) {
+	        for (int i = 0; i < gp.npc[m].length; i++) {
+	            if (gp.npc[m][i] != null && gp.npc[m][i].name.equals(name)) {
+	                return true;
+	            }
+	        }
+	    }
+	    return false;
 	}
 }

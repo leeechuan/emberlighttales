@@ -57,7 +57,8 @@ public class NPC_Scientist extends Entity {
 	public void setDialogue() {
 		
 		if(gp.csManager.sceneNum == gp.csManager.townhall) {
-			dialogues[0][0] = "Mayor Oren, are they planning another\nattack?";			
+			dialogues[0][0] = "Mayor Oren, are they planning another\nattack?";	
+			dialogues[0][1] = null;	
 		}
 		else {
 			dialogues[0][0] = "Hmmm...";		

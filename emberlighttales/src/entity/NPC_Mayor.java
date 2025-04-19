@@ -80,7 +80,8 @@ public class NPC_Mayor extends Entity {
 			dialogues[4][2] = "If we act quickly, we may have a\nchance to reclaim it before it’s\nlost forever.";
 		}
 		else if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril"))&&
-				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 2) {
+				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 2&&
+				!gp.player.isGremlin) {
 			dialogues[0][0] = "You’ve seen it firsthand, haven’t you?\nThe way they fight... the way\nthey’re organized.";		
 			dialogues[0][1] = "Emberville may be small, but we are strong.\nWe’ve had our differences with Gildenshore,\nbut their survival is critical.";	
 			dialogues[0][2] = "Tell them we’ll send supplies. Food, tools,\nand enough fighters to make sure they\nstand a chance.";		
