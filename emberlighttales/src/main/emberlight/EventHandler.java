@@ -133,6 +133,16 @@ public class EventHandler{
 				gp.playSE(14);
 			}
 			
+			//Player house
+			else if(hit(0, 71, 75,"up") == true) {
+				teleport(21, 50, 50, gp.indoor);
+				gp.playSE(14);
+			}
+			else if(hit(21, 50, 51,"any") == true) {
+				teleport(0, 71, 76, gp.outside);
+				gp.playSE(14);
+			}
+			
 			//Mayor house
 			else if(hit(0, 51, 84,"up") == true) {
 				teleport(5, 50, 50, gp.indoor);
@@ -202,6 +212,17 @@ public class EventHandler{
 				teleport(0, 87, 52, gp.outside);
 				gp.playSE(14);
 			}
+			
+			//Abandoned house
+			else if(hit(0, 24, 77,"up") == true) {
+				teleport(22, 50, 50, gp.indoor);
+				gp.playSE(14);
+			}
+			else if(hit(22, 50, 51,"any") == true) {
+				teleport(0, 24, 78, gp.outside);
+				gp.playSE(14);
+			}
+			
 			
 			//GILDENSHORE
 			
@@ -326,6 +347,13 @@ public class EventHandler{
 			//South Coast
 			else if(hit(0, 63, 62,"left") == true || hit(0, 63, 63,"left") == true || hit(0, 63, 64,"left") == true) {
 				popup("South Coast");
+				if (!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
+						gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
+						gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked").getCurrentStageIndex() == 0
+						) {
+					gp.qManager.progressQuest("No Rest for the Wicked");
+					gp.pManager.addNotification("Journal Updated");
+				}
 			}
 			//South Coast
 			else if(hit(0, 33, 64,"down") == true || hit(0, 34, 64,"down") == true || hit(0, 35, 64,"down") == true || hit(0, 36, 64,"down") == true || hit(0, 37, 64,"down") == true) {

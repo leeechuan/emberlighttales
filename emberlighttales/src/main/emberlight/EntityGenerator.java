@@ -15,6 +15,7 @@ import object.OBJ_DungeonDeco;
 import object.OBJ_DungeonDoor;
 import object.OBJ_EmberlightPearl;
 import object.OBJ_FenceGate;
+import object.OBJ_FieldResonator;
 import object.OBJ_Flower;
 import object.OBJ_Fruit_Juice;
 import object.OBJ_GoldenChest;
@@ -67,6 +68,7 @@ public class EntityGenerator {
 		case OBJ_DungeonWoodBridge.objName: obj = new OBJ_DungeonWoodBridge(gp, false); break;
 		case OBJ_EmberlightPearl.objName: obj = new OBJ_EmberlightPearl(gp); break;
 		case OBJ_FenceGate.objName: obj = new OBJ_FenceGate(gp, false); break;
+		case OBJ_FieldResonator.objName: obj = new OBJ_FieldResonator(gp); break;
 		case OBJ_Flower.objName: obj = new OBJ_Flower(gp, 0, 0); break;
 		case OBJ_Fruit_Juice.objName: obj = new OBJ_Fruit_Juice(gp); break;
 		case OBJ_GoldenChest.objName: obj = new OBJ_GoldenChest(gp); break;

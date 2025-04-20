@@ -88,7 +88,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	//Entity and object and mobs
 	public Player player = new Player(this, keyH);
-	public Entity obj[][] = new Entity[maxMap][100];
+	public Entity obj[][] = new Entity[maxMap][200];
 	public Entity npc[][] = new Entity[maxMap][30];
 	public Entity mob[][] = new Entity[maxMap][30];
 	public InteractiveTile iTile[][] = new InteractiveTile[maxMap][100];
@@ -188,6 +188,7 @@ public class GamePanel extends JPanel implements Runnable{
 	    saveLoad.load();
 		aSetter.setMobs();
 		moveChickens();
+		removeBanditsIfQuestCompleted();
 	}
 	public void setFullScreen() {
 		
@@ -526,7 +527,7 @@ public class GamePanel extends JPanel implements Runnable{
 
 	        switch (npcName) {
 	            case NPC_Chicken1.npcName:
-	                if (!questCompleted && questActive && stage < 1) {
+	                if (!questCompleted || (questActive && stage < 1)) {
 	                    npc[0][i].worldX = tileSize * 89;
 	                    npc[0][i].worldY = tileSize * 67;
 	                } else {
@@ -536,7 +537,7 @@ public class GamePanel extends JPanel implements Runnable{
 	                break;
 
 	            case NPC_Chicken2.npcName:
-	                if (!questCompleted && questActive && stage < 2) {
+	                if (!questCompleted || (questActive && stage < 2)) {
 	                    npc[0][i].worldX = tileSize * 64;
 	                    npc[0][i].worldY = tileSize * 76;
 	                } else {
@@ -546,7 +547,7 @@ public class GamePanel extends JPanel implements Runnable{
 	                break;
 
 	            case NPC_Chicken3.npcName:
-	                if (!questCompleted && questActive && stage < 3) {
+	                if (!questCompleted || (questActive && stage < 3)) {
 	                    npc[0][i].worldX = tileSize * 73;
 	                    npc[0][i].worldY = tileSize * 54;
 	                } else {
@@ -554,6 +555,24 @@ public class GamePanel extends JPanel implements Runnable{
 	                    npc[0][i].worldY = tileSize * 47;
 	                }
 	                break;
+	        }
+	    }
+	}
+	public void removeBanditsIfQuestCompleted() {
+	    Quest banditQuest = qManager.getQuestJournal().getQuestByName("No Rest for the Wicked");
+	    boolean questCompleted = qManager.getQuestJournal().getCompletedQuests().contains(banditQuest);
+
+	    if (!questCompleted) return;
+
+	    for (int mapNum = 0; mapNum < maxMap; mapNum++) {
+	        for (int i = 0; i < mob[mapNum].length; i++) {
+	            if (mob[mapNum][i] == null || mob[mapNum][i].name == null) continue;
+
+	            String name = mob[mapNum][i].name;
+	            if (name.contains("Swordman Bandit") || name.contains("Templar Bandit")) {
+	            	mob[mapNum][i] = null; // Remove the bandit from the map
+	                System.out.println("Removed bandit from map " + mapNum + " index " + i);
+	            }
 	        }
 	    }
 	}

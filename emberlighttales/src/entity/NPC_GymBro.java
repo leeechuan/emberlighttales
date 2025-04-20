@@ -60,6 +60,31 @@ public class NPC_GymBro extends Entity {
 			dialogues[0][0] = "They were lucky I was a sleep...\nelse I would have smashed their skulls in!";	
 			dialogues[0][1] = null;
 		}
+		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
+				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
+				!gp.player.isGremlin) {
+			dialogues[0][0] = "Yo! You look like you can throw down.";
+			dialogues[0][1] = "My daily run zone...south beach has been\noverrun by bandits!";
+			dialogues[0][2] = "How am I supposed to keep these calves\ncarved when I can't even sprint\nin peace?";
+			dialogues[0][3] = "Help me out, will ya? Clear those guys\nout, and I'll owe you one.";
+		}
+		else if (!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
+				!areBanditsRemaining()&&
+				!gp.player.isGremlin) {
+			dialogues[0][0] = "Trail's clear? You're a legend!";
+			dialogues[0][1] = "I’m talkin’ sprints, lunges, full\nbeast mode! Brans' BACK!";
+			dialogues[0][2] = "Here, take this! It’s no protein bar,\nbut it’s all I’ve got. Thanks,\nchamp.";
+		}
+		else if (!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
+				areBanditsRemaining()&&
+				!gp.player.isGremlin) {
+			dialogues[0][0] = "You been to the south trail yet?";
+			dialogues[0][1] = "Still crawling with those bandit\nclowns, huh?";
+			dialogues[0][2] = "Can’t exactly do hill sprints through\na sword fight.";
+			dialogues[0][3] = "Come on, champ! I’m countin’\non you!";
+		}
 		else {
 			dialogues[0][0] = "Just hit my PR yesterday...";		
 			dialogues[0][1] = "Carried 10 chickens at once!";
@@ -105,8 +130,25 @@ public class NPC_GymBro extends Entity {
 	
 	public void speak() {
 		
+		setDialogue();
 		facePlayer();
 		startDialogue(this, dialogueSet);
+		
+		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
+				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
+				!gp.player.isGremlin) {
+			gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"));
+			gp.pManager.addNotification("Journal Updated");
+		}
+		else if (!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
+				!areBanditsRemaining() &&
+				!gp.player.isGremlin) {
+			gp.qManager.progressQuest("No Rest for the Wicked");
+			gp.qManager.progressQuest("No Rest for the Wicked"); //Just in case player already has in inventory
+			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"));
+			gp.pManager.addNotification("Quest Completed!");
+		}
 		
 		dialogueSet++;
 		

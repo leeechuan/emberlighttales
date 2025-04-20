@@ -1214,4 +1214,15 @@ public class Entity {
 	    	moveBackIntoRoamingArea();
 	    }
 	}
+	public boolean areBanditsRemaining() {
+	    for (int mapNum = 0; mapNum < gp.maxMap; mapNum++) {
+	        for (int i = 0; i < gp.mob[mapNum].length; i++) {
+	            Entity mob = gp.mob[mapNum][i];
+	            if (mob != null && mob.name != null && (mob.name.contains("Swordman Bandit") || mob.name.contains("Templar Bandit")) && !mob.dying) {
+	                return true; // Found a living bandit
+	            }
+	        }
+	    }
+	    return false; // No bandits left
+	}
 }

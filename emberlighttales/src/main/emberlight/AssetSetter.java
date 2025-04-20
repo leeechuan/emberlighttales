@@ -26,6 +26,8 @@ import entity.NPC_Son;
 import entity.NPC_Thief;
 import entity.NPC_Witch;
 import entity.NPC_Woodcutter;
+import mob.MOB_Angel;
+import mob.MOB_Angel2;
 import mob.MOB_Orc_Archer;
 import mob.MOB_Orc_Chief;
 import mob.MOB_Orc_Grunt;
@@ -33,6 +35,8 @@ import mob.MOB_Orc_Lieutenant;
 import mob.MOB_Orc_Second;
 import mob.MOB_PinkSlime;
 import mob.MOB_Skeleton_Mage;
+import mob.MOB_Swordman;
+import mob.MOB_Templar;
 import object.OBJ_Bed;
 import object.OBJ_Bench;
 import object.OBJ_BigTorch;
@@ -50,6 +54,7 @@ import object.OBJ_DungeonDeco;
 import object.OBJ_DungeonDoor;
 import object.OBJ_EmberlightPearl;
 import object.OBJ_FenceGate;
+import object.OBJ_FieldResonator;
 import object.OBJ_Flower;
 import object.OBJ_Fruit_Juice;
 import object.OBJ_GoldenChest;
@@ -315,6 +320,17 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldY = 26 * gp.tileSize - gp.tileSize/3;
 		i++;
 		
+		//Outside Emberville
+		gp.obj[mapNum][i] = new OBJ_CampDeco(gp, 1);
+		gp.obj[mapNum][i].worldX = 44 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 58 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampDeco(gp, 1);
+		gp.obj[mapNum][i].worldX = 50 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 58 * gp.tileSize;
+		i++;
+		
 		//Orc Camp
 		gp.obj[mapNum][i] = new OBJ_Palisade(gp);
 		gp.obj[mapNum][i].worldX = 74 * gp.tileSize;
@@ -421,6 +437,43 @@ public class AssetSetter {
 		gp.obj[mapNum][i] = new OBJ_CampLookoutTower(gp, 2);
 		gp.obj[mapNum][i].worldX = 83 * gp.tileSize;
 		gp.obj[mapNum][i].worldY = 15 * gp.tileSize;
+		i++;
+		
+		//Bandit Camp
+		
+		gp.obj[mapNum][i] = new OBJ_CampfirePot(gp);
+		gp.obj[mapNum][i].worldX = 13 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 70 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampDeco(gp, 8);
+		gp.obj[mapNum][i].worldX = 11 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 72 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampDeco(gp, 9);
+		gp.obj[mapNum][i].worldX = 16 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 74 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampDeco(gp, 19);
+		gp.obj[mapNum][i].worldX = 11 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 69 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampDeco(gp, 13);
+		gp.obj[mapNum][i].worldX = 17 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 70 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampDeco(gp, 2);
+		gp.obj[mapNum][i].worldX = 19 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 76 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_CampDeco(gp, 1);
+		gp.obj[mapNum][i].worldX = 15 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 79 * gp.tileSize;
 		i++;
 		
 		//Dungeon
@@ -582,6 +635,29 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldY = 69 * gp.tileSize - gp.tileSize/3;
 		i++;
 		
+		//Abandon House
+
+		mapNum = 22;
+		
+		gp.obj[mapNum][i] = new OBJ_Chest(gp);
+		gp.obj[mapNum][i].setLoot(new OBJ_FieldResonator(gp));
+		gp.obj[mapNum][i].worldX = 58 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_DungeonDeco(gp, 3);
+		gp.obj[mapNum][i].worldX = 53 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_DungeonDeco(gp, 3);
+		gp.obj[mapNum][i].worldX = 61 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_DungeonDeco(gp, 4);
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+
 	}
 	
 	public void setNPC() {
@@ -604,7 +680,7 @@ public class AssetSetter {
 		}
 		if (!npcExists(NPC_Wife.npcName)) {
 			gp.npc[mapNum][i] = new NPC_Wife(gp);
-			gp.npc[mapNum][i].worldX = gp.tileSize*85;
+			gp.npc[mapNum][i].worldX = gp.tileSize*76;
 			gp.npc[mapNum][i].worldY = gp.tileSize*65;
 			i++;
 		}
@@ -623,7 +699,7 @@ public class AssetSetter {
 
 		if (!npcExists(NPC_GymBro.npcName)) {
 			gp.npc[mapNum][i] = new NPC_GymBro(gp);
-			gp.npc[mapNum][i].worldX = gp.tileSize*84;
+			gp.npc[mapNum][i].worldX = gp.tileSize*83;
 			gp.npc[mapNum][i].worldY = gp.tileSize*65;
 			i++;
 		}
@@ -750,7 +826,6 @@ public class AssetSetter {
 		
 		//Orc Camp
 		
-		
 		mapNum = 1;
 		i = 0;
 
@@ -816,6 +891,16 @@ public class AssetSetter {
 //		gp.mob[mapNum][i].worldX = gp.tileSize*16;
 //		gp.mob[mapNum][i].worldY = gp.tileSize*28;
 //		i++;
+//		
+//		gp.mob[mapNum][i] = new MOB_Angel(gp);
+//		gp.mob[mapNum][i].worldX = gp.tileSize*28;
+//		gp.mob[mapNum][i].worldY = gp.tileSize*81;
+//		i++;
+//
+//		gp.mob[mapNum][i] = new MOB_Angel2(gp);
+//		gp.mob[mapNum][i].worldX = gp.tileSize*20;
+//		gp.mob[mapNum][i].worldY = gp.tileSize*80;
+//		i++;
 		
 		if(Progress.gameStage < Progress.STAGE_ORC_SECONDINCOMMAND_DEFEATED) {
 			System.out.println(Progress.gameStage);
@@ -844,6 +929,29 @@ public class AssetSetter {
 		gp.mob[mapNum][i].worldX = gp.tileSize*75;
 		gp.mob[mapNum][i].worldY = gp.tileSize*38;
 		i++;
+		
+		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))) {
+			gp.mob[mapNum][i] = new MOB_Swordman(gp);
+			gp.mob[mapNum][i].worldX = gp.tileSize*12;
+			gp.mob[mapNum][i].worldY = gp.tileSize*75;
+			i++;
+			
+			gp.mob[mapNum][i] = new MOB_Swordman(gp);
+			gp.mob[mapNum][i].worldX = gp.tileSize*16;
+			gp.mob[mapNum][i].worldY = gp.tileSize*72;
+			i++;
+
+			gp.mob[mapNum][i] = new MOB_Templar(gp);
+			gp.mob[mapNum][i].worldX = gp.tileSize*16;
+			gp.mob[mapNum][i].worldY = gp.tileSize*73;
+			i++;
+			
+			gp.mob[mapNum][i] = new MOB_Templar(gp);
+			gp.mob[mapNum][i].worldX = gp.tileSize*17;
+			gp.mob[mapNum][i].worldY = gp.tileSize*77;
+			i++;
+		}
+
 		
 		
 		//Dungeon
@@ -1027,6 +1135,15 @@ public class AssetSetter {
 		gp.iTile[mapNum][i] = new IT_BossTent(gp, 56, 15);
 		i++;
 		
+		//Bandit Camp
+		gp.iTile[mapNum][i] = new IT_Tent(gp, 11, 68, 0, 3);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Tent(gp, 15, 69, 3, 3);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Tent(gp, 23, 84, 1, 3);
+		i++;
 		
 		//Dungeon
 		mapNum = 2;

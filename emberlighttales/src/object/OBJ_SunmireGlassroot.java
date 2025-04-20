@@ -18,13 +18,10 @@ public class OBJ_SunmireGlassroot extends Entity {
 		image1 = setup("/resource_icons/sunmire_glassroot", 1, 1);
 		image2 = setup("/resource_icons/sunmire_glassroot", 1, 1);
 		description = "[" + name + "]" + "\nGrows only in\nsalt-glass dunes";
-		price = 7;
 		stackable = false;
 		price = 200;
 		
 		setDialogue();
 	}
-
-
 
 }

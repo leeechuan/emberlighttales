@@ -111,31 +111,30 @@ public class QuestManager {
             gp
     	);
     	Quest sideQuest3 = new Quest(
-    	    "Lost Heirloom",
-    	    "Elder has lost his family heirloom\nduring orc raid.",
+    	    "Critical Malfunction",
+    	    "The village scientist lost a\npiece of vital equipment during\nthe orc raid. Help retrieve it\nfrom an abandoned house.",
     	    false,
     	    Arrays.asList(
-    	        new QuestStage("Find heirloom in abandoned house"),
-    	        new QuestStage("Report back to the elder")
+    	        new QuestStage("Find equipment in abandoned house"),
+    	        new QuestStage("Report back to the scientist")
     	    ),
             gp
     	);
 
     	Quest sideQuest4 = new Quest(
     	    "No Rest for the Wicked",
-    	    "A group of bandits has been raiding caravans along the road to the south.\nThe local authorities are overwhelmed, and it's up to you to put an end to their reign of terror.",
+    	    "The gym bro can't do his daily\nruns along the south beach trail\ndue to a bandit camp. Help clear\nthe way so he can get back\nto training.",
     	    false,
     	    Arrays.asList(
-    	        new QuestStage("Investigate the last known location of the bandits."),
-    	        new QuestStage("Defeat the rogue bandits in their hideout."),
-    	        new QuestStage("Return to the village and report to the guard captain.")
+    	        new QuestStage("Investigate the trail near South Beach."),
+    	        new QuestStage("Return gym bro when camp is cleared")
     	    ),
             gp
     	);
 
     	Quest sideQuest5 = new Quest(
     		    "Where’s Wibby?",
-    		    "A worried father in Emberville pleads for help.\nHis young son went missing in the\nchaos following the orc raid. Perhaps I\nshould look outside the village..",
+    		    "A worried father in Gildenshore pleads\nfor help. Perhaps I\nshould look outside the village..",
     		    false,
     		    Arrays.asList(
     		        new QuestStage("Search the cave for any clues."),

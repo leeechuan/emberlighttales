@@ -49,6 +49,8 @@ public class TileManager {
         loadMap("/maps/shopkeeperhouse.txt", 18);
         loadMap("/maps/desert01.txt", 19);
         loadMap("/maps/chieftent.txt", 20);
+        loadMap("/maps/playerhouse.txt", 21);
+        loadMap("/maps/abandonhouse.txt", 22);
     }
 
     public void getTileImages() {

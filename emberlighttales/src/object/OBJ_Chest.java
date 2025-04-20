@@ -37,8 +37,8 @@ public class OBJ_Chest extends Entity{
 	}
     public void setDialogue() {
     	
-		dialogues[0][0] = "You opened the chest and found a " + loot.name + "!\n...But you cannot carry any more items!";
-		dialogues[1][0] = "You opened the chest and found a " + loot.name + "!\nYou obtained the " + loot.name + "!";
+		dialogues[0][0] = "You opened the chest and found a\n" + loot.name + "!\n...But you cannot carry any more items!";
+		dialogues[1][0] = "You opened the chest and found a\n" + loot.name + "!\nYou obtained the " + loot.name + "!";
 		dialogues[2][0] = "It's empty.";
     }
 	public void interact() {
@@ -76,6 +76,12 @@ public class OBJ_Chest extends Entity{
 				startDialogue(this, 0);
 			} else {
 				startDialogue(this, 1);
+				
+				if (!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Critical Malfunction"))&&
+						gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Critical Malfunction"))) {
+					gp.qManager.progressQuest("Critical Malfunction");
+					gp.pManager.addNotification("Journal Updated");
+				}
 			}
 		}
 		else {
