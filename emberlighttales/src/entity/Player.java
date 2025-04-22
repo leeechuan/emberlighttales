@@ -70,8 +70,8 @@ public class Player extends Entity {
     public void setDefaultValues() {
 //        worldX = gp.tileSize * 75;
 //        worldY = gp.tileSize * 78;
-        worldX = gp.tileSize * 35;
-        worldY = gp.tileSize * 62;
+        worldX = gp.tileSize * 67;
+        worldY = gp.tileSize * 78;
         defaultSpeed = 5;
         speed = defaultSpeed;
         direction = "down";
@@ -108,8 +108,8 @@ public class Player extends Entity {
     	gp.currentMap = 0;
 //        worldX = gp.tileSize * 75;
 //        worldY = gp.tileSize * 78;
-        worldX = gp.tileSize * 35;
-        worldY = gp.tileSize * 62;
+        worldX = gp.tileSize * 67;
+        worldY = gp.tileSize * 78;
         direction = "down";
     }
     public void setDialogue() {

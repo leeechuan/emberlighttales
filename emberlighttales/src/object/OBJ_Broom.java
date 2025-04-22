@@ -12,9 +12,9 @@ import main.emberlight.GamePanel;
 public class OBJ_Broom extends Entity{
 	
 	GamePanel gp;
-    public BufferedImage[] animatedFrames = new BufferedImage[12];
+    public BufferedImage[] animatedFrames = new BufferedImage[16];
     public int animatedBroomCounter = 0;
-	public static final String objName = "Cauldron";
+	public static final String objName = "Broom";
 	
 	public OBJ_Broom(GamePanel gp) {
 		
@@ -24,13 +24,13 @@ public class OBJ_Broom extends Entity{
 		type = type_obstacle;
 		name = objName;
 		for (int i = 0; i < animatedFrames.length; i++) {
-	        animatedFrames[i] = setup("/animated_object/cauldron_" + i, 2, 1);
+	        animatedFrames[i] = setup("/animated_object/broom_" + i, 2, 2);
 	    }
 		collision = true;
-		solidArea.x = (int) (gp.tileSize * 0.45);
-		solidArea.y = (int) (gp.tileSize * 0.75);
+		solidArea.x = (int) (gp.tileSize * 0.9);
+		solidArea.y = (int) (gp.tileSize * 0.7);
 		solidArea.width = gp.tileSize*1/5;
-		solidArea.height = gp.tileSize*3/5;
+		solidArea.height = gp.tileSize*1/5;
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
 		collision = true;

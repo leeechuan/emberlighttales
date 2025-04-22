@@ -42,12 +42,12 @@ import object.OBJ_Bench;
 import object.OBJ_BigTorch;
 import object.OBJ_Boat;
 import object.OBJ_BridgeRubble;
-import object.OBJ_Broom;
+import object.OBJ_Cauldron;
 import object.OBJ_CampDeco;
 import object.OBJ_CampLookoutTower;
 import object.OBJ_Campfire;
 import object.OBJ_CampfirePot;
-import object.OBJ_Cauldron;
+import object.OBJ_Broom;
 import object.OBJ_Chest;
 import object.OBJ_Coin;
 import object.OBJ_DungeonDeco;
@@ -60,6 +60,7 @@ import object.OBJ_Fruit_Juice;
 import object.OBJ_GoldenChest;
 import object.OBJ_Haybale;
 import object.OBJ_Heart;
+import object.OBJ_IndoorDeco;
 import object.OBJ_LampPost;
 import object.OBJ_Lantern;
 import object.OBJ_ManaCrystal;
@@ -230,14 +231,7 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldX = 89 * gp.tileSize;
 		gp.obj[mapNum][i].worldY = 66 * gp.tileSize;
 		i++;
-//		gp.obj[mapNum][i] = new OBJ_Broom(gp);
-//		gp.obj[mapNum][i].worldX = 84 * gp.tileSize;
-//		gp.obj[mapNum][i].worldY = 85 * gp.tileSize;
-//		i++;
-//		gp.obj[mapNum][i] = new OBJ_Cauldron(gp);
-//		gp.obj[mapNum][i].worldX = 80 * gp.tileSize;
-//		gp.obj[mapNum][i].worldY = 85 * gp.tileSize;
-//		i++;
+
 		
 		//Emberville Farm
 		gp.obj[mapNum][i] = new OBJ_LampPost(gp, 2, 1);
@@ -635,6 +629,997 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldY = 69 * gp.tileSize - gp.tileSize/3;
 		i++;
 		
+		//Witch home
+		
+		mapNum = 4;
+		
+		gp.obj[mapNum][i] = new OBJ_Cauldron(gp);
+		gp.obj[mapNum][i].worldX = 41 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 50 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_Broom(gp);
+		gp.obj[mapNum][i].worldX = 44 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 48 * gp.tileSize;
+		i++;
+
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //BookShelf
+		gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //BookShelf
+		gp.obj[mapNum][i].worldX = 47 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //BookShelf
+		gp.obj[mapNum][i].worldX = 48 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 0); //beerkeg
+		gp.obj[mapNum][i].worldX = 41 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 0); //beerkeg
+		gp.obj[mapNum][i].worldX = 42 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 6); //Furnace
+		gp.obj[mapNum][i].worldX = 45 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 15); //table
+		gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 51 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 5); //chair
+		gp.obj[mapNum][i].worldX = 45 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 51 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 4); //chair
+		gp.obj[mapNum][i].worldX = 47 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 51 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 8); //plant
+		gp.obj[mapNum][i].worldX = 52 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 50 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 10); //plant
+		gp.obj[mapNum][i].worldX = 50 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 50 * gp.tileSize;
+		i++;
+		
+		//Witch second floor
+		
+		gp.obj[mapNum][i] = new OBJ_Bed(gp);
+		gp.obj[mapNum][i].worldX = 42 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 23 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 9); //plant
+		gp.obj[mapNum][i].worldX = 41 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 22 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 10); //plant
+		gp.obj[mapNum][i].worldX = 48 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 22 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 18); //study table
+		gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 22 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 2); //chair
+		gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 23 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //BookShelf
+		gp.obj[mapNum][i].worldX = 50 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 22 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //BookShelf
+		gp.obj[mapNum][i].worldX = 51 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 22 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //BookShelf
+		gp.obj[mapNum][i].worldX = 52 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 22 * gp.tileSize;
+		i++;
+		
+		
+		//Mayor home
+		
+		mapNum = 5;
+		
+		gp.obj[mapNum][i] = new OBJ_Bed(gp);
+		gp.obj[mapNum][i].worldX = 62 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 15); //table
+		gp.obj[mapNum][i].worldX = 50 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 4); //chair
+		gp.obj[mapNum][i].worldX = 51 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 5); //chair
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 9); //plant
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 10); //plant
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //BookShelf
+		gp.obj[mapNum][i].worldX = 60 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 14); //Plant
+		gp.obj[mapNum][i].worldX = 61 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //BookShelf
+		gp.obj[mapNum][i].worldX = 62 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 0); //beerkeg
+		gp.obj[mapNum][i].worldX = 55 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 0); //beerkeg
+		gp.obj[mapNum][i].worldX = 56 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 6); //Furnace
+		gp.obj[mapNum][i].worldX = 52 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		//Merchant home
+		
+		mapNum = 6;
+		
+		gp.obj[mapNum][i] = new OBJ_Bed(gp);
+		gp.obj[mapNum][i].worldX = 47 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 9); //plant
+		gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 15); //table
+		gp.obj[mapNum][i].worldX = 51 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 15); //table
+		gp.obj[mapNum][i].worldX = 51 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 5); //chair
+		gp.obj[mapNum][i].worldX = 50 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 10); //plant
+		gp.obj[mapNum][i].worldX = 55 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 6); //Furnace
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //Bookshelf
+		gp.obj[mapNum][i].worldX = 48 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		//Couple home
+		
+		mapNum = 7;
+		
+		gp.obj[mapNum][i] = new OBJ_Bed(gp);
+		gp.obj[mapNum][i].worldX = 61 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_Bed(gp);
+		gp.obj[mapNum][i].worldX = 60 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 8); //Plant
+		gp.obj[mapNum][i].worldX = 62 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 12); //Plant
+		gp.obj[mapNum][i].worldX = 62 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 16); //table
+		gp.obj[mapNum][i].worldX = 51 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 45 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 5); //chair
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 4); //chair
+		gp.obj[mapNum][i].worldX = 53 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 14); //plant
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 10); //plant
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //BookShelf
+		gp.obj[mapNum][i].worldX = 55 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 0); //beerkeg
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 0); //beerkeg
+		gp.obj[mapNum][i].worldX = 56 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 6); //Furnace
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		//Punk home
+		
+		mapNum = 8;
+		
+		gp.obj[mapNum][i] = new OBJ_Bed(gp);
+		gp.obj[mapNum][i].worldX = 53 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 9); //plant
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 45 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 15); //table
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 48 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 5); //chair
+		gp.obj[mapNum][i].worldX = 53 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 48 * gp.tileSize;
+		i++;
+
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 8); //plant
+		gp.obj[mapNum][i].worldX = 51* gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 6); //Furnace
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 45 * gp.tileSize;
+		i++;
+		
+		//Gym Bro home
+		
+		mapNum = 9;
+		
+		gp.obj[mapNum][i] = new OBJ_Bed(gp);
+		gp.obj[mapNum][i].worldX = 43 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 8); //Plant
+		gp.obj[mapNum][i].worldX = 42 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 12); //Plant
+		gp.obj[mapNum][i].worldX = 44 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //BookShelf
+		gp.obj[mapNum][i].worldX = 41 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 15); //table
+		gp.obj[mapNum][i].worldX = 53 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 5); //chair
+		gp.obj[mapNum][i].worldX = 52 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 4); //chair
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 8); //plant
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 11); //plant
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 13); //plant
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 48 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //BookShelf
+		gp.obj[mapNum][i].worldX = 47 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 0); //beerkeg
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 6); //Furnace
+		gp.obj[mapNum][i].worldX = 45 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		//Scientist home
+		
+		mapNum = 10;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 7); //painting
+		gp.obj[mapNum][i].worldX = 50 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 42 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 18); //study table
+		gp.obj[mapNum][i].worldX = 50 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 2); //chair
+		gp.obj[mapNum][i].worldX = 50 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_Bed(gp);
+		gp.obj[mapNum][i].worldX = 59 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //BookShelf
+		gp.obj[mapNum][i].worldX = 60 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 9); //Plant
+		gp.obj[mapNum][i].worldX = 61 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //BookShelf
+		gp.obj[mapNum][i].worldX = 62 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 15); //table
+		gp.obj[mapNum][i].worldX = 53 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 5); //chair
+		gp.obj[mapNum][i].worldX = 52 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 4); //chair
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 5); //chair
+		gp.obj[mapNum][i].worldX = 52 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 4); //chair
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 8); //plant
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //BookShelf
+		gp.obj[mapNum][i].worldX = 62 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 0); //beerkeg
+		gp.obj[mapNum][i].worldX = 53 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 6); //Furnace
+		gp.obj[mapNum][i].worldX = 55 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		//Farmer home
+		
+		mapNum = 11;
+		
+		gp.obj[mapNum][i] = new OBJ_Bed(gp);
+		gp.obj[mapNum][i].worldX = 53 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //bookshelf
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 45 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 8); //plant
+		gp.obj[mapNum][i].worldX = 52 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 45 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 15); //table
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 5); //chair
+		gp.obj[mapNum][i].worldX = 53 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 12); //plant
+		gp.obj[mapNum][i].worldX = 51* gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 0); //Beerkeg
+		gp.obj[mapNum][i].worldX = 50 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 45 * gp.tileSize;
+		i++;
+
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 6); //Furnace
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 45 * gp.tileSize;
+		i++;
+		
+		//President home
+		
+		mapNum = 12;
+		
+		gp.obj[mapNum][i] = new OBJ_Bed(gp);
+		gp.obj[mapNum][i].worldX = 61 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_Bed(gp);
+		gp.obj[mapNum][i].worldX = 60 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 8); //Plant
+		gp.obj[mapNum][i].worldX = 62 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 12); //Plant
+		gp.obj[mapNum][i].worldX = 59 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 16); //table
+		gp.obj[mapNum][i].worldX = 51 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 45 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 3); //chair
+		gp.obj[mapNum][i].worldX = 51 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 4); //chair
+		gp.obj[mapNum][i].worldX = 53 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 8); //plant
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 11); //plant
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 13); //plant
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 48 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //BookShelf
+		gp.obj[mapNum][i].worldX = 55 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 0); //beerkeg
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 6); //Furnace
+		gp.obj[mapNum][i].worldX = 56 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		//Scout home
+		
+		mapNum = 13;
+		
+		gp.obj[mapNum][i] = new OBJ_Bed(gp);
+		gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 8); //plant
+		gp.obj[mapNum][i].worldX = 47 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 15); //table
+		gp.obj[mapNum][i].worldX = 51 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 4); //chair
+		gp.obj[mapNum][i].worldX = 52 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 5); //chair
+		gp.obj[mapNum][i].worldX = 50 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 12); //plant
+		gp.obj[mapNum][i].worldX = 55 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 6); //Furnace
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //Bookshelf
+		gp.obj[mapNum][i].worldX = 48 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		//Fisherman home
+		
+		mapNum = 14;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 6); //furnace
+		gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_Bed(gp);
+		gp.obj[mapNum][i].worldX = 50 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 8); //plant
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //book shelf
+		gp.obj[mapNum][i].worldX = 51 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 15); //table
+		gp.obj[mapNum][i].worldX = 47 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 5); //chair
+		gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 4); //chair
+		gp.obj[mapNum][i].worldX = 48 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 11); //plant
+		gp.obj[mapNum][i].worldX = 55 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 6); //Furnace
+		gp.obj[mapNum][i].worldX = 55 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 0); //Beerkeg
+		gp.obj[mapNum][i].worldX = 55 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		//Thief home
+		
+		mapNum = 15;
+		
+		gp.obj[mapNum][i] = new OBJ_Bed(gp);
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 10); //plant
+		gp.obj[mapNum][i].worldX = 53 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 45 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 15); //table
+		gp.obj[mapNum][i].worldX = 53 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 5); //chair
+		gp.obj[mapNum][i].worldX = 52 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 4); //chair
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 12); //plant
+		gp.obj[mapNum][i].worldX = 49* gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 0); //Beerkeg
+		gp.obj[mapNum][i].worldX = 50 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 45 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 0); //Beerkeg
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 45 * gp.tileSize;
+		i++;
+
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 6); //Furnace
+		gp.obj[mapNum][i].worldX = 51 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 45 * gp.tileSize;
+		i++;
+
+		//Woodcutter home
+		
+		mapNum = 16;
+		
+		gp.obj[mapNum][i] = new OBJ_Bed(gp);
+		gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //Bookshelf
+		gp.obj[mapNum][i].worldX = 47 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 12); //plant
+		gp.obj[mapNum][i].worldX = 48 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //Bookshelf
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 15); //table
+		gp.obj[mapNum][i].worldX = 52 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 4); //chair
+		gp.obj[mapNum][i].worldX = 53 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 5); //chair
+		gp.obj[mapNum][i].worldX = 51 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
+		i++;
+
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 10); //plant
+		gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 6); //Furnace
+		gp.obj[mapNum][i].worldX = 55 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		//Elder home
+		
+		mapNum = 17;
+				
+		gp.obj[mapNum][i] = new OBJ_Bed(gp);
+		gp.obj[mapNum][i].worldX = 42 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+
+				
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //Bookshelf
+		gp.obj[mapNum][i].worldX = 43 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 8); //Plant
+		gp.obj[mapNum][i].worldX = 44 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //Bookshelf
+		gp.obj[mapNum][i].worldX = 45 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_Bed(gp);
+		gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+				
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 15); //table
+		gp.obj[mapNum][i].worldX = 50 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 45 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 5); //chair
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;		
+				
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 4); //chair
+		gp.obj[mapNum][i].worldX = 51 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;		
+				
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 5); //chair
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 45 * gp.tileSize;
+		i++;		
+				
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 4); //chair
+		gp.obj[mapNum][i].worldX = 51 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 45 * gp.tileSize;
+		i++;		
+				
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 13); //plant
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 11); //plant
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;		
+
+
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 0); //beerkeg
+		gp.obj[mapNum][i].worldX = 53 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 0); //beerkeg
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 6); //Furnace
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;		
+		
+
+
+		//Shopkeeper home
+		
+		mapNum = 18;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 7); //painting
+		gp.obj[mapNum][i].worldX = 57 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 42 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_Bed(gp);
+		gp.obj[mapNum][i].worldX = 61 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 15); //table
+		gp.obj[mapNum][i].worldX = 51 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 4); //chair
+		gp.obj[mapNum][i].worldX = 52 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 5); //chair
+		gp.obj[mapNum][i].worldX = 50 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 18); //study table
+		gp.obj[mapNum][i].worldX = 59 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 2); //chair
+		gp.obj[mapNum][i].worldX = 59 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 8); //plant
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //BookShelf
+		gp.obj[mapNum][i].worldX = 62 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 0); //beerkeg
+		gp.obj[mapNum][i].worldX = 53 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 6); //Furnace
+		gp.obj[mapNum][i].worldX = 57 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 15); //Furnace
+		gp.obj[mapNum][i].worldX = 55 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 15); //Furnace
+		gp.obj[mapNum][i].worldX = 55 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
+		i++;
+		
+		//Player home
+		
+		mapNum = 21;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 7); //painting
+		gp.obj[mapNum][i].worldX = 57 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 42 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_Bed(gp);
+		gp.obj[mapNum][i].worldX = 61 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 15); //table
+		gp.obj[mapNum][i].worldX = 50 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 4); //chair
+		gp.obj[mapNum][i].worldX = 51 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 5); //chair
+		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 18); //study table
+		gp.obj[mapNum][i].worldX = 57 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 2); //chair
+		gp.obj[mapNum][i].worldX = 57 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 8); //plant
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //BookShelf
+		gp.obj[mapNum][i].worldX = 62 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 0); //beerkeg
+		gp.obj[mapNum][i].worldX = 53 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 6); //Furnace
+		gp.obj[mapNum][i].worldX = 55 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
+		i++;
+		
 		//Abandon House
 
 		mapNum = 22;
@@ -657,6 +1642,8 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
 		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
 		i++;
+		
+
 
 	}
 	
@@ -903,7 +1890,6 @@ public class AssetSetter {
 //		i++;
 		
 		if(Progress.gameStage < Progress.STAGE_ORC_SECONDINCOMMAND_DEFEATED) {
-			System.out.println(Progress.gameStage);
 			gp.mob[mapNum][i] = new MOB_Orc_Second(gp);
 			gp.mob[mapNum][i].worldX = gp.tileSize*63;
 			gp.mob[mapNum][i].worldY = gp.tileSize*16;
