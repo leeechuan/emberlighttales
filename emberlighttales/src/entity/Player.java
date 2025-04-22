@@ -180,6 +180,9 @@ public class Player extends Entity {
              leftWalking[i] = invertImage(rightWalking[i]);
              leftShooting[i] = invertImage(rightShooting[i]);
        		}
+	     
+	     image1 = setup("/player/player_image1", 1.5f, 1.5f);
+	     image2 = setup("/player/player_image2", 1.5f, 1.5f);
     }
     public void getAttackImage() {
     	

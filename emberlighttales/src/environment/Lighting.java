@@ -167,27 +167,5 @@ public class Lighting {
             g2.drawImage(darknessFilter, 0, 0, null);
         }
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
-        
-     // Define UI position (bottom-right, less intrusive)
-        int x = gp.screenWidth - gp.tileSize * 7/2;
-        int y = gp.screenHeight - gp.tileSize * 3/2;
-
-        // Semi-transparent background strip
-        g2.setColor(new Color(55, 35, 20, 210)); 
-        g2.fillRoundRect(x - 20, y - 40, 120, 60, 20, 20); 
-
-        // Text styling
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 16f));
-
-        // Shadow effect for better contrast
-        g2.setColor(new Color(0, 0, 0, 150));
-        g2.drawString(getTimeString(), x + 2, y + 2);
-//        g2.drawString(getDayStateString(), x + 2, y + 25);
-
-        // Main text color (soft beige)
-        g2.setColor(new Color(230, 215, 190));
-        g2.drawString(getTimeString(), x, y);
-//        g2.drawString(getDayStateString(), x, y + 25);
-        
     }
 }

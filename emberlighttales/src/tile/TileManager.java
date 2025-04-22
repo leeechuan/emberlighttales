@@ -62,6 +62,18 @@ public class TileManager {
         
         // Set specific indices to false
         collisionFlags[0] = true; //water
+        collisionFlags[10] = true; //cliff
+        collisionFlags[11] = true; //cliff
+        collisionFlags[12] = true; //cliff
+        collisionFlags[13] = true; //cliff
+        collisionFlags[15] = true; //cliff
+        collisionFlags[16] = true; //cliff
+        collisionFlags[17] = true; //cliff
+        collisionFlags[18] = true; //cliff
+        collisionFlags[19] = true; //cliff
+        collisionFlags[20] = true; //cliff
+        collisionFlags[21] = true; //cliff
+        collisionFlags[22] = true; //cliff
         collisionFlags[55] = true; //water
         collisionFlags[56] = true; //water
         collisionFlags[57] = true; //water

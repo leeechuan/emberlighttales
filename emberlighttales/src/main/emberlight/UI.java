@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -159,41 +160,144 @@ public class UI {
 			drawJournalScreen();
 		}
 	}
+//	public void drawPlayerLife() {
+//	    int x = gp.tileSize / 2;
+//	    int y = gp.tileSize / 2;
+//	    int iconSize = 32;
+//	    
+//	    // Draw full, half, and empty hearts based on the player's current life
+//	    for (int i = 0; i < gp.player.maxLife / 2; i++) {
+//	        if (i < gp.player.life / 2) {
+//	            // Draw full heart if the player has full health
+//	            g2.drawImage(heart_full, x, y, iconSize, iconSize, null);
+//	        } else if (i == gp.player.life / 2 && gp.player.life % 2 != 0) {
+//	            // Draw half heart if the player's life is odd
+//	            g2.drawImage(heart_half, x, y, iconSize, iconSize, null);
+//	        } else {
+//	            // Draw empty heart if the player doesn't have enough life for a full heart
+//	            g2.drawImage(heart_empty, x, y, iconSize, iconSize, null);
+//	        }
+//	        x += gp.tileSize*iconSize/48; // Move to the next heart's position
+//	    }
+//	    
+//	    // DRAW MANA UI
+//	    x = (gp.tileSize / 2) - 2;
+//	    y = (int)(gp.tileSize * 1.2);
+//
+//	    // Draw max mana (empty and full in a single loop)
+//	    for (int i = 0; i < gp.player.maxMana; i++) {
+//	        if (i < gp.player.mana) {
+//	            // Draw filled mana if within current mana
+//	            g2.drawImage(mana_full, x, y, iconSize, iconSize, null);
+//	        } else {
+//	            // Draw empty mana for remaining slots
+//	            g2.drawImage(mana_empty, x, y, iconSize, iconSize, null);
+//	        }
+//	        x += 30; // Adjust spacing for the next mana icon
+//	    }
+//	}
 	public void drawPlayerLife() {
-	    int x = gp.tileSize / 2;
-	    int y = gp.tileSize / 2;
-	    int iconSize = 32;
-	    
-	    // Draw full, half, and empty hearts based on the player's current life
-	    for (int i = 0; i < gp.player.maxLife / 2; i++) {
-	        if (i < gp.player.life / 2) {
-	            // Draw full heart if the player has full health
-	            g2.drawImage(heart_full, x, y, iconSize, iconSize, null);
-	        } else if (i == gp.player.life / 2 && gp.player.life % 2 != 0) {
-	            // Draw half heart if the player's life is odd
-	            g2.drawImage(heart_half, x, y, iconSize, iconSize, null);
-	        } else {
-	            // Draw empty heart if the player doesn't have enough life for a full heart
-	            g2.drawImage(heart_empty, x, y, iconSize, iconSize, null);
-	        }
-	        x += gp.tileSize*iconSize/48; // Move to the next heart's position
-	    }
-	    
-	    // DRAW MANA UI
-	    x = (gp.tileSize / 2) - 2;
-	    y = (int)(gp.tileSize * 1.2);
+	    int barWidth = 200;
+	    int barHeight = 20;
+	    int spacing = 10;
 
-	    // Draw max mana (empty and full in a single loop)
-	    for (int i = 0; i < gp.player.maxMana; i++) {
-	        if (i < gp.player.mana) {
-	            // Draw filled mana if within current mana
-	            g2.drawImage(mana_full, x, y, iconSize, iconSize, null);
-	        } else {
-	            // Draw empty mana for remaining slots
-	            g2.drawImage(mana_empty, x, y, iconSize, iconSize, null);
-	        }
-	        x += 30; // Adjust spacing for the next mana icon
+	    // Base position
+	    int x = gp.tileSize * 3;
+	    int y = gp.screenHeight - gp.tileSize * 3;
+
+	    // Portrait box to the left
+	    int portraitSize = 64;
+	    int portraitX = x - portraitSize - 20;
+	    int portraitY = y;
+
+	    // Draw portrait background
+	    g2.setColor(new Color(60, 42, 33, 220));
+	    g2.fillRoundRect(portraitX, portraitY, portraitSize, portraitSize, 12, 12);
+	    g2.setColor(new Color(230, 215, 190));
+	    g2.setStroke(new BasicStroke(2));
+	    g2.drawRoundRect(portraitX, portraitY, portraitSize, portraitSize, 12, 12);
+
+	    // Draw player head image
+	    if (gp.player.isGremlin) {
+	        g2.drawImage(gp.player.image2, portraitX + 4, portraitY + 6, portraitSize - 8, portraitSize - 8, null);
 	    }
+	    else {
+	    	g2.drawImage(gp.player.image1, portraitX + 4, portraitY + 6, portraitSize - 8, portraitSize - 8, null);
+	    }
+
+	    // Draw HP Bar
+	    drawBar(g2, x, y + 3, barWidth, barHeight, gp.player.life, gp.player.maxLife,
+	            new Color(160, 50, 50), new Color(60, 42, 33, 180));
+
+	    // Mana Bar
+	    y += barHeight + spacing;
+	    drawBar(g2, x, y + 3, barWidth, barHeight, gp.player.mana, gp.player.maxMana,
+	            new Color(80, 100, 170), new Color(60, 42, 33, 180));
+
+	    // EXP Bar
+	    y += barHeight + spacing;
+	    drawBar(g2, x, y + 3, barWidth, barHeight, gp.player.exp, gp.player.nextLevelExp,
+	            new Color(200, 150, 40), new Color(60, 42, 33, 180));
+
+	    // Clock
+	    String timeText = gp.eManager.lighting.getTimeString();
+	    g2.setFont(g2.getFont().deriveFont(Font.BOLD, 9f));
+
+	    // Measure the text width and height
+	    FontMetrics fm = g2.getFontMetrics();
+	    int textWidth = fm.stringWidth(timeText);
+	    int textHeight = fm.getHeight();
+
+	    // Padding around the text
+	    int padding = 10;
+	    int boxX = portraitX + 9 - padding;
+	    int boxY = y + spacing - textHeight + padding;
+	    int boxWidth = textWidth + padding * 2;
+	    int boxHeight = textHeight + padding;
+
+	    // Background box
+	    g2.setColor(new Color(55, 35, 20, 210));
+	    g2.fillRoundRect(boxX, boxY, boxWidth, boxHeight, 12, 12);
+
+	    // Border (light beige)
+	    g2.setColor(new Color(230, 215, 190));
+	    g2.setStroke(new BasicStroke(2));
+	    g2.drawRoundRect(boxX, boxY, boxWidth, boxHeight, 12, 12);
+
+	    // Text shadow
+	    g2.setColor(new Color(0, 0, 0, 150));
+	    g2.drawString(timeText, portraitX + 12, y + spacing + 18);
+
+	    // Text foreground
+	    g2.setColor(new Color(230, 215, 190));
+	    g2.drawString(timeText, portraitX + 10, y + spacing + 16);
+	}
+	private void drawBar(Graphics2D g2, int x, int y, int width, int height, int current, int max, Color fillColor, Color backColor) {
+	    // Background
+	    g2.setColor(backColor);
+	    g2.fillRoundRect(x, y, width, height, 12, 12);
+
+	    // Filled part
+	    double ratio = (double) current / max;
+	    int filledWidth = (int) (width * ratio);
+
+	    g2.setColor(fillColor);
+	    g2.fillRoundRect(x, y, filledWidth, height, 12, 12);
+
+	    // Border with light beige tone
+	    g2.setColor(new Color(230, 215, 190));
+	    g2.setStroke(new BasicStroke(2));
+	    g2.drawRoundRect(x, y, width, height, 12, 12);
+	    
+	    String valueText = current + " / " + max;
+	    g2.setFont(g2.getFont().deriveFont(Font.BOLD, 8f));
+	    FontMetrics fm = g2.getFontMetrics();
+	    int textWidth = fm.stringWidth(valueText);
+	    int textX = x + (width - textWidth) / 2;
+	    int textY = y + ((height + fm.getAscent()) / 2) + 1;
+
+	    g2.setColor(new Color(230, 215, 190)); // light beige
+	    g2.drawString(valueText, textX, textY);
 	}
 	public void drawMobLife() {
     	
@@ -337,7 +441,7 @@ public class UI {
 		    }
 		    
 		    // Draw version number on the bottom right
-		    String versionText = "Beta v1.1.3";
+		    String versionText = "Beta v1.1.4";
 		    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 10F));
 		    g2.setColor(Color.white);
 		    int versionX = gp.screenWidth - g2.getFontMetrics().stringWidth(versionText) - 10;

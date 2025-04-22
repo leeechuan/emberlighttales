@@ -59,6 +59,8 @@ public class NPC_GymBro extends Entity {
 		if(gp.csManager.sceneNum == gp.csManager.townhall) {
 			dialogues[0][0] = "They were lucky I was a sleep...\nelse I would have smashed their skulls in!";	
 			dialogues[0][1] = null;
+			dialogues[0][2] = null;
+			dialogues[0][3] = null;
 		}
 		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
 				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
@@ -75,6 +77,7 @@ public class NPC_GymBro extends Entity {
 			dialogues[0][0] = "Trail's clear? You're a legend!";
 			dialogues[0][1] = "I’m talkin’ sprints, lunges, full\nbeast mode! Brans' BACK!";
 			dialogues[0][2] = "Here, take this! It’s no protein bar,\nbut it’s all I’ve got. Thanks,\nchamp.";
+			dialogues[0][3] = null;
 		}
 		else if (!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
 				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
@@ -88,6 +91,8 @@ public class NPC_GymBro extends Entity {
 		else {
 			dialogues[0][0] = "Just hit my PR yesterday...";		
 			dialogues[0][1] = "Carried 10 chickens at once!";
+			dialogues[0][2] = null;
+			dialogues[0][3] = null;
 		}
 	}
 	public void setAction() {
