@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -41,6 +42,7 @@ public class UI {
 //	int messageCounter = 0;
 	ArrayList<String> message = new ArrayList<>();
 	ArrayList<Integer> messageCounter =  new ArrayList<>();
+	public ArrayList<DamageText> damageTexts = new ArrayList<>();
 	public boolean gameFinished = false;
 	public String currentDialogue = "";
 	public int commandNum = 0;
@@ -313,10 +315,10 @@ public class UI {
 		    		double hpBarValue = oneScale*mob.life;
 		    		
 		    		g2.setColor(new Color(35, 35, 35));
-		    		g2.fillRect(mob.getScreenX()-1, mob.getScreenY() - 16, gp.tileSize+2, 10);
+		    		g2.fillRect(mob.getScreenX() + 9, mob.getScreenY() - 4, gp.tileSize+2, 10);
 		    		
 		        	g2.setColor(new Color(255 ,0 ,30));
-		        	g2.fillRect(mob.getScreenX(), mob.getScreenY() - 15, (int)hpBarValue, 8);
+		        	g2.fillRect(mob.getScreenX() + 10, mob.getScreenY() - 3, (int)hpBarValue, 8);
 		        	
 		        	mob.hpBarCounter++;
 		        	
@@ -370,6 +372,15 @@ public class UI {
 				}
 			}
 
+		}
+		Iterator<DamageText> iterator = damageTexts.iterator();
+		while (iterator.hasNext()) {
+		    DamageText dt = iterator.next();
+		    if (dt.update()) {
+		        iterator.remove();
+		    } else {
+		        dt.draw(g2);
+		    }
 		}
 		
 	}
@@ -441,7 +452,7 @@ public class UI {
 		    }
 		    
 		    // Draw version number on the bottom right
-		    String versionText = "Beta v1.1.4";
+		    String versionText = "Beta v1.1.5";
 		    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 10F));
 		    g2.setColor(Color.white);
 		    int versionX = gp.screenWidth - g2.getFontMetrics().stringWidth(versionText) - 10;

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import data.Progress;
+import main.emberlight.DamageText;
 import main.emberlight.GamePanel;
 import main.emberlight.KeyHandler;
 import main.emberlight.UtilityTool;
@@ -67,8 +68,10 @@ public class Player extends Entity {
         setDefaultValues();
     }
     public void setDefaultValues() {
-        worldX = gp.tileSize * 75;
-        worldY = gp.tileSize * 78;
+//        worldX = gp.tileSize * 75;
+//        worldY = gp.tileSize * 78;
+        worldX = gp.tileSize * 35;
+        worldY = gp.tileSize * 62;
         defaultSpeed = 5;
         speed = defaultSpeed;
         direction = "down";
@@ -103,8 +106,10 @@ public class Player extends Entity {
     public void setDefaultPositions() {
     	
     	gp.currentMap = 0;
-        worldX = gp.tileSize * 75;
-        worldY = gp.tileSize * 78;
+//        worldX = gp.tileSize * 75;
+//        worldY = gp.tileSize * 78;
+        worldX = gp.tileSize * 35;
+        worldY = gp.tileSize * 62;
         direction = "down";
     }
     public void setDialogue() {
@@ -694,15 +699,36 @@ public class Player extends Entity {
     			}
 				generateParticle(gp.mob[gp.currentMap][i], gp.mob[gp.currentMap][i]);
     			gp.mob[gp.currentMap][i].life -= damage;
-    			gp.ui.addMessage(damage + " damage!");
+    			
+    			//DAMAGE NUMBERS
+    			if(gp.mob[gp.currentMap][i].offBalance == true) {
+        			gp.ui.damageTexts.add(
+        				    new DamageText(gp.mob[gp.currentMap][i].worldX - gp.tileSize / 2, gp.mob[gp.currentMap][i].worldY, "CRIT! " + String.valueOf(damage), new Color(255, 215, 0), gp)
+        			);
+    			}
+    			else if(damage == 0) {
+          			gp.ui.damageTexts.add(
+        				    new DamageText(gp.mob[gp.currentMap][i].worldX - gp.tileSize / 2, gp.mob[gp.currentMap][i].worldY, "BLOCKED", new Color(255, 215, 0), gp)
+        			);
+    			}
+    			else {
+        			gp.ui.damageTexts.add(
+        				    new DamageText(gp.mob[gp.currentMap][i].worldX + gp.tileSize / 2, gp.mob[gp.currentMap][i].worldY, String.valueOf(damage), new Color(255, 60, 60), gp)
+        			);
+    			}
+
+//    			gp.ui.addMessage(damage + " damage!");
     			gp.mob[gp.currentMap][i].invincible = true;
     			gp.mob[gp.currentMap][i].damageReaction();
     				
     			if(gp.mob[gp.currentMap][i].life <= 0) {
     				gp.mob[gp.currentMap][i].life = 0;
     				gp.mob[gp.currentMap][i].dying = true;
-    				gp.ui.addMessage(gp.mob[gp.currentMap][i].name + " was killed!");
-    				gp.ui.addMessage("Exp + " + gp.mob[gp.currentMap][i].exp);
+//    				gp.ui.addMessage(gp.mob[gp.currentMap][i].name + " was killed!");
+//    				gp.ui.addMessage("Exp + " + gp.mob[gp.currentMap][i].exp);
+        			gp.ui.damageTexts.add(
+        					new DamageText(gp.tileSize, gp.screenHeight - gp.tileSize * 2, "+ " + gp.mob[gp.currentMap][i].exp + "XP", new Color(85, 255, 85), gp)
+        			);
     				exp += gp.mob[gp.currentMap][i].exp;
     				checkLevelUp();
     			}

@@ -379,7 +379,7 @@ public class TileManager {
         }
 
         // Pathfinding visualization (if enabled)
-        if (drawPath) {
+        if (drawPath && gp.keyH.showDebugText) {
             g2.setColor(new Color(255, 0, 0, 70));
             for (int i = 0; i < gp.pFinder.pathList.size(); i++) {
                 int worldX = gp.pFinder.pathList.get(i).col * gp.tileSize;
