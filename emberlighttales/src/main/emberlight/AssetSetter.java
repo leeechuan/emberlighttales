@@ -998,6 +998,7 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
 		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
 		i++;
+		
 		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 13); //plant
 		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
 		gp.obj[mapNum][i].worldY = 48 * gp.tileSize;
@@ -1418,7 +1419,6 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldY = 44 * gp.tileSize;
 		i++;
 
-				
 		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 1); //Bookshelf
 		gp.obj[mapNum][i].worldX = 43 * gp.tileSize;
 		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
@@ -1474,7 +1474,6 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldY = 49 * gp.tileSize;
 		i++;		
 
-
 		gp.obj[mapNum][i] = new OBJ_IndoorDeco(gp, 0); //beerkeg
 		gp.obj[mapNum][i].worldX = 53 * gp.tileSize;
 		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
@@ -1489,8 +1488,6 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldX = 49 * gp.tileSize;
 		gp.obj[mapNum][i].worldY = 43 * gp.tileSize;
 		i++;		
-		
-
 
 		//Shopkeeper home
 		
@@ -2060,6 +2057,13 @@ public class AssetSetter {
 		i++;
 		
 		gp.iTile[mapNum][i] = new IT_CaveEntrance(gp, 47, 53);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 57, 66, 0);
+		i++;
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 56, 69, 3);
+		i++;
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 52, 68, 0);
 		i++;
 		
 		//Gildenshore Houses
