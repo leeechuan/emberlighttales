@@ -32,7 +32,7 @@ public class NPC_Witch extends Entity {
     	outsideWorldX = 83;
     	outsideWorldY = 84;
     	homeMapNum = 4;
-    	townNum = 0;
+    	townNum = 1;
         
 		getImage();
 		setDialogue();

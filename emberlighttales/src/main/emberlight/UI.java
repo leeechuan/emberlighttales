@@ -22,9 +22,11 @@ import data.Progress;
 import object.OBJ_BigTorch;
 import object.OBJ_Campfire;
 import object.OBJ_Coin;
+import object.OBJ_Fire_Pit;
 import object.OBJ_Heart;
 import object.OBJ_LampPost;
 import object.OBJ_ManaCrystal;
+import object.OBJ_Scarecrow;
 import quest.Quest;
 import quest.QuestStage;
 import entity.Entity;
@@ -452,7 +454,7 @@ public class UI {
 		    }
 		    
 		    // Draw version number on the bottom right
-		    String versionText = "Beta v1.1.7";
+		    String versionText = "Beta v1.1.8";
 		    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 10F));
 		    g2.setColor(Color.white);
 		    int versionX = gp.screenWidth - g2.getFontMetrics().stringWidth(versionText) - 10;
@@ -1674,7 +1676,27 @@ public class UI {
                                                      (gp.obj[gp.currentMap][i].worldY/gp.tileSize) + 1,
                                                      150, // adjust light radius/intensity as needed
                                                      gp));
-                }
+            }
+            //Witch scarecrow
+            if (gp.obj[gp.currentMap][i] != null &&
+                    gp.obj[gp.currentMap][i].name.equals(OBJ_Scarecrow.objName)) {     	
+                    // Cast to the lamp post object if needed, or use it directly
+                    // Assuming the lamp post has worldX and worldY fields for its position:
+                    lightSources.add(new LightSource(gp.obj[gp.currentMap][i].worldX/gp.tileSize,
+                                                     (gp.obj[gp.currentMap][i].worldY/gp.tileSize) + 1,
+                                                     150, // adjust light radius/intensity as needed
+                                                     gp));
+            }
+            //Witch Firepit
+            if (gp.obj[gp.currentMap][i] != null &&
+                    gp.obj[gp.currentMap][i].name.equals(OBJ_Fire_Pit.objName)) {     	
+                    // Cast to the lamp post object if needed, or use it directly
+                    // Assuming the lamp post has worldX and worldY fields for its position:
+                    lightSources.add(new LightSource(gp.obj[gp.currentMap][i].worldX/gp.tileSize,
+                                                     (gp.obj[gp.currentMap][i].worldY/gp.tileSize),
+                                                     250, // adjust light radius/intensity as needed
+                                                     gp));
+            }
         }
     }
     public void drawSubWindow(int x, int y, int width, int height) {

@@ -137,6 +137,32 @@ public class IT_Tree extends InteractiveTile{
 			destructible = false;
 			life = 3;
 		}
+		else if (tree_type == 9) {
+			solidArea.x = (int) (gp.tileSize * 1.5);
+			solidArea.y = (int) (gp.tileSize * 0.25);
+			solidArea.width = (int) (gp.tileSize * 0.25);
+			solidArea.height = (int) (gp.tileSize * 0.25);
+			solidAreaDefaultX = solidArea.x;
+			solidAreaDefaultY = solidArea.y;
+			tileHeight = 2;
+			tileWidth = 3;
+			image1 = setup("/tiles_interactive/tree_" + tree_type + "_1", tileHeight + 2, tileWidth);
+			destructible = false;
+			life = 3;
+		}
+		else if (tree_type == 10) {
+			solidArea.x = (int) (gp.tileSize * 0.87);
+			solidArea.y = (int) (gp.tileSize * 0.25);
+			solidArea.width = (int) (gp.tileSize * 0.25);
+			solidArea.height = (int) (gp.tileSize * 0.25);
+			solidAreaDefaultX = solidArea.x;
+			solidAreaDefaultY = solidArea.y;
+			tileHeight = 1;
+			tileWidth = 2;
+			image1 = setup("/tiles_interactive/tree_" + tree_type + "_1", tileHeight + 2, tileWidth);
+			destructible = false;
+			life = 3;
+		}
 
 	}
 	public boolean isCorrectItem(Entity entity) {

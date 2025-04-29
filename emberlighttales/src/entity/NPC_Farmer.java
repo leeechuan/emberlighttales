@@ -33,7 +33,7 @@ public class NPC_Farmer extends Entity {
     	outsideWorldX = 87;
     	outsideWorldY = 51;
     	homeMapNum = 11;
-    	townNum = 0;
+    	townNum = 1;
         
 		getImage();
 		setDialogue();

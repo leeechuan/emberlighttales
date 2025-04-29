@@ -37,7 +37,7 @@ public class NPC_Scout extends Entity {
     	outsideWorldX = 32;
     	outsideWorldY = 16;
     	homeMapNum = 13;
-    	townNum = 1;
+    	townNum = 2;
         
 		getImage();
 		setDialogue();

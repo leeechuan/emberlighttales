@@ -33,7 +33,7 @@ public class NPC_Thief extends Entity {
     	outsideWorldX = 21;
     	outsideWorldY = 33;
     	homeMapNum = 15;
-    	townNum = 1;
+    	townNum = 2;
         
 		getImage();
 		setDialogue();

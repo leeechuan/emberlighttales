@@ -27,6 +27,8 @@ public class NPC_Bee extends Entity {
         solidAreaDefaultY = solidArea.y;
         
         dialogueSet = -1;
+        
+        townNum = 0;
 		
 		getImage();
 		setDialogue();

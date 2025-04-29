@@ -33,7 +33,7 @@ public class NPC_FirstLady extends Entity {
     	outsideWorldX = 36;
     	outsideWorldY = 13;
     	homeMapNum = 12;
-    	townNum = 1;
+    	townNum = 2;
         
 		getImage();
 		setDialogue();

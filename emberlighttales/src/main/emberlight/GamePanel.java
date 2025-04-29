@@ -28,6 +28,8 @@ import entity.SmokeParticle;
 import environment.EnvironmentManager;
 import environment.LightSource;
 import environment.Lighting;
+import object.OBJ_Flower;
+import object.OBJ_Grass;
 import popup.PopupManager;
 import tile.Map;
 import tile.TileManager;
@@ -91,7 +93,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public Entity obj[][] = new Entity[maxMap][500];
 	public Entity npc[][] = new Entity[maxMap][30];
 	public Entity mob[][] = new Entity[maxMap][30];
-	public InteractiveTile iTile[][] = new InteractiveTile[maxMap][100];
+	public InteractiveTile iTile[][] = new InteractiveTile[maxMap][300];
 	public Entity projectile[][] = new Entity[maxMap][20];
 //	public ArrayList<Entity> projectileList = new ArrayList<>();
 	public ArrayList<Entity> particleList = new ArrayList<>();
@@ -396,14 +398,16 @@ public class GamePanel extends JPanel implements Runnable{
 			// Remove finished particles (that are no longer alive)
 			player.smokeParticles.removeIf(particle -> !particle.alive);
 			
-			//SORT
+			// SORT
 			Collections.sort(entityList, new Comparator<Entity>() {
 			    @Override
 			    public int compare(Entity e1, Entity e2) {
-			        // Ensure pressure plates are drawn behind other entities
-			        if (e1 instanceof IT_PressurePlate && !(e2 instanceof IT_PressurePlate)) {
+			        boolean e1IsBehind = (e1 instanceof IT_PressurePlate || e1 instanceof OBJ_Grass || e1 instanceof OBJ_Flower);
+			        boolean e2IsBehind = (e2 instanceof IT_PressurePlate || e2 instanceof OBJ_Grass || e2 instanceof OBJ_Flower);
+
+			        if (e1IsBehind && !e2IsBehind) {
 			            return -1;
-			        } else if (!(e1 instanceof IT_PressurePlate) && e2 instanceof IT_PressurePlate) {
+			        } else if (!e1IsBehind && e2IsBehind) {
 			            return 1;
 			        } else {
 			            // Fallback to comparing their worldY coordinates

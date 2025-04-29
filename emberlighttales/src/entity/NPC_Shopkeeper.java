@@ -29,7 +29,7 @@ public class NPC_Shopkeeper extends Entity{
     	outsideWorldX = 12;
     	outsideWorldY = 39;
     	homeMapNum = 18;
-    	townNum = 1;
+    	townNum = 2;
 		
 		getImage();
 		setDialogue();

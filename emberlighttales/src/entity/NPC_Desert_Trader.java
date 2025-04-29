@@ -25,6 +25,8 @@ public class NPC_Desert_Trader extends Entity{
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         
+        townNum = 0;
+        
 //    	homeWorldX = 50;
 //    	homeWorldY = 50;
 //    	outsideWorldX = 12;

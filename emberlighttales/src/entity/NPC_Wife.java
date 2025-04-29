@@ -33,7 +33,7 @@ public class NPC_Wife extends Entity {
     	outsideWorldX = 68;
     	outsideWorldY = 87;
     	homeMapNum = 7;
-    	townNum = 0;
+    	townNum = 1;
         
 		getImage();
 		setDialogue();

@@ -30,6 +30,8 @@ public class NPC_Dungeon_Rock extends Entity{
         solidArea.height = gp.tileSize*3/5;
         
         dialogueSet = -1;
+        
+        townNum = 0;
 		
 		getImage();
 		setDialogue();

@@ -33,7 +33,7 @@ public class NPC_Scientist extends Entity {
     	outsideWorldX = 71;
     	outsideWorldY = 53;
     	homeMapNum = 10;
-    	townNum = 0;
+    	townNum = 1;
 		
 		getImage();
 		setDialogue();

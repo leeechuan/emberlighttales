@@ -23,6 +23,8 @@ public class NPC_Chicken3 extends Entity {
         speed = defaultSpeed;
 		name = npcName;
 		
+		townNum = 0;
+		
         solidArea = new Rectangle(18, 24, gp.tileSize*2/3, gp.tileSize*2/3);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;

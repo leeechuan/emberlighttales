@@ -34,7 +34,7 @@ public class NPC_Mayor extends Entity {
     	outsideWorldX = 51;
     	outsideWorldY = 85;
     	homeMapNum = 5;
-    	townNum = 0;
+    	townNum = 1;
 		
 		getImage();
 		setDialogue();

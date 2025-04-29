@@ -29,7 +29,7 @@ public class NPC_Merchant extends Entity{
     	outsideWorldX = 61;
     	outsideWorldY = 78;
     	homeMapNum = 6;
-    	townNum = 0;
+    	townNum = 1;
 		
 		getImage();
 		setDialogue();

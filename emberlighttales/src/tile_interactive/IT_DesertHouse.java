@@ -34,7 +34,7 @@ public class IT_DesertHouse extends InteractiveTile{
 			this.worldX = gp.tileSize * col - 10;
 			this.worldY = gp.tileSize * row;
 			solidArea.x = (int) (gp.tileSize * 0.75);
-			solidArea.y = -gp.tileSize * 3;
+			solidArea.y = -gp.tileSize * 1;
 			solidArea.width = (int) (gp.tileSize * 3.5);
 			solidArea.height = gp.tileSize * 2;
 			solidAreaDefaultX = solidArea.x;

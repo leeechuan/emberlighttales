@@ -34,7 +34,7 @@ public class NPC_President extends Entity {
     	outsideWorldX = 36;
     	outsideWorldY = 12;
     	homeMapNum = 12;
-    	townNum = 1;
+    	townNum = 2;
         
 		getImage();
 		setDialogue();

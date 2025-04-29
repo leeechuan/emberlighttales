@@ -33,7 +33,7 @@ public class NPC_Fisherman extends Entity {
     	outsideWorldX = 20;
     	outsideWorldY = 24;
     	homeMapNum = 14;
-    	townNum = 1;
+    	townNum = 2;
         
 		getImage();
 		setDialogue();

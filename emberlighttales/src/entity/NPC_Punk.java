@@ -33,7 +33,7 @@ public class NPC_Punk extends Entity {
     	outsideWorldX = 84;
     	outsideWorldY = 73;
     	homeMapNum = 8;
-    	townNum = 0;
+    	townNum = 1;
         
 		getImage();
 		setDialogue();

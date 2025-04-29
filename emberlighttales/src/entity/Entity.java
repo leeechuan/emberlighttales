@@ -9,11 +9,13 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
 
 import ai.Node;
+import ai.PathFinder;
 import main.emberlight.GamePanel;
 import main.emberlight.UtilityTool;
 
@@ -159,7 +161,9 @@ public class Entity {
 	public int outsideWorldX;
 	public int outsideWorldY;
 	public int homeMapNum;
-	public int townNum; // 0 - Emberville, 1 - Gildenshore
+	public int townNum; // 1 - Emberville, 2 - Gildenshore, 3 - Solara
+	private int scheduleCooldown = 0; // Controls how often this NPC does heavy scheduling stuff (like pathfinding)
+	private PathFinder pFinder;
 
 	//TYPE
 	public int type; // 0 - player, 1 - npc, 2 - mob
@@ -176,6 +180,7 @@ public class Entity {
 	
 	public Entity(GamePanel gp) {
 		this.gp = gp;
+		this.pFinder = new PathFinder(gp);
 		
 	}
 	public int getScreenX() {
@@ -568,70 +573,75 @@ public class Entity {
 	public void resetPathfinding() {
 		speed = defaultSpeed;
 	}
+
 	public void pathfindTo(int targetCol, int targetRow, String endDirection) {
+	    // convert world coords into tile coords
 	    int startCol = (worldX + gp.tileSize / 2) / gp.tileSize;
 	    int startRow = (worldY + gp.tileSize / 2) / gp.tileSize;
 
+	    // if we’re already at the target, snap and bail
 	    if (startCol == targetCol && startRow == targetRow) {
+	        gp.pFinder.pathList.clear();
 	        isWalking = false;
 	        direction = endDirection;
 	        speed = 0;
 	        return;
 	    }
 
-	    gp.pFinder.setNodes(startCol, startRow, targetCol, targetRow, this);
+	    if (scheduleCooldown <= 0) {
+            pFinder.setNodes(startCol, startRow, targetCol, targetRow, this);
+            if (pFinder.search()) {
+                // pFinder.pathList is now YOUR list
+            } else {
+                pFinder.pathList.clear();
+            }
+            scheduleCooldown = 30;
+        } else {
+            scheduleCooldown--;
+        }
 
-	    // Check if a valid path exists
-	    if (!gp.pFinder.search()) {
-	        return;
+        followNextStep(targetCol, targetRow, endDirection, pFinder.pathList);
+	}
+
+	private void followNextStep(int targetCol, int targetRow, String endDirection, List<Node> path) {
+	    if (path.isEmpty()) return;
+
+	    Node nextStep = path.get(0);
+	    int nextX = nextStep.col * gp.tileSize;
+	    int nextY = nextStep.row * gp.tileSize;
+	    int threshold = 2;  // vertical snap threshold
+
+	    // horizontal movement
+	    if (worldX < nextX) {
+	        isWalking = true; direction = "right";
+	        worldX += Math.min(speed, nextX - worldX);
+	    } else if (worldX > nextX) {
+	        isWalking = true; direction = "left";
+	        worldX -= Math.min(speed, worldX - nextX);
 	    }
 
-	    // Follow the next step in the path if available
-	    if (!gp.pFinder.pathList.isEmpty()) {
-	        Node nextStep = gp.pFinder.pathList.get(0); // Next node in the path
-	        int nextX = nextStep.col * gp.tileSize;
-	        int nextY = nextStep.row * gp.tileSize;
-
-	        // Threshold for vertical snapping (in pixels)
-	        int threshold = 2;
-
-	        // Move horizontally towards nextX
-	        if (worldX < nextX) {
-	            isWalking = true;
-	            direction = "right";
-	            worldX += Math.min(speed, Math.abs(nextX - worldX));
-	        } else if (worldX > nextX) {
-	            isWalking = true;
-	            direction = "left";
-	            worldX -= Math.min(speed, Math.abs(worldX - nextX));
-	        }
-
-	        // Move vertically towards nextY only if the difference is significant
-	        if (Math.abs(worldY - nextY) > threshold) {
-	            if (worldY < nextY) {
-	                isWalking = true;
-	                direction = "down";
-	                worldY += Math.min(speed, Math.abs(nextY - worldY));
-	            } else if (worldY > nextY) {
-	                isWalking = true;
-	                direction = "up";
-	                worldY -= Math.min(speed, Math.abs(worldY - nextY));
-	            }
+	    // vertical movement (with snap)
+	    if (Math.abs(worldY - nextY) > threshold) {
+	        if (worldY < nextY) {
+	            isWalking = true; direction = "down";
+	            worldY += Math.min(speed, nextY - worldY);
 	        } else {
-	            // Snap the vertical coordinate to the target if the difference is negligible
-	            worldY = nextY;
+	            isWalking = true; direction = "up";
+	            worldY -= Math.min(speed, worldY - nextY);
 	        }
-
-	        // If the entity is close enough to the center of the next tile, snap to that tile and remove this step
-	        if (Math.abs(worldX - nextX) < speed && Math.abs(worldY - nextY) < speed) {
-	            worldX = nextX;
-	            worldY = nextY;
-	            gp.pFinder.pathList.remove(0);
-	        }
+	    } else {
+	        worldY = nextY;
 	    }
 
-	    // If path is empty, stop moving
-	    if (gp.pFinder.pathList.isEmpty()) {
+	    // if we’ve reached the tile center, pop it off
+	    if (Math.abs(worldX - nextX) < speed && Math.abs(worldY - nextY) < speed) {
+	        worldX = nextX;
+	        worldY = nextY;
+	        path.remove(0);
+	    }
+
+	    // if that was the last step, snap perfectly
+	    if (path.isEmpty()) {
 	        isWalking = false;
 	        worldX = targetCol * gp.tileSize - gp.tileSize/4;
 	        worldY = targetRow * gp.tileSize - gp.tileSize/4;
@@ -1167,17 +1177,13 @@ public class Entity {
 	    
 	    //Day
 	    else if (gp.eManager.lighting.dayState == gp.eManager.lighting.day) {
-	    	if(townNum == 0) {
+	    	if(townNum == 1) {
 	    		//EMBERVILLE
 	    		roamingArea.setBounds(gp.tileSize * 48, gp.tileSize * 43, gp.tileSize * 50, gp.tileSize * 50);
 	    	}
-	    	if(townNum == 1) {
+	    	else if(townNum == 2) {
 	    		//GILDENSHORE
 	    		roamingArea.setBounds(gp.tileSize * 5, gp.tileSize * 5, gp.tileSize * 45, gp.tileSize * 37);
-	    	}
-	    	if(townNum == 2) {
-	    		//CHICKEN COOP
-	    		roamingArea.setBounds(gp.tileSize * 75, gp.tileSize * 47, gp.tileSize * 5, gp.tileSize * 2);
 	    	}
 	    	else {
 	    		//ENTIRE WORLD MAP

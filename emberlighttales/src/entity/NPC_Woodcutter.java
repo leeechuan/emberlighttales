@@ -33,7 +33,7 @@ public class NPC_Woodcutter extends Entity {
     	outsideWorldX = 35;
     	outsideWorldY = 33;
     	homeMapNum = 16;
-    	townNum = 1;
+    	townNum = 2;
         
 		getImage();
 		setDialogue();

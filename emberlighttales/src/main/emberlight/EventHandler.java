@@ -54,6 +54,7 @@ public class EventHandler{
 		eventMaster.dialogues[0][0] = "You fell into a pit!";
 		eventMaster.dialogues[1][0] = "You drank some water.\nHP and mana is restored";
 		eventMaster.dialogues[2][0] = "There is a werid energy stopping you\nfrom entering.";
+		eventMaster.dialogues[3][0] = "The door is locked.";
 	}
 	public void checkEvent() {
 		
@@ -294,6 +295,13 @@ public class EventHandler{
 			else if(hit(18, 50, 51,"any") == true) {
 				teleport(0, 12, 39, gp.outside);
 				gp.playSE(14);
+			}
+			
+			//Windmill
+			else if(hit(0, 57, 61,"up") == true) {
+				gp.gameState = gp.dialogueState;
+				eventMaster.startDialogue(eventMaster, 3);
+				canTouchEvent = false;
 			}
 			
 			//Orc Camp

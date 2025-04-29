@@ -33,7 +33,7 @@ public class NPC_Elder extends Entity {
     	outsideWorldX = 47;
     	outsideWorldY = 30;
     	homeMapNum = 17;
-    	townNum = 1;
+    	townNum = 2;
 		
 		getImage();
 		setDialogue();

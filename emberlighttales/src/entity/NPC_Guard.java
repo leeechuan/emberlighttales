@@ -33,7 +33,7 @@ public class NPC_Guard extends Entity {
 //    	outsideWorldX = 32;
 //    	outsideWorldY = 16;
 //    	homeMapNum = 13;
-    	townNum = 0;
+    	townNum = 1;
         
 		getImage();
 		setDialogue();

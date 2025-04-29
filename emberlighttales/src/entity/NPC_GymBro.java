@@ -33,7 +33,7 @@ public class NPC_GymBro extends Entity {
     	outsideWorldX = 87;
     	outsideWorldY = 61;
     	homeMapNum = 9;
-    	townNum = 0;
+    	townNum = 1;
         
 		getImage();
 		setDialogue();
