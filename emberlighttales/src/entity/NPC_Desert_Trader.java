@@ -10,7 +10,7 @@ import object.OBJ_SunmireGlassroot;
 
 public class NPC_Desert_Trader extends Entity{
 	
-	public static final String npcName = "Desert Trader";
+	public static final String npcName = "Zayid Marruk";
 
 	public NPC_Desert_Trader(GamePanel gp) {
 		super(gp);
@@ -52,7 +52,7 @@ public class NPC_Desert_Trader extends Entity{
 //	                leftStanding[i] = invertImage(rightStanding[i]);
 //	                leftWalking[i] = invertImage(rightWalking[i]);
 //	          	}
-//	         portrait = setup("/artwork/shopkeeper_portrait", 3f, 3f);
+	         portrait = setup("/artwork/desert_trader_portrait", 3f, 3f);
 	}
 	public void setDialogue() {
 		

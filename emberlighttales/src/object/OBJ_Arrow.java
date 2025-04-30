@@ -43,16 +43,18 @@ public class OBJ_Arrow extends Projectile{
       for (int i = 0; i < 6; i++) {
              leftStanding[i] = invertImage(rightStanding[i]);
        	}
+      
+      image2 = setup("/ui/arrow", 1, 1);
 	}
 	public boolean haveResource(Entity user) {
 		
 		boolean haveResource = false;
-		if(user.mana >= useCost) {
+		if(user.ammo >= useCost) {
 			haveResource = true;
 		}
 		return haveResource;
 	}
 	public void subtractResource(Entity user) {
-		user.mana -= useCost;
+		user.ammo -= useCost;
 	}
 }

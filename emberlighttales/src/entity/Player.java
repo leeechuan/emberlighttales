@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -29,6 +30,9 @@ public class Player extends Entity {
     public boolean attackCancelled = false;
     public boolean lightUpdated = false;
     public boolean isGremlin = false;
+    int gremlinManaTimer = 0;
+    int gremlinManaDrainInterval = 15;
+    int manaRegenTimer = 0;
     
     boolean gremlinKeyPreviouslyPressed = false;
     public BufferedImage[] gremlinfrontStanding = new BufferedImage[6];
@@ -45,6 +49,13 @@ public class Player extends Entity {
     public BufferedImage[] gremlinleftAttacking = new BufferedImage[6];
     private int baseStrength, baseDexterity, baseSpeed; // Store original stats
     public ArrayList<SmokeParticle> smokeParticles = new ArrayList<>();
+    
+    public boolean isRolling = false;
+    public int rollCounter = 0;
+    public int rollCooldown = 0;
+    public final int maxRollTime = 15;
+    public final int rollSpeed = 8; // Customize this
+    public final int rollCooldownTime = 40;
     
     // To track animation state
 //    private int spriteCounter = 0;
@@ -79,15 +90,15 @@ public class Player extends Entity {
         //PLAYER STATUS
         name = "Player";
         level = 1;
-        maxLife = 6;
+        maxLife = 100;
         life = maxLife;
-        maxMana = 4;
+        maxMana = 100;
         mana = maxMana;
         ammo = 10;
-        strength = 1; //More strength = More damage
-        dexterity = 1; //More dexterity = Less damage
+        strength = 5; //More strength = More damage
+        dexterity = 5; //More dexterity = Less damage
         exp = 0;
-        nextLevelExp = 5;
+        nextLevelExp = 10;
         coin = 300;
         currentWeapon = new OBJ_Stone_Sword(gp);
         currentShield = new OBJ_Rabbit_Shield_1(gp);
@@ -185,7 +196,14 @@ public class Player extends Entity {
              leftWalking[i] = invertImage(rightWalking[i]);
              leftShooting[i] = invertImage(rightShooting[i]);
        		}
-	     
+	     for (int i = 0; i < 8; i++) {
+             frontRolling[i] = setup("/player/player_rolldown_" + i, 1.5f, 1.5f);
+             rightRolling[i] = setup("/player/player_rollright_" + i, 1.5f, 1.5f);
+             backRolling[i] = setup("/player/player_rollup_" + i, 1.5f, 1.5f);
+	     }
+	     for (int i = 0; i < 8; i++) {
+             leftRolling[i] = invertImage(rightRolling[i]);
+       		}
 	     image1 = setup("/player/player_image1", 1.5f, 1.5f);
 	     image2 = setup("/player/player_image2", 1.5f, 1.5f);
     }
@@ -308,66 +326,129 @@ public class Player extends Entity {
         }
     }
     public void gremlinMode() {
-    	if (keyH.gremlinPressed && Progress.gameStage >= Progress.STAGE_SERUM_GIVEN) {
-    	    if (!gremlinKeyPreviouslyPressed) {  // Ensures toggle happens only once per press
-    	        isGremlin = !isGremlin;
-    	        //Smoke particles for transition
-	        	for (int i = 0; i < 15; i++) { // Generate 10 smoke particles
-	        	    smokeParticles.add(new SmokeParticle(gp, this));
-	        	}
-	        	gp.playSE(26);
-	        	gp.updateNPCDialogues();
-	        	
-    	        if(isGremlin) {
-                    baseStrength = strength;
-                    baseDexterity = dexterity;
-                    baseSpeed = speed;
+        if (keyH.gremlinPressed && Progress.gameStage >= Progress.STAGE_SERUM_GIVEN) {
+            if (!gremlinKeyPreviouslyPressed) {
+                if (!isGremlin && mana <= 0) {
+//                    gp.ui.addMessage("Not enough mana to transform!");
+                } else {
+                    isGremlin = !isGremlin;
 
-                    // Apply 1.5x boost
-                    strength = (int) Math.round(baseStrength * 1.5);
-                    dexterity = (int) Math.round(baseDexterity * 1.5);
-                    speed = (int) Math.round(baseSpeed * 1.5);
-                    
-                    //SolidArea
-                    solidArea.x = 12;
-                    solidArea.y = 16;
-                    solidArea.width = gp.tileSize - 24;
-                    solidArea.height = gp.tileSize - 24;
-                    
+                    // Transition smoke particles
+                    for (int i = 0; i < 15; i++) {
+                        smokeParticles.add(new SmokeParticle(gp, this));
+                    }
+
+                    gp.playSE(26);
+                    gp.updateNPCDialogues();
+
+                    if (isGremlin) {
+                        gremlinManaTimer = 0; // Reset timer
+                        baseStrength = strength;
+                        baseDexterity = dexterity;
+                        baseSpeed = speed;
+
+                        // Apply 1.5x boost
+                        strength = (int) Math.round(baseStrength * 1.5);
+                        dexterity = (int) Math.round(baseDexterity * 1.5);
+                        speed = (int) Math.round(baseSpeed * 1.5);
+
+                        // Recalculate attack and defense
+                        attack = getAttack();
+                        defense = getDefense();
+
+                        solidArea.x = 12;
+                        solidArea.y = 16;
+                        solidArea.width = gp.tileSize - 24;
+                        solidArea.height = gp.tileSize - 24;
+                    } else {
+                        strength = baseStrength;
+                        dexterity = baseDexterity;
+                        speed = baseSpeed;
+
+                        // Recalculate attack and defense based on normal values
+                        attack = getAttack();
+                        defense = getDefense();
+
+                        solidArea.x = 6;
+                        solidArea.y = 6;
+                        solidArea.width = gp.tileSize - 12;
+                        solidArea.height = gp.tileSize - 12;
+                    }
+
                     solidAreaDefaultX = solidArea.x;
                     solidAreaDefaultY = solidArea.y;
-    	        }
-    	        else {
+                }
+            }
+            gremlinKeyPreviouslyPressed = true;
+        } else {
+            gremlinKeyPreviouslyPressed = false;
+        }
+
+        // While Gremlin mode is active, drain mana
+        if (isGremlin) {
+            gremlinManaTimer++;
+
+            if (gremlinManaTimer >= gremlinManaDrainInterval) {
+                gremlinManaTimer = 0;
+                mana--;
+
+                if (mana <= 0) {
+                    isGremlin = false;
+
                     strength = baseStrength;
                     dexterity = baseDexterity;
                     speed = baseSpeed;
-                    
-                    //SolidArea
+
+                    // Recalculate attack and defense when reverting to normal
+                    attack = getAttack();
+                    defense = getDefense();
+
                     solidArea.x = 6;
                     solidArea.y = 6;
                     solidArea.width = gp.tileSize - 12;
                     solidArea.height = gp.tileSize - 12;
-                    
+
                     solidAreaDefaultX = solidArea.x;
                     solidAreaDefaultY = solidArea.y;
-    	        }
-    	    }
-    	    gremlinKeyPreviouslyPressed = true;  // Mark key as pressed
-    	} else {
-    	    gremlinKeyPreviouslyPressed = false; // Reset when key is released
-    	}
+
+                    gp.playSE(26);
+                    // Transition smoke particles
+                    for (int i = 0; i < 15; i++) {
+                        smokeParticles.add(new SmokeParticle(gp, this));
+                    }
+                }
+            }
+        } else {
+            if (mana < maxMana) {
+                manaRegenTimer++;
+
+                if (manaRegenTimer >= 50) { // Regenerate 1 mana every 120 frames (~2 seconds)
+                    mana++;
+                    manaRegenTimer = 0;
+                }
+            } else {
+                manaRegenTimer = 0; // Reset if full
+            }
+        }
     }
     public void update() {
         isWalking = keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed;
         
         gremlinMode();
                 
-		if (!isGremlin && keyH.spacePressed && !isBlocking) {
+		if (!isGremlin && keyH.blockPressed && !isBlocking) {
 		    isBlocking = true;
 		    blocking();
-		} else if (!keyH.spacePressed && isBlocking) {
+		} else if (!keyH.blockPressed && isBlocking) {
 		    isBlocking = false;
 		    blockCounter = 0; // Reset block counter when stopping block
+		}
+		
+		if (!isGremlin && !isRolling && !isAttacking && !isBlocking && rollCooldown == 0 && keyH.rollPressed) {
+		    isRolling = true;
+		    rollCounter = 0;
+//		    invincible = true;
+//		    gp.playSE(13);
 		}
         
 		if(knockBack == true) {
@@ -411,6 +492,9 @@ public class Player extends Entity {
 		}
         else if(!isGremlin && isShooting) {
         	shooting();
+        }
+        else if(!isGremlin && isRolling) {
+        	rolling();
         }
         else if (isWalking || keyH.enterPressed) {
             if (keyH.upPressed) {
@@ -530,7 +614,9 @@ public class Player extends Entity {
         	//SET DEFAULT COORDINATES, DIRECTION AND USER (only after shooting animation)
         	projectile.set(worldX, worldY, direction, true, this);
         	//SUBTRACT THE COST (MANA, AMMO ETC.)
-        	projectile.subtractResource(this);
+        	if(Progress.gameStage != Progress.STAGE_TUTORIAL) {
+        		projectile.subtractResource(this);
+        	}
         	//CHECK VACANCY
         	for(int i = 0; i < gp.projectile[1].length; i++) {
         		if(gp.projectile[gp.currentMap][i] == null) {
@@ -563,6 +649,9 @@ public class Player extends Entity {
         if(mana > maxMana) {
         	mana = maxMana;
         }
+        if (rollCooldown > 0) {
+            rollCooldown--;
+        }
         if(keyH.godModeOn == false) {
             if(life <= 0) {
             	gp.gameState = gp.gameOverState;
@@ -592,6 +681,59 @@ public class Player extends Entity {
             }
 
         }
+    }
+    public void rolling() {
+    	
+    	 if (isRolling) {
+    	        invincible = true;
+    	        System.out.println(rollCounter);
+    	        collisionOn = false;
+    	        gp.cChecker.checkTile(this);
+    	        gp.cChecker.checkObject(this, true);
+    	        gp.cChecker.checkEntity(this, gp.mob);
+    	        gp.cChecker.checkEntity(this, gp.iTile);
+
+    	        // Only move if no collision
+    	        if (!collisionOn) {
+    	            switch (direction) {
+    	                case "up": worldY -= rollSpeed; break;
+    	                case "down": worldY += rollSpeed; break;
+    	                case "left": worldX -= rollSpeed; break;
+    	                case "right": worldX += rollSpeed; break;
+    	            }
+    	        }
+
+    	        // Animate roll (based on your 8-frame setup)
+    	        rollCounter++;
+    	        if (rollCounter <= 4) {
+    	            spriteNum = 0;
+    	        } else if (rollCounter <= 8) {
+    	            spriteNum = 1;
+    	        } else if (rollCounter <= 12) {
+    	            spriteNum = 2;
+    	        } else if (rollCounter <= 16) {
+    	            spriteNum = 3;
+    	        } else if (rollCounter <= 20) {
+    	            spriteNum = 4;
+    	        } else if (rollCounter <= 24) {
+    	            spriteNum = 5;
+    	        } else if (rollCounter <= 28) {
+    	            spriteNum = 6;
+    	        } else if (rollCounter <= 32) {
+    	            spriteNum = 7;
+    	        }
+    	        else {
+    	        	spriteNum = 0;
+    	        }
+
+    	        // Finish rolling
+    	        if (rollCounter >= 40) {
+    	            isRolling = false;
+    	            invincible = false;
+    	            rollCooldown = 30; // Cooldown after roll ends
+    	            rollCounter = 0;
+    	        }
+    	    }
     }
     public void blocking() {
     	
@@ -633,6 +775,12 @@ public class Player extends Entity {
     			if(keyH.enterPressed == true) {
     				attackCancelled = true;
     				gp.obj[gp.currentMap][i].interact();
+    			}
+    		}
+    		//BACKDROP
+    		else if(gp.obj[gp.currentMap][i].type == type_backdrop) {
+    			if(keyH.enterPressed == true) {
+    				//nothing happens
     			}
     		}
     		//INVENTORY ITEMS
@@ -694,10 +842,17 @@ public class Player extends Entity {
     				attack *= 5;
     			}
     			int damage = attack - gp.mob[gp.currentMap][i].defense;
+
+    			// Apply slight damage variation
+    			Random rand = new Random();
+    			double multiplier = 0.9 + rand.nextDouble() * 0.2; // Random between 0.9 and 1.1
+    			damage = (int)Math.round(damage * multiplier);
+
     			if(damage < 0) {
-    				 damage = 0;
+    			    damage = 0;
     			}
 				generateParticle(gp.mob[gp.currentMap][i], gp.mob[gp.currentMap][i]);
+				gp.shakeTimer = gp.shakeDuration;
     			gp.mob[gp.currentMap][i].life -= damage;
     			
     			//DAMAGE NUMBERS
@@ -762,12 +917,25 @@ public class Player extends Entity {
     	if(exp >= nextLevelExp) {
     		
     		level++;
-    		nextLevelExp = nextLevelExp*2;
-    		maxLife += 2;
+    		nextLevelExp = (int) Math.ceil(10 * Math.pow(level, 1.5));
+    		maxLife += 10;
+    		maxMana += 5;
     		strength++;
-    		dexterity++;
+            // Dexterity increases every 2 levels
+            if (level % 2 == 0) {
+                dexterity += 1;
+            }
+
+            // Optional: Ammo cap increases every 3 levels
+            if (level % 3 == 0 && ammo < 30) {
+                ammo += 2;
+            }
     		attack = getAttack();
     		defense = getDefense();
+    		
+            // Restore life/mana on level up
+            life = maxLife;
+            mana = maxMana;
     		
     		gp.playSE(5);
     		gp.gameState = gp.dialogueState;
@@ -915,6 +1083,14 @@ public class Player extends Entity {
                 case "down": image = frontShooting[spriteNum]; break;
                 case "left": image = leftShooting[spriteNum]; break;
                 case "right": image = rightShooting[spriteNum]; break;
+            }
+    	}
+    	else if (isRolling) {
+            switch (direction) {
+                case "up": image = backRolling[spriteNum]; break;
+                case "down": image = frontRolling[spriteNum]; break;
+                case "left": image = leftRolling[spriteNum]; break;
+                case "right": image = rightRolling[spriteNum]; break;
             }
     	}
         else if (isWalking) {

@@ -19,7 +19,7 @@ public class OBJ_Haybale extends Entity{
 		super(gp);
 		this.gp = gp;
 		
-		type = type_obstacle;
+		type = type_backdrop;
 		name = objName;
 		
 		if(haybale_type == 0) {

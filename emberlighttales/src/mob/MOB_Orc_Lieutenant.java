@@ -24,11 +24,11 @@ public class MOB_Orc_Lieutenant extends Entity {
 		boss = true;
 		defaultSpeed = 1;
 		speed = defaultSpeed;
-		maxLife = 10;
+		maxLife = 120;
 		life = maxLife;
-		attack = 0;
-		defense = 2;
-		exp = 1;
+		attack = 24;
+		defense = 14;
+		exp = 30;
 		knockBackPower = 5;
 		name = mobName;
 		sleep = true;

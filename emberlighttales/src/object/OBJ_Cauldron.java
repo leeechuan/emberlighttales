@@ -21,7 +21,7 @@ public class OBJ_Cauldron extends Entity{
 		super(gp);
 		this.gp = gp;
 		
-		type = type_obstacle;
+		type = type_backdrop;
 		name = objName;
 		for (int i = 0; i < animatedFrames.length; i++) {
 	        animatedFrames[i] = setup("/animated_object/cauldron_" + i, 2, 1);

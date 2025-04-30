@@ -19,7 +19,7 @@ public class OBJ_CampLookoutTower extends Entity{
 		super(gp);
 		this.gp = gp;
 		
-		type = type_obstacle;
+		type = type_backdrop;
 		name = objName;
 		
 		if(tower_type == 0 || tower_type == 2 || tower_type == 4 || tower_type == 5) {

@@ -24,11 +24,11 @@ public class MOB_Angel2 extends Entity {
 		boss = false;
 		defaultSpeed = 1;
 		speed = defaultSpeed;
-		maxLife = 6;
+		maxLife = 70;
 		life = maxLife;
-		attack = 1;
-		defense = 1;
-		exp = 10;
+		attack = 15;
+		defense = 8;
+		exp = 18;
 		knockBackPower = 3;
 		name = mobName;
 //		sleep = true;

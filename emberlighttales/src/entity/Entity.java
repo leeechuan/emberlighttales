@@ -53,6 +53,10 @@ public class Entity {
     public BufferedImage[] rightMoveLight = new BufferedImage[6];
     public BufferedImage[] leftMoveLight = new BufferedImage[6];
     public BufferedImage[] frontDeath = new BufferedImage[6];
+    public BufferedImage[] frontRolling = new BufferedImage[8];
+    public BufferedImage[] backRolling = new BufferedImage[8];
+    public BufferedImage[] rightRolling = new BufferedImage[8];
+    public BufferedImage[] leftRolling = new BufferedImage[8];
 	public BufferedImage image1, image2, image3;
 	public BufferedImage portrait;
     //ANIMATION STATE
@@ -177,6 +181,7 @@ public class Entity {
 	public final int type_pickupOnly = 7;
 	public final int type_obstacle = 8;
 	public final int type_light = 9;
+	public final int type_backdrop = 10;
 	
 	public Entity(GamePanel gp) {
 		this.gp = gp;
@@ -1184,6 +1189,10 @@ public class Entity {
 	    	else if(townNum == 2) {
 	    		//GILDENSHORE
 	    		roamingArea.setBounds(gp.tileSize * 5, gp.tileSize * 5, gp.tileSize * 45, gp.tileSize * 37);
+	    	}
+	    	else if(townNum == 3) {
+	    		//GILDENSHORE
+	    		roamingArea.setBounds(gp.tileSize * 22, gp.tileSize * 35, gp.tileSize * 43, gp.tileSize * 27);
 	    	}
 	    	else {
 	    		//ENTIRE WORLD MAP

@@ -19,7 +19,7 @@ public class OBJ_Desert_Bones extends Entity{
 		super(gp);
 		this.gp = gp;
 		
-		type = type_obstacle;
+		type = type_backdrop;
 		name = objName;
 		
 		if(deco_type == 0) {

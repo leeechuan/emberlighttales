@@ -344,6 +344,15 @@ public class EventHandler{
 			
 			//SOLARA
 			
+			else if(hit(19, 77, 50,"any") == true || hit(19, 78, 50,"any") == true) {
+				teleport(23, 50, 50, gp.dungeon);
+				gp.playSE(24);
+			}
+			else if(hit(23, 50, 50,"any") == true || hit(23, 51, 50,"any") == true) {
+				teleport(19, 77, 51, gp.outside);
+				gp.playSE(24);
+			}
+			
 			//GILDENSHORE
 			
 			

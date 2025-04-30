@@ -8,7 +8,7 @@ import data.Progress;
 public class KeyHandler implements KeyListener {
 	
 	GamePanel gp;
-	public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, attackPressed, shotKeyPressed, spacePressed, characterPressed, gremlinPressed, journalPressed;
+	public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, attackPressed, shotKeyPressed, blockPressed, characterPressed, gremlinPressed, journalPressed, rollPressed;
 	//DEBUG
 	public boolean showDebugText = false;
 	public boolean godModeOn = false;
@@ -159,8 +159,11 @@ public class KeyHandler implements KeyListener {
 				gp.map.miniMapOn = false;
 			}
 		}
+		if(code == KeyEvent.VK_F) {
+			blockPressed = true;
+		}
 		if(code == KeyEvent.VK_SPACE) {
-			spacePressed = true;
+			rollPressed = true;
 		}
 		
 		//DEBUG
@@ -445,8 +448,11 @@ public class KeyHandler implements KeyListener {
 			enterPressed = false;
 			attackPressed = false;
 		}
+		if(code == KeyEvent.VK_F) {
+			blockPressed = false;
+		}
 		if(code == KeyEvent.VK_SPACE) {
-			spacePressed = false;
+			rollPressed = false;
 		}
 	}
 }

@@ -24,11 +24,11 @@ public class MOB_Swordman extends Entity {
 		boss = false;
 		defaultSpeed = 1;
 		speed = defaultSpeed;
-		maxLife = 6;
+		maxLife = 90;
 		life = maxLife;
-		attack = 1;
-		defense = 1;
-		exp = 10;
+		attack = 20;
+		defense = 10;
+		exp = 22;
 		knockBackPower = 3;
 		name = mobName;
 //		sleep = true;

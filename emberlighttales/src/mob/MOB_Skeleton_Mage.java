@@ -20,11 +20,11 @@ public class MOB_Skeleton_Mage extends Entity {
 		name = "Skeleton Mage";
 		defaultSpeed = 1;
 		speed = defaultSpeed;
-		maxLife = 4;
+		maxLife = 35;
 		life = maxLife;
-		attack = 5;
-		defense = 0;
-		exp = 2;
+		attack = 10;
+		defense = 1;
+		exp = 9;
 		projectile = new OBJ_Skeleton_Mage_Projectile(gp);
 		
 		solidArea.x = gp.tileSize*3/8;

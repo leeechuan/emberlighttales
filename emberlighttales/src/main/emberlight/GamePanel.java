@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -128,6 +129,11 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int outside = 50;
 	public final int indoor = 51;
 	public final int dungeon = 52;
+	
+	//SCREEN SHAKE
+	public int shakeTimer = 0;
+	public int shakeMagnitude = 6; // pixels
+	public int shakeDuration = 10; // frames
 	
 	public GamePanel() {
 		
@@ -330,6 +336,14 @@ public class GamePanel extends JPanel implements Runnable{
 			drawStart = System.nanoTime();			
 		}
 		
+		// Apply camera shake if active
+		if (shakeTimer > 0) {
+		    int offsetX = (int)(Math.random() * shakeMagnitude) - (shakeMagnitude / 2);
+		    int offsetY = (int)(Math.random() * shakeMagnitude) - (shakeMagnitude / 2);
+		    g2.translate(offsetX, offsetY);
+		    shakeTimer--;
+		}
+		
 		//TITLE SCREEN
 		if(gameState == titleState) {
 			ui.draw(g2);
@@ -433,6 +447,9 @@ public class GamePanel extends JPanel implements Runnable{
 			//POPUP
 			pManager.draw(g2);
 		}
+		
+		// Reset transformation after drawing everything (important!)
+		g2.setTransform(new AffineTransform());
 		
 		//DEBUG
 		if(keyH.showDebugText == true) {

@@ -21,7 +21,7 @@ public class OBJ_Grass extends Entity{
 		super(gp);
 		this.gp = gp;
 		
-		type = type_obstacle;
+		type = type_backdrop;
 		name = objName;
 		for (int i = 0; i < animatedFrames.length; i++) {
 	        animatedFrames[i] = setup("/flora/grass_" + grassType + "_" + i, 1, 1);

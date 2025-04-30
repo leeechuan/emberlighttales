@@ -19,6 +19,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 import data.Progress;
+import object.OBJ_Arrow;
 import object.OBJ_BigTorch;
 import object.OBJ_Campfire;
 import object.OBJ_Coin;
@@ -38,7 +39,7 @@ public class UI {
 	GamePanel gp;
 	Graphics2D g2;
 	public Font pressStart2P;
-	BufferedImage heart_full, heart_half, heart_empty, mana_full, mana_empty, coin;
+	BufferedImage heart_full, heart_half, heart_empty, mana_full, mana_empty, coin, arrowImage;
 	public boolean messageOn = false;
 //	public String message = "";
 //	int messageCounter = 0;
@@ -102,6 +103,8 @@ public class UI {
 		mana_empty = mana.image2;
 		Entity goldCoin = new OBJ_Coin(gp);
 		coin = goldCoin.image1;
+		OBJ_Arrow arrow = new OBJ_Arrow(gp);
+	    arrowImage = arrow.image2;
 	}
 	public void addMessage(String text) {
 		
@@ -164,42 +167,6 @@ public class UI {
 			drawJournalScreen();
 		}
 	}
-//	public void drawPlayerLife() {
-//	    int x = gp.tileSize / 2;
-//	    int y = gp.tileSize / 2;
-//	    int iconSize = 32;
-//	    
-//	    // Draw full, half, and empty hearts based on the player's current life
-//	    for (int i = 0; i < gp.player.maxLife / 2; i++) {
-//	        if (i < gp.player.life / 2) {
-//	            // Draw full heart if the player has full health
-//	            g2.drawImage(heart_full, x, y, iconSize, iconSize, null);
-//	        } else if (i == gp.player.life / 2 && gp.player.life % 2 != 0) {
-//	            // Draw half heart if the player's life is odd
-//	            g2.drawImage(heart_half, x, y, iconSize, iconSize, null);
-//	        } else {
-//	            // Draw empty heart if the player doesn't have enough life for a full heart
-//	            g2.drawImage(heart_empty, x, y, iconSize, iconSize, null);
-//	        }
-//	        x += gp.tileSize*iconSize/48; // Move to the next heart's position
-//	    }
-//	    
-//	    // DRAW MANA UI
-//	    x = (gp.tileSize / 2) - 2;
-//	    y = (int)(gp.tileSize * 1.2);
-//
-//	    // Draw max mana (empty and full in a single loop)
-//	    for (int i = 0; i < gp.player.maxMana; i++) {
-//	        if (i < gp.player.mana) {
-//	            // Draw filled mana if within current mana
-//	            g2.drawImage(mana_full, x, y, iconSize, iconSize, null);
-//	        } else {
-//	            // Draw empty mana for remaining slots
-//	            g2.drawImage(mana_empty, x, y, iconSize, iconSize, null);
-//	        }
-//	        x += 30; // Adjust spacing for the next mana icon
-//	    }
-//	}
 	public void drawPlayerLife() {
 	    int barWidth = 200;
 	    int barHeight = 20;
@@ -275,6 +242,33 @@ public class UI {
 	    // Text foreground
 	    g2.setColor(new Color(230, 215, 190));
 	    g2.drawString(timeText, portraitX + 10, y + spacing + 16);
+	    
+	    // --- Draw Ammo (Top-right corner) ---
+	    int iconSize = 24;
+	    int ammoX = gp.tileSize * 7/5;
+	    int ammoY = gp.screenHeight - gp.tileSize * 19/5;
+
+	    // Draw icon background
+	    g2.setColor(new Color(60, 42, 33, 220));
+	    g2.fillRoundRect(ammoX - 6, ammoY - 6, iconSize + 12, iconSize + 12, 10, 10);
+	    g2.setColor(new Color(230, 215, 190));
+	    g2.setStroke(new BasicStroke(2));
+	    g2.drawRoundRect(ammoX - 6, ammoY - 6, iconSize + 12, iconSize + 12, 10, 10);
+
+	    // Draw arrow sprite (icon)
+	    g2.drawImage(arrowImage, ammoX, ammoY, iconSize, iconSize, null);
+
+	    // Draw ammo number
+	    g2.setFont(g2.getFont().deriveFont(Font.BOLD, 9f));
+	    String ammoText = "x" + gp.player.ammo;
+
+	    FontMetrics ammoFm = g2.getFontMetrics();
+	    int ammoTextWidth = ammoFm.stringWidth(ammoText);
+
+	    g2.setColor(new Color(0, 0, 0, 160)); // Shadow
+	    g2.drawString(ammoText, ammoX - ammoTextWidth + 8 + iconSize, ammoY + iconSize + 4);
+	    g2.setColor(new Color(230, 215, 190)); // Text
+	    g2.drawString(ammoText, ammoX - ammoTextWidth + 6 + iconSize, ammoY + iconSize + 2);
 	}
 	private void drawBar(Graphics2D g2, int x, int y, int width, int height, int current, int max, Color fillColor, Color backColor) {
 	    // Background
@@ -454,7 +448,7 @@ public class UI {
 		    }
 		    
 		    // Draw version number on the bottom right
-		    String versionText = "Beta v1.1.8";
+		    String versionText = "Beta v1.1.9";
 		    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 10F));
 		    g2.setColor(Color.white);
 		    int versionX = gp.screenWidth - g2.getFontMetrics().stringWidth(versionText) - 10;

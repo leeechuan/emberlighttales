@@ -3,9 +3,15 @@ package main.emberlight;
 import data.Progress;
 import entity.NPC_Husband;
 import entity.NPC_Bee;
+import entity.NPC_Camel;
 import entity.NPC_Chicken1;
 import entity.NPC_Chicken2;
 import entity.NPC_Chicken3;
+import entity.NPC_DesertBirdHandler;
+import entity.NPC_DesertBountyHunter;
+import entity.NPC_DesertHerbalist;
+import entity.NPC_DesertPharaoh;
+import entity.NPC_DesertTanner;
 import entity.NPC_Desert_Trader;
 import entity.NPC_Dungeon_Rock;
 import entity.NPC_Elder;
@@ -24,10 +30,14 @@ import entity.NPC_Scout;
 import entity.NPC_Shopkeeper;
 import entity.NPC_Son;
 import entity.NPC_Thief;
+import entity.NPC_Vulture;
 import entity.NPC_Witch;
 import entity.NPC_Woodcutter;
 import mob.MOB_Angel;
 import mob.MOB_Angel2;
+import mob.MOB_Desert_Archer;
+import mob.MOB_Desert_Mummy;
+import mob.MOB_Desert_Warrior;
 import mob.MOB_Orc_Archer;
 import mob.MOB_Orc_Chief;
 import mob.MOB_Orc_Grunt;
@@ -50,6 +60,7 @@ import object.OBJ_CampfirePot;
 import object.OBJ_Broom;
 import object.OBJ_Chest;
 import object.OBJ_Coin;
+
 import object.OBJ_Desert_Bones;
 import object.OBJ_DungeonDeco;
 import object.OBJ_DungeonDoor;
@@ -78,6 +89,7 @@ import object.OBJ_Scarecrow;
 import object.OBJ_Sewer;
 import object.OBJ_Sign;
 import object.OBJ_SmallTorch;
+import object.OBJ_Smoke;
 import object.OBJ_Spike_Gate;
 import object.OBJ_Stone_Axe;
 import object.OBJ_Stone_Sword;
@@ -94,6 +106,8 @@ import tile_interactive.IT_BossTent;
 import tile_interactive.IT_CaveEntrance;
 import tile_interactive.IT_ChickenCoop;
 import tile_interactive.IT_DesertHouse;
+import tile_interactive.IT_Desert_Obelisk;
+import tile_interactive.IT_Desert_Temple;
 import tile_interactive.IT_DungeonTintWindows;
 import tile_interactive.IT_Fountain;
 import tile_interactive.IT_Horse_Stable_1;
@@ -1055,6 +1069,26 @@ public class AssetSetter {
 		gp.obj[mapNum][i] = new OBJ_Flower(gp, 3, 4);
 		gp.obj[mapNum][i].worldX = 89 * gp.tileSize;
 		gp.obj[mapNum][i].worldY = 80 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Smoke(gp);
+		gp.obj[mapNum][i].worldX = 74 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 78 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Smoke(gp);
+		gp.obj[mapNum][i].worldX = 54 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 87 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Smoke(gp);
+		gp.obj[mapNum][i].worldX = 71 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 90 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Smoke(gp);
+		gp.obj[mapNum][i].worldX = 83 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 64 * gp.tileSize;
+		i++;
+		gp.obj[mapNum][i] = new OBJ_Smoke(gp);
+		gp.obj[mapNum][i].worldX = 74 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 56 * gp.tileSize;
 		i++;
 		
 		//Dungeon
@@ -2468,6 +2502,48 @@ public class AssetSetter {
 			gp.npc[mapNum][i].worldY = gp.tileSize*56;
 			i++;
 		}
+		if (!npcExists(NPC_DesertBountyHunter.npcName)) {
+			gp.npc[mapNum][i] = new NPC_DesertBountyHunter(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*43;
+			gp.npc[mapNum][i].worldY = gp.tileSize*44;
+			i++;
+		}
+		if (!npcExists(NPC_DesertHerbalist.npcName)) {
+			gp.npc[mapNum][i] = new NPC_DesertHerbalist(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*52;
+			gp.npc[mapNum][i].worldY = gp.tileSize*41;
+			i++;
+		}
+		if (!npcExists(NPC_DesertTanner.npcName)) {
+			gp.npc[mapNum][i] = new NPC_DesertTanner(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*57;
+			gp.npc[mapNum][i].worldY = gp.tileSize*45;
+			i++;
+		}
+		if (!npcExists(NPC_DesertBirdHandler.npcName)) {
+			gp.npc[mapNum][i] = new NPC_DesertBirdHandler(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*51;
+			gp.npc[mapNum][i].worldY = gp.tileSize*45;
+			i++;
+		}
+		if (!npcExists(NPC_DesertPharaoh.npcName)) {
+			gp.npc[mapNum][i] = new NPC_DesertPharaoh(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*52;
+			gp.npc[mapNum][i].worldY = gp.tileSize*49;
+			i++;
+		}
+		if (!npcExists(NPC_Camel.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Camel(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*31;
+			gp.npc[mapNum][i].worldY = gp.tileSize*58;
+			i++;
+		}
+		if (!npcExists(NPC_Vulture.npcName)) {
+			gp.npc[mapNum][i] = new NPC_Vulture(gp);
+			gp.npc[mapNum][i].worldX = gp.tileSize*58;
+			gp.npc[mapNum][i].worldY = gp.tileSize*60;
+			i++;
+		}
 				
 	}
 	
@@ -2486,10 +2562,10 @@ public class AssetSetter {
 		gp.mob[mapNum][i].worldY = gp.tileSize*56;
 		i++;
 		
-//		gp.mob[mapNum][i] = new MOB_PinkSlime(gp);
-//		gp.mob[mapNum][i].worldX = gp.tileSize*31;
-//		gp.mob[mapNum][i].worldY = gp.tileSize*21;
-//		i++;
+		gp.mob[mapNum][i] = new MOB_PinkSlime(gp);
+		gp.mob[mapNum][i].worldX = gp.tileSize*58;
+		gp.mob[mapNum][i].worldY = gp.tileSize*68;
+		i++;
 //		gp.mob[mapNum][i] = new MOB_PinkSlime(gp);
 //		gp.mob[mapNum][i].worldX = gp.tileSize*33;
 //		gp.mob[mapNum][i].worldY = gp.tileSize*23;
@@ -2592,6 +2668,25 @@ public class AssetSetter {
 			gp.mob[mapNum][i].worldY = gp.tileSize*46;
 			i++;
 		}
+		
+		//Solara Desert Temple
+		mapNum = 23;
+		i = 0;
+		
+		gp.mob[mapNum][i] = new MOB_Desert_Warrior(gp);
+		gp.mob[mapNum][i].worldX = gp.tileSize*45;
+		gp.mob[mapNum][i].worldY = gp.tileSize*47;
+		i++;
+		
+		gp.mob[mapNum][i] = new MOB_Desert_Mummy(gp);
+		gp.mob[mapNum][i].worldX = gp.tileSize*53;
+		gp.mob[mapNum][i].worldY = gp.tileSize*43;
+		i++;
+		
+		gp.mob[mapNum][i] = new MOB_Desert_Archer(gp);
+		gp.mob[mapNum][i].worldX = gp.tileSize*56;
+		gp.mob[mapNum][i].worldY = gp.tileSize*47;
+		i++;
 
 	}
 	public void setInteractiveTile() {
@@ -3026,7 +3121,7 @@ public class AssetSetter {
 		//Solara
 		mapNum = 19;
 		
-		gp.iTile[mapNum][i] = new IT_DesertHouse(gp, 27, 57, 2, 3);
+		gp.iTile[mapNum][i] = new IT_DesertHouse(gp, 40, 50, 2, 3);
 		i++;
 		
 		gp.iTile[mapNum][i] = new IT_DesertHouse(gp, 59, 48, 1, 2);
@@ -3036,6 +3131,15 @@ public class AssetSetter {
 		i++;
 		
 		gp.iTile[mapNum][i] = new IT_DesertHouse(gp, 36, 42, 0, 2);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Desert_Obelisk(gp, 73, 51);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Desert_Obelisk(gp, 81, 51);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_Desert_Temple(gp, 74, 49);
 		i++;
 		
 		

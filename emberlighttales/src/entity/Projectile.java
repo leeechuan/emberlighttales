@@ -24,7 +24,8 @@ public class Projectile extends Entity{
 			
 			int mobIndex = gp.cChecker.checkEntity(this, gp.mob);
 			if(mobIndex != 999) {
-				gp.player.damageMob(mobIndex, this, attack*(gp.player.level/2), knockBackPower);
+				int arrowDamage = (int)Math.round(gp.player.dexterity * attack);
+				gp.player.damageMob(mobIndex, this, arrowDamage, knockBackPower);
 				generateParticle(gp.mob[gp.currentMap][mobIndex], gp.mob[gp.currentMap][mobIndex]);
 				alive = false;
 			}

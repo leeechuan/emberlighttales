@@ -19,7 +19,7 @@ public class OBJ_Bench extends Entity{
 		super(gp);
 		this.gp = gp;
 		
-		type = type_obstacle;
+		type = type_backdrop;
 		name = objName;
 
 			image1 = setup("/decoration/bench_" + bench_type, 2 , 2);

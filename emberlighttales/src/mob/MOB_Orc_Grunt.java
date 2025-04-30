@@ -24,11 +24,11 @@ public class MOB_Orc_Grunt extends Entity {
 		boss = false;
 		defaultSpeed = 1;
 		speed = defaultSpeed;
-		maxLife = 6;
+		maxLife = 50;
 		life = maxLife;
-		attack = 1;
-		defense = 1;
-		exp = 10;
+		attack = 8;
+		defense = 3;
+		exp = 6;
 		knockBackPower = 3;
 		name = mobName;
 //		sleep = true;

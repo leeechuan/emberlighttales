@@ -22,11 +22,11 @@ public class MOB_PinkSlime extends Entity {
 		name = "Pink Slime";
 		defaultSpeed = 1;
 		speed = defaultSpeed;
-		maxLife = 4;
+		maxLife = 30;
 		life = maxLife;
 		attack = 5;
-		defense = 0;
-		exp = 2;
+		defense = 1;
+		exp = 4;
 		knockBackPower = 2;
 		
 		solidArea.x = gp.tileSize*3/8;

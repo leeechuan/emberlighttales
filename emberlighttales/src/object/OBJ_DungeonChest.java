@@ -6,7 +6,7 @@ import main.emberlight.GamePanel;
 public class OBJ_DungeonChest extends Entity{
 	
 	GamePanel gp;
-	public static final String objName = "Chest";
+	public static final String objName = "Dungeon Chest";
 	
 	public OBJ_DungeonChest(GamePanel gp) {
 		super(gp);

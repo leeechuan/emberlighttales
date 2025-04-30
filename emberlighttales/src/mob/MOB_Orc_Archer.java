@@ -21,11 +21,11 @@ public class MOB_Orc_Archer extends Entity {
 		name = "Orc Archer";
 		defaultSpeed = 1;
 		speed = defaultSpeed;
-		maxLife = 4;
+		maxLife = 40;
 		life = maxLife;
-		attack = 5;
-		defense = 0;
-		exp = 2;
+		attack = 6;
+		defense = 2;
+		exp = 7;
 		projectile = new OBJ_Arrow(gp);
 		
 		solidArea.x = gp.tileSize*3/8;

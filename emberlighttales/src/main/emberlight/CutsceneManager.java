@@ -108,7 +108,7 @@ public class CutsceneManager {
 			cutsceneMaster.dialogues[2][1] = "(Press E to shoot an arrow.)";
 			
 			cutsceneMaster.dialogues[3][0] = "With the power of your plush toy\nPablo the rabbit...";
-			cutsceneMaster.dialogues[3][1] = "...hold spacebar to block incoming attacks!";
+			cutsceneMaster.dialogues[3][1] = "...hold F to block incoming attacks!";
 			
 			cutsceneMaster.dialogues[4][0] = "Nice!";
 			cutsceneMaster.dialogues[4][1] = "(Press C to open your inventory)";
@@ -199,7 +199,7 @@ public class CutsceneManager {
 	        case 8: // Wait for a key press to continue (or add a short delay)
 	            if (counter == 0) { 
 	            	// Wait 1 second after block
-	                if (gp.keyH.spacePressed) {
+	                if (gp.keyH.blockPressed) {
 	                    counter = 1;  // Start counting frames
 	                }
 	            } else if (counterReached(60)) { 
