@@ -42,4 +42,13 @@ public class DataStorage implements Serializable{
     public ArrayList<String> activeQuestNames = new ArrayList<>();
     public ArrayList<Integer> activeQuestProgress = new ArrayList<>();
     public ArrayList<String> completedQuestNames = new ArrayList<>();
+    
+    //CROPS
+    public ArrayList<Integer> itemCropIds = new ArrayList<>();
+    
+    public ArrayList<Integer> plantedCropIds = new ArrayList<>();
+    public ArrayList<Integer> plantedCropWorldX = new ArrayList<>();
+    public ArrayList<Integer> plantedCropWorldY = new ArrayList<>();
+    public ArrayList<Integer> plantedCropGrowthStages = new ArrayList<>();
+    public ArrayList<Integer> plantedCropGrowthTicks = new ArrayList<>();
 }

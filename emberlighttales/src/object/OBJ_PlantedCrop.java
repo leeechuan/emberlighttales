@@ -22,6 +22,9 @@ public class OBJ_PlantedCrop extends Entity {
     private int growthStage = STAGE_GROWTH_1;
     private int growthTicks = 0; // Ticks to wait before growing
     private int maxGrowthTicks = 100; // The number of ticks before the crop grows (can be randomized)
+    
+    private static final int BASE_GROWTH_TIME = 3000;
+    private static final int RANDOM_GROWTH_VARIATION = 500;
 
     private int cropId; // The ID to define which crop this is (e.g., 0 for wheat, 1 for tomato, etc.)
     
@@ -33,7 +36,7 @@ public class OBJ_PlantedCrop extends Entity {
         this.type = type_crop;
         this.worldX = tileX * gp.tileSize;
         this.worldY = tileY * gp.tileSize;
-        this.maxGrowthTicks = 100 + (int) (Math.random() * 50); // Randomize growth time between 100 to 150 ticks
+        this.maxGrowthTicks = BASE_GROWTH_TIME + (int)(Math.random() * RANDOM_GROWTH_VARIATION);
         
         name = objName;
         
@@ -73,6 +76,8 @@ public class OBJ_PlantedCrop extends Entity {
                 // Move to the next stage
                 if (growthStage < STAGE_GROWTH_4) {
                     growthStage++;
+                    // Re-randomize growth time for the next stage
+                    maxGrowthTicks = BASE_GROWTH_TIME + (int) (Math.random() * RANDOM_GROWTH_VARIATION);
                 }
             }
         }
@@ -116,4 +121,19 @@ public class OBJ_PlantedCrop extends Entity {
     public boolean isReadyToHarvest() {
         return growthStage == STAGE_GROWTH_4;
     }
+	public int getCropId() {
+		return cropId;
+	}
+	public int getGrowthStage() {
+		return growthStage;
+	}
+	public int getGrowthTicks() {
+		return growthTicks;
+	}
+	public void setGrowthStage(int growthStage) {
+		this.growthStage = growthStage;
+	}
+	public void setGrowthTicks(int growthTicks) {
+		this.growthTicks = growthTicks;
+	}
 }

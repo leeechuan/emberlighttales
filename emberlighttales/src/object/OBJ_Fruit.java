@@ -35,4 +35,10 @@ public class OBJ_Fruit extends Entity{
 //		gp.playSE(1);
 		return true;
 	}
+	public int getCropId() {
+		return cropId;
+	}
+    public void setCropId(int cropId) {
+        this.cropId = cropId;
+    }
 }

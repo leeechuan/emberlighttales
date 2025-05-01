@@ -54,9 +54,7 @@ public class OBJ_Seed extends Entity{
             return false;
         }
     }
-	public int getCropId() {
-		return cropId;
-	}
+
 	// Method to check if the tile is occupied
 	public boolean isTileOccupied(int tileX, int tileY) {
 	    for (Entity entity : gp.plantedCrops) {
@@ -82,4 +80,11 @@ public class OBJ_Seed extends Entity{
 	        System.out.println("Planted crop ID " + cropId + " at tile (" + tileX + ", " + tileY + ")");
 	    }
 	}
+	
+	public int getCropId() {
+		return cropId;
+	}
+    public void setCropId(int cropId) {
+        this.cropId = cropId;
+    }
 }
