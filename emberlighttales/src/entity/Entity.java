@@ -3,6 +3,7 @@ package entity;
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -182,6 +183,19 @@ public class Entity {
 	public final int type_obstacle = 8;
 	public final int type_light = 9;
 	public final int type_backdrop = 10;
+	public final int type_seed = 11;
+	public final int type_crop = 12;
+	
+	//QUEST MARKER
+	public int questMarker;
+	public final int questMarker_none = 0;
+	public final int questMarker_activeQuest = 1;
+	public final int questMarker_newQuest = 2;
+	
+	//QUEST MARKER BOUNCE
+	private long bounceStartTime = System.currentTimeMillis(); // Track the start time for bouncing
+	private static final int BOUNCE_HEIGHT = 10; // Max height of the bounce
+	private static final int BOUNCE_SPEED = 800; // Speed of the bounce (higher means slower)
 	
 	public Entity(GamePanel gp) {
 		this.gp = gp;
@@ -919,11 +933,52 @@ public class Entity {
                 }
             }
             
-            //Shadow for NPC
+            //NPC only draw
             if((type == type_npc && name != "Dungeon Rock") || name == "Dummy") {
+            	
+            	//Shadow
                 g2.setColor(new Color(0, 0, 0, 100));
                 g2.fillOval(screenX + 20, screenY + 47, 30, 10);
+                
+                if (questMarker != questMarker_none) {
+                    String markerText = "!";
+                    Color markerColor;
+                    
+                    switch (questMarker) {
+                        case questMarker_newQuest:
+                            markerColor = Color.RED;
+                            break;
+                        case questMarker_activeQuest:
+                            markerColor = Color.YELLOW;
+                            break;
+                        default:
+                            markerColor = Color.WHITE;
+                            break;
+                    }
+
+                    // Set font and color
+                    g2.setFont(g2.getFont().deriveFont(Font.BOLD, 18F)); // Adjust size as needed
+                    g2.setColor(Color.BLACK);
+
+                    // Calculate position for the "!" above the NPC
+                    int markerX = screenX + gp.tileSize * 4/5 - g2.getFontMetrics().stringWidth(markerText) / 2;
+                    int markerY = screenY - 8 + (int)(Math.sin((System.currentTimeMillis() - bounceStartTime) / (double)BOUNCE_SPEED * Math.PI * 2) * BOUNCE_HEIGHT);
+                    
+                    // Draw the marker
+                    g2.drawString(markerText, markerX, markerY);
+                    
+                    // Set font and color
+                    g2.setFont(g2.getFont().deriveFont(Font.BOLD, 18F)); // Adjust size as needed
+                    g2.setColor(markerColor);
+                    
+                    // Draw the marker
+                    g2.drawString(markerText, markerX - 2, markerY - 2);
+
+                }
+                
             }
+            
+            
 
         	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         	

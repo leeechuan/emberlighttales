@@ -26,7 +26,7 @@ public class OBJ_Smoke extends Entity{
 		for (int i = 0; i < animatedFrames.length; i++) {
 	        animatedFrames[i] = setup("/animated_object/smoke_0_" + i, 4, 3);
 	    }
-		collision = true;
+		collision = false;
 		
 		
 	}

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import data.Progress;
+import entity.Entity;
 import main.emberlight.GamePanel;
 
 public class QuestManager {
@@ -171,5 +173,94 @@ public class QuestManager {
 
     public QuestJournal getQuestJournal() {
         return questJournal;
+    }
+    
+    public void refreshQuestMarkers() {
+    	
+    	Entity farmer = gp.findNPCByName("Bram Tiller");
+    	if (farmer != null) {
+
+    	    if (!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger")) &&
+    	        !gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger"))) {
+    	    	farmer.questMarker = farmer.questMarker_newQuest;
+    	    }
+    	    else if (!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger"))&&
+    				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger"))&&
+    				gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger").getCurrentStageIndex() == 3) {
+    	    	farmer.questMarker = farmer.questMarker_activeQuest;
+    	    }
+    	    else {
+    	    	farmer.questMarker = farmer.questMarker_none;
+    	    }
+    	}
+    	
+    	Entity witch = gp.findNPCByName("Witch Morga");
+    	if (witch != null) {
+
+    	    if ((gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield"))&&
+    				gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield").getCurrentStageIndex() == 0) ||
+    	    		
+    	    		gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield"))&&
+    				gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield").getCurrentStageIndex() == 2 ||
+    				
+    				Progress.gameStage == Progress.STAGE_MEET_WITCH) {
+    	    	witch.questMarker = witch.questMarker_activeQuest;
+    	    }
+    	    else {
+    	    	witch.questMarker = witch.questMarker_none;
+    	    }
+    	}
+    	
+    	Entity mayor = gp.findNPCByName("Mayor Oren");
+    	if (mayor != null) {
+
+    	    if (gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril"))&&
+    				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 2) {
+    	    	mayor.questMarker = mayor.questMarker_activeQuest;
+    	    }
+    	    else {
+    	    	mayor.questMarker = mayor.questMarker_none;
+    	    }
+    	}
+    	
+    	Entity scout = gp.findNPCByName("Rowan Swiftfoot");
+    	if (scout != null) {
+
+    	    if (gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril"))&&
+    				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 4) {
+    	    	scout.questMarker = scout.questMarker_activeQuest;
+    	    }
+    	    else {
+    	    	scout.questMarker = scout.questMarker_none;
+    	    }
+    	}
+    	
+    	Entity president = gp.findNPCByName("Alaric Calloway");
+    	if (president != null) {
+
+    	    if (gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril")) &&
+    				(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 1  || 
+    				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 3)) {
+    	    	president.questMarker = president.questMarker_activeQuest;
+    	    }
+    	    else {
+    	    	president.questMarker = president.questMarker_none;
+    	    }
+    	}
+    	
+    	Entity desert_trader = gp.findNPCByName("Zayid Marruk");
+    	if (desert_trader != null) {
+
+    	    if (gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield")) &&
+    				(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield").getCurrentStageIndex() == 1)) {
+    	    	desert_trader.questMarker = desert_trader.questMarker_activeQuest;
+    	    }
+    	    else {
+    	    	desert_trader.questMarker = desert_trader.questMarker_none;
+    	    }
+    	}
+    	
+    	
+    	
     }
 }

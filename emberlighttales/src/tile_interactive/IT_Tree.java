@@ -75,7 +75,7 @@ public class IT_Tree extends InteractiveTile{
 			solidArea.x = (int) (gp.tileSize * 1.75);
 			solidArea.y = (int) (gp.tileSize * 0);
 			solidArea.width = (int) (gp.tileSize * 0.5);
-			solidArea.height = (int) (gp.tileSize * 0.5);
+			solidArea.height = (int) (gp.tileSize * 0.7);
 			solidAreaDefaultX = solidArea.x;
 			solidAreaDefaultY = solidArea.y;
 			tileHeight = 3;

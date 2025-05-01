@@ -6,6 +6,8 @@ import java.util.Random;
 import main.emberlight.GamePanel;
 import object.OBJ_Fruit_Juice;
 import object.OBJ_Rabbit_Shield_1;
+import object.OBJ_Seed;
+import object.OBJ_Stone_Axe;
 
 public class NPC_Merchant extends Entity{
 	
@@ -63,6 +65,8 @@ public class NPC_Merchant extends Entity{
 		
 		inventory.add(new OBJ_Rabbit_Shield_1(gp));
 		inventory.add(new OBJ_Fruit_Juice(gp));
+    	inventory.add(new OBJ_Seed(gp, 0));
+    	inventory.add(new OBJ_Seed(gp, 1));
 	}
 	public void setAction() {
 		

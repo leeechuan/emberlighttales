@@ -27,6 +27,7 @@ public class PopupManager {
     
     public void addNotification(String message) {
         notifications.add(new Notification(message, gp));
+        gp.qManager.refreshQuestMarkers();
         gp.playSE(29);
     }
 

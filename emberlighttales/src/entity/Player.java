@@ -17,8 +17,11 @@ import main.emberlight.GamePanel;
 import main.emberlight.KeyHandler;
 import main.emberlight.UtilityTool;
 import object.OBJ_Arrow;
+import object.OBJ_Fruit;
 import object.OBJ_Lantern;
+import object.OBJ_PlantedCrop;
 import object.OBJ_Rabbit_Shield_1;
+import object.OBJ_Seed;
 import object.OBJ_Stone_Axe;
 import object.OBJ_Stone_Sword;
 
@@ -146,6 +149,18 @@ public class Player extends Entity {
     	inventory.add(currentShield);
     	inventory.add(new OBJ_Lantern(gp));
     	inventory.add(new OBJ_Stone_Axe(gp));
+    	inventory.add(new OBJ_Seed(gp,0));
+    	inventory.add(new OBJ_Seed(gp,12));
+    	inventory.add(new OBJ_Seed(gp,0));
+    	inventory.add(new OBJ_Seed(gp,12));
+    	inventory.add(new OBJ_Seed(gp,0));
+    	inventory.add(new OBJ_Seed(gp,12));
+    	inventory.add(new OBJ_Seed(gp,0));
+    	inventory.add(new OBJ_Seed(gp,12));
+    	inventory.add(new OBJ_Seed(gp,0));
+    	inventory.add(new OBJ_Seed(gp,12));
+    	inventory.add(new OBJ_Seed(gp,0));
+    	inventory.add(new OBJ_Seed(gp,12));
     }
     public int getAttack() {
     	attackArea = currentWeapon.attackArea;
@@ -541,6 +556,10 @@ public class Player extends Entity {
            //Check Interactive Tile Collision
            int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
            
+           //Check crop
+           int cropIndex = gp.cChecker.checkCrop(this, gp.plantedCrops);
+           harvestCrops(cropIndex);
+           
            //Check Event
            gp.eHandler.checkEvent();
             
@@ -686,7 +705,6 @@ public class Player extends Entity {
     	
     	 if (isRolling) {
     	        invincible = true;
-    	        System.out.println(rollCounter);
     	        collisionOn = false;
     	        gp.cChecker.checkTile(this);
     	        gp.cChecker.checkObject(this, true);
@@ -785,6 +803,7 @@ public class Player extends Entity {
     		}
     		//INVENTORY ITEMS
     		else {
+    		    
         		String text;
         		
         		if(canObtainItem(gp.obj[gp.currentMap][i]) == true) {
@@ -799,6 +818,15 @@ public class Player extends Entity {
     		}
     	}
     } 
+    public void harvestCrops(int i) {
+    	
+    	if (i != 999 && keyH.enterPressed) {
+    	    // If the player is touching a crop and presses enter
+    	    attackCancelled = true;
+    	    Entity crop = gp.plantedCrops.get(i);  // Get the specific crop by index
+    	    crop.interact();  // Interact with the crop
+    	}
+    }
     public void interactNPC(int i) {
     	
     	if(i != 999) {
@@ -975,7 +1003,20 @@ public class Player extends Entity {
     			lightUpdated = true;
     		}
     		if(selectedItem.type == type_consumable) {
+    			if(selectedItem.use(this) == true){
+    				if(selectedItem.amount > 1) {
+    					selectedItem.amount--;
+    				}
+    				else {
+    					inventory.remove(itemIndex);
+    				}
+
+    			}
     			
+    		}
+    		
+    		if(selectedItem.type == type_seed) {
+    			System.out.println(selectedItem);
     			if(selectedItem.use(this) == true){
     				if(selectedItem.amount > 1) {
     					selectedItem.amount--;
@@ -1018,16 +1059,63 @@ public class Player extends Entity {
 		}
 		return itemIndex;
 	}
+	public int searchCropInInventory(String itemName, int cropId) {
+	    for (int i = 0; i < inventory.size(); i++) {
+	        Entity item = inventory.get(i);
+	        if (item.name.equals(itemName)) {
+	            if (item instanceof OBJ_Seed && cropId != -1) {
+	                if (((OBJ_Seed) item).getCropId() == cropId) {
+	                    return i;
+	                }
+	            } else if (!(item instanceof OBJ_Seed)) {
+	                return i;
+	            }
+	        }
+	    }
+	    return 999;
+	}
+	public int searchFruitInInventory(String name, int cropId) {
+	    for (int i = 0; i < inventory.size(); i++) {
+	        Entity item = inventory.get(i);
+	        if (item instanceof OBJ_Fruit) {
+	            OBJ_Fruit fruit = (OBJ_Fruit) item;
+	            if (fruit.name.equals(name) && fruit.cropId == cropId) {
+	                return i;
+	            }
+	        }
+	    }
+	    return 999; // Not found
+	}
 	public boolean canObtainItem(Entity item) {
 		
 		boolean canObtain = false;
 		
-		Entity newItem = gp.eGenerator.getObject(item.name);
+		Entity newItem;
+
+	    if (item instanceof OBJ_Seed) {
+	        OBJ_Seed seed = (OBJ_Seed) item;
+	        newItem = new OBJ_Seed(gp, seed.getCropId());
+	        newItem.amount = seed.amount;
+	    } else if (item instanceof OBJ_Fruit) {
+	        OBJ_Fruit fruit = (OBJ_Fruit) item;
+	        newItem = new OBJ_Fruit(gp, fruit.cropId);
+	        newItem.amount = fruit.amount;
+	    } else {
+	        newItem = gp.eGenerator.getObject(item.name);
+	        newItem.amount = item.amount;
+	    }
 		
 		//CHECK IF STACKABLE
 		if(newItem.stackable == true) {
 			
-			int index = searchItemInInventory(newItem.name);
+			int index;
+	        if (newItem instanceof OBJ_Seed) {
+	            index = searchCropInInventory(newItem.name, ((OBJ_Seed) newItem).getCropId());
+	        } else if (newItem instanceof OBJ_Fruit) {
+	            index = searchFruitInInventory(newItem.name, ((OBJ_Fruit) newItem).cropId);
+	        } else {
+	            index = searchItemInInventory(newItem.name);
+	        }
 			
 			if(index != 999) { //Can stack, so add to amount
 				inventory.get(index).amount++;

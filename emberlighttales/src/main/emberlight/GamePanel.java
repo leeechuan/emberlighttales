@@ -31,6 +31,7 @@ import environment.LightSource;
 import environment.Lighting;
 import object.OBJ_Flower;
 import object.OBJ_Grass;
+import object.OBJ_PlantedCrop;
 import popup.PopupManager;
 import tile.Map;
 import tile.TileManager;
@@ -96,6 +97,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public Entity mob[][] = new Entity[maxMap][30];
 	public InteractiveTile iTile[][] = new InteractiveTile[maxMap][300];
 	public Entity projectile[][] = new Entity[maxMap][20];
+	public ArrayList<OBJ_PlantedCrop> plantedCrops = new ArrayList<>();
 //	public ArrayList<Entity> projectileList = new ArrayList<>();
 	public ArrayList<Entity> particleList = new ArrayList<>();
 	public ArrayList<Entity> entityList = new ArrayList<>();
@@ -152,6 +154,7 @@ public class GamePanel extends JPanel implements Runnable{
 		aSetter.setInteractiveTile();
 		eManager.setup();
 		qManager.initializeQuests();
+		qManager.refreshQuestMarkers();
 //		playMusic(0);
 //		stopMusic();
 		gameState = titleState;
@@ -320,6 +323,12 @@ public class GamePanel extends JPanel implements Runnable{
 		            obj[currentMap][i].update();
 		        }
 		    }
+			// PLANTED CROPS
+			for (int i = 0; i < plantedCrops.size(); i++) {
+			    if (plantedCrops.get(i) != null) {
+			    	plantedCrops.get(i).update();
+			    }
+			}
 		    eManager.update();
 		    
 		}
@@ -409,6 +418,12 @@ public class GamePanel extends JPanel implements Runnable{
 			        particle.draw(g2);
 			    }
 			}
+			// PLANTED CROPS
+			for (int i = 0; i < plantedCrops.size(); i++) {
+			    if (plantedCrops.get(i) != null) {
+			        entityList.add(plantedCrops.get(i));
+			    }
+			}
 			// Remove finished particles (that are no longer alive)
 			player.smokeParticles.removeIf(particle -> !particle.alive);
 			
@@ -464,7 +479,7 @@ public class GamePanel extends JPanel implements Runnable{
 			g2.drawString("Game Stage         : " + Progress.gameStage, 10, 480);
 			g2.drawString("Time Speed         : " + eManager.lighting.timeSpeed, 10, 500);
 			
-			System.out.println("Draw Time: " + passed);
+//			System.out.println("Draw Time: " + passed);
 		}
 	}
 	public void drawToScreen() {
@@ -501,6 +516,16 @@ public class GamePanel extends JPanel implements Runnable{
 			}
 			if(nextArea == dungeon) {
 				aSetter.setNPC();
+				
+				//Pressure plate reset
+	            for (int i = 0; i < iTile[1].length; i++) {
+	                InteractiveTile tile = iTile[currentMap][i] ;
+	                if (tile != null && tile instanceof IT_PressurePlate) {
+	                    ((IT_PressurePlate) tile).activated = false;  // Assuming `reset()` exists
+	                    ((IT_PressurePlate) tile).spriteNum = 0;
+	                }
+	            }
+	            
 				playMusic(21);
 			}
 			
@@ -596,5 +621,16 @@ public class GamePanel extends JPanel implements Runnable{
 	            }
 	        }
 	    }
+	}
+	public Entity findNPCByName(String npcName) {
+	    // Loop through all NPCs to find the one with the matching name
+	    for (int i = 0; i < npc.length; i++) {
+	        for (Entity npc : npc[i]) {
+	            if (npc != null && npc.name.equals(npcName)) {
+	                return npc; // Return the matching NPC
+	            }
+	        }
+	    }
+	    return null; // Return null if no matching NPC is found
 	}
 }

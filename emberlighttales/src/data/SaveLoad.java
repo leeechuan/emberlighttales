@@ -167,6 +167,9 @@ public class SaveLoad {
 	        System.out.println("Final Active Quests: " + gp.qManager.getQuestJournal().getActiveQuests());
 	        System.out.println("Final Completed Quests: " + gp.qManager.getQuestJournal().getCompletedQuests());
 	        
+	        //Refresh Quest Markers
+	        gp.qManager.refreshQuestMarkers();
+	        
 			//PLAYER INVENTORY
 			gp.player.inventory.clear();
 			for(int i = 0; i < ds.itemNames.size(); i++) {

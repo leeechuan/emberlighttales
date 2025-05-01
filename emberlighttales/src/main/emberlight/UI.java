@@ -448,7 +448,7 @@ public class UI {
 		    }
 		    
 		    // Draw version number on the bottom right
-		    String versionText = "Beta v1.1.9";
+		    String versionText = "Beta v1.1.10";
 		    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 10F));
 		    g2.setColor(Color.white);
 		    int versionX = gp.screenWidth - g2.getFontMetrics().stringWidth(versionText) - 10;
@@ -857,14 +857,12 @@ public class UI {
 			
 			int itemIndex = getItemIndexOnSlot(slotCol, slotRow);
 			
-			if(itemIndex < entity.inventory.size()) {
-				
-				drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
-				for(String line: entity.inventory.get(itemIndex).description.split("\n")) {
-					
-					g2.drawString(line, textX, textY);
-					textY += 32;
-				}
+			if(itemIndex >= 0 && itemIndex < entity.inventory.size()) {
+			    drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
+			    for(String line: entity.inventory.get(itemIndex).description.split("\n")) {
+			        g2.drawString(line, textX, textY);
+			        textY += 32;
+			    }
 			}
 		}
 

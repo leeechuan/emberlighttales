@@ -1,5 +1,7 @@
 package main.emberlight;
 
+import java.util.Arrays;
+
 import data.Progress;
 import entity.NPC_Husband;
 import entity.NPC_Bee;
@@ -291,7 +293,7 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldY = 87 * gp.tileSize;
 		i++;
 		gp.obj[mapNum][i] = new OBJ_Grass(gp, 1);
-		gp.obj[mapNum][i].worldX = 72 * gp.tileSize;
+		gp.obj[mapNum][i].worldX = 68 * gp.tileSize;
 		gp.obj[mapNum][i].worldY = 79 * gp.tileSize;
 		i++;
 		gp.obj[mapNum][i] = new OBJ_Grass(gp, 0);
@@ -327,17 +329,17 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldY = 66 * gp.tileSize;
 		i++;
 		gp.obj[mapNum][i] = new OBJ_Haybale(gp, 0);
-		gp.obj[mapNum][i].worldX = 77 * gp.tileSize;
-		gp.obj[mapNum][i].worldY = 78 * gp.tileSize;
+		gp.obj[mapNum][i].worldX = 81 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 51 * gp.tileSize;
 		i++;
 		gp.obj[mapNum][i] = new OBJ_Haybale(gp, 1);
-		gp.obj[mapNum][i].worldX = 72 * gp.tileSize;
-		gp.obj[mapNum][i].worldY = 77 * gp.tileSize;
+		gp.obj[mapNum][i].worldX = 88 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 45 * gp.tileSize;
 		i++;
-		gp.obj[mapNum][i] = new OBJ_FenceGate(gp, false);
-		gp.obj[mapNum][i].worldX = 74 * gp.tileSize;
-		gp.obj[mapNum][i].worldY = 79 * gp.tileSize;
-		i++;
+//		gp.obj[mapNum][i] = new OBJ_FenceGate(gp, false);
+//		gp.obj[mapNum][i].worldX = 74 * gp.tileSize;
+//		gp.obj[mapNum][i].worldY = 79 * gp.tileSize;
+//		i++;
 		gp.obj[mapNum][i] = new OBJ_Grass(gp, 2);
 		gp.obj[mapNum][i].worldX = 70 * gp.tileSize;
 		gp.obj[mapNum][i].worldY = 55 * gp.tileSize;
@@ -2566,32 +2568,10 @@ public class AssetSetter {
 		gp.mob[mapNum][i].worldX = gp.tileSize*58;
 		gp.mob[mapNum][i].worldY = gp.tileSize*68;
 		i++;
-//		gp.mob[mapNum][i] = new MOB_PinkSlime(gp);
-//		gp.mob[mapNum][i].worldX = gp.tileSize*33;
-//		gp.mob[mapNum][i].worldY = gp.tileSize*23;
-//		i++;
-//		gp.mob[mapNum][i] = new MOB_PinkSlime(gp);
-//		gp.mob[mapNum][i].worldX = gp.tileSize*33;
-//		gp.mob[mapNum][i].worldY = gp.tileSize*24;
-//		i++;
-//		gp.mob[mapNum][i] = new MOB_PinkSlime(gp);
-//		gp.mob[mapNum][i].worldX = gp.tileSize*33;
-//		gp.mob[mapNum][i].worldY = gp.tileSize*25;
-//		i++;
-//		gp.mob[mapNum][i] = new MOB_Skeleton_Mage(gp);
-//		gp.mob[mapNum][i].worldX = gp.tileSize*16;
-//		gp.mob[mapNum][i].worldY = gp.tileSize*28;
-//		i++;
-//		
-//		gp.mob[mapNum][i] = new MOB_Angel(gp);
-//		gp.mob[mapNum][i].worldX = gp.tileSize*28;
-//		gp.mob[mapNum][i].worldY = gp.tileSize*81;
-//		i++;
-//
-//		gp.mob[mapNum][i] = new MOB_Angel2(gp);
-//		gp.mob[mapNum][i].worldX = gp.tileSize*20;
-//		gp.mob[mapNum][i].worldY = gp.tileSize*80;
-//		i++;
+		gp.mob[mapNum][i] = new MOB_PinkSlime(gp);
+		gp.mob[mapNum][i].worldX = gp.tileSize*45;
+		gp.mob[mapNum][i].worldY = gp.tileSize*76;
+		i++;
 		
 		if(Progress.gameStage < Progress.STAGE_ORC_SECONDINCOMMAND_DEFEATED) {
 			gp.mob[mapNum][i] = new MOB_Orc_Second(gp);
@@ -2646,6 +2626,7 @@ public class AssetSetter {
 		
 		//Dungeon
 		mapNum = 2;
+	    Arrays.fill(gp.mob[mapNum], null);  // Clear previous dungeon mobs
 		i = 0;
 		
 		if(Progress.gameStage < Progress.STAGE_ORC_LIEUTENANT_DEFEATED) {
@@ -2654,6 +2635,21 @@ public class AssetSetter {
 			gp.mob[mapNum][i].worldY = gp.tileSize*87;
 			i++;
 		}
+		
+		gp.mob[mapNum][i] = new MOB_Skeleton_Mage(gp);
+		gp.mob[mapNum][i].worldX = gp.tileSize*20;
+		gp.mob[mapNum][i].worldY = gp.tileSize*52;
+		i++;
+		
+		gp.mob[mapNum][i] = new MOB_Angel(gp);
+		gp.mob[mapNum][i].worldX = gp.tileSize*45;
+		gp.mob[mapNum][i].worldY = gp.tileSize*58;
+		i++;
+
+		gp.mob[mapNum][i] = new MOB_Angel2(gp);
+		gp.mob[mapNum][i].worldX = gp.tileSize*74;
+		gp.mob[mapNum][i].worldY = gp.tileSize*30;
+		i++;
 
 		
 		
@@ -2671,6 +2667,7 @@ public class AssetSetter {
 		
 		//Solara Desert Temple
 		mapNum = 23;
+		Arrays.fill(gp.mob[mapNum], null);  // Clear previous dungeon mobs
 		i = 0;
 		
 		gp.mob[mapNum][i] = new MOB_Desert_Warrior(gp);

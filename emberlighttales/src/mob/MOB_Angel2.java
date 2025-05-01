@@ -70,15 +70,15 @@ public class MOB_Angel2 extends Entity {
 		int multiplier = 1;
 		
 	     for (int i = 0; i < 6; i++) {
-             frontStanding[i] = setup("/enemy_angel/angel2_down_" + i, 2f*multiplier, 2f*multiplier);
-             rightStanding[i] = setup("/enemy_angel/angel2_right_" +i, 2f*multiplier, 2f*multiplier);
-             backStanding[i] = setup("/enemy_angel/angel2_up_" + i, 2f*multiplier, 2f*multiplier);
-             frontWalking[i] = setup("/enemy_angel/angel2_movedown_" + i, 2f*multiplier, 2f*multiplier);
-             rightWalking[i] = setup("/enemy_angel/angel2_moveright_" + i, 1.5f*multiplier, 2f*multiplier);
-             backWalking[i] = setup("/enemy_angel/angel2_moveup_" + i, 2f*multiplier, 2f*multiplier);
-             frontAttacking[i] = setup("/enemy_angel/angel2_attackdown_" + i, 2f*multiplier, 2f*multiplier);
-             rightAttacking[i] = setup("/enemy_angel/angel2_attackright_" +i, 2f*multiplier, 2f*multiplier);
-             backAttacking[i] = setup("/enemy_angel/angel2_attackup_" + i, 2f*multiplier, 2f*multiplier);
+             frontStanding[i] = setup("/enemy_angel/angel2_down_" + i, 3f*multiplier, 3f*multiplier);
+             rightStanding[i] = setup("/enemy_angel/angel2_right_" +i, 3f*multiplier, 3f*multiplier);
+             backStanding[i] = setup("/enemy_angel/angel2_up_" + i, 3f*multiplier, 3f*multiplier);
+             frontWalking[i] = setup("/enemy_angel/angel2_movedown_" + i, 3f*multiplier, 3f*multiplier);
+             rightWalking[i] = setup("/enemy_angel/angel2_moveright_" + i, 3f*multiplier, 3f*multiplier);
+             backWalking[i] = setup("/enemy_angel/angel2_moveup_" + i, 3f*multiplier, 3f*multiplier);
+             frontAttacking[i] = setup("/enemy_angel/angel2_attackdown_" + i, 3f*multiplier, 3f*multiplier);
+             rightAttacking[i] = setup("/enemy_angel/angel2_attackright_" +i, 3f*multiplier, 3f*multiplier);
+             backAttacking[i] = setup("/enemy_angel/angel2_attackup_" + i, 3f*multiplier, 3f*multiplier);
          	}
 	     for (int i = 0; i < 6; i++) {
              leftStanding[i] = invertImage(rightStanding[i]);
@@ -90,7 +90,7 @@ public class MOB_Angel2 extends Entity {
     	int multiplier = 1;
     	
 	     for (int i = 0; i < 6; i++) {
-            frontDeath[i] = setup("/enemy_angel/angel2_death_" + i, 2f*multiplier, 2f*multiplier);
+            frontDeath[i] = setup("/enemy_angel/angel2_death_" + i, 3f*multiplier, 3f*multiplier);
 	     }
    }
 	public void setAction() {

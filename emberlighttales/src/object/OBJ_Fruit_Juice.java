@@ -15,7 +15,7 @@ public class OBJ_Fruit_Juice extends Entity{
 		
 		type = type_consumable;
 		name = objName;
-		value = 2;
+		value = 10;
 		image1 = setup("/objects/fruit_juice", 1, 1);
 		attackValue = 1;
 		description = "[" + name + "]" + "\nYum yum\nHeals by " + value + ".";

@@ -131,118 +131,121 @@ public class CutsceneManager {
 		};
 	}
 	public void scene_tutorial() {
-	    switch(scenePhase) {
-	        case 0: // Fade in
-	            alpha += 0.01f;
-	            if (alpha >= 1f) {
-	                alpha = 1f;
-	                scenePhase++;
-	            }
-	            drawBlackBackground(1f - alpha);
-	            break;
-	        
-	        case 1: // Display first instruction (Move with WASD)
-	        	cutsceneMaster.startDialogue(cutsceneMaster, 0);
-	        	scenePhase++;
-	            break;
-	        
-	        case 2: // Wait 1 second after first movement
-	            if (counter == 0) { 
-	                // First time a movement key is pressed, start the timer
-	                if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.leftPressed || gp.keyH.rightPressed) {
-	                    counter = 1;  // Start counting frames
-	                }
-	            } else if (counterReached(60)) { 
-	                // If 1 seconds (60 frames) have passed since first key press, proceed
-	                scenePhase++;
-	                counter = 0;
-	            }
-	            break;
-	        case 3: // Display attack instruction
-	        	cutsceneMaster.startDialogue(cutsceneMaster, 1);
-	        	scenePhase++;
-	            break;
-	        
-	        case 4: //attack tutorial
-	            if (counter == 0) { 
-	                // First time a movement key is pressed, start the timer
-	                if (gp.keyH.attackPressed) {
-	                    counter = 1;  // Start counting frames
-	                }
-	            } else if (counterReached(60)) { 
-	                // If 1 seconds (60 frames) have passed since first key press, proceed
-	                scenePhase++;
-	                counter = 0;
-	            }
-	            break;
-	        case 5: // Display shoot instruction
-	        	cutsceneMaster.startDialogue(cutsceneMaster, 2);
-	        	scenePhase++;
-	            break;
-
-	        case 6: // Wait 1 second after shoot
-	            if (counter == 0) { 
-	                // First time a shoot key is pressed, start the timer
-	                if (gp.keyH.shotKeyPressed) {
-	                    counter = 1;  // Start counting frames
-	                }
-	            } else if (counterReached(60)) { 
-	                // If 1 second (60 frames) have passed since first key press, proceed
-	                scenePhase++;
-	                counter = 0;
-	            }
-	            break;
-	        case 7: // Display block instruction dialogue
-	            cutsceneMaster.startDialogue(cutsceneMaster, 3);
-	            scenePhase++;
-	            break;
-	        case 8: // Wait for a key press to continue (or add a short delay)
-	            if (counter == 0) { 
-	            	// Wait 1 second after block
-	                if (gp.keyH.blockPressed) {
-	                    counter = 1;  // Start counting frames
-	                }
-	            } else if (counterReached(60)) { 
-	                // If 1 second (60 frames) have passed since first key press, proceed
-	                scenePhase++;
-	                counter = 0;
-	            }
-	            break;
-	        case 9: // Display character inventory instruction dialogue
-	            cutsceneMaster.startDialogue(cutsceneMaster, 4);
-	            scenePhase++;
-	            break;
-	        case 10: // Wait for second 'c' press to continue
-	            if (gp.keyH.characterPressed && !characterKeyPressedLastFrame) {
-	                // Increment the counter every time the key is pressed
-	                pressCount++;
-	                
-	                // If it's the second press, proceed to the next phase
-	                if (pressCount == 2) {
-	                    scenePhase++; // Move to the next phase
-	                    pressCount = 0; // Reset the press count for future use
-	                }
-	                
-	                // Set the flag to prevent counting multiple presses in one frame
-	                characterKeyPressedLastFrame = true;
-	            } else if (!gp.keyH.characterPressed) {
-	                // Reset the flag when the key is released
-	                characterKeyPressedLastFrame = false;
-	            }
-	            break;
-	        case 11: // Display final message
-	        	cutsceneMaster.startDialogue(cutsceneMaster, 5);
-                Progress.gameStage = Progress.STAGE_INTRODUCTION;
-                scenePhase++;
-	            if (gp.keyH.enterPressed) {
-	                sceneNum = NA;
-	                scenePhase = 0;
-	            	gp.gameState = gp.playState;
-	                cutsceneMaster.dialogueSet = 0; // Reset to the starting dialogue set
-	                cutsceneMaster.dialogueIndex = 0; // Reset to the first dialogue
-	            }
-	            break;
-	    }
+//	    switch(scenePhase) {
+//	        case 0: // Fade in
+//	            alpha += 0.01f;
+//	            if (alpha >= 1f) {
+//	                alpha = 1f;
+//	                scenePhase++;
+//	            }
+//	            drawBlackBackground(1f - alpha);
+//	            break;
+//	        
+//	        case 1: // Display first instruction (Move with WASD)
+//	        	cutsceneMaster.startDialogue(cutsceneMaster, 0);
+//	        	scenePhase++;
+//	            break;
+//	        
+//	        case 2: // Wait 1 second after first movement
+//	            if (counter == 0) { 
+//	                // First time a movement key is pressed, start the timer
+//	                if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.leftPressed || gp.keyH.rightPressed) {
+//	                    counter = 1;  // Start counting frames
+//	                }
+//	            } else if (counterReached(60)) { 
+//	                // If 1 seconds (60 frames) have passed since first key press, proceed
+//	                scenePhase++;
+//	                counter = 0;
+//	            }
+//	            break;
+//	        case 3: // Display attack instruction
+//	        	cutsceneMaster.startDialogue(cutsceneMaster, 1);
+//	        	scenePhase++;
+//	            break;
+//	        
+//	        case 4: //attack tutorial
+//	            if (counter == 0) { 
+//	                // First time a movement key is pressed, start the timer
+//	                if (gp.keyH.attackPressed) {
+//	                    counter = 1;  // Start counting frames
+//	                }
+//	            } else if (counterReached(60)) { 
+//	                // If 1 seconds (60 frames) have passed since first key press, proceed
+//	                scenePhase++;
+//	                counter = 0;
+//	            }
+//	            break;
+//	        case 5: // Display shoot instruction
+//	        	cutsceneMaster.startDialogue(cutsceneMaster, 2);
+//	        	scenePhase++;
+//	            break;
+//
+//	        case 6: // Wait 1 second after shoot
+//	            if (counter == 0) { 
+//	                // First time a shoot key is pressed, start the timer
+//	                if (gp.keyH.shotKeyPressed) {
+//	                    counter = 1;  // Start counting frames
+//	                }
+//	            } else if (counterReached(60)) { 
+//	                // If 1 second (60 frames) have passed since first key press, proceed
+//	                scenePhase++;
+//	                counter = 0;
+//	            }
+//	            break;
+//	        case 7: // Display block instruction dialogue
+//	            cutsceneMaster.startDialogue(cutsceneMaster, 3);
+//	            scenePhase++;
+//	            break;
+//	        case 8: // Wait for a key press to continue (or add a short delay)
+//	            if (counter == 0) { 
+//	            	// Wait 1 second after block
+//	                if (gp.keyH.blockPressed) {
+//	                    counter = 1;  // Start counting frames
+//	                }
+//	            } else if (counterReached(60)) { 
+//	                // If 1 second (60 frames) have passed since first key press, proceed
+//	                scenePhase++;
+//	                counter = 0;
+//	            }
+//	            break;
+//	        case 9: // Display character inventory instruction dialogue
+//	            cutsceneMaster.startDialogue(cutsceneMaster, 4);
+//	            scenePhase++;
+//	            break;
+//	        case 10: // Wait for second 'c' press to continue
+//	            if (gp.keyH.characterPressed && !characterKeyPressedLastFrame) {
+//	                // Increment the counter every time the key is pressed
+//	                pressCount++;
+//	                
+//	                // If it's the second press, proceed to the next phase
+//	                if (pressCount == 2) {
+//	                    scenePhase++; // Move to the next phase
+//	                    pressCount = 0; // Reset the press count for future use
+//	                }
+//	                
+//	                // Set the flag to prevent counting multiple presses in one frame
+//	                characterKeyPressedLastFrame = true;
+//	            } else if (!gp.keyH.characterPressed) {
+//	                // Reset the flag when the key is released
+//	                characterKeyPressedLastFrame = false;
+//	            }
+//	            break;
+//	        case 11: // Display final message
+//	        	cutsceneMaster.startDialogue(cutsceneMaster, 5);
+//                Progress.gameStage = Progress.STAGE_INTRODUCTION;
+//                scenePhase++;
+//	            if (gp.keyH.enterPressed) {
+//	                sceneNum = NA;
+//	                scenePhase = 0;
+//	            	gp.gameState = gp.playState;
+//	                cutsceneMaster.dialogueSet = 0; // Reset to the starting dialogue set
+//	                cutsceneMaster.dialogueIndex = 0; // Reset to the first dialogue
+//	            }
+//	            break;
+//	    }
+		sceneNum = NA;
+        scenePhase = 0;
+    	gp.gameState = gp.playState;
 	}
 	public void scene_townhall() {
 		switch(scenePhase) {

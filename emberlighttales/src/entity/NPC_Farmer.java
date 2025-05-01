@@ -86,9 +86,9 @@ public class NPC_Farmer extends Entity {
 		else {
 			dialogues[0][0] = "Hmmm...";		
 			dialogues[0][1] = "Hope it rains soon...";
-			dialogues[1][2] = null;
-			dialogues[1][3] = null;
-			dialogues[1][4] = null;
+			dialogues[0][2] = null;
+			dialogues[0][3] = null;
+			dialogues[0][4] = null;
 		}
 	}
 	public void setAction() {
