@@ -64,4 +64,12 @@ public class Quest implements Serializable{
     private void completeQuest() {
         isCompleted = true;
     }
+    public void reset() {
+        currentStageIndex = 0;
+        isCompleted = false;
+        
+        for (QuestStage stage : stages) {
+            stage.reset();
+        }
+    }
 }

@@ -324,20 +324,40 @@ public class UI {
 		        	}
 		    	}
 		    	else if(mob.boss == true) {
-		    		double oneScale = (double)gp.tileSize*8/mob.maxLife;
-		    		double hpBarValue = oneScale*mob.life;
-		    		
-		    		int x = gp.screenWidth/2 - gp.tileSize*4;
-		    		int y = gp.tileSize*10;
-		    		
+		    		double oneScale = (double) gp.tileSize * 8 / mob.maxLife;
+		    		double hpBarValue = oneScale * mob.life;
+
+		    		// Position the health bar at the top center
+		    		int x = (gp.screenWidth / 2) - (gp.tileSize * 4);
+		    		int y = gp.tileSize;
+
+		    		// Create a background for the health bar
 		    		g2.setColor(new Color(35, 35, 35));
-		    		g2.fillRect(x-1, y-1, gp.tileSize*8 + 2, 22);
-		        	g2.setColor(new Color(255 ,0 ,30));
-		        	g2.fillRect(x, y, (int)hpBarValue, 20);
-		        	
-		        	g2.setFont(g2.getFont().deriveFont(Font.BOLD,12f));
-		        	g2.setColor(Color.white);
-		        	g2.drawString(mob.name, x+4, y-10);
+		    		g2.fillRoundRect(x - 2, y - 2, gp.tileSize * 8 + 4, 26, 12, 12);
+
+		    		// Health bar
+		    		g2.setColor(new Color(255, 0, 30));
+		    		g2.fillRoundRect(x, y, (int) hpBarValue, 20, 10, 10);
+
+		    		//Boss name
+		    		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 14f));
+		    		g2.setColor(Color.white);
+
+		    		String mobName = mob.name;
+		    		int textWidth = g2.getFontMetrics().stringWidth(mobName);
+		    		int textX = (gp.screenWidth / 2) - (textWidth / 2);
+		    		g2.drawString(mobName, textX, y + 45);
+		    		
+		    		
+		    	    //Health numbers
+		    	    g2.setFont(g2.getFont().deriveFont(Font.BOLD, 8f));
+		    	    g2.setColor(Color.white);
+		    		
+		    	    String healthText = mob.life + "/" + mob.maxLife;
+		    	    int healthTextWidth = g2.getFontMetrics().stringWidth(healthText);
+		    	    int healthTextX = (gp.screenWidth / 2) - (healthTextWidth / 2);
+		    	    int healthTextY = y + 15;
+		    	    g2.drawString(healthText, healthTextX, healthTextY);
 		    	}
 			}
 		}
@@ -448,7 +468,7 @@ public class UI {
 		    }
 		    
 		    // Draw version number on the bottom right
-		    String versionText = "Beta v1.1.12";
+		    String versionText = "Beta v1.1.13";
 		    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 10F));
 		    g2.setColor(Color.white);
 		    int versionX = gp.screenWidth - g2.getFontMetrics().stringWidth(versionText) - 10;
@@ -904,6 +924,9 @@ public class UI {
 			        textY += 32;
 			    }
 			}
+			else {
+		        System.out.println("Invalid item index: " + itemIndex);
+		    }
 		}
 
 	}
@@ -928,7 +951,7 @@ public class UI {
 		g2.drawString(text, x-4, y-4);
 		//Retry
 		g2.setFont(g2.getFont().deriveFont(25f));
-		text = "Respawn";
+		text = "Load Last Save";
 		x = getXforCenteredText(text);
 		y += gp.tileSize * 4;
 		g2.drawString(text, x, y);
@@ -1658,7 +1681,7 @@ public class UI {
 	}
 	public int getItemIndexOnSlot(int slotCol, int slotRow) {
 	    int itemIndex = slotCol + (slotRow * 5);
-	    if (itemIndex > 20) {
+	    if (itemIndex >= 20) {
 	        return -1;
 	    }
 	    return itemIndex;

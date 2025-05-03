@@ -31,6 +31,7 @@ import entity.NPC_Scientist;
 import entity.NPC_Scout;
 import entity.NPC_Shopkeeper;
 import entity.NPC_Son;
+import entity.NPC_Son_Quest;
 import entity.NPC_Thief;
 import entity.NPC_Vulture;
 import entity.NPC_Witch;
@@ -47,6 +48,7 @@ import mob.MOB_Orc_Lieutenant;
 import mob.MOB_Orc_Second;
 import mob.MOB_PinkSlime;
 import mob.MOB_Skeleton_Mage;
+import mob.MOB_Skeleton_Swordman;
 import mob.MOB_Swordman;
 import mob.MOB_Templar;
 import object.OBJ_Bed;
@@ -120,6 +122,7 @@ import tile_interactive.IT_Tree;
 import tile_interactive.IT_Spike;
 import tile_interactive.IT_Tent;
 import tile_interactive.IT_Witch_Hut;
+import tile_interactive.IT_WoodCaveEntrance;
 
 public class AssetSetter {
 	
@@ -2335,11 +2338,6 @@ public class AssetSetter {
 			gp.npc[mapNum][i].worldY = gp.tileSize*65;
 			i++;
 		}
-
-//		gp.npc[mapNum][i] = new NPC_Son(gp);
-//		gp.npc[mapNum][i].worldX = gp.tileSize*62;
-//		gp.npc[mapNum][i].worldY = gp.tileSize*87;
-//		i++;
 		
 		if (!npcExists(NPC_Punk.npcName)) {
 			gp.npc[mapNum][i] = new NPC_Punk(gp);
@@ -2473,6 +2471,18 @@ public class AssetSetter {
 			gp.npc[mapNum][i].worldY = gp.tileSize*40;
 			i++;
 		}
+		
+        if(gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?")) ||
+        		!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?")) &&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?")) &&
+        		gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?").getCurrentStageIndex() > 1) {
+    		if (!npcExists(NPC_Son.npcName)) {
+    			gp.npc[mapNum][i] = new NPC_Son(gp);
+    			gp.npc[mapNum][i].worldX = gp.tileSize*33;
+    			gp.npc[mapNum][i].worldY = gp.tileSize*26;
+    			i++;
+    		}
+        }
 
 		
 		//Orc Camp
@@ -2493,6 +2503,17 @@ public class AssetSetter {
 		gp.npc[mapNum][i].worldX = gp.tileSize*74;
 		gp.npc[mapNum][i].worldY = gp.tileSize*32;
 		i++;
+		
+        if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?")) &&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?")) &&
+        		gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?").getCurrentStageIndex() < 2) {
+    		if (!npcExists(NPC_Son_Quest.npcName)) {
+    			gp.npc[mapNum][i] = new NPC_Son_Quest(gp);
+    			gp.npc[mapNum][i].worldX = gp.tileSize*35;
+    			gp.npc[mapNum][i].worldY = gp.tileSize*15;
+    			i++;
+    		}
+        }
 		
 		//Solara
 		mapNum = 19;
@@ -2684,6 +2705,21 @@ public class AssetSetter {
 		gp.mob[mapNum][i].worldX = gp.tileSize*56;
 		gp.mob[mapNum][i].worldY = gp.tileSize*47;
 		i++;
+		
+		//Wood Cave
+		mapNum = 24;
+	    Arrays.fill(gp.mob[mapNum], null);  // Clear previous dungeon mobs
+		i = 0;
+		
+		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("The Suspicious Merchant")) &&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("The Suspicious Merchant")) &&
+				gp.qManager.getQuestJournal().getQuestByName("The Suspicious Merchant").getCurrentStageIndex() == 2) {
+			System.out.println("setting");
+			gp.mob[mapNum][i] = new MOB_Skeleton_Swordman(gp);
+			gp.mob[mapNum][i].worldX = gp.tileSize*53;
+			gp.mob[mapNum][i].worldY = gp.tileSize*45;
+			i++;
+		}
 
 	}
 	public void setInteractiveTile() {
@@ -2708,7 +2744,7 @@ public class AssetSetter {
 		i++;
 		gp.iTile[mapNum][i] = new IT_Tree(gp, 71, 66, 4);
 		i++;
-		gp.iTile[mapNum][i] = new IT_Tree(gp, 77, 61, 4);
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 76, 61, 4);
 		i++;
 		gp.iTile[mapNum][i] = new IT_Tree(gp, 76, 84, 4);
 		i++;
@@ -2773,6 +2809,9 @@ public class AssetSetter {
 		gp.iTile[mapNum][i] = new IT_Beehive(gp, 74, 46, 1);
 		i++;
 		gp.iTile[mapNum][i] = new IT_Beehive(gp, 75, 46, 0);
+		i++;
+		
+		gp.iTile[mapNum][i] = new IT_WoodCaveEntrance(gp, 79, 57);
 		i++;
 		
 		//Emberville Outskirts

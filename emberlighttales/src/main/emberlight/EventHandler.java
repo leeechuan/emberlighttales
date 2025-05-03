@@ -4,6 +4,9 @@ import java.awt.Rectangle;
 
 import data.Progress;
 import entity.Entity;
+import entity.NPC_Shopkeeper;
+import entity.NPC_Son;
+import entity.NPC_Son_Quest;
 
 public class EventHandler{
 
@@ -222,6 +225,43 @@ public class EventHandler{
 				gp.playSE(14);
 			}
 			
+			//Barn
+			else if(hit(0, 83, 45,"up") == true || hit(0, 84, 45,"up") == true || hit(0, 85, 45,"up") == true) {
+				teleport(24, 50, 50, gp.indoor);
+				gp.playSE(14);
+			}
+			else if(hit(24, 50, 51,"any") == true || hit(24, 49, 51,"any") == true || hit(24, 51, 51,"any") == true) {
+				if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("The Suspicious Merchant"))&&
+						gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("The Suspicious Merchant"))&&
+						gp.qManager.getQuestJournal().getQuestByName("The Suspicious Merchant").getCurrentStageIndex() == 2) {
+					gp.gameState = gp.dialogueState;
+					eventMaster.startDialogue(eventMaster, 3);
+					canTouchEvent = false;
+				}
+				else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("The Suspicious Merchant"))&&
+						gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("The Suspicious Merchant"))&&
+						gp.qManager.getQuestJournal().getQuestByName("The Suspicious Merchant").getCurrentStageIndex() == 3) {
+					gp.qManager.progressQuest("The Suspicious Merchant");
+					gp.pManager.addNotification("Journal Updated");
+					teleport(0, 84, 46, gp.outside);
+					gp.playSE(14);
+				}
+				else {
+					teleport(0, 84, 46, gp.outside);
+					gp.playSE(14);
+				}
+			}
+			
+			//Wood Cave
+			else if(hit(0, 79, 58,"up") == true || hit(0, 80, 58,"up") == true || hit(0, 81, 58,"up") == true) {
+				teleport(25, 50, 50, gp.dungeon);
+				gp.playSE(24);
+			}
+			else if(hit(25, 50, 51,"any") == true || hit(25, 49, 51,"any") == true || hit(25, 51, 51,"any") == true) {
+				teleport(0, 80, 60, gp.outside);
+				gp.playSE(24);
+			}
+			
 			//Abandoned house
 			else if(hit(0, 24, 77,"up") == true) {
 				teleport(22, 50, 50, gp.indoor);
@@ -341,10 +381,43 @@ public class EventHandler{
 					gp.qManager.progressQuest("Beneath Enemy Lines");
 					gp.pManager.addNotification("Journal Updated");
 				}
+				if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"))&&
+						gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"))&&
+						gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?").getCurrentStageIndex() == 0){
+					gp.qManager.progressQuest("Where’s Wibby?");
+					gp.pManager.addNotification("Journal Updated");
+				}
 				teleport(2, 20, 30, gp.dungeon);
 				gp.playSE(24);
 			}
 			else if(hit(2, 20, 30,"any") == true || hit(2, 21, 30,"any") == true) {
+				if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"))&&
+						gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"))&&
+						gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?").getCurrentStageIndex() == 2){
+					// Remove instances of NPC_Son_Quest
+					for (int map = 0; map < gp.npc.length; map++) {
+					    for (int i = 0; i < gp.npc[map].length; i++) {
+					        Entity npc = gp.npc[map][i];
+					        if (npc != null && npc instanceof NPC_Son_Quest) {
+					            gp.npc[map][i] = null;
+					        }
+					    }
+					}
+
+					// Add NPC_Son
+					if(!gp.aSetter.npcExists(NPC_Son.npcName)) {
+						NPC_Son newSon = new NPC_Son(gp); 
+						newSon.worldX = 48 * gp.tileSize;
+						newSon.worldY = 54 * gp.tileSize;
+						for (int i = 0; i < gp.npc[0].length; i++) {
+						    if (gp.npc[0][i] == null) {
+						        gp.npc[0][i] = newSon;
+						        break;
+						    }
+					}
+
+					}
+				}
 				teleport(0, 47, 55, gp.outside);
 				gp.playSE(24);
 			}

@@ -15,7 +15,7 @@ public class IT_CaveEntrance extends InteractiveTile{
 		this.gp = gp;
 		
 		this.worldX = gp.tileSize * col ;
-		this.worldY = gp.tileSize * row; //CONSIDER MOVING THIS
+		this.worldY = gp.tileSize * row;
 //		solidArea.x = (int) (gp.tileSize * 0.75);
 //		solidArea.y = -gp.tileSize * 3;
 //		solidArea.width = (int) (gp.tileSize * 3);

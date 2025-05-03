@@ -20,6 +20,7 @@ import entity.PlayerDummy;
 import mob.MOB_Orc_Chief;
 import mob.MOB_Orc_Lieutenant;
 import mob.MOB_Orc_Second;
+import mob.MOB_Skeleton_Swordman;
 import object.OBJ_EmberlightPearl;
 import object.OBJ_Spike_Gate;
 
@@ -53,6 +54,7 @@ public class CutsceneManager {
 	public final int ending = 10;
 	public final int ending2 = 11;
 	public final int ending3 = 12;
+	public final int suspiciousJuice = 13;
 	
 	public CutsceneManager(GamePanel gp) {
 		this.gp = gp;
@@ -92,6 +94,7 @@ public class CutsceneManager {
 		case ending: scene_ending(); break;
 		case ending2: scene_ending2(); break;
 		case ending3: scene_ending3(); break;
+		case suspiciousJuice: scene_suspiciousJuice(); break;
 		}
 	}
 	public void setDialogue() {
@@ -135,6 +138,13 @@ public class CutsceneManager {
 					+ "We strike North. The chief's plan holds.\n"
 					+ "Burn the bridges behind you. No mercy.\n"
 					+ "— Zulgar";
+		}
+		if(sceneNum == suspiciousJuice) {
+		    cutsceneMaster.dialogues[0][0] = "Your head throbs. The world sways\nas straw rustles beneath you.";
+		    cutsceneMaster.dialogues[0][1] = "You’re in a dim barn—hay bales, animal\ndroppings... and something else.";
+		    cutsceneMaster.dialogues[0][2] = "A low rattle echoes from the shadows.\nBones creak. Something stands.";
+		    cutsceneMaster.dialogues[0][3] = "A large skeleton with a rusty sword\nlurks forward with an eerie grin.";
+		    cutsceneMaster.dialogues[0][4] = "You scramble up as it draws its blade...\nwhatever was in that juice, it wasn’t fruit.";
 		};
 	}
 	public void scene_tutorial() {
@@ -1334,6 +1344,51 @@ public class CutsceneManager {
 				gp.stopMusic();
 			}
 		}
+	}
+	public void scene_suspiciousJuice(){
+		switch(scenePhase) {
+        case 0: // Fade in
+			alpha += 0.005f;
+			if(alpha > 1f) {
+				alpha = 1f;
+			}
+			drawBlackBackground(alpha);
+			
+			if(alpha == 1f) {
+				alpha = 0;
+	        	gp.currentMap = 24;
+	        	gp.player.worldX = gp.tileSize * 45;
+	        	gp.player.worldY = gp.tileSize * 45;
+	        	gp.player.direction = "right";
+	        	gp.currentArea = gp.indoor;
+//	        	Create Boss
+	        	int mapNum = 24;
+				gp.mob[mapNum][0] = new MOB_Skeleton_Swordman(gp);
+				gp.mob[mapNum][0].worldX = gp.tileSize*53;
+				gp.mob[mapNum][0].worldY = gp.tileSize*45;
+				scenePhase++;
+			}
+            break;
+	    case 1: // Fade in
+            alpha += 0.01f;
+            if (alpha >= 1f) {
+                alpha = 1f;
+                scenePhase++;
+            }
+            drawBlackBackground(1f - alpha);
+            break;
+        case 2: //Dialogue
+        	if(scenePhase == 2) {
+	        	cutsceneMaster.startDialogue(cutsceneMaster, 0);
+	        	scenePhase++;
+        	}
+            break;
+		case 3:
+            sceneNum = NA;
+            scenePhase = 0;
+
+		}
+	
 	}
 	public boolean counterReached(int target) {
 		

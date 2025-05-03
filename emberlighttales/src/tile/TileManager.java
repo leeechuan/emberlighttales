@@ -52,11 +52,13 @@ public class TileManager {
         loadMap("/maps/playerhouse.txt", 21);
         loadMap("/maps/abandonhouse.txt", 22);
         loadMap("/maps/deserttemple01.txt", 23);
+        loadMap("/maps/barn.txt", 24);
+        loadMap("/maps/woodcave.txt", 25);
     }
 
     public void getTileImages() {
         // Predefine collision rules using a boolean array
-        boolean[] collisionFlags = new boolean[831];
+        boolean[] collisionFlags = new boolean[898];
 
         // Default all to true
         Arrays.fill(collisionFlags, false);
@@ -289,6 +291,26 @@ public class TileManager {
         }
         
         collisionFlags[816] = true; //Sand (to hide behind houses)
+        
+        collisionFlags[847] = true; //Wood Cave
+        collisionFlags[848] = true; //Wood Cave
+        collisionFlags[849] = true; //Wood Cave
+        collisionFlags[852] = true; //Wood Cave
+        collisionFlags[853] = true; //Wood Cave
+        collisionFlags[857] = true; //Wood Cave
+        collisionFlags[858] = true; //Wood Cave
+        collisionFlags[859] = true; //Wood Cave
+        collisionFlags[862] = true; //Wood Cave
+        collisionFlags[863] = true; //Wood Cave
+        collisionFlags[866] = true; //Wood Cave
+        collisionFlags[867] = true; //Wood Cave
+        
+        for (int i = 868; i <= 877 ; i++) {
+            collisionFlags[i] = true; //Wood Cave
+        }
+        
+        collisionFlags[880] = true; //Wood Cave
+        
 
         for (int i = 0; i < collisionFlags.length; i++) {
             setup(i, String.format("%04d", i), collisionFlags[i]);

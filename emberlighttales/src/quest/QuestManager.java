@@ -91,18 +91,20 @@ public class QuestManager {
     	// Side Quest
     	Quest sideQuest1 = new Quest(
     	    "The Suspicious Merchant",
-    	    "A suspicious merchant was spotted outside Emberville,\nclaiming he has the cheapest potions.",
+    	    "Vex claims he makes the tastiest\nfruit juice in town. I should\ntry them.",
     	    false,
     	    Arrays.asList(
-    	        new QuestStage("Purchase a potion from the merchant."),
-    	        new QuestStage("Drink suspicious potion"),
-    	        new QuestStage("Find your way out.")
+    	        new QuestStage("Purchase juice from the Vex."),
+    	        new QuestStage("Drink suspicious juice"),
+    	        new QuestStage("Survive"),
+    	        new QuestStage("Exit the barn"),
+    	        new QuestStage("Confront Vex")
     	    ),
             gp
     	);
     	Quest sideQuest2 = new Quest(
     	    "Cluck and Dagger",
-    	    "The farmer has lost his chickens\nafter the orc attack.\nHelp him chase them down.",
+    	    "Farmer Tiller has lost his\nchickens after the orc\nattack. Help him chase them down.",
     	    false,
     	    Arrays.asList(
     	        new QuestStage("Gather first chicken"),
@@ -136,15 +138,61 @@ public class QuestManager {
 
     	Quest sideQuest5 = new Quest(
     		    "Where’s Wibby?",
-    		    "A worried father in Gildenshore pleads\nfor help. Perhaps I\nshould look outside the village..",
+    		    "A worried father in Gildenshore\npleads for help. Perhaps I\nshould look outside the village.",
     		    false,
     		    Arrays.asList(
     		        new QuestStage("Search the cave for any clues."),
-    		        new QuestStage("Bring Wibby back to his father.")
+    		        new QuestStage("Speak to Wibby"),
+    		        new QuestStage("Return to Elder Veldor")
     		    ),
     		    gp
     	);
-
+    	Quest sideQuest6 = new Quest(
+    		    "Stolen Style",
+    		    "Luca claims Cain from Gildenshore stole his\nfavorite jacket. Find the thief\nand settle the fashion feud.",
+    		    false,
+    		    Arrays.asList(
+    		        new QuestStage("Confront the Thief in Gildenshore."),
+    		        new QuestStage("Search the his home for the jacket."),
+    		        new QuestStage("Return jacket to the Husband.")
+    		    ),
+    		    gp
+    	);
+    	Quest sideQuest7 = new Quest(
+    		    "Spuds for the Soul",
+    		    "The herbalist in Solara needs fresh potatoes\nfor a desert tonic, but the traders are running low.",
+    		    false,
+    		    Arrays.asList(
+    		        new QuestStage("Obtain potato seeds from Emberville"),
+    		        new QuestStage("Plant potato seeds"),
+    		        new QuestStage("Bring potatoes to the herbalist.")
+    		    ),
+    		    gp
+    	);
+    	Quest sideQuest8 = new Quest(
+    		    "To Do List",
+    		    "Nessa from Emberville needs help\nrunning errands.",
+    		    false,
+    		    Arrays.asList(
+    		        new QuestStage("Fetch water from the well."),
+    		        new QuestStage("Bring water back to Nessa."),
+    		        new QuestStage("Buy 10 corn seeds from the Crovin."),
+    		        new QuestStage("Bring corn seeds to Nessa.")
+    		    ),
+    		    gp
+    	);
+    	Quest sideQuest9 = new Quest(
+    		    "Dust and Glory",
+    		    "The Pharaoh of Solara requests aid\nrecovering a sacred artifact from a lost desert temple.",
+    		    false,
+    		    Arrays.asList(
+    		        new QuestStage("Enter the desert temple."),
+    		        new QuestStage("Recover the sacred artifact."),
+    		        new QuestStage("Return the artifact to the Pharaoh.")
+    		    ),
+    		    gp
+    	);
+    	
     	
     	gp.qManager.getQuestJournal().initQuest(mainQuest1);
     	gp.qManager.getQuestJournal().initQuest(mainQuest2);
@@ -157,6 +205,10 @@ public class QuestManager {
     	gp.qManager.getQuestJournal().initQuest(sideQuest3);
     	gp.qManager.getQuestJournal().initQuest(sideQuest4);
     	gp.qManager.getQuestJournal().initQuest(sideQuest5);
+    	gp.qManager.getQuestJournal().initQuest(sideQuest6);
+    	gp.qManager.getQuestJournal().initQuest(sideQuest7);
+    	gp.qManager.getQuestJournal().initQuest(sideQuest8);
+    	gp.qManager.getQuestJournal().initQuest(sideQuest9);
     }
 
     public void progressQuest(String questName) {

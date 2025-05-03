@@ -10,6 +10,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -55,7 +56,7 @@ public class GamePanel extends JPanel implements Runnable{
 	//WORLD SETTINGS
 	public final int maxWorldCol = 100;
 	public final int maxWorldRow = 100;
-	public final int maxMap = 25;
+	public final int maxMap = 30;
 	public int currentMap = 0;
 	//FOR FULL SCREEN
 	int screenWidth2 = screenWidth;
@@ -134,7 +135,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	//SCREEN SHAKE
 	public int shakeTimer = 0;
-	public int shakeMagnitude = 6; // pixels
+	public int shakeMagnitude = 8; // pixels
 	public int shakeDuration = 10; // frames
 	
 	public GamePanel() {
@@ -195,11 +196,20 @@ public class GamePanel extends JPanel implements Runnable{
 	    resetGame(true);
 	}
 	public void loadSavedGame() {
-	    resetGame(false);
-	    saveLoad.load();
-		aSetter.setMobs();
-		moveChickens();
-		removeBanditsIfQuestCompleted();
+	    File saveFile = new File("save.dat");
+
+	    if (!saveFile.exists()) {
+	        System.out.println("No save file found. Starting a new game...");
+	        startNewGame();
+	        return;
+	    }
+	    else {
+		    resetGame(false);
+		    saveLoad.load();
+			aSetter.setMobs();
+			moveChickens();
+			removeBanditsIfQuestCompleted();
+	    }
 	}
 	public void setFullScreen() {
 		

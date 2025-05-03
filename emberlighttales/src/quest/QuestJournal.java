@@ -23,9 +23,17 @@ public class QuestJournal {
     }
     public void resetQuestJournal() {
         if (activeQuests != null) {
+            for (Quest quest : activeQuests) {
+            	System.out.println("reseting" + quest.getName());
+                quest.reset();
+            }
             activeQuests.clear();
         }
+
         if (completedQuests != null) {
+            for (Quest quest : completedQuests) {
+                quest.reset();
+            }
             completedQuests.clear();
         }
     }

@@ -11,7 +11,7 @@ import main.emberlight.GamePanel;
 
 public class NPC_Son extends Entity {
 	
-	public static final String npcName = "Jared Aldermere";
+	public static final String npcName = "Wibby Veldor";
 	
 	public NPC_Son(GamePanel gp) {
 		super(gp);
@@ -28,12 +28,12 @@ public class NPC_Son extends Entity {
         
         dialogueSet = -1;
 		
-    	homeWorldX = 51;
-    	homeWorldY = 49;
-    	outsideWorldX = 70;
-    	outsideWorldY = 87;
-    	homeMapNum = 7;
-    	townNum = 0;
+    	homeWorldX = 45;
+    	homeWorldY = 47;
+    	outsideWorldX = 47;
+    	outsideWorldY = 32;
+    	homeMapNum = 17;
+    	townNum = 2;
         
 		getImage();
 		setDialogue();
@@ -41,28 +41,24 @@ public class NPC_Son extends Entity {
 	
 	public void getImage() {
 		     for (int i = 0; i < 6; i++) {
-	                frontStanding[i] = setup("/npc_boy/npc_boy_down_" + i, 1.5f, 1.5f);
-	                rightStanding[i] = setup("/npc_boy/npc_boy_right_" +i, 1.5f, 1.5f);
-	                backStanding[i] = setup("/npc_boy/npc_boy_up_" + i, 1.5f, 1.5f);
-	                frontWalking[i] = setup("/npc_boy/npc_boy_movedown_" + i, 1.5f, 1.5f);
-	                rightWalking[i] = setup("/npc_boy/npc_boy_moveright_" + i, 1.5f, 1.5f);
-	                backWalking[i] = setup("/npc_boy/npc_boy_moveup_" + i, 1.5f, 1.5f);
+	                frontStanding[i] = setup("/npc_son/son_down_" + i, 1.5f, 1.5f);
+	                rightStanding[i] = setup("/npc_son/son_right_" +i, 1.5f, 1.5f);
+	                backStanding[i] = setup("/npc_son/son_up_" + i, 1.5f, 1.5f);
+	                frontWalking[i] = setup("/npc_son/son_movedown_" + i, 1.5f, 1.5f);
+	                rightWalking[i] = setup("/npc_son/son_moveright_" + i, 1.5f, 1.5f);
+	                backWalking[i] = setup("/npc_son/son_moveup_" + i, 1.5f, 1.5f);
 	            }
 	         for (int i = 0; i < 6; i++) {
 	                leftStanding[i] = invertImage(rightStanding[i]);
 	                leftWalking[i] = invertImage(rightWalking[i]);
 	          	}
-	         portrait = setup("/artwork/husband_portrait", 3f, 3f);
+	         portrait = setup("/artwork/son_portrait", 3f, 3f);
 	}
 	public void setDialogue() {
 		
-		if(onPath) {
-			dialogues[0][0] = "Wait here?";		
-			dialogues[0][1] = "Umm... Okay... But please be back soon!";
-		}else {
-			dialogues[0][0] = "I miss my family";		
-			dialogues[0][1] = "Bring me back!!";
-		}
+		dialogues[0][0] = "Hey...umm...";		
+		dialogues[0][1] = "Thanks again for saving me miss...";
+		dialogues[0][2] = "I can't imagine how I would have gotten out\nif it wasnt for you...";
 			
 	}
 	public void setAction() {
@@ -125,11 +121,11 @@ public class NPC_Son extends Entity {
 			dialogueSet--;
 		}
 		
-		if(onPath) {
-			onPath = false;
-		}else {
-			onPath = true;
-		}
+//		if(onPath) {
+//			onPath = false;
+//		}else {
+//			onPath = true;
+//		}
 		
 	}
 

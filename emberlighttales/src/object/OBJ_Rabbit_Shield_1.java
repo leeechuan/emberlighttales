@@ -16,8 +16,8 @@ public class OBJ_Rabbit_Shield_1 extends Entity{
 		defenseValue = 1;
 		description = "[" + name + "]" + "\nA bunny plushie\ncalled Pablo.\nIts kinda crusty.\nAlso, it emits\na green stench.";
 		price = 30;
-        maxDurability = 20;
-        durability = 20;
+        maxDurability = 5;
+        durability = 5;
 	}
 
 }

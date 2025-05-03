@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 
 import ai.Node;
 import ai.PathFinder;
+import main.emberlight.DamageText;
 import main.emberlight.GamePanel;
 import main.emberlight.UtilityTool;
 
@@ -795,24 +796,22 @@ public class Entity {
 	            if (gp.player.currentShield != null) {
 	                gp.player.currentShield.durability --;
 	                if (gp.player.currentShield.durability <= 0) {
-	                    gp.ui.addMessage(currentShield.name + " has broken.");
+	                    gp.ui.addMessage(gp.player.currentShield.name + " has broken.");
 	                    gp.playSE(33);
 	                    gp.player.inventory.remove(gp.player.currentShield);
 	                    gp.player.currentShield = null;
 	                    
         	            //CANCEL BLOCK
-        	            isBlocking = false;
-        	            blockCounter = 0;
+        	            gp.player.isBlocking = false;
+        	            gp.player.blockCounter = 0;
         	            gp.keyH.blockPressed = false;
 	                }
 	            }
 
 			}
-			else {
-				//Not Blocking
-				if(damage < 1) {
-					 damage = 1;
-				}
+
+			if (damage < 0) {
+			    damage = 0;
 			}
 			
 			if(damage != 0) {
@@ -821,6 +820,21 @@ public class Entity {
 			}
 			
 			gp.player.life -= damage;
+			// Show damage number
+			if (damage == 0) {
+			    gp.ui.damageTexts.add(
+			        new DamageText(gp.player.worldX - gp.tileSize / 2, gp.player.worldY, "BLOCKED", new Color(255, 215, 0), gp)
+			    );
+				gp.shakeMagnitude = 12;
+				gp.shakeDuration = 8;
+			} else {
+			    gp.ui.damageTexts.add(
+			        new DamageText(gp.player.worldX + gp.tileSize / 2, gp.player.worldY, String.valueOf(damage), new Color(255, 60, 60), gp)
+			    );
+				gp.shakeMagnitude = 8;
+				gp.shakeDuration = 10;
+				gp.shakeTimer = gp.shakeDuration;
+			}
 			gp.player.invincible = true;
 		}
 	}

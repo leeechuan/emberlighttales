@@ -20,4 +20,7 @@ public class QuestStage {
     public void completeStage() {
         isCompleted = true;
     }
+    public void reset() {
+    	isCompleted = false;
+    }
 }

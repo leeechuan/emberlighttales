@@ -890,7 +890,7 @@ public class Player extends Entity {
     				setKnockBack(gp.mob[gp.currentMap][i], attacker, knockBackPower);
     			}
     			if(gp.mob[gp.currentMap][i].offBalance == true) {
-    				attack *= 5;
+    				attack *= 3;
     			}
     			int damage = attack - gp.mob[gp.currentMap][i].defense;
 
@@ -903,7 +903,6 @@ public class Player extends Entity {
     			    damage = 0;
     			}
 				generateParticle(gp.mob[gp.currentMap][i], gp.mob[gp.currentMap][i]);
-				gp.shakeTimer = gp.shakeDuration;
     			gp.mob[gp.currentMap][i].life -= damage;
     			
     			//DAMAGE NUMBERS
@@ -911,16 +910,25 @@ public class Player extends Entity {
         			gp.ui.damageTexts.add(
         				    new DamageText(gp.mob[gp.currentMap][i].worldX - gp.tileSize / 2, gp.mob[gp.currentMap][i].worldY, "CRIT! " + String.valueOf(damage), new Color(255, 215, 0), gp)
         			);
+    				gp.shakeMagnitude = 16;
+    				gp.shakeDuration = 10;
+    				gp.shakeTimer = gp.shakeDuration;
     			}
     			else if(damage == 0) {
           			gp.ui.damageTexts.add(
         				    new DamageText(gp.mob[gp.currentMap][i].worldX - gp.tileSize / 2, gp.mob[gp.currentMap][i].worldY, "BLOCKED", new Color(255, 215, 0), gp)
         			);
+    				gp.shakeMagnitude = 12;
+    				gp.shakeDuration = 8;
+    				gp.shakeTimer = gp.shakeDuration;
     			}
     			else {
         			gp.ui.damageTexts.add(
         				    new DamageText(gp.mob[gp.currentMap][i].worldX + gp.tileSize / 2, gp.mob[gp.currentMap][i].worldY, String.valueOf(damage), new Color(255, 60, 60), gp)
         			);
+    				gp.shakeMagnitude = 8;
+    				gp.shakeDuration = 10;
+    				gp.shakeTimer = gp.shakeDuration;
     			}
 
 //    			gp.ui.addMessage(damage + " damage!");

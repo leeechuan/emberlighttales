@@ -8,6 +8,7 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 
 import main.emberlight.GamePanel;
+import object.OBJ_Suspicious_Juice;
 
 public class NPC_Elder extends Entity {
 	
@@ -56,10 +57,36 @@ public class NPC_Elder extends Entity {
 	}
 	public void setDialogue() {
 		
-		dialogues[0][0] = "Hmmm...";
-		dialogues[1][0] = "You're different... I can tell...";
+		
+		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"))&&
+				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"))&&
+				!gp.player.isGremlin) {
+			dialogues[0][0] = "Hey...have you a moment? My grandson...\nWibby... hasn’t come home.";
+			dialogues[0][1] = "He's stubborn as a mule but this isn’t\nlike him. He’s been brooding lately,\nsaid something about proving himself.";
+			dialogues[0][2] = "Last anyone saw him, he was heading south,\ntoward the old cave. I fear he’s gotten\nhimself into trouble.";
+			dialogues[0][3] = "Please. If you find him... bring him back\nto me.";
+		}
+		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"))&&
+				gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?").getCurrentStageIndex() == 2 &&
+				!gp.player.isGremlin) {
+			dialogues[0][0] = "Wibby! You brought him back! Thank\nthe spirits!";
+			dialogues[0][1] = "Thank you. I don’t know what would’ve\nhappened if you hadn’t found him. Here,\ntake this. It’s not much, but it’s yours.";
+			dialogues[0][2] = null;
+			dialogues[0][3] = null;
+		}
+		else {
+			dialogues[0][0] = "Hmmm...";
+			dialogues[0][1] = "You're different... I can tell...";
+			dialogues[0][2] = null;
+			dialogues[0][3] = null;
 
-		dialogues[1][0] = "Yes?";
+			dialogues[1][0] = "Yes?";
+			dialogues[1][1] = null;
+			dialogues[1][2] = null;
+			dialogues[1][3] = null;
+		}
+
 
 	}
 	public void setAction() {
@@ -90,8 +117,25 @@ public class NPC_Elder extends Entity {
 	
 	public void speak() {
 		
+		setDialogue();
 		facePlayer();
 		startDialogue(this, dialogueSet);
+		
+		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"))&&
+				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"))&&
+				!gp.player.isGremlin) {
+			gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"));
+			gp.pManager.addNotification("Journal Updated");
+		}
+		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"))&&
+				gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?").getCurrentStageIndex() == 2 &&
+				!gp.player.isGremlin) {
+			gp.qManager.progressQuest("Where’s Wibby?");
+			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"));
+			gp.pManager.addNotification("Quest Completed!");
+		}
+
 		
 		dialogueSet++;
 		
