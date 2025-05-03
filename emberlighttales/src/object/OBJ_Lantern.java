@@ -15,7 +15,9 @@ public class OBJ_Lantern extends Entity{
 		name = objName;
 		image1 = setup("/objects/lantern", 1, 1);
 		description = "[Lantern]\nEmits moderate light";
-		price = 200;
+		price = 85;
 		lightRadius = 250;
+		maxDurability = 3500;
+		durability = 3500;
 	}
 }

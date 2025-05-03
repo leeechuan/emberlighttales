@@ -448,7 +448,7 @@ public class UI {
 		    }
 		    
 		    // Draw version number on the bottom right
-		    String versionText = "Beta v1.1.11";
+		    String versionText = "Beta v1.1.12";
 		    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 10F));
 		    g2.setColor(Color.white);
 		    int versionX = gp.screenWidth - g2.getFontMetrics().stringWidth(versionText) - 10;
@@ -514,18 +514,24 @@ public class UI {
 			y += gp.tileSize;
 			if(npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null) {
 				
-//				currentDialogue = npc.dialogues[npc.dialogueSet][npc.dialogueIndex];
-				
-				char characters[] = npc.dialogues[npc.dialogueSet][npc.dialogueIndex].toCharArray();
-				
-				if(charIndex < characters.length) {
-					
-					gp.playSE(12);
-					String s = String.valueOf(characters[charIndex]);
-					combinedText = combinedText + s;
-					currentDialogue = combinedText;
-					charIndex++;
+				String raw = npc.dialogues[npc.dialogueSet][npc.dialogueIndex];
+				while (charIndex < raw.length()) {
+				    if (raw.startsWith("[r]", charIndex)) {
+				        combinedText += "[r]";
+				        charIndex += 3;
+				        continue;
+				    } else if (raw.startsWith("[/r]", charIndex)) {
+				        combinedText += "[/r]";
+				        charIndex += 4;
+				        continue;
+				    }
+
+				    gp.playSE(12);
+				    combinedText += raw.charAt(charIndex);
+				    charIndex++;
+				    break; // Only reveal one character per frame
 				}
+				currentDialogue = combinedText;
 				
 				
 				if(gp.keyH.enterPressed == true) {
@@ -569,10 +575,10 @@ public class UI {
 				}
 			}
 			
-			for(String line : currentDialogue.split("\n")) {
-				g2.drawString(line, x, y);
-				y += 40;
-			}
+			//Handling /n and [/red]
+			drawFormattedText(g2, currentDialogue, x, y);
+
+			
 			if(npc.name != null) {
 			    String speakerName = npc.name;
 			    g2.setFont(g2.getFont().deriveFont(Font.BOLD, 10));
@@ -597,18 +603,24 @@ public class UI {
 			
 			if(npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null) {
 				
-//				currentDialogue = npc.dialogues[npc.dialogueSet][npc.dialogueIndex];
-				
-				char characters[] = npc.dialogues[npc.dialogueSet][npc.dialogueIndex].toCharArray();
-				
-				if(charIndex < characters.length) {
-					
-					gp.playSE(12);
-					String s = String.valueOf(characters[charIndex]);
-					combinedText = combinedText + s;
-					currentDialogue = combinedText;
-					charIndex++;
+				String raw = npc.dialogues[npc.dialogueSet][npc.dialogueIndex];
+				while (charIndex < raw.length()) {
+				    if (raw.startsWith("[r]", charIndex)) {
+				        combinedText += "[r]";
+				        charIndex += 3;
+				        continue;
+				    } else if (raw.startsWith("[/r]", charIndex)) {
+				        combinedText += "[/r]";
+				        charIndex += 4;
+				        continue;
+				    }
+
+				    gp.playSE(12);
+				    combinedText += raw.charAt(charIndex);
+				    charIndex++;
+				    break; // Only reveal one character per frame
 				}
+				currentDialogue = combinedText;
 				
 				
 				if(gp.keyH.enterPressed == true) {
@@ -634,10 +646,8 @@ public class UI {
 				}
 			}
 			
-			for(String line : currentDialogue.split("\n")) {
-				g2.drawString(line, x, y);
-				y += 40;
-			}
+			drawFormattedText(g2, currentDialogue, x, y);
+
 			
 			if(npc.name != null) {
 			    String speakerName = npc.name;
@@ -751,11 +761,15 @@ public class UI {
 		g2.drawString(value, textX, textY);
 		textY += lineHeight;
 		
-
-		g2.drawImage(gp.player.currentWeapon.image1, tailX - gp.tileSize, textY - 24, null);
+		if(gp.player.currentWeapon != null) {
+			g2.drawImage(gp.player.currentWeapon.image1, tailX - gp.tileSize, textY - 24, null);
+		}
 		
-		textY += gp.tileSize;
-		g2.drawImage(gp.player.currentShield.image1, tailX - gp.tileSize, textY - 24, null);
+		if(gp.player.currentShield != null) {
+			textY += gp.tileSize;
+			g2.drawImage(gp.player.currentShield.image1, tailX - gp.tileSize, textY - 24, null);
+		}
+
 	}
 	public void drawInventory(Entity entity, boolean cursor) {
 		
@@ -824,6 +838,32 @@ public class UI {
 				g2.drawString(s, amountX - 3, amountY-3);
 				
 			}
+			// DURABILITY BAR
+			Entity item = entity.inventory.get(i);
+			if (item.maxDurability > 0 && item.durability >= 0 && item.durability < item.maxDurability) {
+				int barWidth = gp.tileSize;
+				int barHeight = 6;
+				int barX = slotX;
+				int barY = slotY + gp.tileSize - 4;
+
+				double durabilityRatio = (double)item.durability / item.maxDurability;
+				int filledWidth = (int)(barWidth * durabilityRatio);
+
+				// Background bar (grey)
+				g2.setColor(new Color(50, 50, 50));
+				g2.fillRect(barX, barY, barWidth, barHeight);
+
+				// Foreground bar (green)
+				g2.setColor(new Color(50, 200, 50));
+				
+				
+				g2.fillRect(barX, barY, filledWidth, barHeight);
+
+				// Optional: border
+				g2.setColor(Color.black);
+				g2.drawRect(barX, barY, barWidth, barHeight);
+			}
+			
 			
 			slotX += slotSize;
 			
@@ -1056,8 +1096,6 @@ public class UI {
 		textX = frameX + gp.tileSize;
 		textY += gp.tileSize;
 		
-		g2.drawString("Move", textX, textY); 
-		textY += gp.tileSize;
 		
 		g2.drawString("Interact/Attack", textX, textY); 
 		textY += gp.tileSize;
@@ -1068,19 +1106,21 @@ public class UI {
 		g2.drawString("Block/Parry", textX, textY); 
 		textY += gp.tileSize;
 		
+		g2.drawString("Roll", textX, textY); 
+		textY += gp.tileSize;
+		
+		g2.drawString("Journal Screen", textX, textY); 
+		textY += gp.tileSize;
+		
 		g2.drawString("Character Screen", textX, textY); 
 		textY += gp.tileSize;
 		
 		g2.drawString("Transform", textX, textY); 
 		textY += gp.tileSize;
 		
-		g2.drawString("Options", textX, textY); 
-		textY += gp.tileSize;
 		
 		textX = frameX + gp.tileSize * 7;
 		textY = frameY + gp.tileSize * 2;
-		g2.drawString("WASD", textX, textY);
-		textY += gp.tileSize;
 		
 		g2.drawString("ENTER", textX, textY);
 		textY += gp.tileSize;
@@ -1088,7 +1128,13 @@ public class UI {
 		g2.drawString("E", textX, textY);
 		textY += gp.tileSize;
 		
+		g2.drawString("F", textX, textY);
+		textY += gp.tileSize;
+		
 		g2.drawString("SPACE", textX, textY);
+		textY += gp.tileSize;
+		
+		g2.drawString("J", textX, textY);
 		textY += gp.tileSize;
 		
 		g2.drawString("C", textX, textY);
@@ -1097,8 +1143,6 @@ public class UI {
 		g2.drawString("Q", textX, textY);
 		textY += gp.tileSize;
 		
-		g2.drawString("ESC", textX, textY);
-		textY += gp.tileSize;
 		
 		//BACK
 		textX = frameX + gp.tileSize;
@@ -1613,8 +1657,11 @@ public class UI {
         }
 	}
 	public int getItemIndexOnSlot(int slotCol, int slotRow) {
-		int itemIndex = slotCol + (slotRow * 5);
-		return itemIndex;
+	    int itemIndex = slotCol + (slotRow * 5);
+	    if (itemIndex > 20) {
+	        return -1;
+	    }
+	    return itemIndex;
 	}
     public void initWorldLightSources() {
     	lightSources.removeAll(lightSources);
@@ -1707,6 +1754,57 @@ public class UI {
         g2.setColor(border);
         g2.setStroke(new BasicStroke(4));
         g2.drawRoundRect(x + 4, y + 4, width - 8, height - 8, 20, 20);
+    }
+    private void drawFormattedText(Graphics2D g2, String text, int x, int y) {
+        int lineHeight = 40;
+        Color defaultColor = Color.WHITE;
+        Color currentColor = defaultColor;
+
+        for (String line : text.split("\n")) {
+            int currentX = x;
+            boolean isRed = false;
+            StringBuilder wordBuilder = new StringBuilder();
+
+            for (int i = 0; i < line.length(); i++) {
+                char c = line.charAt(i);
+
+                if (line.startsWith("[r]", i)) {
+                    // Draw current buffer
+                    if (wordBuilder.length() > 0) {
+                        g2.setColor(currentColor);
+                        g2.drawString(wordBuilder.toString(), currentX, y);
+                        currentX += g2.getFontMetrics().stringWidth(wordBuilder.toString());
+                        wordBuilder.setLength(0);
+                    }
+                    currentColor = Color.RED;
+                    i += "[r]".length() - 1;
+                }
+                else if (line.startsWith("[/r]", i)) {
+                    if (wordBuilder.length() > 0) {
+                        g2.setColor(currentColor);
+                        g2.drawString(wordBuilder.toString(), currentX, y);
+                        currentX += g2.getFontMetrics().stringWidth(wordBuilder.toString());
+                        wordBuilder.setLength(0);
+                    }
+                    currentColor = defaultColor;
+                    i += "[/r]".length() - 1;
+                }
+                else {
+                    wordBuilder.append(c);
+                }
+            }
+
+            // Draw remaining buffer
+            if (wordBuilder.length() > 0) {
+                g2.setColor(currentColor);
+                g2.drawString(wordBuilder.toString(), currentX, y);
+            }
+
+            y += lineHeight;
+        }
+
+        // Reset to default after drawing
+        g2.setColor(defaultColor);
     }
     public int getXforCenteredText(String text) {
 		

@@ -4,8 +4,17 @@ import java.awt.Rectangle;
 import java.util.Random;
 
 import main.emberlight.GamePanel;
+import object.OBJ_Wood_Sword;
 import object.OBJ_Fruit_Juice;
+import object.OBJ_Gold_Sword;
+import object.OBJ_Iron_Axe;
+import object.OBJ_Iron_Sword;
+import object.OBJ_Lantern;
 import object.OBJ_Rabbit_Shield_1;
+import object.OBJ_Rabbit_Shield_2;
+import object.OBJ_Seed;
+import object.OBJ_Silver_Sword;
+import object.OBJ_Stone_Axe;
 
 public class NPC_Shopkeeper extends Entity{
 	
@@ -53,16 +62,30 @@ public class NPC_Shopkeeper extends Entity{
 	}
 	public void setDialogue() {
 		
-		dialogues[0][0] = "Hi there!\nHave a look at my wares.";
-		dialogues[1][0] = "See you soon!";
-		dialogues[2][0] = "Tryna scam me?";
-		dialogues[3][0] = "Your inventory is full!";
-		dialogues[4][0] = "You cannot sell an equipped item!";
+		dialogues[0][0] = "Welcome back!\nYou’ve got good taste.";
+		dialogues[1][0] = "Good luck, sweetheart.";
+		dialogues[2][0] = "You don’t have the coin for that.\nCome back when you do.";
+		dialogues[3][0] = "Clean out your pack first!";
+		dialogues[4][0] = "Unequip that before selling it.";
 	}
 	public void setItems() {
 		
-		inventory.add(new OBJ_Rabbit_Shield_1(gp));
+		inventory.add(new OBJ_Iron_Sword(gp));
+		inventory.add(new OBJ_Silver_Sword(gp));
+		inventory.add(new OBJ_Stone_Axe(gp));
+		inventory.add(new OBJ_Iron_Axe(gp));
+		
+		inventory.add(new OBJ_Rabbit_Shield_2(gp));
+		inventory.add(new OBJ_Lantern(gp));
 		inventory.add(new OBJ_Fruit_Juice(gp));
+    	inventory.add(new OBJ_Seed(gp, 7));
+    	inventory.add(new OBJ_Seed(gp, 8));
+    	inventory.add(new OBJ_Seed(gp, 9));
+    	inventory.add(new OBJ_Seed(gp, 10));
+    	inventory.add(new OBJ_Seed(gp, 11));
+    	inventory.add(new OBJ_Seed(gp, 12));
+    	inventory.add(new OBJ_Seed(gp, 13));
+    	inventory.add(new OBJ_Seed(gp, 14));
 	}
 	public void setAction() {
 		

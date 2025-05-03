@@ -23,10 +23,10 @@ public class OBJ_Chest extends Entity{
 		
 		
 		collision = true;
-		solidArea.x = 0;
+		solidArea.x = 4;
 		solidArea.y = 16;
-		solidArea.width = 48;
-		solidArea.height = 32;
+		solidArea.width = 40;
+		solidArea.height = 16;
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
 	}

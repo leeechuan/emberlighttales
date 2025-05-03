@@ -96,24 +96,31 @@ public class CutsceneManager {
 	}
 	public void setDialogue() {
 		if(sceneNum == tutorial) {
-			cutsceneMaster.dialogues[0][0] = "Yawnnnnnnnnnnn";
-			cutsceneMaster.dialogues[0][1] = "That was a good nap...";
-			cutsceneMaster.dialogues[0][2] = "Let me stretch my legs...";
-			cutsceneMaster.dialogues[0][3] = "(Press WASD to move)";
-			
-			cutsceneMaster.dialogues[1][0] = "Can't wait to take my sword on a spin...";
-			cutsceneMaster.dialogues[1][1] = "(Press ENTER to attack/interact)";
-			
-			cutsceneMaster.dialogues[2][0] = "Hmm, if an enemy is far, I could use some\nrange...";
-			cutsceneMaster.dialogues[2][1] = "(Press E to shoot an arrow.)";
-			
-			cutsceneMaster.dialogues[3][0] = "With the power of your plush toy\nPablo the rabbit...";
-			cutsceneMaster.dialogues[3][1] = "...hold F to block incoming attacks!";
-			
-			cutsceneMaster.dialogues[4][0] = "Nice!";
-			cutsceneMaster.dialogues[4][1] = "(Press C to open your inventory)";
-			
-			cutsceneMaster.dialogues[5][0] = "All ready! Adventure awaits.";
+		    cutsceneMaster.dialogues[0][0] = "*yaaawn*";
+		    cutsceneMaster.dialogues[0][1] = "What a great nap!";
+		    cutsceneMaster.dialogues[0][2] = "Time to stretch these legs!";
+		    cutsceneMaster.dialogues[0][3] = "(Use [r]WASD[/r] to move around)";
+
+		    cutsceneMaster.dialogues[1][0] = "Ooh, I’ve been itching to swing my sword!";
+		    cutsceneMaster.dialogues[1][1] = "(Press [r]ENTER[/r] to attack or interact)";
+
+		    cutsceneMaster.dialogues[2][0] = "If something's too far away...";
+		    cutsceneMaster.dialogues[2][1] = "...I'll just pew-pew it from a distance!";
+		    cutsceneMaster.dialogues[2][2] = "(Press [r]E[/r] to shoot an arrow)";
+
+		    cutsceneMaster.dialogues[3][0] = "Pablo the plush bunny's got my back!";
+		    cutsceneMaster.dialogues[3][1] = "(Hold [r]F[/r] to block incoming attacks)";
+
+		    cutsceneMaster.dialogues[4][0] = "Hehe, I can even do a quick tumble~";
+		    cutsceneMaster.dialogues[4][1] = "(Press [r]SPACEBAR[/r] to roll)";
+
+		    cutsceneMaster.dialogues[5][0] = "I should probably bring along my journal...";
+		    cutsceneMaster.dialogues[5][1] = "(Press [r]J[/r] to open your journal)";
+
+		    cutsceneMaster.dialogues[6][0] = "Better double-check if I packed my snacks...";
+		    cutsceneMaster.dialogues[6][1] = "(Press [r]C[/r] to check your inventory)";
+
+		    cutsceneMaster.dialogues[7][0] = "All set! Off for an adventure!";
 		}
 		if(sceneNum == witchSerum) {
 			cutsceneMaster.dialogues[0][0] = "A shock of heat runs through your\nbody. Vision blurs. Muscles tense.\nShadows ripple nunnaturally across\nthe floor.";
@@ -131,121 +138,147 @@ public class CutsceneManager {
 		};
 	}
 	public void scene_tutorial() {
-//	    switch(scenePhase) {
-//	        case 0: // Fade in
-//	            alpha += 0.01f;
-//	            if (alpha >= 1f) {
-//	                alpha = 1f;
-//	                scenePhase++;
-//	            }
-//	            drawBlackBackground(1f - alpha);
-//	            break;
-//	        
-//	        case 1: // Display first instruction (Move with WASD)
-//	        	cutsceneMaster.startDialogue(cutsceneMaster, 0);
-//	        	scenePhase++;
-//	            break;
-//	        
-//	        case 2: // Wait 1 second after first movement
-//	            if (counter == 0) { 
-//	                // First time a movement key is pressed, start the timer
-//	                if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.leftPressed || gp.keyH.rightPressed) {
-//	                    counter = 1;  // Start counting frames
-//	                }
-//	            } else if (counterReached(60)) { 
-//	                // If 1 seconds (60 frames) have passed since first key press, proceed
-//	                scenePhase++;
-//	                counter = 0;
-//	            }
-//	            break;
-//	        case 3: // Display attack instruction
-//	        	cutsceneMaster.startDialogue(cutsceneMaster, 1);
-//	        	scenePhase++;
-//	            break;
-//	        
-//	        case 4: //attack tutorial
-//	            if (counter == 0) { 
-//	                // First time a movement key is pressed, start the timer
-//	                if (gp.keyH.attackPressed) {
-//	                    counter = 1;  // Start counting frames
-//	                }
-//	            } else if (counterReached(60)) { 
-//	                // If 1 seconds (60 frames) have passed since first key press, proceed
-//	                scenePhase++;
-//	                counter = 0;
-//	            }
-//	            break;
-//	        case 5: // Display shoot instruction
-//	        	cutsceneMaster.startDialogue(cutsceneMaster, 2);
-//	        	scenePhase++;
-//	            break;
-//
-//	        case 6: // Wait 1 second after shoot
-//	            if (counter == 0) { 
-//	                // First time a shoot key is pressed, start the timer
-//	                if (gp.keyH.shotKeyPressed) {
-//	                    counter = 1;  // Start counting frames
-//	                }
-//	            } else if (counterReached(60)) { 
-//	                // If 1 second (60 frames) have passed since first key press, proceed
-//	                scenePhase++;
-//	                counter = 0;
-//	            }
-//	            break;
-//	        case 7: // Display block instruction dialogue
-//	            cutsceneMaster.startDialogue(cutsceneMaster, 3);
-//	            scenePhase++;
-//	            break;
-//	        case 8: // Wait for a key press to continue (or add a short delay)
-//	            if (counter == 0) { 
-//	            	// Wait 1 second after block
-//	                if (gp.keyH.blockPressed) {
-//	                    counter = 1;  // Start counting frames
-//	                }
-//	            } else if (counterReached(60)) { 
-//	                // If 1 second (60 frames) have passed since first key press, proceed
-//	                scenePhase++;
-//	                counter = 0;
-//	            }
-//	            break;
-//	        case 9: // Display character inventory instruction dialogue
-//	            cutsceneMaster.startDialogue(cutsceneMaster, 4);
-//	            scenePhase++;
-//	            break;
-//	        case 10: // Wait for second 'c' press to continue
-//	            if (gp.keyH.characterPressed && !characterKeyPressedLastFrame) {
-//	                // Increment the counter every time the key is pressed
-//	                pressCount++;
-//	                
-//	                // If it's the second press, proceed to the next phase
-//	                if (pressCount == 2) {
-//	                    scenePhase++; // Move to the next phase
-//	                    pressCount = 0; // Reset the press count for future use
-//	                }
-//	                
-//	                // Set the flag to prevent counting multiple presses in one frame
-//	                characterKeyPressedLastFrame = true;
-//	            } else if (!gp.keyH.characterPressed) {
-//	                // Reset the flag when the key is released
-//	                characterKeyPressedLastFrame = false;
-//	            }
-//	            break;
-//	        case 11: // Display final message
-//	        	cutsceneMaster.startDialogue(cutsceneMaster, 5);
-//                Progress.gameStage = Progress.STAGE_INTRODUCTION;
-//                scenePhase++;
-//	            if (gp.keyH.enterPressed) {
-//	                sceneNum = NA;
-//	                scenePhase = 0;
-//	            	gp.gameState = gp.playState;
-//	                cutsceneMaster.dialogueSet = 0; // Reset to the starting dialogue set
-//	                cutsceneMaster.dialogueIndex = 0; // Reset to the first dialogue
-//	            }
-//	            break;
-//	    }
-		sceneNum = NA;
-        scenePhase = 0;
-    	gp.gameState = gp.playState;
+
+		if(gp.player.debugPlayerStart) {
+			sceneNum = NA;
+	        scenePhase = 0;
+	    	gp.gameState = gp.playState;
+		}
+		else {
+			switch(scenePhase) {
+	        case 0: // Fade in
+	            alpha += 0.01f;
+	            if (alpha >= 1f) {
+	                alpha = 1f;
+	                scenePhase++;
+	            }
+	            drawBlackBackground(1f - alpha);
+	            break;
+	        
+	        case 1: //MOVE
+	        	cutsceneMaster.startDialogue(cutsceneMaster, 0);
+	        	scenePhase++;
+	            break;
+	        
+	        case 2: // Wait 1 second after first movement
+	            if (counter == 0) { 
+	                if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.leftPressed || gp.keyH.rightPressed) {
+	                    counter = 1;
+	                }
+	            } else if (counterReached(60)) { 
+	                scenePhase++;
+	                counter = 0;
+	            }
+	            break;
+	        case 3: //ATTACK
+	        	cutsceneMaster.startDialogue(cutsceneMaster, 1);
+	        	scenePhase++;
+	            break;
+	        
+	        case 4: // Wait 1 second after attack
+	            if (counter == 0) { 
+	                if (gp.keyH.attackPressed) {
+	                    counter = 1;
+	                }
+	            } else if (counterReached(60)) { 
+	                scenePhase++;
+	                counter = 0;
+	            }
+	            break;
+	        case 5: //SHOOT
+	        	cutsceneMaster.startDialogue(cutsceneMaster, 2);
+	        	scenePhase++;
+	            break;
+
+	        case 6: // Wait 1 second after shoot
+	            if (counter == 0) { 
+	                if (gp.keyH.shotKeyPressed) {
+	                    counter = 1;
+	                }
+	            } else if (counterReached(60)) { 
+	                scenePhase++;
+	                counter = 0;
+	            }
+	            break;
+	        case 7: //BLOCK
+	            cutsceneMaster.startDialogue(cutsceneMaster, 3);
+	            scenePhase++;
+	            break;
+	        case 8: // Wait 1 second
+	            if (counter == 0) { 
+	                if (gp.keyH.blockPressed) {
+	                    counter = 1;
+	                }
+	            } else if (counterReached(60)) { 
+	                scenePhase++;
+	                counter = 0;
+	            }
+	            break;
+	        case 9: //ROLL
+	        	cutsceneMaster.startDialogue(cutsceneMaster, 4);
+	        	scenePhase++;
+	            break;
+	        
+	        case 10: // Wait 1 second after first roll
+	            if (counter == 0) { 
+	                if (gp.keyH.rollPressed) {
+	                    counter = 1;
+	                }
+	            } else if (counterReached(60)) { 
+	                scenePhase++;
+	                counter = 0;
+	            }
+	            break;
+	        case 11: //JOURNAL
+	            cutsceneMaster.startDialogue(cutsceneMaster, 5);
+	            scenePhase++;
+	            break;
+	        case 12: // Wait for second 'c' press to continue
+	            if (gp.keyH.journalPressed && !characterKeyPressedLastFrame) {
+	            	
+	                pressCount++;
+	                if (pressCount == 2) {
+	                    scenePhase++;
+	                    pressCount = 0;
+	                }
+	                
+	                characterKeyPressedLastFrame = true;
+	            } else if (!gp.keyH.characterPressed) {
+	                characterKeyPressedLastFrame = false;
+	            }
+	            break;
+	        case 13: //CHARACTER SCREEN
+	            cutsceneMaster.startDialogue(cutsceneMaster, 6);
+	            scenePhase++;
+	            break;
+	        case 14: // Wait for second 'c' press to continue
+	            if (gp.keyH.characterPressed && !characterKeyPressedLastFrame) {
+	            	
+	                pressCount++;
+	                if (pressCount == 2) {
+	                    scenePhase++;
+	                    pressCount = 0;
+	                }
+	                
+	                characterKeyPressedLastFrame = true;
+	            } else if (!gp.keyH.characterPressed) {
+	                characterKeyPressedLastFrame = false;
+	            }
+	            break;
+	        case 15: // Display final message
+	        	cutsceneMaster.startDialogue(cutsceneMaster, 7);
+                Progress.gameStage = Progress.STAGE_INTRODUCTION;
+                scenePhase++;
+	            if (gp.keyH.enterPressed) {
+	                sceneNum = NA;
+	                scenePhase = 0;
+	            	gp.gameState = gp.playState;
+	                cutsceneMaster.dialogueSet = 0; // Reset to the starting dialogue set
+	                cutsceneMaster.dialogueIndex = 0; // Reset to the first dialogue
+	            }
+	            break;
+			}
+		}
 	}
 	public void scene_townhall() {
 		switch(scenePhase) {
@@ -589,10 +622,10 @@ public class CutsceneManager {
 				sceneNum = NA;
 				scenePhase = 0;
 				gp.gameState = gp.playState;
-				gp.pManager.addNotification("Journal Updated");
-				gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Bound By Blood And Magic"));
-				gp.updateNPCDialogues();
 				Progress.gameStage = Progress.STAGE_MEET_WITCH;
+				gp.updateNPCDialogues();
+				gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Bound By Blood And Magic"));
+				gp.pManager.addNotification("Journal Updated");
 	            break;
 		}
 		
@@ -624,11 +657,11 @@ public class CutsceneManager {
 			break;
         case 2: // Display cutscene
         	Progress.gameStage = Progress.STAGE_SERUM_GIVEN;
-			gp.pManager.addNotification("Journal Updated");
-			gp.qManager.progressQuest("Bound By Blood And Magic");
             cutsceneMaster.dialogueSet = 0; // Reset to the starting dialogue set
             cutsceneMaster.dialogueIndex = 0; // Reset to the first dialogue
         	cutsceneMaster.startDialogue(cutsceneMaster, 0);
+			gp.pManager.addNotification("Journal Updated");
+			gp.qManager.progressQuest("Bound By Blood And Magic");
         	scenePhase++;
             break;
         
@@ -683,10 +716,10 @@ public class CutsceneManager {
 			sceneNum = NA;
 			scenePhase = 0;
 			gp.gameState = gp.playState;
-			gp.pManager.addNotification("Journal Updated");
-			gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Beneath Enemy Lines"));
 			gp.updateNPCDialogues();
 			Progress.gameStage = Progress.STAGE_FIND_ORC_LIEUTENANT;
+			gp.pManager.addNotification("Journal Updated");
+			gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Beneath Enemy Lines"));
             break;
 		}
 	}

@@ -40,6 +40,11 @@ public class MOB_Angel2 extends Entity {
 //		solidAreaDefaultX = solidArea.x;
 //		solidAreaDefaultY = solidArea.y;
 		
+	    shadowWidth = 36;
+	    shadowHeight = 10;
+	    shadowXOffset = 17;
+	    shadowYOffset = 52;
+		
 		
 		solidArea.x = gp.tileSize*3/8;
 		solidArea.y = gp.tileSize*3/8;

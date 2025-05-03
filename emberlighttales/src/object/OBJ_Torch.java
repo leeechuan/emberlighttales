@@ -15,7 +15,9 @@ public class OBJ_Torch extends Entity{
 		name = objName;
 		image1 = setup("/objects/torch", 1, 1);
 		description = "[Torch]\nEmits small light";
-		price = 200;
+		price = 35;
 		lightRadius = 150;
+		maxDurability = 2000;
+		durability = 2000;
 	}
 }

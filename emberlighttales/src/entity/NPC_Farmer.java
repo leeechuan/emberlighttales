@@ -68,7 +68,7 @@ public class NPC_Farmer extends Entity {
 				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger"))&&
 				!gp.player.isGremlin) {
 			dialogues[0][0] = "You! You're quick on your feet, right?";
-			dialogues[0][1] = "After the orc raid, my poor chickens\npanicked and scattered everywhere like\nfeathered fools!";
+			dialogues[0][1] = "After the orc raid, my poor [r]chickens[/r]\npanicked and scattered everywhere like\nfeathered fools!";
 			dialogues[0][2] = "They’re out there—hiding in bushes, behind\ncrates...";
 			dialogues[0][3] = "I’d go get 'em myself, but my back’s\ngot more cracks than a dry loaf\nof cornbread.";
 			dialogues[0][4] = "Be a good soul and round them up for\nme, would ya?";

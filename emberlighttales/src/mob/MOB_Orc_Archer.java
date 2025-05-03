@@ -28,6 +28,11 @@ public class MOB_Orc_Archer extends Entity {
 		exp = 7;
 		projectile = new OBJ_Arrow(gp);
 		
+	    shadowWidth = 36;
+	    shadowHeight = 10;
+	    shadowXOffset = 17;
+	    shadowYOffset = 62;
+		
 		solidArea.x = gp.tileSize*3/8;
 		solidArea.y = gp.tileSize*3/8;
 		solidArea.width = gp.tileSize*3/4;

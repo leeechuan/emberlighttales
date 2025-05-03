@@ -18,6 +18,7 @@ public class IT_Tree extends InteractiveTile{
 		this.worldX = gp.tileSize * col;
 		this.worldY = gp.tileSize * row;
 		
+		collision = true;
 		
 		if (tree_type == 0) {
 			solidArea.x = (int) (gp.tileSize * 0.85);

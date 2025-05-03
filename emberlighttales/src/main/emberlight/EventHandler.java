@@ -55,6 +55,7 @@ public class EventHandler{
 		eventMaster.dialogues[1][0] = "You drank some water.\nHP and mana is restored";
 		eventMaster.dialogues[2][0] = "There is a werid energy stopping you\nfrom entering.";
 		eventMaster.dialogues[3][0] = "The door is locked.";
+		eventMaster.dialogues[4][0] = "I haven't warmed up yet!";
 	}
 	public void checkEvent() {
 		
@@ -107,7 +108,7 @@ public class EventHandler{
 					gp.csManager.sceneNum = gp.csManager.ending3;
 				}
 			}
-			else if(hit(0, 74, 80,"any") == true || hit(0, 75, 80,"any") == true || hit(0, 76, 80,"any") == true) {
+			else if(hit(0, 70, 76,"any") == true || hit(0, 72, 76,"any") == true || hit(0, 71, 77,"any") == true) {
 				TownhallScene();
 			}
 			else if(hit(0, 64, 62,"any") == true || hit(0, 64, 63,"any") == true || hit(0, 64, 64,"any") == true) {
@@ -140,8 +141,15 @@ public class EventHandler{
 				gp.playSE(14);
 			}
 			else if(hit(21, 50, 51,"any") == true) {
-				teleport(0, 71, 76, gp.outside);
-				gp.playSE(14);
+				if(Progress.gameStage == Progress.STAGE_TUTORIAL) {
+					gp.gameState = gp.dialogueState;
+					eventMaster.startDialogue(eventMaster, 4);
+					canTouchEvent = false;
+				}
+				else {
+					teleport(0, 71, 76, gp.outside);
+					gp.playSE(14);
+				}
 			}
 			
 			//Mayor house
@@ -496,11 +504,11 @@ public class EventHandler{
 		
 		if(gp.bossBattleOn == false && Progress.gameStage < Progress.STAGE_ORC_LIEUTENANT_DEFEATED) {
 			if(gp.qManager.getQuestJournal().getQuestByName("Beneath Enemy Lines").getCurrentStageIndex() < 2) {
-				gp.qManager.progressQuest("Beneath Enemy Lines");
-				gp.pManager.addNotification("Journal Updated");
 				gp.gameState = gp.cutsceneState;
 				gp.csManager.scenePhase = 0;
 				gp.csManager.sceneNum = gp.csManager.orcLieutenant;
+				gp.qManager.progressQuest("Beneath Enemy Lines");
+				gp.pManager.addNotification("Journal Updated");
 			}
 		}
 	}

@@ -40,9 +40,13 @@ public class MOB_Templar extends Entity {
 //		solidAreaDefaultX = solidArea.x;
 //		solidAreaDefaultY = solidArea.y;
 		
-		
+	    shadowWidth = 36;
+	    shadowHeight = 10;
+	    shadowXOffset = 17;
+	    shadowYOffset = 68;
+	    
 		solidArea.x = gp.tileSize*3/8;
-		solidArea.y = gp.tileSize*3/8;
+		solidArea.y = gp.tileSize*6/8;
 		solidArea.width = gp.tileSize*3/4;
 		solidArea.height = gp.tileSize*3/4;
 		solidAreaDefaultX = solidArea.x;
@@ -70,15 +74,15 @@ public class MOB_Templar extends Entity {
 		int multiplier = 1;
 		
 	     for (int i = 0; i < 6; i++) {
-             frontStanding[i] = setup("/enemy_templar/templar_down_" + i, 2f*multiplier, 2f*multiplier);
-             rightStanding[i] = setup("/enemy_templar/templar_right_" +i, 2f*multiplier, 2f*multiplier);
-             backStanding[i] = setup("/enemy_templar/templar_up_" + i, 2f*multiplier, 2f*multiplier);
-             frontWalking[i] = setup("/enemy_templar/templar_movedown_" + i, 2f*multiplier, 2f*multiplier);
-             rightWalking[i] = setup("/enemy_templar/templar_moveright_" + i, 2f*multiplier, 2f*multiplier);
-             backWalking[i] = setup("/enemy_templar/templar_moveup_" + i, 2f*multiplier, 2f*multiplier);
-             frontAttacking[i] = setup("/enemy_templar/templar_attackdown_" + i, 2f*multiplier, 2f*multiplier);
-             rightAttacking[i] = setup("/enemy_templar/templar_attackright_" +i, 2f*multiplier, 2f*multiplier);
-             backAttacking[i] = setup("/enemy_templar/templar_attackup_" + i, 2f*multiplier, 2f*multiplier);
+             frontStanding[i] = setup("/enemy_templar/templar_down_" + i, 2.5f*multiplier, 2.5f*multiplier);
+             rightStanding[i] = setup("/enemy_templar/templar_right_" +i, 2.5f*multiplier, 2.5f*multiplier);
+             backStanding[i] = setup("/enemy_templar/templar_up_" + i, 2.5f*multiplier, 2.5f*multiplier);
+             frontWalking[i] = setup("/enemy_templar/templar_movedown_" + i, 2.5f*multiplier, 2.5f*multiplier);
+             rightWalking[i] = setup("/enemy_templar/templar_moveright_" + i, 2.5f*multiplier, 2.5f*multiplier);
+             backWalking[i] = setup("/enemy_templar/templar_moveup_" + i, 2.5f*multiplier, 2.5f*multiplier);
+             frontAttacking[i] = setup("/enemy_templar/templar_attackdown_" + i, 2.5f*multiplier, 2.5f*multiplier);
+             rightAttacking[i] = setup("/enemy_templar/templar_attackright_" +i, 2.5f*multiplier, 2.5f*multiplier);
+             backAttacking[i] = setup("/enemy_templar/templar_attackup_" + i, 2.5f*multiplier, 2.5f*multiplier);
          	}
 	     for (int i = 0; i < 6; i++) {
              leftStanding[i] = invertImage(rightStanding[i]);
@@ -90,7 +94,7 @@ public class MOB_Templar extends Entity {
     	int multiplier = 1;
     	
 	     for (int i = 0; i < 6; i++) {
-            frontDeath[i] = setup("/enemy_templar/templar_death_" + i, 2f*multiplier, 2f*multiplier);
+            frontDeath[i] = setup("/enemy_templar/templar_death_" + i, 2.5f*multiplier, 2.5f*multiplier);
 	     }
    }
 	public void setAction() {

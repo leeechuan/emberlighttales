@@ -5,7 +5,13 @@ import java.util.Random;
 
 import main.emberlight.GamePanel;
 import object.OBJ_Fruit_Juice;
+import object.OBJ_Gold_Axe;
+import object.OBJ_Gold_Sword;
+import object.OBJ_Lantern;
 import object.OBJ_Rabbit_Shield_1;
+import object.OBJ_Rabbit_Shield_3;
+import object.OBJ_Seed;
+import object.OBJ_Silver_Axe;
 import object.OBJ_SunmireGlassroot;
 
 public class NPC_Desert_Trader extends Entity{
@@ -56,17 +62,29 @@ public class NPC_Desert_Trader extends Entity{
 	}
 	public void setDialogue() {
 		
-		dialogues[0][0] = "Hi there!\nHave a look at my wares.";
-		dialogues[1][0] = "See you soon!";
-		dialogues[2][0] = "Tryna scam me?";
-		dialogues[3][0] = "Your inventory is full!";
-		dialogues[4][0] = "You cannot sell an equipped item!";
+		dialogues[0][0] = "Step into the shade.\nBrowse with no haste.";
+		dialogues[1][0] = "Winds guide your path.";
+		dialogues[2][0] = "Gold is light in your pouch.\nCome richer next time.";
+		dialogues[3][0] = "Your bags overflow like dunes.";
+		dialogues[4][0] = "You wear it—why would I buy it?";
 	}
 	public void setItems() {
 		
-		inventory.add(new OBJ_Rabbit_Shield_1(gp));
+		inventory.add(new OBJ_Gold_Sword(gp));
+		inventory.add(new OBJ_Silver_Axe(gp));
+		inventory.add(new OBJ_Gold_Axe(gp));
+		
+		inventory.add(new OBJ_Rabbit_Shield_3(gp));
+		inventory.add(new OBJ_Lantern(gp));
 		inventory.add(new OBJ_Fruit_Juice(gp));
 		inventory.add(new OBJ_SunmireGlassroot(gp));
+    	inventory.add(new OBJ_Seed(gp, 15));
+    	inventory.add(new OBJ_Seed(gp, 16));
+    	inventory.add(new OBJ_Seed(gp, 17));
+    	inventory.add(new OBJ_Seed(gp, 18));
+    	inventory.add(new OBJ_Seed(gp, 19));
+    	inventory.add(new OBJ_Seed(gp, 20));
+    	inventory.add(new OBJ_Seed(gp, 21));
 	}
 //	public void setAction() {
 //		

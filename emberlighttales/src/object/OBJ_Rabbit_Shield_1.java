@@ -15,7 +15,9 @@ public class OBJ_Rabbit_Shield_1 extends Entity{
 		image1 = setup("/objects/rabbit_shield1", 1, 1);
 		defenseValue = 1;
 		description = "[" + name + "]" + "\nA bunny plushie\ncalled Pablo.\nIts kinda crusty.\nAlso, it emits\na green stench.";
-		price = 20;
+		price = 30;
+        maxDurability = 20;
+        durability = 20;
 	}
 
 }

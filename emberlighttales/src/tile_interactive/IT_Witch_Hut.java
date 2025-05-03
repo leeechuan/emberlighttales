@@ -14,6 +14,8 @@ public class IT_Witch_Hut extends InteractiveTile{
 		super(gp, col, row);
 		this.gp = gp;
 		
+		collision = true;
+		
 		this.worldX = gp.tileSize * col - 10;
 		this.worldY = gp.tileSize * row;
 		solidArea.x = (int) (gp.tileSize * 0.75);

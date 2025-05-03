@@ -28,6 +28,11 @@ public class MOB_Desert_Archer extends Entity {
 		exp = 20;
 		projectile = new OBJ_Arrow(gp);
 		
+	    shadowWidth = 36;
+	    shadowHeight = 10;
+	    shadowXOffset = 18;
+	    shadowYOffset = 50;
+		
 		solidArea.x = gp.tileSize*3/8;
 		solidArea.y = gp.tileSize*3/8;
 		solidArea.width = gp.tileSize*3/4;

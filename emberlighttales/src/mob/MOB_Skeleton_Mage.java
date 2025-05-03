@@ -27,6 +27,11 @@ public class MOB_Skeleton_Mage extends Entity {
 		exp = 9;
 		projectile = new OBJ_Skeleton_Mage_Projectile(gp);
 		
+	    shadowWidth = 36;
+	    shadowHeight = 10;
+	    shadowXOffset = 19;
+	    shadowYOffset = 50;
+		
 		solidArea.x = gp.tileSize*3/8;
 		solidArea.y = gp.tileSize*3/8;
 		solidArea.width = gp.tileSize*3/4;

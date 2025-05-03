@@ -59,6 +59,7 @@ public class SaveLoad {
                 Entity item = gp.player.inventory.get(i);
                 ds.itemNames.add(item.name);
                 ds.itemAmounts.add(item.amount);
+                ds.itemDurabilities.add(item.durability);
 
                 // Save cropId if the item is a seed or fruit
                 if (item instanceof OBJ_Seed) {
@@ -68,6 +69,7 @@ public class SaveLoad {
                 } else {
                     ds.itemCropIds.add(-1);
                 }
+
             }
 			//PLAYER EQUIPMENT
 			ds.currentWeaponSlot = gp.player.getCurrentWeaponSlot();
@@ -199,6 +201,7 @@ public class SaveLoad {
 	        for (int i = 0; i < ds.itemNames.size(); i++) {
 	            String itemName = ds.itemNames.get(i);
 	            int amount = ds.itemAmounts.get(i);
+	            int durability = ds.itemDurabilities.get(i);
 	            Entity item = null;
 
 	            try {
@@ -224,6 +227,7 @@ public class SaveLoad {
 
 	                if (item != null) {
 	                    item.amount = amount;
+	                    item.durability = durability;
 	                    gp.player.inventory.add(item);
 	                }
 

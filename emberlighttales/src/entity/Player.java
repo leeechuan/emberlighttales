@@ -63,6 +63,9 @@ public class Player extends Entity {
     // To track animation state
 //    private int spriteCounter = 0;
 //    private int spriteNum = 0;
+    
+    //DEBUG ALTERNATE START (SKIP TUTORIAL)
+    public boolean debugPlayerStart = true;
 
     public Player(GamePanel gp, KeyHandler keyH) {
     	
@@ -82,13 +85,11 @@ public class Player extends Entity {
         setDefaultValues();
     }
     public void setDefaultValues() {
-//        worldX = gp.tileSize * 75;
-//        worldY = gp.tileSize * 78;
-        worldX = gp.tileSize * 67;
-        worldY = gp.tileSize * 78;
+    	
+    	setDefaultPositions();
+
         defaultSpeed = 5;
         speed = defaultSpeed;
-        direction = "down";
         
         //PLAYER STATUS
         name = "Player";
@@ -119,11 +120,17 @@ public class Player extends Entity {
     }
     public void setDefaultPositions() {
     	
-    	gp.currentMap = 0;
-//        worldX = gp.tileSize * 75;
-//        worldY = gp.tileSize * 78;
-        worldX = gp.tileSize * 67;
-        worldY = gp.tileSize * 78;
+    	
+    	if(debugPlayerStart) {
+            worldX = gp.tileSize * 75;
+            worldY = gp.tileSize * 78;
+    		gp.currentMap = 0;
+    	}
+    	else {
+            worldX = gp.tileSize * 60;
+            worldY = gp.tileSize * 45;
+            gp.currentMap = 21;
+    	}
         direction = "down";
     }
     public void setDialogue() {
@@ -149,18 +156,6 @@ public class Player extends Entity {
     	inventory.add(currentShield);
     	inventory.add(new OBJ_Lantern(gp));
     	inventory.add(new OBJ_Stone_Axe(gp));
-    	inventory.add(new OBJ_Seed(gp,0));
-    	inventory.add(new OBJ_Seed(gp,12));
-    	inventory.add(new OBJ_Seed(gp,0));
-    	inventory.add(new OBJ_Seed(gp,12));
-    	inventory.add(new OBJ_Seed(gp,0));
-    	inventory.add(new OBJ_Seed(gp,12));
-    	inventory.add(new OBJ_Seed(gp,0));
-    	inventory.add(new OBJ_Seed(gp,12));
-    	inventory.add(new OBJ_Seed(gp,0));
-    	inventory.add(new OBJ_Seed(gp,12));
-    	inventory.add(new OBJ_Seed(gp,0));
-    	inventory.add(new OBJ_Seed(gp,12));
     }
     public int getAttack() {
     	attackArea = currentWeapon.attackArea;
@@ -451,7 +446,7 @@ public class Player extends Entity {
         
         gremlinMode();
                 
-		if (!isGremlin && keyH.blockPressed && !isBlocking) {
+		if (!isGremlin && keyH.blockPressed && !isBlocking  && gp.player.currentShield != null) {
 		    isBlocking = true;
 		    blocking();
 		} else if (!keyH.blockPressed && isBlocking) {
@@ -499,10 +494,10 @@ public class Player extends Entity {
 			}
 		}
         
-		else if(isAttacking) {
+		else if(isAttacking && gp.player.currentWeapon != null) {
         	attacking();
         }
-		else if (!isGremlin && isBlocking) {
+		else if (!isGremlin && isBlocking && gp.player.currentShield != null) {
 		    blocking();
 		}
         else if(!isGremlin && isShooting) {
@@ -602,11 +597,27 @@ public class Player extends Entity {
                }
            }
            
-           if(keyH.enterPressed == true && attackCancelled == false) {
-        	   gp.playSE(4);
-        	   isAttacking = true;
-        	   spriteCounter = 0;
-           }
+           if (keyH.enterPressed && !attackCancelled) {
+        	    if (currentWeapon != null) {
+        	        gp.playSE(4);
+        	        isAttacking = true;
+        	        spriteCounter = 0;
+        	        currentWeapon.durability--;
+
+        	        if (currentWeapon.durability <= 0) {
+        	        	gp.ui.addMessage(currentWeapon.name + " has broken.");
+        	            gp.player.inventory.remove(currentWeapon);
+        	            gp.player.currentWeapon = null;
+        	            gp.playSE(32);
+
+        	            //CANCEL ATTACK
+        	            isAttacking = false;
+        	            spriteCounter = 0;
+        	            attackCancelled = true;
+        	        }
+        	    }
+        	}
+
            
            attackCancelled = false;
            gp.keyH.enterPressed = false;
@@ -614,6 +625,18 @@ public class Player extends Entity {
 //           blockCounter = 0;
 
         }
+		
+		if (currentLight != null) {
+			currentLight.durability--;
+
+	        if (currentLight.durability <= 0) {
+	        	gp.ui.addMessage(currentLight.name + " has burnt out.");
+	            gp.player.inventory.remove(currentLight);
+	            gp.player.currentLight = null;
+	            gp.playSE(34);
+
+	        }
+	    }
         
         spriteCounter++;
         
@@ -649,7 +672,7 @@ public class Player extends Entity {
         	shootingSpriteCounter = 0;
     	}
         
-        //Outside of key if statement
+        //Invincible
         if(invincible == true) {
         	invincibleCounter++;
         	if(invincibleCounter > 60) {

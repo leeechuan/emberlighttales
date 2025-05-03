@@ -32,14 +32,11 @@ public class MOB_Desert_Warrior extends Entity {
 		knockBackPower = 3;
 		name = mobName;
 //		sleep = true;
-		
-//		solidArea.x = gp.tileSize*3/8;
-//		solidArea.y = gp.tileSize*3/8;
-//		solidArea.width = gp.tileSize*3/4;
-//		solidArea.height = gp.tileSize*3/4;
-//		solidAreaDefaultX = solidArea.x;
-//		solidAreaDefaultY = solidArea.y;
-		
+
+	    shadowWidth = 36;
+	    shadowHeight = 10;
+	    shadowXOffset = 18;
+	    shadowYOffset = 50;
 		
 		solidArea.x = gp.tileSize*3/8;
 		solidArea.y = gp.tileSize*3/8;

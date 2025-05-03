@@ -5,9 +5,15 @@ import java.util.Random;
 
 import main.emberlight.GamePanel;
 import object.OBJ_Fruit_Juice;
+import object.OBJ_Gold_Sword;
+import object.OBJ_Iron_Sword;
 import object.OBJ_Rabbit_Shield_1;
 import object.OBJ_Seed;
 import object.OBJ_Stone_Axe;
+import object.OBJ_Stone_Sword;
+import object.OBJ_Torch;
+import object.OBJ_Wood_Axe;
+import object.OBJ_Wood_Sword;
 
 public class NPC_Merchant extends Entity{
 	
@@ -55,18 +61,28 @@ public class NPC_Merchant extends Entity{
 	}
 	public void setDialogue() {
 		
-		dialogues[0][0] = "Hi there!\nHave a look at my wares.";
-		dialogues[1][0] = "See you soon!";
-		dialogues[2][0] = "Tryna scam me?";
-		dialogues[3][0] = "Your inventory is full!";
-		dialogues[4][0] = "You cannot sell an equipped item!";
+		dialogues[0][0] = "Hey there, traveler!\nTake a look at what I’ve got.";
+		dialogues[1][0] = "Take care out there!";
+		dialogues[2][0] = "Eh... not enough coin, friend.\nYou’ll need more than that.";
+		dialogues[3][0] = "You're carrying too much!";
+		dialogues[4][0] = "You can’t sell what you're using!";
 	}
 	public void setItems() {
 		
+		inventory.add(new OBJ_Wood_Sword(gp));
+		inventory.add(new OBJ_Stone_Sword(gp));
+		inventory.add(new OBJ_Wood_Axe(gp));
+		
 		inventory.add(new OBJ_Rabbit_Shield_1(gp));
+		inventory.add(new OBJ_Torch(gp));
 		inventory.add(new OBJ_Fruit_Juice(gp));
     	inventory.add(new OBJ_Seed(gp, 0));
     	inventory.add(new OBJ_Seed(gp, 1));
+    	inventory.add(new OBJ_Seed(gp, 2));
+    	inventory.add(new OBJ_Seed(gp, 3));
+    	inventory.add(new OBJ_Seed(gp, 4));
+    	inventory.add(new OBJ_Seed(gp, 5));
+    	inventory.add(new OBJ_Seed(gp, 6));
 	}
 	public void setAction() {
 		

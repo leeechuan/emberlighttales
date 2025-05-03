@@ -33,13 +33,10 @@ public class MOB_Desert_Mummy extends Entity {
 		name = mobName;
 //		sleep = true;
 		
-//		solidArea.x = gp.tileSize*3/8;
-//		solidArea.y = gp.tileSize*3/8;
-//		solidArea.width = gp.tileSize*3/4;
-//		solidArea.height = gp.tileSize*3/4;
-//		solidAreaDefaultX = solidArea.x;
-//		solidAreaDefaultY = solidArea.y;
-		
+	    shadowWidth = 36;
+	    shadowHeight = 10;
+	    shadowXOffset = 18;
+	    shadowYOffset = 48;
 		
 		solidArea.x = gp.tileSize*3/8;
 		solidArea.y = gp.tileSize*3/8;

@@ -29,7 +29,9 @@ public class IT_House extends InteractiveTile{
 		//6 -> Blue stone
 		//7 -> Yellow wood (only for small and medium house)
 		//8 -> Yellow stone (only for small and medium house)
-
+		
+		collision = true;
+		
 		if(house_type == 1) {
 			this.worldX = gp.tileSize * col - 10;
 			this.worldY = gp.tileSize * row;

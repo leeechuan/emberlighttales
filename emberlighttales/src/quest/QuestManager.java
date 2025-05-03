@@ -24,7 +24,7 @@ public class QuestManager {
     	    "The village Witch has said that\nshe has something for me.\nI should meet her.",
     	    true,
     	    Arrays.asList(
-    	        new QuestStage("Talk to village witch from 7pm - 4am"),
+    	        new QuestStage("Talk to village witch from 8pm - 4am"),
     	        new QuestStage("Transform into a gremlin"),
     	        new QuestStage("Use gremlin form to clean up bridge")
     	    ),

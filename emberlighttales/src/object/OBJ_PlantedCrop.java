@@ -23,8 +23,20 @@ public class OBJ_PlantedCrop extends Entity {
     private int growthTicks = 0; // Ticks to wait before growing
     private int maxGrowthTicks = 100; // The number of ticks before the crop grows (can be randomized)
     
-    private static final int BASE_GROWTH_TIME = 3000;
-    private static final int RANDOM_GROWTH_VARIATION = 500;
+    // Growth time config per crop ID
+    private static final int[] BASE_GROWTH_TIMES = {
+        2400, 2800, 2600, 2700, 3800, 5200, 2900, 3100, 4700, 3600,
+        3900, 3900, 3900, 5500, 4800, 5000, 3400, 5700, 3300, 3500, 4400, 6000
+    };
+    private static final int[] GROWTH_VARIATIONS = {
+        300, 400, 350, 400, 700, 900, 400, 450, 800, 600,
+        650, 650, 650, 1000, 900, 800, 500, 1100, 500, 600, 700, 1200
+    };
+    public static final String[] CROP_NAMES = {
+    	    "Wheat", "Tomato", "Carrot", "Turnip", "Corn", "Tangerine", "Radish", "Lettuce", "Pickle", "Chili",
+    	    "Red Pepper", "Orange Pepper", "Green Pepper", "Watermelon", "Sunflower", "Garlic", "Potato",
+    	    "Strawberry", "Beetroot", "Onion", "Leek", "Grape"
+    	};
 
     private int cropId; // The ID to define which crop this is (e.g., 0 for wheat, 1 for tomato, etc.)
     
@@ -36,9 +48,9 @@ public class OBJ_PlantedCrop extends Entity {
         this.type = type_crop;
         this.worldX = tileX * gp.tileSize;
         this.worldY = tileY * gp.tileSize;
-        this.maxGrowthTicks = BASE_GROWTH_TIME + (int)(Math.random() * RANDOM_GROWTH_VARIATION);
+        this.maxGrowthTicks = BASE_GROWTH_TIMES[cropId] + (int)(Math.random() * GROWTH_VARIATIONS[cropId]);
         
-        name = objName;
+        name = CROP_NAMES[cropId];
         
 		collision = true;
 		solidArea.x = 0;
@@ -52,8 +64,8 @@ public class OBJ_PlantedCrop extends Entity {
     }
     public void setDialogue() {
     	
-		dialogues[0][0] = "You harvested";
-		dialogues[1][0] = "It is not ripe yet";
+		dialogues[0][0] = "You harvested a " + name;
+		dialogues[1][0] = name + " is not ripe yet.\nIt is still at stage " + growthStage;
     }
     private void loadStageImages() {
         for (int i = STAGE_GROWTH_1; i <= STAGE_GROWTH_4; i++) {
@@ -77,7 +89,7 @@ public class OBJ_PlantedCrop extends Entity {
                 if (growthStage < STAGE_GROWTH_4) {
                     growthStage++;
                     // Re-randomize growth time for the next stage
-                    maxGrowthTicks = BASE_GROWTH_TIME + (int) (Math.random() * RANDOM_GROWTH_VARIATION);
+                    maxGrowthTicks = BASE_GROWTH_TIMES[cropId] + (int)(Math.random() * GROWTH_VARIATIONS[cropId]);
                 }
             }
         }
@@ -106,9 +118,8 @@ public class OBJ_PlantedCrop extends Entity {
         if (growthStage == STAGE_GROWTH_4) {
 			setDialogue();
 			startDialogue(this, 0);
-            // Give the player the harvested fruit (you can implement this however you want)
-			gp.player.canObtainItem(new OBJ_Fruit(gp, cropId)); // Add the harvested fruit to player's inventory
-            // Remove the planted crop
+			gp.player.canObtainItem(new OBJ_Fruit(gp, cropId));
+            gp.playSE(30);
 			gp.plantedCrops.remove(this);
         }
         else {

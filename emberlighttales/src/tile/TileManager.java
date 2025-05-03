@@ -195,6 +195,8 @@ public class TileManager {
             collisionFlags[i] = true; // Mark as wall
         }
         
+        collisionFlags[526] = true; //Grass (to hide behind houses)
+        
         collisionFlags[527] = true; //palisade
         collisionFlags[528] = true; //palisade
         collisionFlags[529] = true; //palisade
@@ -280,8 +282,13 @@ public class TileManager {
         collisionFlags[759] = true; //tent
 
         for (int i = 770; i <= 785; i++) {
-            collisionFlags[i] = true; // Mark as desert fence
+            collisionFlags[i] = true; // Desert fence
         }
+        for (int i = 786; i <= 797; i++) {
+            collisionFlags[i] = true; // Desert temple
+        }
+        
+        collisionFlags[816] = true; //Sand (to hide behind houses)
 
         for (int i = 0; i < collisionFlags.length; i++) {
             setup(i, String.format("%04d", i), collisionFlags[i]);

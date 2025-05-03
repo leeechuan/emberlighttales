@@ -34,12 +34,10 @@ public class MOB_Orc_Second extends Entity {
 		direction = "down";
 		sleep = true;
 		
-//		solidArea.x = gp.tileSize*3/8;
-//		solidArea.y = gp.tileSize*3/8;
-//		solidArea.width = gp.tileSize*3/4;
-//		solidArea.height = gp.tileSize*3/4;
-//		solidAreaDefaultX = solidArea.x;
-//		solidAreaDefaultY = solidArea.y;
+	    shadowWidth = 64;
+	    shadowHeight = 14;
+	    shadowXOffset = 2;
+	    shadowYOffset = 88;
 		
 		
 		solidArea.x = gp.tileSize;

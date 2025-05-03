@@ -19,7 +19,7 @@ public class OBJ_Palisade extends Entity{
 		super(gp);
 		this.gp = gp;
 		
-		type = type_backdrop;
+		type = type_obstacle;
 		name = objName;
 		
 		

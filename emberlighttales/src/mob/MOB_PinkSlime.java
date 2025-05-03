@@ -29,6 +29,11 @@ public class MOB_PinkSlime extends Entity {
 		exp = 4;
 		knockBackPower = 2;
 		
+	    shadowWidth = 26;
+	    shadowHeight = 10;
+	    shadowXOffset = 23;
+	    shadowYOffset = 40;
+		
 		solidArea.x = gp.tileSize*3/8;
 		solidArea.y = gp.tileSize*3/8;
 		solidArea.width = gp.tileSize*3/4;

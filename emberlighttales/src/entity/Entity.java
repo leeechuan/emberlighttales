@@ -159,6 +159,8 @@ public class Entity {
 	public boolean stackable = false;
 	public int amount = 1;
 	public int lightRadius;
+	public int durability = -1;
+	public int maxDurability = -1;
 	
 	//NPC SCHEDULE
 	public int homeWorldX;
@@ -196,6 +198,12 @@ public class Entity {
 	private long bounceStartTime = System.currentTimeMillis(); // Track the start time for bouncing
 	private static final int BOUNCE_HEIGHT = 10; // Max height of the bounce
 	private static final int BOUNCE_SPEED = 800; // Speed of the bounce (higher means slower)
+	
+	//SHADOW
+	public int shadowWidth;
+	public int shadowHeight;
+	public int shadowXOffset;
+	public int shadowYOffset;
 	
 	public Entity(GamePanel gp) {
 		this.gp = gp;
@@ -782,6 +790,22 @@ public class Entity {
 				damage /= 3;
 				gp.playSE(10);
 				}
+				
+	            // Durability loss for both block & parry
+	            if (gp.player.currentShield != null) {
+	                gp.player.currentShield.durability --;
+	                if (gp.player.currentShield.durability <= 0) {
+	                    gp.ui.addMessage(currentShield.name + " has broken.");
+	                    gp.playSE(33);
+	                    gp.player.inventory.remove(gp.player.currentShield);
+	                    gp.player.currentShield = null;
+	                    
+        	            //CANCEL BLOCK
+        	            isBlocking = false;
+        	            blockCounter = 0;
+        	            gp.keyH.blockPressed = false;
+	                }
+	            }
 
 			}
 			else {
@@ -919,6 +943,66 @@ public class Entity {
             }
             
             
+            //NPC only draw
+            if((type == type_npc && name != "Dungeon Rock") || 
+            		name == "Dummy") {
+            	
+            	//Shadow
+                g2.setColor(new Color(0, 0, 0, 100));
+                g2.fillOval(screenX + 20, screenY + 47, 30, 10);
+                
+                
+                if(gp.gameState != gp.cutsceneState) {
+                	if (questMarker != questMarker_none) {
+                        String markerText = "!";
+                        Color markerColor;
+                        
+                        switch (questMarker) {
+                            case questMarker_newQuest:
+                                markerColor = Color.RED;
+                                break;
+                            case questMarker_activeQuest:
+                                markerColor = Color.YELLOW;
+                                break;
+                            default:
+                                markerColor = Color.WHITE;
+                                break;
+                        }
+
+                        // Set font and color
+                        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 18F)); // Adjust size as needed
+                        g2.setColor(Color.BLACK);
+
+                        // Calculate position for the "!" above the NPC
+                        int markerX = screenX + gp.tileSize * 4/5 - g2.getFontMetrics().stringWidth(markerText) / 2;
+                        int markerY = screenY - 8 + (int)(Math.sin((System.currentTimeMillis() - bounceStartTime) / (double)BOUNCE_SPEED * Math.PI * 2) * BOUNCE_HEIGHT);
+                        
+                        // Draw the marker
+                        g2.drawString(markerText, markerX, markerY);
+                        
+                        // Set font and color
+                        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 18F)); // Adjust size as needed
+                        g2.setColor(markerColor);
+                        
+                        // Draw the marker
+                        g2.drawString(markerText, markerX - 2, markerY - 2);
+                	}
+                
+
+                }
+                
+            }
+            
+            //MOB only draw
+            if(type == type_mob) {
+                int shadowX = screenX + shadowXOffset;
+                int shadowY = screenY + shadowYOffset;
+                
+            	//Shadow
+                g2.setColor(new Color(0, 0, 0, 100));
+                g2.fillOval(shadowX, shadowY, shadowWidth, shadowHeight);
+            }
+            
             // Calculate offsets to keep character centered
             if(image != null) {
                 if(image.getWidth() != gp.tileSize) {
@@ -932,52 +1016,6 @@ public class Entity {
                 	g2.drawImage(image, screenX, screenY, null);
                 }
             }
-            
-            //NPC only draw
-            if((type == type_npc && name != "Dungeon Rock") || name == "Dummy") {
-            	
-            	//Shadow
-                g2.setColor(new Color(0, 0, 0, 100));
-                g2.fillOval(screenX + 20, screenY + 47, 30, 10);
-                
-                if (questMarker != questMarker_none) {
-                    String markerText = "!";
-                    Color markerColor;
-                    
-                    switch (questMarker) {
-                        case questMarker_newQuest:
-                            markerColor = Color.RED;
-                            break;
-                        case questMarker_activeQuest:
-                            markerColor = Color.YELLOW;
-                            break;
-                        default:
-                            markerColor = Color.WHITE;
-                            break;
-                    }
-
-                    // Set font and color
-                    g2.setFont(g2.getFont().deriveFont(Font.BOLD, 18F)); // Adjust size as needed
-                    g2.setColor(Color.BLACK);
-
-                    // Calculate position for the "!" above the NPC
-                    int markerX = screenX + gp.tileSize * 4/5 - g2.getFontMetrics().stringWidth(markerText) / 2;
-                    int markerY = screenY - 8 + (int)(Math.sin((System.currentTimeMillis() - bounceStartTime) / (double)BOUNCE_SPEED * Math.PI * 2) * BOUNCE_HEIGHT);
-                    
-                    // Draw the marker
-                    g2.drawString(markerText, markerX, markerY);
-                    
-                    // Set font and color
-                    g2.setFont(g2.getFont().deriveFont(Font.BOLD, 18F)); // Adjust size as needed
-                    g2.setColor(markerColor);
-                    
-                    // Draw the marker
-                    g2.drawString(markerText, markerX - 2, markerY - 2);
-
-                }
-                
-            }
-            
             
 
         	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
