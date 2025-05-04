@@ -84,6 +84,7 @@ import object.OBJ_LampPost;
 import object.OBJ_Lantern;
 import object.OBJ_LilyPad;
 import object.OBJ_Log;
+import object.OBJ_LucaJacket;
 import object.OBJ_ManaCrystal;
 import object.OBJ_Palisade;
 import object.OBJ_Rabbit_Shield_2;
@@ -2310,6 +2311,14 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldY = 46 * gp.tileSize;
 		i++;
 		
+		//Wood Cave
+		mapNum = 25;
+		
+		gp.obj[mapNum][i] = new OBJ_Chest(gp);
+		gp.obj[mapNum][i].setLoot(new OBJ_LucaJacket(gp));
+		gp.obj[mapNum][i].worldX = 50 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 35 * gp.tileSize;
+		i++;
 
 
 	}

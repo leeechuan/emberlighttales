@@ -78,8 +78,16 @@ public class OBJ_Chest extends Entity{
 				startDialogue(this, 1);
 				
 				if (!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Critical Malfunction"))&&
-						gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Critical Malfunction"))) {
+						gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Critical Malfunction"))&&
+						this.loot.name == OBJ_FieldResonator.objName) {
 					gp.qManager.progressQuest("Critical Malfunction");
+					gp.pManager.addNotification("Journal Updated");
+				}
+				
+				else if (!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+						gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+						this.loot.name == OBJ_LucaJacket.objName) {
+					gp.qManager.progressQuest("Stolen Style");
 					gp.pManager.addNotification("Journal Updated");
 				}
 			}

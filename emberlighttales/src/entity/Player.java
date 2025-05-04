@@ -65,7 +65,7 @@ public class Player extends Entity {
 //    private int spriteNum = 0;
     
     //DEBUG ALTERNATE START (SKIP TUTORIAL)
-    public boolean debugPlayerStart = true;
+    public boolean debugPlayerStart = false;
 
     public Player(GamePanel gp, KeyHandler keyH) {
     	

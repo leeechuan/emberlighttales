@@ -115,7 +115,18 @@ public class OBJ_PlantedCrop extends Entity {
 
     // Harvest the crop (turns it into fruit)
     public void harvest() {
+    
+		//Harvest Handling
         if (growthStage == STAGE_GROWTH_4) {
+
+        	//Mission Handling
+    		if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace"))&&
+    				gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace").getCurrentStageIndex() == 1 &&
+    				name == "Sunflower") {
+    			gp.qManager.progressQuest("Seeds of Solace");
+    			gp.pManager.addNotification("Journal Updated");
+    		}
+    		
 			setDialogue();
 			startDialogue(this, 0);
 			gp.player.canObtainItem(new OBJ_Fruit(gp, cropId));

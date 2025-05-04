@@ -41,6 +41,7 @@ import object.OBJ_LampPost;
 import object.OBJ_Lantern;
 import object.OBJ_LilyPad;
 import object.OBJ_Log;
+import object.OBJ_LucaJacket;
 import object.OBJ_ManaCrystal;
 import object.OBJ_Palisade;
 import object.OBJ_PlantedCrop;
@@ -120,6 +121,7 @@ public class EntityGenerator {
 		case OBJ_Lantern.objName: obj = new OBJ_Lantern(gp); break;
 		case OBJ_LilyPad.objName: obj = new OBJ_LilyPad(gp, 0); break;
 		case OBJ_Log.objName: obj = new OBJ_Log(gp, 0); break;
+		case OBJ_LucaJacket.objName: obj = new OBJ_LucaJacket(gp); break;
 		case OBJ_ManaCrystal.objName: obj = new OBJ_ManaCrystal(gp); break;
 		case OBJ_Palisade.objName: obj = new OBJ_Palisade(gp); break;
 		case OBJ_PlantedCrop.objName: obj = new OBJ_PlantedCrop(0, 0, 0, gp); break;

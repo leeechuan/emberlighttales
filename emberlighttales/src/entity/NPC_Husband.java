@@ -56,12 +56,33 @@ public class NPC_Husband extends Entity {
 	}
 	public void setDialogue() {
 		
-		dialogues[0][0] = "Hello there!";		
-		dialogues[0][1] = "Need Sumthin";	
+		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+				!gp.player.isGremlin) {
+			dialogues[0][0] = "Ugh! Can you believe it?! My favourite\nyellow jacket is gone again.";		
+			dialogues[0][1] = "I bet it's that theiving rat Cain from\nGildenshore. I've seen him eyeing my jacket\neverytime I wear it out...";
+			dialogues[0][2] = "Find him, would you? For justice...\nand fashion.";	
+		}
+		else if (!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+				gp.player.searchItemInInventory("Luca's Jacket") != 999 &&
+				!gp.player.isGremlin) {
+			dialogues[0][0] = "You found it! My precious jacket!";		
+			dialogues[0][1] = "Ugh, it smells like cave moss... but I\ndon’t even care. You are a lifesaver!";	
+			dialogues[0][2] = "Cain can keep his jealous little hands\nto himself next time. Thank you!";
+		}
+		else {
+			dialogues[0][0] = "Hello there!";		
+			dialogues[0][1] = "Need Sumthin";	
+			dialogues[0][2] = null;
+			
+
+			dialogues[1][0] = "I used to be an adventurer like you...";		
+			dialogues[1][1] = null;
+			dialogues[1][2] = null;
+		}
 		
 
-		dialogues[1][0] = "I used to be an adventurer like you...\nUntil I took an arrow to the knee";		
-		dialogues[1][1] = "What chu want";
 	}
 	public void setAction() {
 		
@@ -103,8 +124,26 @@ public class NPC_Husband extends Entity {
 	
 	public void speak() {
 		
+		setDialogue();
 		facePlayer();
 		startDialogue(this, dialogueSet);
+		
+		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+				!gp.player.isGremlin) {
+			gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"));
+			gp.pManager.addNotification("Journal Updated");
+		}
+		else if (!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+				gp.player.searchItemInInventory("Luca's Jacket") != 999 &&
+				!gp.player.isGremlin) {
+			gp.player.inventory.remove(gp.player.searchItemInInventory("Luca's Jacket"));
+			gp.qManager.progressQuest("Stolen Style");
+			gp.qManager.progressQuest("Stolen Style"); //Just in case player already has in inventory
+			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"));
+			gp.pManager.addNotification("Quest Completed!");
+		}
 		
 		dialogueSet++;
 		

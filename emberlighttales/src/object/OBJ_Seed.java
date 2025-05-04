@@ -27,7 +27,7 @@ public class OBJ_Seed extends Entity{
         this.type = type_seed;
         this.cropId = cropId;
         
-        name = CROP_NAMES[cropId];
+        name = CROP_NAMES[cropId] + " Seed";
         
         image1 = setup("/crops/crop_" + cropId + "_0", 1, 1);
         

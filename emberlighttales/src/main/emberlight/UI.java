@@ -468,7 +468,7 @@ public class UI {
 		    }
 		    
 		    // Draw version number on the bottom right
-		    String versionText = "Beta v1.1.13";
+		    String versionText = "Beta v1.1.14";
 		    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 10F));
 		    g2.setColor(Color.white);
 		    int versionX = gp.screenWidth - g2.getFontMetrics().stringWidth(versionText) - 10;
@@ -1294,7 +1294,12 @@ public class UI {
 						gp.player.searchItemInInventory("Sunmire Glassroot") != 999) {
 					gp.qManager.progressQuest("Fissures in the Shield");
 					gp.pManager.addNotification("Journal Updated");
-					
+				}
+				else if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace"))&&
+						gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace").getCurrentStageIndex() == 0 &&
+						gp.player.searchItemInInventory("Sunflower Seed") != 999) {
+					gp.qManager.progressQuest("Seeds of Solace");
+					gp.pManager.addNotification("Journal Updated");
 				}
 			}
 		}

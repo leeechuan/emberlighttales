@@ -55,8 +55,34 @@ public class NPC_DesertHerbalist extends Entity {
 	         portrait = setup("/artwork/desert_herbalist_portrait", 3f, 3f);
 	}
 	public void setDialogue() {
+		
+		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace"))&&
+				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace"))&&
+				!gp.player.isGremlin) {
+			dialogues[0][0] = "I’ve been trying to craft a calming\nsalve, but I need sunflowers\nto finish it.";		
+			dialogues[0][1] = "They don’t grow anywhere near here.\nThe desert is far too dry.";
+			dialogues[0][2] = "Do you think you could help me obtain\nsome sunflowers? Try Gildenshore, I’ve\nheard the trader there might carry seeds.";
+			dialogues[0][3] = null;
+			dialogues[0][4] = null;	
+		}
+		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace"))&&
+				gp.player.searchItemInInventory("Sunflower") != 999 &&
+				!gp.player.isGremlin) {
+			dialogues[0][0] = "You actually grew one! It’s beautiful...\nexactly what I needed.";		
+			dialogues[0][1] = "Thank you. You’ve brought a little warmth\nto this dry land.";
+			dialogues[0][2] = "Here is something for your troubles!";	
+			dialogues[0][3] = null;
+			dialogues[0][4] = null;	
+		}
+		else {
+			dialogues[0][0] = "Yes?";
+			dialogues[0][1] = null;
+			dialogues[0][2] = null;	
+			dialogues[0][3] = null;
+			dialogues[0][4] = null;	
+		}
 
-		dialogues[0][0] = "Yes?";
 	}
 	public void setAction() {
 		
@@ -98,8 +124,26 @@ public class NPC_DesertHerbalist extends Entity {
 	
 	public void speak() {
 		
+		setDialogue();
 		facePlayer();
 		startDialogue(this, dialogueSet);
+		
+		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace"))&&
+				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace"))&&
+				!gp.player.isGremlin) {
+			gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace"));
+			gp.pManager.addNotification("Journal Updated");
+		}
+		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace"))&&
+				gp.player.searchItemInInventory("Sunflower") != 999 &&
+				!gp.player.isGremlin) {
+			gp.player.inventory.remove(gp.player.searchItemInInventory("Sunflower"));
+			gp.qManager.progressQuest("Seeds of Solace");
+			gp.qManager.progressQuest("Seeds of Solace"); //Just in case player already has in inventory
+			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace"));
+			gp.pManager.addNotification("Quest Completed!");
+		}
 		
 		dialogueSet++;
 		

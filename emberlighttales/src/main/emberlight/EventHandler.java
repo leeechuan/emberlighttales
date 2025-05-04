@@ -254,6 +254,13 @@ public class EventHandler{
 			
 			//Wood Cave
 			else if(hit(0, 79, 58,"up") == true || hit(0, 80, 58,"up") == true || hit(0, 81, 58,"up") == true) {
+				if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+						gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+						gp.qManager.getQuestJournal().getQuestByName("Stolen Style").getCurrentStageIndex() == 1 &&
+						!gp.player.isGremlin) {
+					gp.qManager.progressQuest("Stolen Style");
+					gp.pManager.addNotification("Journal Updated");
+				}
 				teleport(25, 50, 50, gp.dungeon);
 				gp.playSE(24);
 			}

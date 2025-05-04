@@ -56,10 +56,31 @@ public class NPC_Thief extends Entity {
 	}
 	public void setDialogue() {
 		
-		dialogues[0][0] = "What?";
-		dialogues[1][0] = "Don't speak to me...";
+		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+				gp.qManager.getQuestJournal().getQuestByName("Stolen Style").getCurrentStageIndex() == 0 &&
+				!gp.player.isGremlin) {
+			dialogues[0][0] = "Look, I didn’t steal the jacket. I just...\nborrowed it.";		
+			dialogues[0][1] = "Okay, fine... maybe I took it without\nasking. But Luca was flaunting it\naround in my face.";
+			dialogues[0][2] = "When I saw the guard coming, I panicked and\nran into the mines. Thought I could lose\nthem in the tunnels.";	
+			dialogues[0][3] = "Something down there started growling... I\nfreaked out, tossed the jacket in a\nchest, and ran for it.";
+			dialogues[0][4] = "You want it? Go get it. I’m not going back\nin there.";	
+		}
+		
+		else {
+			dialogues[0][0] = "What?";
+			dialogues[0][1] = "Don't speak to me...";
+			dialogues[0][2] = null;	
+			dialogues[0][3] = null;
+			dialogues[0][4] = null;	
 
-		dialogues[1][0] = "Do I know you?";
+			dialogues[1][0] = "Do I know you?";
+			dialogues[1][1] = null;
+			dialogues[1][2] = null;	
+			dialogues[1][3] = null;
+			dialogues[1][4] = null;	
+		}
+
 	}
 	public void setAction() {
 		
@@ -101,8 +122,17 @@ public class NPC_Thief extends Entity {
 	
 	public void speak() {
 		
+		setDialogue();
 		facePlayer();
 		startDialogue(this, dialogueSet);
+		
+		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+				gp.qManager.getQuestJournal().getQuestByName("Stolen Style").getCurrentStageIndex() == 0 &&
+				!gp.player.isGremlin) {
+			gp.qManager.progressQuest("Stolen Style");
+			gp.pManager.addNotification("Journal Updated");
+		}
 		
 		dialogueSet++;
 		

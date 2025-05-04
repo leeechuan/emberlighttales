@@ -149,35 +149,36 @@ public class QuestManager {
     	);
     	Quest sideQuest6 = new Quest(
     		    "Stolen Style",
-    		    "Luca claims Cain from Gildenshore stole his\nfavorite jacket. Find the thief\nand settle the fashion feud.",
+    		    "Luca claims Cain from Gildenshore\nstole his favorite jacket. Find\nthe thief and settle the\nfashion feud.",
     		    false,
     		    Arrays.asList(
-    		        new QuestStage("Confront the Thief in Gildenshore."),
-    		        new QuestStage("Search the his home for the jacket."),
-    		        new QuestStage("Return jacket to the Husband.")
+    		        new QuestStage("Confront the Thief in Gildenshore"),
+    		        new QuestStage("Go to Emberville mines"),
+    		        new QuestStage("Search for the jacket"),
+    		        new QuestStage("Return jacket to Luca")
     		    ),
     		    gp
     	);
     	Quest sideQuest7 = new Quest(
-    		    "Spuds for the Soul",
-    		    "The herbalist in Solara needs fresh potatoes\nfor a desert tonic, but the traders are running low.",
+    		    "Seeds of Solace",
+    		    "The herbalist in Solara seeks\na single vibrant sunflower for\na calming remedy, but none grow\nin the region.",
     		    false,
     		    Arrays.asList(
-    		        new QuestStage("Obtain potato seeds from Emberville"),
-    		        new QuestStage("Plant potato seeds"),
-    		        new QuestStage("Bring potatoes to the herbalist.")
+    		        new QuestStage("Obtain sunflower seed from Gildenshore"),
+    		        new QuestStage("Plant the sunflower seed in a fertile area"),
+    		        new QuestStage("Bring the harvested sunflower to the herbalist")
     		    ),
     		    gp
-    	);
+    		);
     	Quest sideQuest8 = new Quest(
     		    "To Do List",
     		    "Nessa from Emberville needs help\nrunning errands.",
     		    false,
     		    Arrays.asList(
-    		        new QuestStage("Fetch water from the well."),
-    		        new QuestStage("Bring water back to Nessa."),
-    		        new QuestStage("Buy 10 corn seeds from the Crovin."),
-    		        new QuestStage("Bring corn seeds to Nessa.")
+    		        new QuestStage("Fetch water from the well"),
+    		        new QuestStage("Bring water back to Nessa"),
+    		        new QuestStage("Buy 10 corn seeds from the Crovin"),
+    		        new QuestStage("Bring corn seeds to Nessa")
     		    ),
     		    gp
     	);
