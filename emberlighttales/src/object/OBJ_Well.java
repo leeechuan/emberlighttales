@@ -32,6 +32,40 @@ public class OBJ_Well extends Entity{
 			collision = true;
 
 	}
+	public void setLoot() {
+		this.loot = new OBJ_WaterBucket(gp);
+		
+		setDialogue();
+	}
+    public void setDialogue() {
+    	
+		dialogues[0][0] = "You cannot carry any more items!";
+		dialogues[1][0] = "You scooped a bucket of water.";
+		dialogues[2][0] = "It's empty.";
+    }
+	public void interact() {
+		setLoot();
+	    if (!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+				gp.qManager.getQuestJournal().getQuestByName("To Do List").getCurrentStageIndex() == 0) {
+            giveLoot();
+	    }
+	}
 
+	private void giveLoot() {
+		
+		if (gp.player.canObtainItem(loot) == false) {
+			startDialogue(this, 0);
+		} else {
+			startDialogue(this, 1);
+			
+		    if (!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+					gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+					gp.qManager.getQuestJournal().getQuestByName("To Do List").getCurrentStageIndex() == 0) {
+				gp.qManager.progressQuest("To Do List");
+				gp.pManager.addNotification("Journal Updated");
+			}
+		}
+	}
 }
 

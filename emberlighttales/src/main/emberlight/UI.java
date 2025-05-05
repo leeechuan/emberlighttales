@@ -28,6 +28,7 @@ import object.OBJ_Heart;
 import object.OBJ_LampPost;
 import object.OBJ_ManaCrystal;
 import object.OBJ_Scarecrow;
+import object.OBJ_SmallTorch;
 import quest.Quest;
 import quest.QuestStage;
 import entity.Entity;
@@ -412,23 +413,19 @@ public class UI {
 		        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 		    }
 		    
-		    // Draw a translucent overlay for overall darkening
-		    g2.setColor(new Color(0, 0, 0, 120));
-		    g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-		    
 		    // Draw the title text (static, with shadow)
 		    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
 		    String text = "Emberlight Tales";
 		    int x = getXforCenteredText(text);
 		    int y = gp.tileSize * 3;
 		    
-		    // Title shadow
-		    g2.setColor(Color.gray);
-		    g2.drawString(text, x + 5, y + 5);
-		    // Main title
-		    g2.setColor(Color.white);
-		    g2.drawString(text, x, y);
-		    
+//		    // Title shadow
+//		    g2.setColor(Color.gray);
+//		    g2.drawString(text, x + 5, y + 5);
+//		    // Main title
+//		    g2.setColor(Color.white);
+//		    g2.drawString(text, x, y);
+//		    
 		    // Draw the character image below the title text
 		    x = gp.screenWidth / 2 - gp.tileSize;
 		    y += gp.tileSize * 4;
@@ -468,7 +465,7 @@ public class UI {
 		    }
 		    
 		    // Draw version number on the bottom right
-		    String versionText = "Beta v1.1.14";
+		    String versionText = "Beta v1.1.15";
 		    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 10F));
 		    g2.setColor(Color.white);
 		    int versionX = gp.screenWidth - g2.getFontMetrics().stringWidth(versionText) - 10;
@@ -483,13 +480,13 @@ public class UI {
 			g2.setFont(g2.getFont().deriveFont(16F));
 			
 			
-			String text = "In a realm where ancient forces stir,\n" +
-		              "a lone wanderer must uncover hidden truths\n" +
-		              "to restore balance and face the darkness.\n" +
-		              "Journey through treacherous lands and\n" +
-		              "unravel the mysteries of a world on the\n" +
-		              "brink of chaos. Your destiny awaits.\n" +
-		              "Will you rise to meet it?";
+			String text = "Across fractured lands and forgotten paths,\n" +
+		              "a world stirs with secrets, shadows, and stories.\n" +
+		              "From sunlit villages to echoing caves,\n" +
+		              "each step reveals lost voices and buried truths.\n" +
+		              "Help those in need—or don’t—and carve your place\n" +
+		              "in a realm teetering between wonder and ruin.\n" +
+		              "Where will your tale lead?";
 			int y = gp.tileSize*2;
 			for(String line : text.split("\n")) {
 				int x = getXforCenteredText(line);
@@ -584,7 +581,30 @@ public class UI {
 					gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("The Price of War"));
 					Progress.gameStage = Progress.STAGE_DISABLED_FORCE_FIELD;
 				}
-					
+				
+				
+				//Mission handling (check if bought item)
+				if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield"))&&
+						gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield").getCurrentStageIndex() == 1 &&
+						gp.player.searchItemInInventory("Sunmire Glassroot") != 999) {
+					gp.qManager.progressQuest("Fissures in the Shield");
+					gp.pManager.addNotification("Journal Updated");
+				}
+				else if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace"))&&
+						gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace").getCurrentStageIndex() == 0 &&
+						gp.player.searchItemInInventory("Sunflower Seed") != 999) {
+					gp.qManager.progressQuest("Seeds of Solace");
+					gp.pManager.addNotification("Journal Updated");
+				}
+				else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+						gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+						gp.qManager.getQuestJournal().getQuestByName("To Do List").getCurrentStageIndex() == 2 &&
+						gp.player.searchItemInInventory("Corn Seed") != 999 &&
+						gp.player.inventory.get(gp.player.searchItemInInventory("Corn Seed")).amount >= 10 &&
+						!gp.player.isGremlin) {
+					gp.qManager.progressQuest("To Do List");
+					gp.pManager.addNotification("Journal Updated");
+				}
 				
 				//State handling
 				if(gp.gameState == gp.dialogueState) {
@@ -837,7 +857,12 @@ public class UI {
 				g2.fillRoundRect(slotX, slotY, gp.tileSize, gp.tileSize, 10, 10);
 			}
 			
-			g2.drawImage(entity.inventory.get(i).image1, slotX, slotY, null);
+			if(entity.inventory.get(i).name == "Arrow") {
+				g2.drawImage(entity.inventory.get(i).image2, slotX, slotY, null);
+			}
+			else {
+				g2.drawImage(entity.inventory.get(i).image1, slotX, slotY, null);
+			}
 			
 			//DISPLAY AMOUNT
 			if(entity == gp.player && entity.inventory.get(i).amount > 1) {
@@ -926,6 +951,7 @@ public class UI {
 			}
 			else {
 		        System.out.println("Invalid item index: " + itemIndex);
+		        System.out.println("Inventory Size: " + entity.inventory.size());
 		    }
 		}
 
@@ -1238,6 +1264,10 @@ public class UI {
 			initWorldLightSources();
 		    gp.lastTime = System.nanoTime();
 		    gp.delta = 0;
+		    
+		    if(gp.currentMap == 19) {
+				gp.eHandler.popup("Solara");
+		    }
 		}
 	}
 	public void drawTradeScreen() {
@@ -1287,20 +1317,6 @@ public class UI {
 			if(gp.keyH.enterPressed == true) {
 				commandNum = 0;
 				npc.startDialogue(npc, 1);
-				
-				//Mission handling (check if bought item)
-				if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield"))&&
-						gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield").getCurrentStageIndex() == 1 &&
-						gp.player.searchItemInInventory("Sunmire Glassroot") != 999) {
-					gp.qManager.progressQuest("Fissures in the Shield");
-					gp.pManager.addNotification("Journal Updated");
-				}
-				else if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace"))&&
-						gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace").getCurrentStageIndex() == 0 &&
-						gp.player.searchItemInInventory("Sunflower Seed") != 999) {
-					gp.qManager.progressQuest("Seeds of Solace");
-					gp.pManager.addNotification("Journal Updated");
-				}
 			}
 		}
 	}
@@ -1350,7 +1366,13 @@ public class UI {
 					npc.startDialogue(npc, 2);
 				}
 				else {
-					if(gp.player.canObtainItem(npc.inventory.get(itemIndex)) == true) {
+					if(npc.inventory.get(itemIndex).name == "Arrow") {
+						gp.playSE(38);
+						gp.player.coin -= npc.inventory.get(itemIndex).price;
+						gp.player.ammo += 1;
+					}
+					else if(gp.player.canObtainItem(npc.inventory.get(itemIndex)) == true) {
+						gp.playSE(38);
 						gp.player.coin -= npc.inventory.get(itemIndex).price;
 					}
 					else {
@@ -1412,6 +1434,9 @@ public class UI {
 					optionScreenState = 0;
 					npc.startDialogue(npc, 4);
 				}
+				else if(gp.player.inventory.get(itemIndex).isQuestItem) {
+					npc.startDialogue(npc, 5);
+				}
 				else {
 					if(gp.player.inventory.get(itemIndex).amount > 1) {
 						gp.player.inventory.get(itemIndex).amount--;
@@ -1419,6 +1444,7 @@ public class UI {
 					else {
 						gp.player.inventory.remove(itemIndex);
 					}
+					gp.playSE(38);
 					gp.player.coin += price;
 				}
 			}
@@ -1734,6 +1760,16 @@ public class UI {
                                                      250, // adjust light radius/intensity as needed
                                                      gp));
             }
+            //Small Torch
+            if (gp.obj[gp.currentMap][i] != null &&
+                    gp.obj[gp.currentMap][i].name.equals(OBJ_SmallTorch.objName)) {     	
+                    // Cast to the lamp post object if needed, or use it directly
+                    // Assuming the lamp post has worldX and worldY fields for its position:
+                    lightSources.add(new LightSource(gp.obj[gp.currentMap][i].worldX/gp.tileSize,
+                                                     (gp.obj[gp.currentMap][i].worldY/gp.tileSize) + 1,
+                                                     150, // adjust light radius/intensity as needed
+                                                     gp));
+            }
             //Big Torch
             if (gp.obj[gp.currentMap][i] != null &&
                     gp.obj[gp.currentMap][i].name.equals(OBJ_BigTorch.objName)) {     	
@@ -1741,7 +1777,7 @@ public class UI {
                     // Assuming the lamp post has worldX and worldY fields for its position:
                     lightSources.add(new LightSource(gp.obj[gp.currentMap][i].worldX/gp.tileSize,
                                                      (gp.obj[gp.currentMap][i].worldY/gp.tileSize) + 1,
-                                                     150, // adjust light radius/intensity as needed
+                                                     200, // adjust light radius/intensity as needed
                                                      gp));
             }
             //Witch scarecrow

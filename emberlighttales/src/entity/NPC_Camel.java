@@ -22,7 +22,7 @@ public class NPC_Camel extends Entity {
         speed = defaultSpeed;
 		name = npcName;
 		
-        solidArea = new Rectangle(18, 18, gp.tileSize*3/4, gp.tileSize*3/4);
+        solidArea = new Rectangle(18, 18, gp.tileSize*3/4, gp.tileSize*5/4);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         

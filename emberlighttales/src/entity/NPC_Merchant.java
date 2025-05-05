@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import java.util.Random;
 
 import main.emberlight.GamePanel;
+import object.OBJ_Arrow;
 import object.OBJ_Fruit_Juice;
 import object.OBJ_Gold_Sword;
 import object.OBJ_Iron_Sword;
@@ -66,6 +67,7 @@ public class NPC_Merchant extends Entity{
 		dialogues[2][0] = "Eh... not enough coin, friend.\nYou’ll need more than that.";
 		dialogues[3][0] = "You're carrying too much!";
 		dialogues[4][0] = "You can’t sell what you're using!";
+		dialogues[5][0] = "I can't trade in things like that.";
 	}
 	public void setItems() {
 		
@@ -76,6 +78,7 @@ public class NPC_Merchant extends Entity{
 		inventory.add(new OBJ_Rabbit_Shield_1(gp));
 		inventory.add(new OBJ_Torch(gp));
 		inventory.add(new OBJ_Fruit_Juice(gp));
+		inventory.add(new OBJ_Arrow(gp));
     	inventory.add(new OBJ_Seed(gp, 0));
     	inventory.add(new OBJ_Seed(gp, 1));
     	inventory.add(new OBJ_Seed(gp, 2));
@@ -123,6 +126,7 @@ public class NPC_Merchant extends Entity{
 	
 	public void speak() {
 		
+		setDialogue();
 		facePlayer();
 		gp.gameState = gp.tradeState;
 		gp.ui.npc = this;

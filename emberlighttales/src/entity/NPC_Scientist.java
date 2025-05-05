@@ -83,7 +83,7 @@ public class NPC_Scientist extends Entity {
 			dialogues[0][4] = null;
 		}
 		else {
-			dialogues[0][0] = "Hmmm...";		
+			dialogues[0][0] = "Hmmm...";
 			dialogues[0][1] = "Oh! How long have you been staring\nat me?";	
 			dialogues[0][2] = null;
 			dialogues[0][3] = null;

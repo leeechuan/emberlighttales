@@ -128,7 +128,7 @@ public class MOB_Skeleton_Swordman extends Entity {
     	
     	//Check if it attacks
     	if(isAttacking == false) {
-    		checkAttackOrNot(60, gp.tileSize * 7, gp.tileSize*5);
+    		checkAttackOrNot(300, gp.tileSize * 7, gp.tileSize*5);
     	}
 		
 	}

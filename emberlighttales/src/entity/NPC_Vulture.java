@@ -37,15 +37,15 @@ public class NPC_Vulture extends Entity {
 	public void getImage() {
 	     for (int i = 0; i < 6; i++) {
              frontStanding[i] = setup("/animals/vulture_stand_" + i, 2f, 2f);
-             leftStanding[i] = setup("/animals/vulture_stand_" +i, 2f, 2f);
+             rightStanding[i] = setup("/animals/vulture_stand_" +i, 2f, 2f);
              backStanding[i] = setup("/animals/vulture_stand_" + i, 2f, 2f);
              frontWalking[i] = setup("/animals/vulture_move_" + i, 2f, 2f);
-             leftWalking[i] = setup("/animals/vulture_move_" + i, 2f, 2f);
+             rightWalking[i] = setup("/animals/vulture_move_" + i, 2f, 2f);
              backWalking[i] = setup("/animals/vulture_move_" + i, 2f, 2f);
          }
       for (int i = 0; i < 6; i++) {
-             rightStanding[i] = invertImage(leftStanding[i]);
-             rightWalking[i] = invertImage(leftWalking[i]);
+             leftStanding[i] = invertImage(rightStanding[i]);
+             leftWalking[i] = invertImage(rightWalking[i]);
        	}
 	}
 	public void setDialogue() {

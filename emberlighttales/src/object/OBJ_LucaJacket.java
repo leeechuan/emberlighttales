@@ -19,7 +19,8 @@ public class OBJ_LucaJacket extends Entity {
 		image2 = setup("/resource_icons/luca_jacket", 1, 1);
 		description = "[" + name + "]" + "\nStylish and smug.";
 		stackable = false;
-		price = 0;
+		price = 100;
+		isQuestItem = true;
 		
 		setDialogue();
 	}

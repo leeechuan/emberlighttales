@@ -23,6 +23,8 @@ public class OBJ_Iron_Sword extends Entity{
         motion2_duration = 12;
         motion3_duration = 16;
         motion4_duration = 20;
+        motion5_duration = 0;
+        motion6_duration = 0;
         maxDurability = 40;
         durability = 40;
     }

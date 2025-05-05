@@ -26,9 +26,9 @@ public class OBJ_Boat extends Entity{
 	    }
 		
 		collision = true;
-		solidArea.x = 0;
+		solidArea.x = (int) -(gp.tileSize*1.25);
 		solidArea.y = gp.tileSize;
-		solidArea.width = gp.tileSize*3;
+		solidArea.width = (int) (gp.tileSize*4.5);
 		solidArea.height = gp.tileSize*2;
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;

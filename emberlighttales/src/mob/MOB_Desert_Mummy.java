@@ -13,7 +13,7 @@ import object.OBJ_Spike_Gate;
 public class MOB_Desert_Mummy extends Entity {
 	
 	GamePanel gp;
-	public static final String mobName = "Desert Mummy";
+	public static final String mobName = "Ancient Guardian";
 	
 	public MOB_Desert_Mummy(GamePanel gp) {
 		super(gp);
@@ -21,7 +21,7 @@ public class MOB_Desert_Mummy extends Entity {
 		this.gp = gp;
 		
 		type = type_mob;
-		boss = false;
+		boss = true;
 		defaultSpeed = 1;
 		speed = defaultSpeed;
 		maxLife = 140;
@@ -64,7 +64,7 @@ public class MOB_Desert_Mummy extends Entity {
 	}
 	public void getImage() {
 		
-		int multiplier = 1;
+		int multiplier = 2;
 		
 	     for (int i = 0; i < 6; i++) {
              frontStanding[i] = setup("/enemy_desert_mummy/desert_mummy_down_" + i, 1.5f*multiplier, 1.5f*multiplier);
@@ -84,7 +84,7 @@ public class MOB_Desert_Mummy extends Entity {
        		}
 	}
     public void getDeathImage() {
-    	int multiplier = 1;
+    	int multiplier = 2;
     	
 	     for (int i = 0; i < 6; i++) {
             frontDeath[i] = setup("/enemy_desert_mummy/desert_mummy_death_" + i, 1.5f*multiplier, 1.5f*multiplier);
@@ -139,7 +139,9 @@ public class MOB_Desert_Mummy extends Entity {
 //		onPath = true;
 	}
 	public void checkDrop() {
-
+		
+		gp.qManager.progressQuest("Dust and Glory");
+		gp.pManager.addNotification("Journal Updated");
 	}
 	public Color getParticleColor() {
 		Color color = new Color(25, 0, 50);

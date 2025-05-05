@@ -9,6 +9,7 @@ import object.OBJ_Boat;
 import object.OBJ_BridgeRubble;
 import object.OBJ_Wood_Sword;
 import object.OBJ_Cauldron;
+import object.OBJ_CaveDeco;
 import object.OBJ_Campfire;
 import object.OBJ_CampfirePot;
 import object.OBJ_Broom;
@@ -16,6 +17,11 @@ import object.OBJ_CampDeco;
 import object.OBJ_CampLookoutTower;
 import object.OBJ_Chest;
 import object.OBJ_Coin;
+import object.OBJ_CoinPouch;
+import object.OBJ_CookedChicken;
+import object.OBJ_CookedFish;
+import object.OBJ_CookedPork;
+import object.OBJ_DesertGrass;
 import object.OBJ_Desert_Bones;
 import object.OBJ_DungeonChest;
 import object.OBJ_DungeonDeco;
@@ -45,6 +51,7 @@ import object.OBJ_LucaJacket;
 import object.OBJ_ManaCrystal;
 import object.OBJ_Palisade;
 import object.OBJ_PlantedCrop;
+import object.OBJ_PurpleMushroom;
 import object.OBJ_Rabbit_Shield_1;
 import object.OBJ_Rabbit_Shield_2;
 import object.OBJ_Rabbit_Shield_3;
@@ -63,6 +70,7 @@ import object.OBJ_Stone_Axe;
 import object.OBJ_Stone_Sword;
 import object.OBJ_SunmireGlassroot;
 import object.OBJ_Torch;
+import object.OBJ_WaterBucket;
 import object.OBJ_Waterfall;
 import object.OBJ_Well;
 import object.OBJ_Windmill;
@@ -93,9 +101,22 @@ public class EntityGenerator {
 		case OBJ_CampfirePot.objName: obj = new OBJ_CampfirePot(gp); break;
 		case OBJ_CampLookoutTower.objName: obj = new OBJ_CampLookoutTower(gp, 0); break;
 		case OBJ_Cauldron.objName: obj = new OBJ_Cauldron(gp); break;
+		case OBJ_CaveDeco.objName: obj = new OBJ_CaveDeco(gp, 0); break;
 		case OBJ_Chest.objName: obj = new OBJ_Chest(gp); break;
 		case OBJ_Coin.objName: obj = new OBJ_Coin(gp); break;
+		
+		case OBJ_CoinPouch.objName: obj = new OBJ_CoinPouch(gp, 0); break;
+		case "Tiny Pouch": obj = new OBJ_CoinPouch(gp, 1); break;
+		case "Small Pouch": obj = new OBJ_CoinPouch(gp, 2); break;
+		case "Medium Pouch": obj = new OBJ_CoinPouch(gp, 3); break;
+		case "Large Pouch": obj = new OBJ_CoinPouch(gp, 4); break;
+		case "Extra Large Pouch": obj = new OBJ_CoinPouch(gp, 5); break;
+		
+		case OBJ_CookedChicken.objName: obj = new OBJ_CookedChicken(gp); break;
+		case OBJ_CookedPork.objName: obj = new OBJ_CookedPork(gp); break;
+		case OBJ_CookedFish.objName: obj = new OBJ_CookedFish(gp); break;
 		case OBJ_Desert_Bones.objName: obj = new OBJ_Desert_Bones(gp, 0); break;
+		case OBJ_DesertGrass.objName: obj = new OBJ_DesertGrass(gp, 0); break;
 		case OBJ_DungeonChest.objName: obj = new OBJ_DungeonChest(gp); break;
 		case OBJ_DungeonDeco.objName: obj = new OBJ_DungeonDeco(gp, 0); break;
 		case OBJ_DungeonDoor.objName: obj = new OBJ_DungeonDoor(gp); break;
@@ -125,6 +146,7 @@ public class EntityGenerator {
 		case OBJ_ManaCrystal.objName: obj = new OBJ_ManaCrystal(gp); break;
 		case OBJ_Palisade.objName: obj = new OBJ_Palisade(gp); break;
 		case OBJ_PlantedCrop.objName: obj = new OBJ_PlantedCrop(0, 0, 0, gp); break;
+		case OBJ_PurpleMushroom.objName: obj = new OBJ_PurpleMushroom(gp); break;
 		case OBJ_Rabbit_Shield_1.objName: obj = new OBJ_Rabbit_Shield_1(gp); break;
 		case OBJ_Rabbit_Shield_2.objName: obj = new OBJ_Rabbit_Shield_2(gp); break;
 		case OBJ_Rabbit_Shield_3.objName: obj = new OBJ_Rabbit_Shield_3(gp); break;
@@ -143,6 +165,7 @@ public class EntityGenerator {
 		case OBJ_Stone_Sword.objName: obj = new OBJ_Stone_Sword(gp); break;
 		case OBJ_SunmireGlassroot.objName: obj = new OBJ_SunmireGlassroot(gp); break;
 		case OBJ_Torch.objName: obj = new OBJ_Torch(gp); break;
+		case OBJ_WaterBucket.objName: obj = new OBJ_WaterBucket(gp); break;
 		case OBJ_Waterfall.objName: obj = new OBJ_Waterfall(gp); break;
 		case OBJ_Well.objName: obj = new OBJ_Well(gp); break;
 		case OBJ_Windmill.objName: obj = new OBJ_Windmill(gp); break;
@@ -154,5 +177,7 @@ public class EntityGenerator {
 		}
 		return obj;
 	}
+	
+	
 
 }

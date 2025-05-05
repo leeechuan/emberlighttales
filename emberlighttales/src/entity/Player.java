@@ -50,8 +50,14 @@ public class Player extends Entity {
     public BufferedImage[] gremlinbackAttacking = new BufferedImage[6];
     public BufferedImage[] gremlinrightAttacking = new BufferedImage[6];
     public BufferedImage[] gremlinleftAttacking = new BufferedImage[6];
+    
+    public BufferedImage[][] frontcomboAttacking = new BufferedImage[3][4];
+    public BufferedImage[][] backcomboAttacking = new BufferedImage[3][4];
+    public BufferedImage[][] rightcomboAttacking = new BufferedImage[3][4];
+    public BufferedImage[][] leftcomboAttacking = new BufferedImage[3][4];
+    
     private int baseStrength, baseDexterity, baseSpeed; // Store original stats
-    public ArrayList<SmokeParticle> smokeParticles = new ArrayList<>();
+    public ArrayList<ParticleTransform> smokeParticles = new ArrayList<>();
     
     public boolean isRolling = false;
     public int rollCounter = 0;
@@ -59,6 +65,14 @@ public class Player extends Entity {
     public final int maxRollTime = 15;
     public final int rollSpeed = 8; // Customize this
     public final int rollCooldownTime = 40;
+    
+    //ATTACK COMBO
+    int comboStage = 0;
+    int comboTimer = 0;
+    int maxComboStage = 2;
+    boolean comboQueued = false;
+    public int comboWindowStart = 10;
+    public int comboWindowEnd = 40;
     
     // To track animation state
 //    private int spriteCounter = 0;
@@ -220,16 +234,19 @@ public class Player extends Entity {
     public void getAttackImage() {
     	
     	if(currentWeapon.type == type_sword) {
-    		for (int i = 0; i < 4; i++) {
-                frontAttacking[i] = setup("/player/player_attackdown_" + i, 1.5f, 1.5f);
-                rightAttacking[i] = setup("/player/player_attackright_" +i, 1.5f, 1.5f);
-                backAttacking[i] = setup("/player/player_attackup_" + i, 1.5f, 1.5f);
-            	}
-   	     for (int i = 0; i < 4; i++) {
-                leftAttacking[i] = invertImage(rightAttacking[i]);
-          		}
+        	for (int combo = 0; combo <= maxComboStage; combo++) {
+        	    for (int frame = 0; frame < 4; frame++) {
+        	        frontcomboAttacking[combo][frame] = setup("/player_attack/player_attackdown_0_" + combo + "_" + frame, 1.5f, 1.5f);
+        	        rightcomboAttacking[combo][frame] = setup("/player_attack/player_attackright_0_" + combo + "_" + frame, 1.5f, 1.5f);
+        	        backcomboAttacking[combo][frame] = setup("/player_attack/player_attackup_0_" + combo + "_" + frame, 1.5f, 1.5f);
+        	    }
+        	    for (int frame = 0; frame < 4; frame++) {
+        	        leftcomboAttacking[combo][frame] = invertImage(rightcomboAttacking[combo][frame]);
+        	    }
+        	}
     	}
-    	if(currentWeapon.type == type_axe) {
+
+    	else if(currentWeapon.type == type_axe) {
     		for (int i = 0; i < 6; i++) {
                 frontAttacking[i] = setup("/player/player_axedown_" + i, 2.25f, 2.25f);
                 rightAttacking[i] = setup("/player/player_axeright_" +i, 2.25f, 2.25f);
@@ -345,7 +362,7 @@ public class Player extends Entity {
 
                     // Transition smoke particles
                     for (int i = 0; i < 15; i++) {
-                        smokeParticles.add(new SmokeParticle(gp, this));
+                        smokeParticles.add(new ParticleTransform(gp, this));
                     }
 
                     gp.playSE(26);
@@ -424,7 +441,7 @@ public class Player extends Entity {
                     gp.playSE(26);
                     // Transition smoke particles
                     for (int i = 0; i < 15; i++) {
-                        smokeParticles.add(new SmokeParticle(gp, this));
+                        smokeParticles.add(new ParticleTransform(gp, this));
                     }
                 }
             }
@@ -457,8 +474,8 @@ public class Player extends Entity {
 		if (!isGremlin && !isRolling && !isAttacking && !isBlocking && rollCooldown == 0 && keyH.rollPressed) {
 		    isRolling = true;
 		    rollCounter = 0;
+		    gp.playSE(37);
 //		    invincible = true;
-//		    gp.playSE(13);
 		}
         
 		if(knockBack == true) {
@@ -507,19 +524,20 @@ public class Player extends Entity {
         	rolling();
         }
         else if (isWalking || keyH.enterPressed) {
-            if (keyH.upPressed) {
-                direction = "up";
+        	int dx = 0;
+        	int dy = 0;
 
-            } else if (keyH.downPressed) {
-                direction = "down";
+        	if (keyH.upPressed) dy -= 1;
+        	if (keyH.downPressed) dy += 1;
+        	if (keyH.leftPressed) dx -= 1;
+        	if (keyH.rightPressed) dx += 1;
 
-            } else if (keyH.leftPressed) {
-                direction = "left";
-
-            } else if (keyH.rightPressed) {
-                direction = "right";
-
-            }
+        	// Set direction string for animation / facing
+        	if (Math.abs(dy) > Math.abs(dx)) {
+        	    direction = (dy < 0) ? "up" : "down";
+        	} else if (dx != 0) {
+        	    direction = (dx < 0) ? "left" : "right";
+        	}
             
             //Check tile collision
             collisionOn = false;
@@ -559,28 +577,28 @@ public class Player extends Entity {
            gp.eHandler.checkEvent();
             
            //If Collision is False, Move player. 
-           if(collisionOn == false && keyH.enterPressed == false) {
-        	   	switch(direction) {
-        	   		case "up":
-        	   			worldY -= speed;
-        	   			break;
-        			case "down":
-                    	worldY += speed;
-        				break;
-		    		case "left":
-	                	worldX -= speed;
-		    			break;
-					case "right":
-	                	worldX += speed;
-						break;
-				}
-            }
+	        if (!collisionOn && !keyH.enterPressed) {
+	            if (keyH.upPressed) dy -= 1;
+	            if (keyH.downPressed) dy += 1;
+	            if (keyH.leftPressed) dx -= 1;
+	            if (keyH.rightPressed) dx += 1;
+
+	            if (dx != 0 || dy != 0) {
+	                double magnitude = Math.sqrt(dx * dx + dy * dy);
+        		    int moveX = (int)(speed * dx / magnitude);
+        		    int moveY = (int)(speed * dy / magnitude);
+
+	                worldX += moveX;
+	                worldY += moveY;
+	            }
+	        }
            // If collision is detected, allow sliding along walls
            else {
                if (direction.equals("up") || direction.equals("down")) {
                    // If moving vertically and colliding, try horizontal movement
                    collisionOn = false;
                    gp.cChecker.checkTile(this);
+                   gp.cChecker.checkEntity(this, gp.iTile);
                    if (!collisionOn) {
                        if (keyH.leftPressed) worldX -= speed;
                        else if (keyH.rightPressed) worldX += speed;
@@ -590,6 +608,7 @@ public class Player extends Entity {
                    // If moving horizontally and colliding, try vertical movement
                    collisionOn = false;
                    gp.cChecker.checkTile(this);
+                   gp.cChecker.checkEntity(this, gp.iTile);
                    if (!collisionOn) {
                        if (keyH.upPressed) worldY -= speed;
                        else if (keyH.downPressed) worldY += speed;
@@ -736,11 +755,19 @@ public class Player extends Entity {
 
     	        // Only move if no collision
     	        if (!collisionOn) {
-    	            switch (direction) {
-    	                case "up": worldY -= rollSpeed; break;
-    	                case "down": worldY += rollSpeed; break;
-    	                case "left": worldX -= rollSpeed; break;
-    	                case "right": worldX += rollSpeed; break;
+    	            int dx = 0, dy = 0;
+    	            if (keyH.upPressed) dy -= 1;
+    	            if (keyH.downPressed) dy += 1;
+    	            if (keyH.leftPressed) dx -= 1;
+    	            if (keyH.rightPressed) dx += 1;
+
+    	            if (dx != 0 || dy != 0) {
+    	                double magnitude = Math.sqrt(dx * dx + dy * dy);
+    	                int moveX = (int)(rollSpeed * dx / magnitude);
+    	                int moveY = (int)(rollSpeed * dy / magnitude);
+
+    	                worldX += moveX;
+    	                worldY += moveY;
     	            }
     	        }
 
@@ -765,6 +792,12 @@ public class Player extends Entity {
     	        }
     	        else {
     	        	spriteNum = 0;
+    	        }
+    	        
+    	        //Particles when rolling
+    	        if (rollCounter % 6 == 0) {
+    	        	ParticleMovement p = new ParticleMovement(gp, this);
+    	            gp.particleList.add(p);
     	        }
 
     	        // Finish rolling
@@ -910,8 +943,16 @@ public class Player extends Entity {
         			gp.ui.damageTexts.add(
         				    new DamageText(gp.mob[gp.currentMap][i].worldX - gp.tileSize / 2, gp.mob[gp.currentMap][i].worldY, "CRIT! " + String.valueOf(damage), new Color(255, 215, 0), gp)
         			);
-    				gp.shakeMagnitude = 16;
-    				gp.shakeDuration = 10;
+    				gp.shakeMagnitude = 25;
+    				gp.shakeDuration = 14;
+    				gp.shakeTimer = gp.shakeDuration;
+    			}
+    			else if(gp.player.comboStage == gp.player.maxComboStage) {
+        			gp.ui.damageTexts.add(
+        				    new DamageText(gp.mob[gp.currentMap][i].worldX + gp.tileSize / 2, gp.mob[gp.currentMap][i].worldY, String.valueOf(damage), new Color(255, 60, 60), gp)
+        			);
+    				gp.shakeMagnitude = 18;
+    				gp.shakeDuration = 14;
     				gp.shakeTimer = gp.shakeDuration;
     			}
     			else if(damage == 0) {
@@ -1047,7 +1088,6 @@ public class Player extends Entity {
     		}
     		
     		if(selectedItem.type == type_seed) {
-    			System.out.println(selectedItem);
     			if(selectedItem.use(this) == true){
     				if(selectedItem.amount > 1) {
     					selectedItem.amount--;
@@ -1133,6 +1173,10 @@ public class Player extends Entity {
 	        newItem.amount = fruit.amount;
 	    } else {
 	        newItem = gp.eGenerator.getObject(item.name);
+	        if (newItem == null) {
+	            System.err.println("Item generator could not find item: " + item.name);
+	            return false;
+	        }
 	        newItem.amount = item.amount;
 	    }
 		
@@ -1179,11 +1223,23 @@ public class Player extends Entity {
 	            case "right": image = gremlinrightAttacking[spriteNum]; break;
             	}
         	}else {
-            	switch (direction) {
-	            case "up": image = backAttacking[spriteNum]; break;
-	            case "down": image = frontAttacking[spriteNum]; break;
-	            case "left": image = leftAttacking[spriteNum]; break;
-	            case "right": image = rightAttacking[spriteNum]; break;
+        		if(currentWeapon.type == type_axe) {
+                	switch (direction) {
+    	            case "up": image = backAttacking[spriteNum]; break;
+    	            case "down": image = frontAttacking[spriteNum]; break;
+    	            case "left": image = leftAttacking[spriteNum]; break;
+    	            case "right": image = rightAttacking[spriteNum]; break;
+                	}
+        		}
+        		else if (currentWeapon.type == type_sword) {
+        		    spriteNum = Math.min(spriteNum, 3);
+        			System.out.println(comboStage + "--" + spriteNum);
+                	switch (direction) {
+    	            case "up": image = backcomboAttacking[comboStage][spriteNum]; break;
+    	            case "down": image = frontcomboAttacking[comboStage][spriteNum]; break;
+    	            case "left": image = leftcomboAttacking[comboStage][spriteNum]; break;
+    	            case "right": image = rightcomboAttacking[comboStage][spriteNum]; break;
+        		}
             	}
         	}
 

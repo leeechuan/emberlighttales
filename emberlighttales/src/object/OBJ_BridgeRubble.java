@@ -62,4 +62,28 @@ public class OBJ_BridgeRubble extends Entity{
 			image1 = null;
 		}
 	}
+	
+	public void draw(Graphics2D g2) {
+		
+
+		int screenX = worldX - gp.player.worldX + gp.player.screenX;
+        int screenY = worldY - gp.player.worldY + gp.player.screenY;
+
+        // Optimization for rendering on screen - 7 tileSize buffer
+        if (worldX + 8*gp.tileSize > gp.player.worldX - gp.player.screenX &&
+                worldX - 8*gp.tileSize < gp.player.worldX + gp.player.screenX &&
+                worldY + 8*gp.tileSize > gp.player.worldY - gp.player.screenY &&
+                worldY - 8*gp.tileSize < gp.player.worldY + gp.player.screenY) {
+		
+        	g2.drawImage(image1, screenX - (gp.tileSize * 2), screenY - (gp.tileSize * 2), null);
+        }
+        
+        if(gp.keyH.showDebugText) {
+        	//Debug: Entity Collision
+	        g2.setColor(Color.red);
+	        g2.setStroke(new BasicStroke(1));
+	        g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);	
+	        g2.setStroke(new BasicStroke());
+        }
+	}
 }

@@ -88,9 +88,9 @@ public class KeyHandler implements KeyListener {
 				}
 				if(gp.ui.commandNum == 1) {
 					gp.loadSavedGame();
-				    gp.csManager.sceneNum = gp.csManager.NA;
-					gp.gameState = gp.playState;
-					gp.playMusic(0);
+//				    gp.csManager.sceneNum = gp.csManager.NA;
+//					gp.gameState = gp.playState;
+//					gp.playMusic(0);
 				}
 				if(gp.ui.commandNum == 2) {
 					System.exit(0);
@@ -100,12 +100,7 @@ public class KeyHandler implements KeyListener {
 		else if(gp.ui.titleScreenState == 1) {
 			if(code == KeyEvent.VK_ENTER) {
 				if(gp.ui.commandNum == 0) {
-				    gp.csManager.sceneNum = gp.csManager.tutorial;
-				    gp.csManager.setDialogue();
-				    gp.gameState = gp.cutsceneState;
 				    gp.startNewGame();
-//					gp.gameState = gp.playState;
-					gp.playMusic(0);
 				}
 			}
 		}
@@ -292,9 +287,9 @@ public class KeyHandler implements KeyListener {
 		if(code == KeyEvent.VK_ENTER) {
 			if(gp.ui.commandNum == 0) {
 				gp.loadSavedGame();
-			    gp.csManager.sceneNum = gp.csManager.NA;
-				gp.gameState = gp.playState;
-				gp.playMusic(0);
+//			    gp.csManager.sceneNum = gp.csManager.NA;
+//				gp.gameState = gp.playState;
+//				gp.playMusic(0);
 			}
 			if(gp.ui.commandNum == 1) {
 				gp.gameState = gp.titleState;

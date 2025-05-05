@@ -164,6 +164,19 @@ public class IT_Tree extends InteractiveTile{
 			destructible = false;
 			life = 3;
 		}
+		else if (tree_type == 11) {
+			solidArea.x = (int) (gp.tileSize * 2.2);
+			solidArea.y = (int) (gp.tileSize * 0.25);
+			solidArea.width = (int) (gp.tileSize * 0.25);
+			solidArea.height = (int) (gp.tileSize * 0.25);
+			solidAreaDefaultX = solidArea.x;
+			solidAreaDefaultY = solidArea.y;
+			tileHeight = 2;
+			tileWidth = 5;
+			image1 = setup("/tiles_interactive/tree_" + tree_type + "_1", tileHeight + 2, tileWidth);
+			destructible = false;
+			life = 3;
+		}
 
 	}
 	public boolean isCorrectItem(Entity entity) {

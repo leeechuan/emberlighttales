@@ -162,6 +162,7 @@ public class Entity {
 	public int lightRadius;
 	public int durability = -1;
 	public int maxDurability = -1;
+	public boolean isQuestItem = false;
 	
 	//NPC SCHEDULE
 	public int homeWorldX;
@@ -434,7 +435,7 @@ public class Entity {
 	        //Outside of key if statement
 	        if(invincible == true) {
 	        	invincibleCounter++;
-	        	if(invincibleCounter > 40) {
+	        	if (invincibleCounter > 10) {
 	        		invincible = false;
 	        		invincibleCounter = 0;
 	        	}
@@ -690,6 +691,12 @@ public class Entity {
 	}
 	public void attacking() {
     	attackSpriteCounter++;
+    	
+		if (attackSpriteCounter >= gp.player.comboWindowStart &&
+			    attackSpriteCounter <= gp.player.comboWindowEnd &&
+			    gp.keyH.attackPressed) {
+			    gp.player.comboQueued = true;
+			}
     	if(attackSpriteCounter <= motion1_duration) {
     		spriteNum = 0;
     	}
@@ -722,13 +729,29 @@ public class Entity {
     		else { //Player
         		//Check mob collision with the updated worldX, worldY and solidArea
         		int mobIndex = gp.cChecker.checkEntity(this, gp.mob);
-        		gp.player.damageMob(mobIndex, this, attack, currentWeapon.knockBackPower);
+        		int comboBonusDamage = (int)(attack * (1.0 + 0.25 * gp.player.comboStage)); // +25% per stage
+        		int comboBonusKnockback = 0;
+
+        		if (currentWeapon.type == type_sword) {
+        		    if (gp.player.comboStage == gp.player.maxComboStage) {
+        		        comboBonusKnockback = currentWeapon.knockBackPower + 2; // Only final combo hit knocks back
+        		    } else {
+        		    	comboBonusKnockback = this.defaultSpeed/5;
+        		    }
+        		}
+        		else {
+        		    comboBonusKnockback = currentWeapon.knockBackPower; // Axes or other weapons knockback normally
+        		}
+        		gp.player.damageMob(mobIndex, this, comboBonusDamage, comboBonusKnockback);
+//        		gp.player.damageMob(mobIndex, this, attack, currentWeapon.knockBackPower);
         		
         		int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
         		gp.player.damageInteractiveTile(iTileIndex);
         		
         		int projectileIndex = gp.cChecker.checkEntity(this, gp.projectile);
         		gp.player.damageProjectile(projectileIndex);
+        		
+
     		}
 
     		
@@ -760,9 +783,30 @@ public class Entity {
     	} 
     	else {
         	if(attackSpriteCounter >= motion4_duration) {
-        		spriteNum = 0;
-        		attackSpriteCounter = 0;
-        		isAttacking = false;
+//        		spriteNum = 0;
+//        		attackSpriteCounter = 0;
+//        		isAttacking = false;
+        	    if (gp.player.comboQueued && gp.player.comboStage < gp.player.maxComboStage) {
+        	    	gp.player.comboStage++;
+        	        attackSpriteCounter = 0;
+        	        gp.player.comboQueued = false;
+        	        
+        	        if(gp.player.comboStage == 1) {
+        	        	gp.playSE(35);
+        	        }
+        	        if(gp.player.comboStage == 2) {
+        	        	gp.playSE(36);
+        	        }
+        	        
+        	        // keep isAttacking = true
+        	    } else {
+        	        spriteNum = 0;
+        	        attackSpriteCounter = 0;
+        	        gp.player.comboStage = 0;
+        	        gp.player.comboQueued = false;
+        	        isAttacking = false;
+        	        
+        	    }
         	}
     	}
     }

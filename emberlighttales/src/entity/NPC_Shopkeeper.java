@@ -5,6 +5,9 @@ import java.util.Random;
 
 import main.emberlight.GamePanel;
 import object.OBJ_Wood_Sword;
+import object.OBJ_Arrow;
+import object.OBJ_CookedChicken;
+import object.OBJ_CookedFish;
 import object.OBJ_Fruit_Juice;
 import object.OBJ_Gold_Sword;
 import object.OBJ_Iron_Axe;
@@ -67,6 +70,7 @@ public class NPC_Shopkeeper extends Entity{
 		dialogues[2][0] = "You don’t have the coin for that.\nCome back when you do.";
 		dialogues[3][0] = "Clean out your pack first!";
 		dialogues[4][0] = "Unequip that before selling it.";
+		dialogues[5][0] = "I get it, but this item's got more\nvalue to someone else";
 	}
 	public void setItems() {
 		
@@ -74,10 +78,12 @@ public class NPC_Shopkeeper extends Entity{
 		inventory.add(new OBJ_Silver_Sword(gp));
 		inventory.add(new OBJ_Stone_Axe(gp));
 		inventory.add(new OBJ_Iron_Axe(gp));
+		inventory.add(new OBJ_Arrow(gp));
 		
 		inventory.add(new OBJ_Rabbit_Shield_2(gp));
 		inventory.add(new OBJ_Lantern(gp));
-		inventory.add(new OBJ_Fruit_Juice(gp));
+		inventory.add(new OBJ_CookedChicken(gp));
+		inventory.add(new OBJ_CookedFish(gp));
     	inventory.add(new OBJ_Seed(gp, 7));
     	inventory.add(new OBJ_Seed(gp, 8));
     	inventory.add(new OBJ_Seed(gp, 9));
@@ -126,6 +132,7 @@ public class NPC_Shopkeeper extends Entity{
 	
 	public void speak() {
 		
+		setDialogue();
 		facePlayer();
 		gp.gameState = gp.tradeState;
 		gp.ui.npc = this;

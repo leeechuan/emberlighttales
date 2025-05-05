@@ -184,12 +184,12 @@ public class QuestManager {
     	);
     	Quest sideQuest9 = new Quest(
     		    "Dust and Glory",
-    		    "The Pharaoh of Solara requests aid\nrecovering a sacred artifact from a lost desert temple.",
+    		    "The Pharaoh of Solara seeks your\nstrength to defeat an Ancient\nGuardian that stirs within the\ntemple sands.",
     		    false,
     		    Arrays.asList(
-    		        new QuestStage("Enter the desert temple."),
-    		        new QuestStage("Recover the sacred artifact."),
-    		        new QuestStage("Return the artifact to the Pharaoh.")
+    		        new QuestStage("Enter the ancient desert temple."),
+    		        new QuestStage("Defeat the Ancient Guardian."),
+    		        new QuestStage("Return to the Pharaoh.")
     		    ),
     		    gp
     	);

@@ -137,16 +137,16 @@ public class NPC_Mayor extends Entity {
 	}
 	public void speak() {
 		
+		setDialogue();
+		facePlayer();
+		startDialogue(this, dialogueSet);
+		
 		if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril")) &&
 				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 2 &&
 				!gp.player.isGremlin) {
 			gp.qManager.progressQuest("Sands of Peril");
 			gp.pManager.addNotification("Journal Updated");
 		}
-		
-		facePlayer();
-
-		startDialogue(this, dialogueSet);
 		
 		dialogueSet++;
 		

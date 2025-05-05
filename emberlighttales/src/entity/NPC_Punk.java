@@ -98,12 +98,8 @@ public class NPC_Punk extends Entity {
 		}
 		else {
 			dialogues[0][0] = "What you lookin' at...";		
-			dialogues[0][1] = "...";	
+			dialogues[0][1] = "Leave me alone!";	
 			dialogues[0][2] = null;
-
-			dialogues[1][0] = "Leave...";		
-			dialogues[1][1] = "Me...";
-			dialogues[1][2] = "Alone...";
 		}
 
 	}

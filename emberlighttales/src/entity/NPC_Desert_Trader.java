@@ -4,10 +4,13 @@ import java.awt.Rectangle;
 import java.util.Random;
 
 import main.emberlight.GamePanel;
+import object.OBJ_Arrow;
+import object.OBJ_CookedFish;
 import object.OBJ_Fruit_Juice;
 import object.OBJ_Gold_Axe;
 import object.OBJ_Gold_Sword;
 import object.OBJ_Lantern;
+import object.OBJ_PurpleMushroom;
 import object.OBJ_Rabbit_Shield_1;
 import object.OBJ_Rabbit_Shield_3;
 import object.OBJ_Seed;
@@ -67,16 +70,19 @@ public class NPC_Desert_Trader extends Entity{
 		dialogues[2][0] = "Gold is light in your pouch.\nCome richer next time.";
 		dialogues[3][0] = "Your bags overflow like dunes.";
 		dialogues[4][0] = "You wear it—why would I buy it?";
+		dialogues[5][0] = "This... can't be sold. It's part of someone's journey";
 	}
 	public void setItems() {
 		
 		inventory.add(new OBJ_Gold_Sword(gp));
 		inventory.add(new OBJ_Silver_Axe(gp));
 		inventory.add(new OBJ_Gold_Axe(gp));
+		inventory.add(new OBJ_Arrow(gp));
 		
 		inventory.add(new OBJ_Rabbit_Shield_3(gp));
 		inventory.add(new OBJ_Lantern(gp));
-		inventory.add(new OBJ_Fruit_Juice(gp));
+		inventory.add(new OBJ_CookedFish(gp));
+		inventory.add(new OBJ_PurpleMushroom(gp));
 		inventory.add(new OBJ_SunmireGlassroot(gp));
     	inventory.add(new OBJ_Seed(gp, 15));
     	inventory.add(new OBJ_Seed(gp, 16));
@@ -126,6 +132,7 @@ public class NPC_Desert_Trader extends Entity{
 	public void speak() {
 		
 //		facePlayer();
+		setDialogue();
 		gp.gameState = gp.tradeState;
 		gp.ui.npc = this;
 	}

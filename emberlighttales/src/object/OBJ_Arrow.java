@@ -23,6 +23,8 @@ public class OBJ_Arrow extends Projectile{
 		knockBackPower = 2;
 		useCost = 1;
 		alive = false;
+		description = "[" + name + "]" + "\nPointy and deadly";
+		price = 5;
 		
 		solidArea.x = gp.tileSize*2/5;
 		solidArea.y = gp.tileSize*2/5;
@@ -43,7 +45,6 @@ public class OBJ_Arrow extends Projectile{
       for (int i = 0; i < 6; i++) {
              leftStanding[i] = invertImage(rightStanding[i]);
        	}
-      
       image2 = setup("/ui/arrow", 1, 1);
 	}
 	public boolean haveResource(Entity user) {

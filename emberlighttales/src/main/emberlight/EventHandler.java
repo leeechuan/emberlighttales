@@ -59,6 +59,7 @@ public class EventHandler{
 		eventMaster.dialogues[2][0] = "There is a werid energy stopping you\nfrom entering.";
 		eventMaster.dialogues[3][0] = "The door is locked.";
 		eventMaster.dialogues[4][0] = "I haven't warmed up yet!";
+		eventMaster.dialogues[5][0] = "I never back down from a fight!";
 	}
 	public void checkEvent() {
 		
@@ -433,12 +434,27 @@ public class EventHandler{
 			//SOLARA
 			
 			else if(hit(19, 77, 50,"any") == true || hit(19, 78, 50,"any") == true) {
+				if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Dust and Glory"))&&
+						gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Dust and Glory"))&&
+						gp.qManager.getQuestJournal().getQuestByName("Dust and Glory").getCurrentStageIndex() == 0) {
+					gp.qManager.progressQuest("Dust and Glory");
+					gp.pManager.addNotification("Journal Updated");
+				}
 				teleport(23, 50, 50, gp.dungeon);
 				gp.playSE(24);
 			}
 			else if(hit(23, 50, 50,"any") == true || hit(23, 51, 50,"any") == true) {
-				teleport(19, 77, 51, gp.outside);
-				gp.playSE(24);
+				if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Dust and Glory"))&&
+						gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Dust and Glory"))&&
+						gp.qManager.getQuestJournal().getQuestByName("Dust and Glory").getCurrentStageIndex() == 1) {
+					gp.gameState = gp.dialogueState;
+					eventMaster.startDialogue(eventMaster, 5);
+					canTouchEvent = false;
+				}
+				else {
+					teleport(19, 77, 51, gp.outside);
+					gp.playSE(24);
+				}
 			}
 			
 			//GILDENSHORE

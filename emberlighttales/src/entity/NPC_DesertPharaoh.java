@@ -56,7 +56,27 @@ public class NPC_DesertPharaoh extends Entity {
 	}
 	public void setDialogue() {
 
-		dialogues[0][0] = "What do you need?";
+		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Dust and Glory"))&&
+				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Dust and Glory"))&&
+				!gp.player.isGremlin) {
+			dialogues[0][0] = "Traveler... the sands whisper of movement\nbeneath the Temple of Light.";
+			dialogues[0][1] = "An Ancient Guardian, long sealed, now\nstirs. I ask not lightly... but Solara\nneeds your blade.";
+			dialogues[0][2] = "Bring peace to the temple... and to those\nwho once guarded it with honor.";
+		}
+		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Dust and Glory"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Dust and Glory"))&&
+				gp.qManager.getQuestJournal().getQuestByName("Dust and Glory").getCurrentStageIndex() == 2 &&
+				!gp.player.isGremlin) {
+			dialogues[0][0] = "The silence from the sands tells me the\ndeed is done.";
+			dialogues[0][1] = "You’ve done more than slay a beast. You've\ncalmed a spirit bound by duty.";
+			dialogues[0][2] = "Solara is in your debt.";
+		}
+		else {
+			dialogues[0][0] = "What do you need?";
+			dialogues[0][1] = null;
+			dialogues[0][2] = null;
+		}
+
 	}
 	public void setAction() {
 		
@@ -98,8 +118,24 @@ public class NPC_DesertPharaoh extends Entity {
 	
 	public void speak() {
 		
+		setDialogue();
 		facePlayer();
 		startDialogue(this, dialogueSet);
+		
+		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Dust and Glory"))&&
+				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Dust and Glory"))&&
+				!gp.player.isGremlin) {
+			gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Dust and Glory"));
+			gp.pManager.addNotification("Journal Updated");
+		}
+		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Dust and Glory"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Dust and Glory"))&&
+				gp.qManager.getQuestJournal().getQuestByName("Dust and Glory").getCurrentStageIndex() == 2 &&
+				!gp.player.isGremlin) {
+			gp.qManager.progressQuest("Dust and Glory");
+			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Dust and Glory"));
+			gp.pManager.addNotification("Quest Completed!");
+		}
 		
 		dialogueSet++;
 		

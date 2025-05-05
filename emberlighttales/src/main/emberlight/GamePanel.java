@@ -26,10 +26,11 @@ import entity.NPC_Chicken1;
 import entity.NPC_Chicken2;
 import entity.NPC_Chicken3;
 import entity.Player;
-import entity.SmokeParticle;
+import entity.ParticleTransform;
 import environment.EnvironmentManager;
 import environment.LightSource;
 import environment.Lighting;
+import object.OBJ_DesertGrass;
 import object.OBJ_Flower;
 import object.OBJ_Grass;
 import object.OBJ_PlantedCrop;
@@ -93,7 +94,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	//Entity and object and mobs
 	public Player player = new Player(this, keyH);
-	public Entity obj[][] = new Entity[maxMap][500];
+	public Entity obj[][] = new Entity[maxMap][700];
 	public Entity npc[][] = new Entity[maxMap][30];
 	public Entity mob[][] = new Entity[maxMap][30];
 	public InteractiveTile iTile[][] = new InteractiveTile[maxMap][300];
@@ -170,30 +171,50 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	public void resetGame(boolean restart) {
 		
-		stopMusic();
-		currentArea = outside;
-		removeTempEntity();
-		bossBattleOn = false;
-		player.setDefaultPositions();
-		player.restoreStatus();
-		player.resetCounter();
-		aSetter.setNPC();
-		aSetter.setMobs();
-		aSetter.setObject();
-		
 		if(restart == true) {
 			player.setDefaultValues();
 //			aSetter.setObject();
 			aSetter.setInteractiveTile();
 			eManager.lighting.resetDay();
 		}
+		else {
+			player.setDefaultPositions();
+		}
+		
+		stopMusic();
+		playMusic(0);
+		gameState = playState;
+		currentArea = indoor;
+		removeTempEntity();
+		bossBattleOn = false;
+//		player.setDefaultPositions();
+		player.restoreStatus();
+		player.resetCounter();
+		aSetter.setNPC();
+		aSetter.setMobs();
+		aSetter.setObject();
+
+		
+
 
 	}
 	public void startNewGame() {
+	    pManager.setLoadingActive(true); // Show loading screen
+	    csManager.sceneNum = csManager.tutorial;
+	    csManager.setDialogue();
+	    gameState = cutsceneState;
 	    qManager.getQuestJournal().resetQuestJournal();
 	    Progress.gameStage = Progress.STAGE_TUTORIAL;
 	    player.isGremlin = false;
-	    resetGame(true);
+	    
+	    new Thread(() -> {
+	    	resetGame(true);
+	    	pManager.setLoadingActive(false); // Show loading screen
+	    }).start();
+	    
+	    
+//	    resetGame(true);
+//		playMusic(0);
 	}
 	public void loadSavedGame() {
 	    File saveFile = new File("save.dat");
@@ -422,7 +443,7 @@ public class GamePanel extends JPanel implements Runnable{
 			}
 			// SMOKE PARTICLE
 			for (int i = 0; i < player.smokeParticles.size(); i++) {
-			    SmokeParticle particle = player.smokeParticles.get(i);
+			    ParticleTransform particle = player.smokeParticles.get(i);
 			    particle.update();  // Update the particle's position, life, and alpha
 			    if (particle.alive) {  // Draw only if the particle is still alive
 			        particle.draw(g2);
@@ -441,8 +462,8 @@ public class GamePanel extends JPanel implements Runnable{
 			Collections.sort(entityList, new Comparator<Entity>() {
 			    @Override
 			    public int compare(Entity e1, Entity e2) {
-			        boolean e1IsBehind = (e1 instanceof IT_PressurePlate || e1 instanceof OBJ_Grass || e1 instanceof OBJ_Flower);
-			        boolean e2IsBehind = (e2 instanceof IT_PressurePlate || e2 instanceof OBJ_Grass || e2 instanceof OBJ_Flower);
+			        boolean e1IsBehind = (e1 instanceof IT_PressurePlate || e1 instanceof OBJ_Grass || e1 instanceof OBJ_Flower ||  e1 instanceof OBJ_DesertGrass );
+			        boolean e2IsBehind = (e2 instanceof IT_PressurePlate || e2 instanceof OBJ_Grass || e2 instanceof OBJ_Flower ||  e2 instanceof OBJ_DesertGrass);
 
 			        if (e1IsBehind && !e2IsBehind) {
 			            return -1;

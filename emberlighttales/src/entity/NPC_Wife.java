@@ -61,12 +61,32 @@ public class NPC_Wife extends Entity {
 			dialogues[0][0] = "*gasps*";
 			dialogues[0][1] = null;	
 		}
+		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+				!gp.player.isGremlin) {
+			dialogues[0][0] = "Ugh, errands. Listen, I was gonna get\nsome stuff done today, but it’s just\nnot happening.";
+			dialogues[0][1] = "Think you could help me out? I’ll owe\nyou one big time.";	
+		}
+		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+				gp.qManager.getQuestJournal().getQuestByName("To Do List").getCurrentStageIndex() == 1 &&
+				gp.player.searchItemInInventory("Water Bucket") != 999 &&
+				!gp.player.isGremlin) {
+			dialogues[0][0] = "Oh, perfect! You’re a gem. I was this\nclose to doing it myself... okay, maybe\nnot that close.";
+			dialogues[0][1] = "Next up — corn seeds. Ten of them. Crovin\nshould have some. You're the best!";	
+		}
+		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+				gp.qManager.getQuestJournal().getQuestByName("To Do List").getCurrentStageIndex() == 3 &&
+				gp.player.searchItemInInventory("Corn Seed") != 999 &&
+				gp.player.inventory.get(gp.player.searchItemInInventory("Corn Seed")).amount >= 10 &&
+				!gp.player.isGremlin) {
+			dialogues[0][0] = "You got them? Amazing. Honestly, I should\nhire you.";
+			dialogues[0][1] = "Thanks a bunch! Now... back to bed!";
+		}
 		else {
 			dialogues[0][0] = "Hehe!";		
-			dialogues[0][1] = "Nice to meet you!";	
-			
-			dialogues[1][0] = "This town could use with a lil' more pink...";		
-			dialogues[1][1] = "Don't you think?";
+			dialogues[0][1] = "Good day!";
 		}
 
 	}
@@ -110,8 +130,36 @@ public class NPC_Wife extends Entity {
 	
 	public void speak() {
 		
+		setDialogue();
 		facePlayer();
 		startDialogue(this, dialogueSet);
+		
+		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+				!gp.player.isGremlin) {
+			gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("To Do List"));
+			gp.pManager.addNotification("Journal Updated");
+		}
+		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+				gp.qManager.getQuestJournal().getQuestByName("To Do List").getCurrentStageIndex() == 1 &&
+				gp.player.searchItemInInventory("Water Bucket") != 999 &&
+				!gp.player.isGremlin) {
+			gp.player.inventory.remove(gp.player.searchItemInInventory("Water Bucket"));
+			gp.qManager.progressQuest("To Do List");
+			gp.pManager.addNotification("Journal Updated");
+		}
+		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+				gp.qManager.getQuestJournal().getQuestByName("To Do List").getCurrentStageIndex() == 3 &&
+				gp.player.searchItemInInventory("Corn Seed") != 999 &&
+				gp.player.inventory.get(gp.player.searchItemInInventory("Corn Seed")).amount >= 10 &&
+				!gp.player.isGremlin) {
+			gp.player.inventory.get(gp.player.searchItemInInventory("Corn Seed")).amount -= 10;
+			gp.qManager.progressQuest("To Do List");
+			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("To Do List"));
+			gp.pManager.addNotification("Quest Completed!");
+		}
 		
 		dialogueSet++;
 		

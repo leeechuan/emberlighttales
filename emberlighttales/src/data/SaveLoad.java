@@ -22,6 +22,8 @@ public class SaveLoad {
 	}
 	public void save() {
 		
+		gp.pManager.showAutoSave();
+		
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("save.dat")));
 			

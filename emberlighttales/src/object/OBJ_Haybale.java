@@ -38,7 +38,7 @@ public class OBJ_Haybale extends Entity{
 		else if (haybale_type == 1) {
 			image1 = setup("/decoration/haybale_1", 1 , 2);
 			solidArea.x = gp.tileSize*2/5;
-			solidArea.y = gp.tileSize;
+			solidArea.y = gp.tileSize*4/5;
 			solidArea.width = gp.tileSize*4/5;
 			solidArea.height = gp.tileSize*1/5;
 			solidAreaDefaultX = solidArea.x;

@@ -84,7 +84,7 @@ public class MOB_Desert_Warrior extends Entity {
        		}
 	}
     public void getDeathImage() {
-    	int multiplier = 1;
+    	int multiplier = 2;
     	
 	     for (int i = 0; i < 6; i++) {
             frontDeath[i] = setup("/enemy_desert_warrior/desert_warrior_death_" + i, 1.5f*multiplier, 1.5f*multiplier);
