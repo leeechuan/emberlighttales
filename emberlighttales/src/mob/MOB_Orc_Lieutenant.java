@@ -143,7 +143,7 @@ public class MOB_Orc_Lieutenant extends Entity {
 		Progress.updateStage(Progress.STAGE_ORC_LIEUTENANT_DEFEATED);
 		gp.qManager.progressQuest("Beneath Enemy Lines");
 		gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Beneath Enemy Lines"));
-		gp.pManager.addNotification("Quest Completed!");
+		gp.player.finishQuest(20, 65);
 
 		
 		//Restore previous music

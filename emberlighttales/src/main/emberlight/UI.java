@@ -465,7 +465,7 @@ public class UI {
 		    }
 		    
 		    // Draw version number on the bottom right
-		    String versionText = "Beta v1.1.15";
+		    String versionText = "Beta v1.2.1";
 		    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 10F));
 		    g2.setColor(Color.white);
 		    int versionX = gp.screenWidth - g2.getFontMetrics().stringWidth(versionText) - 10;
@@ -940,7 +940,7 @@ public class UI {
 			int textY = dFrameY + gp.tileSize;
 			g2.setFont(g2.getFont().deriveFont(14F));
 			
-			int itemIndex = getItemIndexOnSlot(slotCol, slotRow);
+			int itemIndex = getItemIndexOnSlot(slotCol, slotRow, entity.inventory.size());
 			
 			if(itemIndex >= 0 && itemIndex < entity.inventory.size()) {
 			    drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
@@ -1229,7 +1229,7 @@ public class UI {
 				titleScreenState = 0;
 				gp.stopMusic();
 				gp.gameState = gp.titleState;
-				gp.resetGame(true);
+//				gp.resetGame(true);
 			}
 		}
 		
@@ -1344,7 +1344,7 @@ public class UI {
 		g2.drawString("Your Coin: " + gp.player.coin, x + 24, y + 60);
 		
 		//DRAW PRICE WINDOW
-		int itemIndex = getItemIndexOnSlot(npcSlotCol, npcSlotRow);
+		int itemIndex = getItemIndexOnSlot(npcSlotCol, npcSlotRow, npc.inventory.size());
 		if(itemIndex < npc.inventory.size()) {
 			
 			x = (int)(gp.tileSize*5.5);
@@ -1410,7 +1410,7 @@ public class UI {
 		g2.drawString("Your Coin: " + gp.player.coin, x + 24, y + 60);
 		
 		//DRAW PRICE WINDOW
-		int itemIndex = getItemIndexOnSlot(playerSlotCol, playerSlotRow);
+		int itemIndex = getItemIndexOnSlot(playerSlotCol, playerSlotRow, gp.player.inventory.size());
 		if(itemIndex < gp.player.inventory.size()) {
 			
 			x = (int)(gp.tileSize*15.5);
@@ -1710,9 +1710,9 @@ public class UI {
             textY += lineSpacing;
         }
 	}
-	public int getItemIndexOnSlot(int slotCol, int slotRow) {
+	public int getItemIndexOnSlot(int slotCol, int slotRow, int inventory_size) {
 	    int itemIndex = slotCol + (slotRow * 5);
-	    if (itemIndex >= 20) {
+	    if (itemIndex >= inventory_size) {
 	        return -1;
 	    }
 	    return itemIndex;

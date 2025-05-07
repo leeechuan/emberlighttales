@@ -18,12 +18,15 @@ import main.emberlight.KeyHandler;
 import main.emberlight.UtilityTool;
 import object.OBJ_Arrow;
 import object.OBJ_Fruit;
+import object.OBJ_Fruit_Juice;
 import object.OBJ_Lantern;
 import object.OBJ_PlantedCrop;
 import object.OBJ_Rabbit_Shield_1;
 import object.OBJ_Seed;
 import object.OBJ_Stone_Axe;
 import object.OBJ_Stone_Sword;
+import object.OBJ_Torch;
+import object.OBJ_Wood_Sword;
 
 public class Player extends Entity {
 
@@ -118,7 +121,7 @@ public class Player extends Entity {
         exp = 0;
         nextLevelExp = 10;
         coin = 300;
-        currentWeapon = new OBJ_Stone_Sword(gp);
+        currentWeapon = new OBJ_Wood_Sword(gp);
         currentShield = new OBJ_Rabbit_Shield_1(gp);
         currentLight = null;
         projectile = new OBJ_Arrow(gp);
@@ -168,8 +171,8 @@ public class Player extends Entity {
     	inventory.clear();
     	inventory.add(currentWeapon);
     	inventory.add(currentShield);
-    	inventory.add(new OBJ_Lantern(gp));
-    	inventory.add(new OBJ_Stone_Axe(gp));
+    	inventory.add(new OBJ_Torch(gp));
+    	inventory.add(new OBJ_Fruit_Juice(gp));
     }
     public int getAttack() {
     	attackArea = currentWeapon.attackArea;
@@ -593,28 +596,28 @@ public class Player extends Entity {
 	            }
 	        }
            // If collision is detected, allow sliding along walls
-           else {
-               if (direction.equals("up") || direction.equals("down")) {
-                   // If moving vertically and colliding, try horizontal movement
-                   collisionOn = false;
-                   gp.cChecker.checkTile(this);
-                   gp.cChecker.checkEntity(this, gp.iTile);
-                   if (!collisionOn) {
-                       if (keyH.leftPressed) worldX -= speed;
-                       else if (keyH.rightPressed) worldX += speed;
-                   }
-               } 
-               else if (direction.equals("left") || direction.equals("right")) {
-                   // If moving horizontally and colliding, try vertical movement
-                   collisionOn = false;
-                   gp.cChecker.checkTile(this);
-                   gp.cChecker.checkEntity(this, gp.iTile);
-                   if (!collisionOn) {
-                       if (keyH.upPressed) worldY -= speed;
-                       else if (keyH.downPressed) worldY += speed;
-                   }
-               }
-           }
+//           else {
+//               if (direction.equals("up") || direction.equals("down")) {
+//                   // If moving vertically and colliding, try horizontal movement
+//                   collisionOn = false;
+//                   gp.cChecker.checkTile(this);
+//                   gp.cChecker.checkEntity(this, gp.iTile);
+//                   if (!collisionOn) {
+//                       if (keyH.leftPressed) worldX -= speed;
+//                       else if (keyH.rightPressed) worldX += speed;
+//                   }
+//               } 
+//               else if (direction.equals("left") || direction.equals("right")) {
+//                   // If moving horizontally and colliding, try vertical movement
+//                   collisionOn = false;
+//                   gp.cChecker.checkTile(this);
+//                   gp.cChecker.checkEntity(this, gp.iTile);
+//                   if (!collisionOn) {
+//                       if (keyH.upPressed) worldY -= speed;
+//                       else if (keyH.downPressed) worldY += speed;
+//                   }
+//               }
+//           }
            
            if (keyH.enterPressed && !attackCancelled) {
         	    if (currentWeapon != null) {
@@ -981,11 +984,8 @@ public class Player extends Entity {
     				gp.mob[gp.currentMap][i].dying = true;
 //    				gp.ui.addMessage(gp.mob[gp.currentMap][i].name + " was killed!");
 //    				gp.ui.addMessage("Exp + " + gp.mob[gp.currentMap][i].exp);
-        			gp.ui.damageTexts.add(
-        					new DamageText(gp.tileSize, gp.screenHeight - gp.tileSize * 2, "+ " + gp.mob[gp.currentMap][i].exp + "XP", new Color(85, 255, 85), gp)
-        			);
-    				exp += gp.mob[gp.currentMap][i].exp;
-    				checkLevelUp();
+    				addEXP(gp.mob[gp.currentMap][i].exp);
+
     			}
     		}
     	}
@@ -1012,6 +1012,28 @@ public class Player extends Entity {
     		generateParticle(projectile, projectile);
     	}
     }
+    public void finishQuest(int xpPoints, int coinEarned) {
+    	addEXP(xpPoints);
+    	gp.playSE(39);
+    	coin += coinEarned;
+    	gp.pManager.addNotification("Quest Completed!");
+    	gp.gameState = gp.dialogueState;
+    	gp.ui.npc = gp.player;
+    	if(coinEarned > 0){
+    		gp.ui.npc.dialogues[0][0] = "You gained " + xpPoints + " experience points\nand earned " + coinEarned + " coins!";
+    	}
+    	else {
+    		gp.ui.npc.dialogues[0][0] = "You gained " + xpPoints + " experience points!";
+    	}
+    	gp.saveLoad.save();
+    }
+    public void addEXP(int xpPoints) {
+		gp.ui.damageTexts.add(
+				new DamageText(gp.tileSize, gp.screenHeight - gp.tileSize * 2, "+ " + xpPoints + "XP", new Color(85, 255, 85), gp)
+		);
+		exp += xpPoints;
+		checkLevelUp();
+    }
     public void checkLevelUp() {
     	
     	if(exp >= nextLevelExp) {
@@ -1026,10 +1048,6 @@ public class Player extends Entity {
                 dexterity += 1;
             }
 
-            // Optional: Ammo cap increases every 3 levels
-            if (level % 3 == 0 && ammo < 30) {
-                ammo += 2;
-            }
     		attack = getAttack();
     		defense = getDefense();
     		
@@ -1045,7 +1063,7 @@ public class Player extends Entity {
     }
     public void selectItem() {
     	
-    	int itemIndex = gp.ui.getItemIndexOnSlot(gp.ui.playerSlotCol, gp.ui.playerSlotRow);
+    	int itemIndex = gp.ui.getItemIndexOnSlot(gp.ui.playerSlotCol, gp.ui.playerSlotRow, inventory.size());
     	
     	if(itemIndex < inventory.size()) {
     		

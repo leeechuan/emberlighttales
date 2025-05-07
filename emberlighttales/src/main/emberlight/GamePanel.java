@@ -85,7 +85,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public PathFinder pFinder = new PathFinder(this);
 	public EnvironmentManager eManager = new EnvironmentManager(this);
 	Map map = new Map(this);
-	SaveLoad saveLoad = new SaveLoad(this);
+	public SaveLoad saveLoad = new SaveLoad(this);
 	public EntityGenerator eGenerator = new EntityGenerator(this);
 	public CutsceneManager csManager = new CutsceneManager(this);
 	public QuestManager qManager = new QuestManager(this);
@@ -179,11 +179,12 @@ public class GamePanel extends JPanel implements Runnable{
 		}
 		else {
 			player.setDefaultPositions();
+			gameState = playState;
 		}
 		
 		stopMusic();
 		playMusic(0);
-		gameState = playState;
+		
 		currentArea = indoor;
 		removeTempEntity();
 		bossBattleOn = false;
@@ -200,6 +201,7 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	public void startNewGame() {
 	    pManager.setLoadingActive(true); // Show loading screen
+	    csManager.scenePhase = 0;
 	    csManager.sceneNum = csManager.tutorial;
 	    csManager.setDialogue();
 	    gameState = cutsceneState;

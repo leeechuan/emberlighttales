@@ -7,6 +7,7 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+import data.Progress;
 import main.emberlight.GamePanel;
 
 public class NPC_GymBro extends Entity {
@@ -64,6 +65,7 @@ public class NPC_GymBro extends Entity {
 		}
 		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
 				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
+				Progress.gameStage > Progress.STAGE_BRIDGE_RUBBLE_REMOVED &&
 				!gp.player.isGremlin) {
 			dialogues[0][0] = "Yo! You look like you can throw down.";
 			dialogues[0][1] = "My daily run zone...south beach has been\noverrun by bandits!";
@@ -141,6 +143,7 @@ public class NPC_GymBro extends Entity {
 		
 		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
 				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
+				Progress.gameStage > Progress.STAGE_BRIDGE_RUBBLE_REMOVED &&
 				!gp.player.isGremlin) {
 			gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"));
 			gp.pManager.addNotification("Journal Updated");
@@ -152,7 +155,7 @@ public class NPC_GymBro extends Entity {
 			gp.qManager.progressQuest("No Rest for the Wicked");
 			gp.qManager.progressQuest("No Rest for the Wicked"); //Just in case player already has in inventory
 			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"));
-			gp.pManager.addNotification("Quest Completed!");
+			gp.player.finishQuest(25, 50);
 		}
 		
 		dialogueSet++;

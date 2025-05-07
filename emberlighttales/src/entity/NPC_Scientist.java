@@ -7,6 +7,7 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+import data.Progress;
 import main.emberlight.GamePanel;
 
 public class NPC_Scientist extends Entity {
@@ -65,6 +66,7 @@ public class NPC_Scientist extends Entity {
 		}
 		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Critical Malfunction"))&&
 				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Critical Malfunction"))&&
+				Progress.gameStage > Progress.STAGE_BRIDGE_RUBBLE_REMOVED &&
 				!gp.player.isGremlin) {
 			dialogues[0][0] = "Wait! Stop right there!\nYes, you!";
 			dialogues[0][1] = "During the orc raid, my lab suffered\na catastrophic breach!";
@@ -143,6 +145,7 @@ public class NPC_Scientist extends Entity {
 		
 		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Critical Malfunction"))&&
 				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Critical Malfunction"))&&
+				Progress.gameStage > Progress.STAGE_BRIDGE_RUBBLE_REMOVED &&
 				!gp.player.isGremlin) {
 			gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Critical Malfunction"));
 			gp.pManager.addNotification("Journal Updated");
@@ -155,7 +158,7 @@ public class NPC_Scientist extends Entity {
 			gp.qManager.progressQuest("Critical Malfunction");
 			gp.qManager.progressQuest("Critical Malfunction"); //Just in case player already has in inventory
 			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Critical Malfunction"));
-			gp.pManager.addNotification("Quest Completed!");
+			gp.player.finishQuest(20, 35);
 		}
 		
 		dialogueSet++;

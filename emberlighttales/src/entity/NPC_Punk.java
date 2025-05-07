@@ -169,7 +169,7 @@ public class NPC_Punk extends Entity {
 				!gp.player.isGremlin) {
 			gp.qManager.progressQuest("The Suspicious Merchant");
 			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("The Suspicious Merchant"));
-			gp.pManager.addNotification("Quest Completed!");
+			gp.player.finishQuest(20, 150);
 		}
 		
 		

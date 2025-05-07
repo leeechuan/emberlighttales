@@ -133,7 +133,7 @@ public class NPC_Elder extends Entity {
 				!gp.player.isGremlin) {
 			gp.qManager.progressQuest("Where’s Wibby?");
 			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"));
-			gp.pManager.addNotification("Quest Completed!");
+			gp.player.finishQuest(35, 60);
 		}
 
 		

@@ -147,7 +147,7 @@ public class MOB_Orc_Second extends Entity {
 		gp.qManager.progressQuest("Second's Fall");
 		gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Second's Fall"));
 		gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield"));
-		gp.pManager.addNotification("Journal Updated");
+		gp.player.finishQuest(45, 100);
 		
 		//Restore previous music
 		gp.stopMusic();

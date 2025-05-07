@@ -7,6 +7,7 @@ import java.util.List;
 import data.Progress;
 import entity.Entity;
 import main.emberlight.GamePanel;
+import object.OBJ_Suspicious_Juice;
 
 public class QuestManager {
     private QuestJournal questJournal;
@@ -230,6 +231,63 @@ public class QuestManager {
     
     public void refreshQuestMarkers() {
     	
+    	Entity herbalist = gp.findNPCByName("Tala Nireh");
+    	if (herbalist != null) {
+
+    		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace"))&&
+    				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace"))&&
+    				!gp.player.isGremlin) {
+    			herbalist.questMarker = herbalist.questMarker_newQuest;
+    		}
+    		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace"))&&
+    				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace"))&&
+    				gp.player.searchItemInInventory("Sunflower") != 999 &&
+    				!gp.player.isGremlin) {
+    			herbalist.questMarker = herbalist.questMarker_activeQuest;
+    		}
+    	    else {
+    	    	herbalist.questMarker = herbalist.questMarker_none;
+    	    }
+    	}
+    	
+    	Entity pharaoh = gp.findNPCByName("Pharaoh Ahmuron");
+    	if (pharaoh != null) {
+
+    		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Dust and Glory"))&&
+    				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Dust and Glory"))&&
+    				!gp.player.isGremlin) {
+    			pharaoh.questMarker = pharaoh.questMarker_newQuest;
+    		}
+    		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Dust and Glory"))&&
+    				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Dust and Glory"))&&
+    				gp.qManager.getQuestJournal().getQuestByName("Dust and Glory").getCurrentStageIndex() == 2 &&
+    				!gp.player.isGremlin) {
+    			pharaoh.questMarker = pharaoh.questMarker_activeQuest;
+    		}
+    	    else {
+    	    	pharaoh.questMarker = pharaoh.questMarker_none;
+    	    }
+    	}
+    	
+    	Entity elder = gp.findNPCByName("Pharaoh Ahmuron");
+    	if (elder != null) {
+
+    		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"))&&
+    				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"))&&
+    				!gp.player.isGremlin) {
+    			elder.questMarker = elder.questMarker_newQuest;
+    		}
+    		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"))&&
+    				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"))&&
+    				gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?").getCurrentStageIndex() == 2 &&
+    				!gp.player.isGremlin) {
+    			elder.questMarker = elder.questMarker_activeQuest;
+    		}
+    	    else {
+    	    	elder.questMarker = elder.questMarker_none;
+    	    }
+    	}
+    	
     	Entity farmer = gp.findNPCByName("Bram Tiller");
     	if (farmer != null) {
 
@@ -244,6 +302,185 @@ public class QuestManager {
     	    }
     	    else {
     	    	farmer.questMarker = farmer.questMarker_none;
+    	    }
+    	}
+    	
+    	Entity gymbro = gp.findNPCByName("Bran Iron-Hands");
+    	if (gymbro != null) {
+
+    		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
+    				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
+    				Progress.gameStage > Progress.STAGE_BRIDGE_RUBBLE_REMOVED &&
+    				!gp.player.isGremlin) {
+    			gymbro.questMarker = gymbro.questMarker_newQuest;
+    		}
+    		else if (!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
+    				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("No Rest for the Wicked"))&&
+    				!gp.player.isGremlin) {
+    			gymbro.questMarker = gymbro.questMarker_activeQuest;
+    		}
+    	    else {
+    	    	gymbro.questMarker = gymbro.questMarker_none;
+    	    }
+    	}
+    	
+    	Entity husband = gp.findNPCByName("Luca Aldermere");
+    	if (husband != null) {
+
+    		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+    				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+    				Progress.gameStage > Progress.STAGE_BRIDGE_RUBBLE_REMOVED &&
+    				!gp.player.isGremlin) {
+    			husband.questMarker = husband.questMarker_activeQuest;
+    		}
+    		else if (!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+    				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+    				gp.player.searchItemInInventory("Luca's Jacket") != 999 &&
+    				!gp.player.isGremlin) {
+    			husband.questMarker = husband.questMarker_activeQuest;
+    		}
+    	    else {
+    	    	husband.questMarker = husband.questMarker_none;
+    	    }
+    	}    
+    	
+    	Entity mayor = gp.findNPCByName("Mayor Oren");
+    	if (mayor != null) {
+
+    	    if (gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril"))&&
+    				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 2) {
+    	    	mayor.questMarker = mayor.questMarker_activeQuest;
+    	    }
+    	    else {
+    	    	mayor.questMarker = mayor.questMarker_none;
+    	    }
+    	}
+    	
+    	Entity president = gp.findNPCByName("Alaric Calloway");
+    	if (president != null) {
+
+    	    if (gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril")) &&
+    				(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 1  || 
+    				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 3)) {
+    	    	president.questMarker = president.questMarker_activeQuest;
+    	    }
+    	    else {
+    	    	president.questMarker = president.questMarker_none;
+    	    }
+    	}
+    	
+    	Entity punk = gp.findNPCByName("Vex Cragstone");
+    	if (punk != null) {
+
+    		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("The Suspicious Merchant"))&&
+    				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("The Suspicious Merchant"))&&
+    				!gp.player.isGremlin) {
+    			punk.questMarker = punk.questMarker_newQuest;
+    		}
+    		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("The Suspicious Merchant"))&&
+    				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("The Suspicious Merchant"))&&
+    				gp.qManager.getQuestJournal().getQuestByName("The Suspicious Merchant").getCurrentStageIndex() == 0 &&
+    				gp.player.coin >= 50 &&
+    				!gp.player.isGremlin) {
+    			punk.questMarker = punk.questMarker_activeQuest;
+    		}
+    		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("The Suspicious Merchant"))&&
+    				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("The Suspicious Merchant"))&&
+    				gp.qManager.getQuestJournal().getQuestByName("The Suspicious Merchant").getCurrentStageIndex() == 4 &&
+    				!gp.player.isGremlin) {
+    			punk.questMarker = punk.questMarker_activeQuest;
+    		}
+    	    else {
+    	    	punk.questMarker = punk.questMarker_none;
+    	    }
+    	}
+    	
+    	Entity scientist = gp.findNPCByName("Dr. Thorne Baxter");
+    	if (scientist != null) {
+
+    		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Critical Malfunction"))&&
+    				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Critical Malfunction"))&&
+    				Progress.gameStage > Progress.STAGE_BRIDGE_RUBBLE_REMOVED &&
+    				!gp.player.isGremlin) {
+    			scientist.questMarker = scientist.questMarker_newQuest;
+    		}
+    		else if (!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Critical Malfunction"))&&
+    				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Critical Malfunction"))&&
+    				gp.player.searchItemInInventory("Field Resonator") != 999 &&
+    				!gp.player.isGremlin) {
+    			scientist.questMarker = scientist.questMarker_activeQuest;
+    		}
+    	    else {
+    	    	scientist.questMarker = scientist.questMarker_none;
+    	    }
+    	}
+    	
+    	Entity scout = gp.findNPCByName("Rowan Swiftfoot");
+    	if (scout != null) {
+
+    	    if (gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril"))&&
+    				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 4) {
+    	    	scout.questMarker = scout.questMarker_activeQuest;
+    	    }
+    	    else {
+    	    	scout.questMarker = scout.questMarker_none;
+    	    }
+    	}
+    	
+    	
+    	Entity son = gp.findNPCByName("Captured Wibby");
+    	if (son != null) {
+
+    		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"))&&
+    				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"))&&
+    				gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?").getCurrentStageIndex() == 1 &&
+    				!gp.player.isGremlin) {
+    			son.questMarker = son.questMarker_activeQuest;
+    		}
+    	    else {
+    	    	son.questMarker = son.questMarker_none;
+    	    }
+    	}
+    	
+    	Entity thief = gp.findNPCByName("Cains Steelcloak");
+    	if (thief != null) {
+
+    		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+    				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Stolen Style"))&&
+    				gp.qManager.getQuestJournal().getQuestByName("Stolen Style").getCurrentStageIndex() == 0 &&
+    				!gp.player.isGremlin) {
+    			thief.questMarker = thief.questMarker_activeQuest;
+    		}
+    	    else {
+    	    	thief.questMarker = thief.questMarker_none;
+    	    }
+    	}
+    	
+    	Entity wife = gp.findNPCByName("Nessa Aldermere");
+    	if (wife != null) {
+
+    		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+    				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+    				!gp.player.isGremlin) {
+    			wife.questMarker = wife.questMarker_newQuest;
+    		}
+    		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+    				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+    				gp.qManager.getQuestJournal().getQuestByName("To Do List").getCurrentStageIndex() == 1 &&
+    				gp.player.searchItemInInventory("Water Bucket") != 999 &&
+    				!gp.player.isGremlin) {
+    			wife.questMarker = wife.questMarker_activeQuest;
+    		}
+    		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+    				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
+    				gp.qManager.getQuestJournal().getQuestByName("To Do List").getCurrentStageIndex() == 3 &&
+    				gp.player.searchItemInInventory("Corn Seed") != 999 &&
+    				gp.player.inventory.get(gp.player.searchItemInInventory("Corn Seed")).amount >= 10 &&
+    				!gp.player.isGremlin) {
+    			wife.questMarker = wife.questMarker_activeQuest;
+    		}
+    	    else {
+    	    	wife.questMarker = wife.questMarker_none;
     	    }
     	}
     	
@@ -264,42 +501,10 @@ public class QuestManager {
     	    }
     	}
     	
-    	Entity mayor = gp.findNPCByName("Mayor Oren");
-    	if (mayor != null) {
 
-    	    if (gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril"))&&
-    				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 2) {
-    	    	mayor.questMarker = mayor.questMarker_activeQuest;
-    	    }
-    	    else {
-    	    	mayor.questMarker = mayor.questMarker_none;
-    	    }
-    	}
+
     	
-    	Entity scout = gp.findNPCByName("Rowan Swiftfoot");
-    	if (scout != null) {
 
-    	    if (gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril"))&&
-    				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 4) {
-    	    	scout.questMarker = scout.questMarker_activeQuest;
-    	    }
-    	    else {
-    	    	scout.questMarker = scout.questMarker_none;
-    	    }
-    	}
-    	
-    	Entity president = gp.findNPCByName("Alaric Calloway");
-    	if (president != null) {
-
-    	    if (gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril")) &&
-    				(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 1  || 
-    				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 3)) {
-    	    	president.questMarker = president.questMarker_activeQuest;
-    	    }
-    	    else {
-    	    	president.questMarker = president.questMarker_none;
-    	    }
-    	}
     	
     	Entity desert_trader = gp.findNPCByName("Zayid Marruk");
     	if (desert_trader != null) {

@@ -134,7 +134,7 @@ public class NPC_DesertPharaoh extends Entity {
 				!gp.player.isGremlin) {
 			gp.qManager.progressQuest("Dust and Glory");
 			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Dust and Glory"));
-			gp.pManager.addNotification("Quest Completed!");
+			gp.player.finishQuest(50, 120);
 		}
 		
 		dialogueSet++;

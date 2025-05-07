@@ -56,6 +56,7 @@ public class Sound {
 			soundURL[36]= getClass().getResource("/sound/sword-swing-3.wav");
 			soundURL[37]= getClass().getResource("/sound/player-roll.wav");
 			soundURL[38]= getClass().getResource("/sound/coin-jingle.wav");
+			soundURL[39]= getClass().getResource("/sound/quest-completed.wav");
 		}
 		
 		public void setFile(int i) {

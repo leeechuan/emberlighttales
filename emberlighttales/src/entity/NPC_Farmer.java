@@ -147,7 +147,7 @@ public class NPC_Farmer extends Entity {
 				!gp.player.isGremlin) {
 			gp.qManager.progressQuest("Cluck and Dagger");
 			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Cluck and Dagger"));
-			gp.pManager.addNotification("Quest Completed!");
+			gp.player.finishQuest(15, 40);
 		}
 		
 		dialogueSet++;

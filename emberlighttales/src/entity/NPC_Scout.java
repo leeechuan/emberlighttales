@@ -122,8 +122,8 @@ public class NPC_Scout extends Entity {
 				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 4) {
 			gp.qManager.progressQuest("Sands of Peril");
 			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril"));
-			gp.pManager.addNotification("Quest Completed!");
 			gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Second's Fall"));
+			gp.player.finishQuest(45, 70);
 			
 		}
 

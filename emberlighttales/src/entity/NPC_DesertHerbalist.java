@@ -142,7 +142,7 @@ public class NPC_DesertHerbalist extends Entity {
 			gp.qManager.progressQuest("Seeds of Solace");
 			gp.qManager.progressQuest("Seeds of Solace"); //Just in case player already has in inventory
 			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace"));
-			gp.pManager.addNotification("Quest Completed!");
+			gp.player.finishQuest(25, 150);
 		}
 		
 		dialogueSet++;

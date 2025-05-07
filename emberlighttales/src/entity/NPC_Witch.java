@@ -59,7 +59,7 @@ public class NPC_Witch extends Entity {
 			dialogues[0][0] = "Mayor... if I may speak...";
 			dialogues[0][1] = "If we are to fight the orcs, if we\nare to take back what was stolen...\nyou will need more than steel and courage.";
 			dialogues[0][2] = "For those who truly wish to change\nEmberville’s fate... come to my house\nafter dark.";
-			dialogues[0][3] = "But be warned—what I offer does not\ncome without consequence.";
+			dialogues[0][3] = "But be warned... what I offer does not\ncome without consequence.";
 		} 
 		else if(gp.csManager.sceneNum == gp.csManager.witchSerum) {
 			dialogues[0][0] = "So... you came. Good.";
@@ -163,6 +163,10 @@ public class NPC_Witch extends Entity {
 	}
 	public void speak() {
 		
+		setDialogue();
+		facePlayer();
+		startDialogue(this, dialogueSet);
+		
 		if(Progress.gameStage == Progress.STAGE_MEET_WITCH && gp.eManager.lighting.dayState == gp.eManager.lighting.night) {
 			gp.csManager.sceneNum = gp.csManager.witchSerum;
 			gp.csManager.setDialogue();
@@ -170,10 +174,16 @@ public class NPC_Witch extends Entity {
 			gp.gameState = gp.cutsceneState;
 
 		}
+		else if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield"))&&
+				gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield").getCurrentStageIndex() == 2 &&
+				gp.player.searchItemInInventory("Sunmire Glassroot") != 999) {
+			gp.player.inventory.remove(gp.player.searchItemInInventory("Sunmire Glassroot"));
+			gp.qManager.progressQuest("Stolen Style");
+			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield"));
+			gp.player.finishQuest(55, 85);
+		}
 		else {
-			setDialogue();
-			facePlayer();
-			startDialogue(this, dialogueSet);
+
 			
 			dialogueSet++;
 			

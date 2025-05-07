@@ -108,7 +108,7 @@ public class CutsceneManager {
 		    cutsceneMaster.dialogues[1][1] = "(Press [r]ENTER[/r] to attack or interact)";
 
 		    cutsceneMaster.dialogues[2][0] = "If something's too far away...";
-		    cutsceneMaster.dialogues[2][1] = "...I'll just pew-pew it from a distance!";
+		    cutsceneMaster.dialogues[2][1] = "...I'll just shoot it from a distance!";
 		    cutsceneMaster.dialogues[2][2] = "(Press [r]E[/r] to shoot an arrow)";
 
 		    cutsceneMaster.dialogues[3][0] = "Pablo the plush bunny's got my back!";
@@ -117,10 +117,10 @@ public class CutsceneManager {
 		    cutsceneMaster.dialogues[4][0] = "Hehe, I can even do a quick tumble~";
 		    cutsceneMaster.dialogues[4][1] = "(Press [r]SPACEBAR[/r] to roll)";
 
-		    cutsceneMaster.dialogues[5][0] = "I should probably bring along my journal...";
+		    cutsceneMaster.dialogues[5][0] = "I should probably bring along my\njournal...";
 		    cutsceneMaster.dialogues[5][1] = "(Press [r]J[/r] to open your journal)";
 
-		    cutsceneMaster.dialogues[6][0] = "Better double-check if I packed my snacks...";
+		    cutsceneMaster.dialogues[6][0] = "Better double check if I packed my\nsnacks...";
 		    cutsceneMaster.dialogues[6][1] = "(Press [r]C[/r] to check your inventory)";
 
 		    cutsceneMaster.dialogues[7][0] = "All set! Off for an adventure!";
@@ -1384,6 +1384,10 @@ public class CutsceneManager {
         	}
             break;
 		case 3:
+			//Change boss music 
+			gp.stopMusic();
+			gp.playMusic(19);
+			
             sceneNum = NA;
             scenePhase = 0;
 

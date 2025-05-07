@@ -60,12 +60,14 @@ public class NPC_Wife extends Entity {
 		if(gp.csManager.sceneNum == gp.csManager.townhall) {
 			dialogues[0][0] = "*gasps*";
 			dialogues[0][1] = null;	
+			dialogues[0][2] = null;
 		}
 		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
 				!gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
 				!gp.player.isGremlin) {
 			dialogues[0][0] = "Ugh, errands. Listen, I was gonna get\nsome stuff done today, but it’s just\nnot happening.";
 			dialogues[0][1] = "Think you could help me out? I’ll owe\nyou one big time.";	
+			dialogues[0][2] = null;
 		}
 		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
 				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
@@ -74,6 +76,7 @@ public class NPC_Wife extends Entity {
 				!gp.player.isGremlin) {
 			dialogues[0][0] = "Oh, perfect! You’re a gem. I was this\nclose to doing it myself... okay, maybe\nnot that close.";
 			dialogues[0][1] = "Next up — corn seeds. Ten of them. Crovin\nshould have some. You're the best!";	
+			dialogues[0][2] = null;
 		}
 		else if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
 				gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
@@ -82,11 +85,13 @@ public class NPC_Wife extends Entity {
 				gp.player.inventory.get(gp.player.searchItemInInventory("Corn Seed")).amount >= 10 &&
 				!gp.player.isGremlin) {
 			dialogues[0][0] = "You got them? Amazing. Honestly, I should\nhire you.";
-			dialogues[0][1] = "Thanks a bunch! Now... back to bed!";
+			dialogues[0][1] = "Heres 300 coin, hope that covers the seeds\nand your time.";
+			dialogues[0][2] = "Thanks a bunch! Now... back to bed!";
 		}
 		else {
 			dialogues[0][0] = "Hehe!";		
 			dialogues[0][1] = "Good day!";
+			dialogues[0][2] = null;
 		}
 
 	}
@@ -158,7 +163,7 @@ public class NPC_Wife extends Entity {
 			gp.player.inventory.get(gp.player.searchItemInInventory("Corn Seed")).amount -= 10;
 			gp.qManager.progressQuest("To Do List");
 			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("To Do List"));
-			gp.pManager.addNotification("Quest Completed!");
+			gp.player.finishQuest(20, 300);
 		}
 		
 		dialogueSet++;
