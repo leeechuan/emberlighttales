@@ -16,7 +16,7 @@ public class OBJ_Wood_Sword extends Entity{
         attackValue = 1;
         attackArea.width = 36;
         attackArea.height = 36;
-        description = "[" + name + "]" + "\nLight and crude.\nHardly cuts anything.";
+        description = "[" + name + "]" + "\nLight and crude.\nHardly cuts\nanything.";
         price = 10;
         knockBackPower = 2;
         motion1_duration = 5;

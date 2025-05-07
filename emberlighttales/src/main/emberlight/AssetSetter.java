@@ -2654,6 +2654,18 @@ public class AssetSetter {
 		gp.obj[mapNum][i].worldY = 47 * gp.tileSize;
 		i++;
 		
+		gp.obj[mapNum][i] = new OBJ_Chest(gp);
+		gp.obj[mapNum][i].setLoot(new OBJ_Fruit_Juice(gp));
+		gp.obj[mapNum][i].worldX = 42 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 41 * gp.tileSize;
+		i++;
+		
+		gp.obj[mapNum][i] = new OBJ_Chest(gp);
+		gp.obj[mapNum][i].setLoot(new OBJ_Stone_Sword(gp));
+		gp.obj[mapNum][i].worldX = 56 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 41 * gp.tileSize;
+		i++;
+		
 		//Wood Cave
 		mapNum = 25;
 		

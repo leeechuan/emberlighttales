@@ -609,6 +609,20 @@ public class UI {
 				//State handling
 				if(gp.gameState == gp.dialogueState) {
 					gp.gameState = gp.playState;
+					if(gp.player.justCompletedQuest) {
+						npc = gp.player;
+						gp.player.setDialogue();
+						npc.dialogueSet = 1;
+						gp.gameState = gp.dialogueState;
+						gp.player.justCompletedQuest = false;
+					}
+					else if(gp.player.levelUpfromQuest) {
+						npc = gp.player;
+						gp.player.setDialogue();
+						npc.dialogueSet = 0;
+						gp.gameState = gp.dialogueState;
+						gp.player.levelUpfromQuest = false;
+					}
 				}
 				if(gp.gameState == gp.cutsceneState) {
 					gp.csManager.scenePhase++;
@@ -680,6 +694,21 @@ public class UI {
 				
 				if(gp.gameState == gp.dialogueState) {
 					gp.gameState = gp.playState;
+					
+					if(gp.player.justCompletedQuest) {
+						npc = gp.player;
+						gp.player.setDialogue();
+						npc.dialogueSet = 1;
+						gp.gameState = gp.dialogueState;
+						gp.player.justCompletedQuest = false;
+					}
+					else if(gp.player.levelUpfromQuest) {
+						npc = gp.player;
+						gp.player.setDialogue();
+						npc.dialogueSet = 0;
+						gp.gameState = gp.dialogueState;
+						gp.player.levelUpfromQuest = false;
+					}
 				}
 				if(gp.gameState == gp.cutsceneState) {
 					gp.csManager.scenePhase++;

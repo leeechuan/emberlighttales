@@ -83,6 +83,10 @@ public class Player extends Entity {
     
     //DEBUG ALTERNATE START (SKIP TUTORIAL)
     public boolean debugPlayerStart = false;
+    
+    //APPENDING POST QUEST MESSAGES
+    public boolean justCompletedQuest = false;
+    public boolean levelUpfromQuest = false;
 
     public Player(GamePanel gp, KeyHandler keyH) {
     	
@@ -175,17 +179,26 @@ public class Player extends Entity {
     	inventory.add(new OBJ_Fruit_Juice(gp));
     }
     public int getAttack() {
-    	attackArea = currentWeapon.attackArea;
-    	motion1_duration = currentWeapon.motion1_duration;
-    	motion2_duration = currentWeapon.motion2_duration;
-    	motion3_duration = currentWeapon.motion3_duration;
-    	motion4_duration = currentWeapon.motion4_duration;
-    	motion5_duration = currentWeapon.motion5_duration;
-    	motion6_duration = currentWeapon.motion6_duration;
-    	return attack = strength * currentWeapon.attackValue;
+    	if(currentWeapon != null) {
+        	attackArea = currentWeapon.attackArea;
+        	motion1_duration = currentWeapon.motion1_duration;
+        	motion2_duration = currentWeapon.motion2_duration;
+        	motion3_duration = currentWeapon.motion3_duration;
+        	motion4_duration = currentWeapon.motion4_duration;
+        	motion5_duration = currentWeapon.motion5_duration;
+        	motion6_duration = currentWeapon.motion6_duration;
+        	return attack = strength * currentWeapon.attackValue;
+    	}
+    		return attack = strength;
     }
     public int getDefense() {
-    	return defense = dexterity * currentShield.defenseValue;
+    	if(currentShield != null) {
+    		return defense = dexterity * currentShield.defenseValue;
+    	}
+    	else {
+    		return defense = dexterity;
+    	}
+    	
     }
     public int getCurrentWeaponSlot() {
     	int currentWeaponSlot = 0;
@@ -747,70 +760,75 @@ public class Player extends Entity {
         }
     }
     public void rolling() {
-    	
-    	 if (isRolling) {
-    	        invincible = true;
-    	        collisionOn = false;
-    	        gp.cChecker.checkTile(this);
-    	        gp.cChecker.checkObject(this, true);
-    	        gp.cChecker.checkEntity(this, gp.mob);
-    	        gp.cChecker.checkEntity(this, gp.iTile);
 
-    	        // Only move if no collision
-    	        if (!collisionOn) {
-    	            int dx = 0, dy = 0;
-    	            if (keyH.upPressed) dy -= 1;
-    	            if (keyH.downPressed) dy += 1;
-    	            if (keyH.leftPressed) dx -= 1;
-    	            if (keyH.rightPressed) dx += 1;
+        if (!isRolling) return;
 
-    	            if (dx != 0 || dy != 0) {
-    	                double magnitude = Math.sqrt(dx * dx + dy * dy);
-    	                int moveX = (int)(rollSpeed * dx / magnitude);
-    	                int moveY = (int)(rollSpeed * dy / magnitude);
+        invincible = true;
 
-    	                worldX += moveX;
-    	                worldY += moveY;
-    	            }
-    	        }
+        // Predict movement direction
+        int dx = 0, dy = 0;
+        if (keyH.upPressed) dy -= 1;
+        if (keyH.downPressed) dy += 1;
+        if (keyH.leftPressed) dx -= 1;
+        if (keyH.rightPressed) dx += 1;
 
-    	        // Animate roll (based on your 8-frame setup)
-    	        rollCounter++;
-    	        if (rollCounter <= 4) {
-    	            spriteNum = 0;
-    	        } else if (rollCounter <= 8) {
-    	            spriteNum = 1;
-    	        } else if (rollCounter <= 12) {
-    	            spriteNum = 2;
-    	        } else if (rollCounter <= 16) {
-    	            spriteNum = 3;
-    	        } else if (rollCounter <= 20) {
-    	            spriteNum = 4;
-    	        } else if (rollCounter <= 24) {
-    	            spriteNum = 5;
-    	        } else if (rollCounter <= 28) {
-    	            spriteNum = 6;
-    	        } else if (rollCounter <= 32) {
-    	            spriteNum = 7;
-    	        }
-    	        else {
-    	        	spriteNum = 0;
-    	        }
-    	        
-    	        //Particles when rolling
-    	        if (rollCounter % 6 == 0) {
-    	        	ParticleMovement p = new ParticleMovement(gp, this);
-    	            gp.particleList.add(p);
-    	        }
+        if (dx != 0 || dy != 0) {
+            double magnitude = Math.sqrt(dx * dx + dy * dy);
+            int moveX = (int)(rollSpeed * dx / magnitude);
+            int moveY = (int)(rollSpeed * dy / magnitude);
 
-    	        // Finish rolling
-    	        if (rollCounter >= 40) {
-    	            isRolling = false;
-    	            invincible = false;
-    	            rollCooldown = 30; // Cooldown after roll ends
-    	            rollCounter = 0;
-    	        }
-    	    }
+            // Save original position for rollback
+            int originalX = worldX;
+            int originalY = worldY;
+
+            // Predict and check X movement
+            worldX += moveX;
+            collisionOn = false;
+            gp.cChecker.checkTile(this);
+            gp.cChecker.checkObject(this, true);
+            gp.cChecker.checkEntity(this, gp.mob);
+            gp.cChecker.checkEntity(this, gp.iTile);
+            if (collisionOn) {
+                worldX = originalX;
+            }
+
+            // Predict and check Y movement
+            worldY += moveY;
+            collisionOn = false;
+            gp.cChecker.checkTile(this);
+            gp.cChecker.checkObject(this, true);
+            gp.cChecker.checkEntity(this, gp.mob);
+            gp.cChecker.checkEntity(this, gp.iTile);
+            if (collisionOn) {
+                worldY = originalY;
+            }
+        }
+
+        // Animate roll (8-frame animation assumed)
+        rollCounter++;
+        if      (rollCounter <= 4)  spriteNum = 0;
+        else if (rollCounter <= 8)  spriteNum = 1;
+        else if (rollCounter <= 12) spriteNum = 2;
+        else if (rollCounter <= 16) spriteNum = 3;
+        else if (rollCounter <= 20) spriteNum = 4;
+        else if (rollCounter <= 24) spriteNum = 5;
+        else if (rollCounter <= 28) spriteNum = 6;
+        else if (rollCounter <= 32) spriteNum = 7;
+        else                        spriteNum = 0;
+
+        // Add particles during roll
+        if (rollCounter % 6 == 0) {
+            ParticleMovement p = new ParticleMovement(gp, this);
+            gp.particleList.add(p);
+        }
+
+        // Finish rolling
+        if (rollCounter >= 40) {
+            isRolling = false;
+            invincible = false;
+            rollCooldown = 30; // Prevents immediate re-rolling
+            rollCounter = 0;
+        }
     }
     public void blocking() {
     	
@@ -985,7 +1003,7 @@ public class Player extends Entity {
 //    				gp.ui.addMessage(gp.mob[gp.currentMap][i].name + " was killed!");
 //    				gp.ui.addMessage("Exp + " + gp.mob[gp.currentMap][i].exp);
     				addEXP(gp.mob[gp.currentMap][i].exp);
-
+    				checkLevelUp();
     			}
     		}
     	}
@@ -1013,18 +1031,21 @@ public class Player extends Entity {
     	}
     }
     public void finishQuest(int xpPoints, int coinEarned) {
-    	addEXP(xpPoints);
     	gp.playSE(39);
-    	coin += coinEarned;
+    	
     	gp.pManager.addNotification("Quest Completed!");
-    	gp.gameState = gp.dialogueState;
-    	gp.ui.npc = gp.player;
+//    	gp.gameState = gp.dialogueState;
+//    	gp.ui.npc = gp.player;
+    	justCompletedQuest = true;
     	if(coinEarned > 0){
-    		gp.ui.npc.dialogues[0][0] = "You gained " + xpPoints + " experience points\nand earned " + coinEarned + " coins!";
+    		gp.player.dialogues[1][0] = "You gained " + xpPoints + " experience points\nand earned " + coinEarned + " coins!";
     	}
     	else {
-    		gp.ui.npc.dialogues[0][0] = "You gained " + xpPoints + " experience points!";
+    		gp.player.dialogues[1][0] = "You gained " + xpPoints + " experience points!";
     	}
+    	addEXP(xpPoints);
+    	coin += coinEarned;
+		checkLevelUpForQuestCompletion();
     	gp.saveLoad.save();
     }
     public void addEXP(int xpPoints) {
@@ -1032,7 +1053,34 @@ public class Player extends Entity {
 				new DamageText(gp.tileSize, gp.screenHeight - gp.tileSize * 2, "+ " + xpPoints + "XP", new Color(85, 255, 85), gp)
 		);
 		exp += xpPoints;
-		checkLevelUp();
+    }
+    public void checkLevelUpForQuestCompletion() {
+    	if(exp >= nextLevelExp) {
+    		
+    		level++;
+    		nextLevelExp = (int) Math.ceil(10 * Math.pow(level, 1.5));
+    		maxLife += 10;
+    		maxMana += 5;
+    		strength++;
+            // Dexterity increases every 2 levels
+            if (level % 2 == 0) {
+                dexterity += 1;
+            }
+
+    		attack = getAttack();
+    		defense = getDefense();
+    		
+            // Restore life/mana on level up
+            life = maxLife;
+            mana = maxMana;
+            
+            levelUpfromQuest = true;
+    		
+    		gp.playSE(5);
+//    		gp.gameState = gp.dialogueState;
+//    		setDialogue();
+//    		startDialogue(this, 0);
+    	}
     }
     public void checkLevelUp() {
     	

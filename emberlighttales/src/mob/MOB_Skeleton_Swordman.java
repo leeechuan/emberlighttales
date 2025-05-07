@@ -26,9 +26,9 @@ public class MOB_Skeleton_Swordman extends Entity {
 		speed = defaultSpeed;
 		maxLife = 180;
 		life = maxLife;
-		attack = 15;
-		defense = 8;
-		exp = 15;
+		attack = 10;
+		defense = 3;
+		exp = 20;
 		knockBackPower = 5;
 		name = mobName;
 		sleep = false;
@@ -140,13 +140,12 @@ public class MOB_Skeleton_Swordman extends Entity {
 	}
 	public void checkDrop() {
 		gp.bossBattleOn = false;
-		Progress.updateStage(Progress.STAGE_ORC_LIEUTENANT_DEFEATED);
 		gp.qManager.progressQuest("The Suspicious Merchant");
 		gp.pManager.addNotification("Journal Updated");
 		
 		//Restore previous music
 		gp.stopMusic();
-		gp.playMusic(21);
+		gp.playMusic(20);
 	}
 	public Color getParticleColor() {
 		Color color = new Color(25, 0, 50);
