@@ -465,7 +465,7 @@ public class UI {
 		    }
 		    
 		    // Draw version number on the bottom right
-		    String versionText = "Beta v1.2.1";
+		    String versionText = "Beta v1.2.2";
 		    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 10F));
 		    g2.setColor(Color.white);
 		    int versionX = gp.screenWidth - g2.getFontMetrics().stringWidth(versionText) - 10;
@@ -1440,7 +1440,7 @@ public class UI {
 		
 		//DRAW PRICE WINDOW
 		int itemIndex = getItemIndexOnSlot(playerSlotCol, playerSlotRow, gp.player.inventory.size());
-		if(itemIndex < gp.player.inventory.size()) {
+		if(itemIndex >= 0 && itemIndex < gp.player.inventory.size()) {
 			
 			x = (int)(gp.tileSize*15.5);
 			y = (int)(gp.tileSize*5.5);
@@ -1741,7 +1741,7 @@ public class UI {
 	}
 	public int getItemIndexOnSlot(int slotCol, int slotRow, int inventory_size) {
 	    int itemIndex = slotCol + (slotRow * 5);
-	    if (itemIndex >= inventory_size) {
+	    if (itemIndex < 0 || itemIndex >= inventory_size) {
 	        return -1;
 	    }
 	    return itemIndex;

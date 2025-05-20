@@ -16,7 +16,7 @@ public class OBJ_Iron_Sword extends Entity{
         attackValue = 3;
         attackArea.width = 36;
         attackArea.height = 36;
-        description = "[" + name + "]" + "Reliable and sharp.\nBuilt for battle.";
+        description = "[" + name + "]" + "\nReliable and sharp.\nBuilt for battle.";
         price = 60;
         knockBackPower = 4;
         motion1_duration = 5;

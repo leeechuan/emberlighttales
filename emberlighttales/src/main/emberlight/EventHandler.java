@@ -62,7 +62,6 @@ public class EventHandler{
 		eventMaster.dialogues[5][0] = "I never back down from a fight!";
 	}
 	public void checkEvent() {
-		
 		//Check if player character is more than 1 tile away from last event
 		int xDistance = Math.abs(gp.player.worldX - previousEventX);
 		int yDistance = Math.abs(gp.player.worldY - previousEventY);

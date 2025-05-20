@@ -820,28 +820,16 @@ public class CutsceneManager {
 	public void scene_orcLieutenantDefeated() {
 		System.out.println(scenePhase);
 		switch(scenePhase) {
+
 		case 0:
-			gp.gameState = gp.playState;
-			if (counter == 0) { 
-	            // First time a shoot key is pressed, start the timer
-	            if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.leftPressed || gp.keyH.rightPressed) {
-	        		gp.csManager.setDialogue();
-	                counter = 1;  // Start counting frames
-	            }
-	        } else if (counterReached(60)) { 
-	            // If 1 second (60 frames) have passed since first key press, proceed
-	            scenePhase++;
-	            counter = 0;
-	        }
-		case 1:
-			if(scenePhase == 1) {
+			if(scenePhase == 0) {
 	        	cutsceneMaster.startDialogue(cutsceneMaster, 0);
 	        	gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril"));
 	        	gp.qManager.progressQuest("Sands of Peril");
 	        	gp.pManager.addNotification("Journal Updated");
 	        	scenePhase++;
 			}
-		case 2:
+		case 1:
 			sceneNum = NA;
 			scenePhase = 0;
 			gp.gameState = gp.playState;
@@ -1169,6 +1157,7 @@ public class CutsceneManager {
 			if(counterReached(2000) == true) {
 				scenePhase++;
 				gp.gameState = gp.titleState;
+				gp.ui.titleScreenState = 0;
 				gp.stopMusic();
 			}
 		}
@@ -1254,6 +1243,7 @@ public class CutsceneManager {
 			if(counterReached(2000) == true) {
 				scenePhase++;
 				gp.gameState = gp.titleState;
+				gp.ui.titleScreenState = 0;
 				gp.stopMusic();
 			}
 		}
@@ -1341,6 +1331,7 @@ public class CutsceneManager {
 			if(counterReached(2000) == true) {
 				scenePhase++;
 				gp.gameState = gp.titleState;
+				gp.ui.titleScreenState = 0;
 				gp.stopMusic();
 			}
 		}

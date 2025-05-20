@@ -38,7 +38,7 @@ public class QuestManager {
     	    Arrays.asList(
     	        new QuestStage("Investigate nearby cave"),
     	        new QuestStage("Explore cave"),
-    	        new QuestStage("Defeat Orc Commander")
+    	        new QuestStage("Defeat Orc Lieutenant")
     	    ),
             gp
     	);
@@ -269,7 +269,7 @@ public class QuestManager {
     	    }
     	}
     	
-    	Entity elder = gp.findNPCByName("Pharaoh Ahmuron");
+    	Entity elder = gp.findNPCByName("Elder Veldor");
     	if (elder != null) {
 
     		if(!gp.qManager.getQuestJournal().getCompletedQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Where’s Wibby?"))&&

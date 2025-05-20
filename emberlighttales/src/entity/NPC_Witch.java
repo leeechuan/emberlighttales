@@ -101,7 +101,7 @@ public class NPC_Witch extends Entity {
 				dialogues[0][4] = "Expose the seams. Let you in.";
 				dialogues[0][5] = "(She tosses the ground root into the\ncauldron. It hisses, then bursts into\na sudden flash of blue flame.)";
 				dialogues[0][6] = "It is done...";
-				dialogues[0][7] = "But understand this... barriers like that\naren’t just built to keep others out... Take care.";
+				dialogues[0][7] = "But understand this... barriers like that\naren’t just built to keep others out...\nTake care.";
 			}
 			else {
 				dialogues[0][0] = "Sunmire Glassroot... I sense\nyou had it?";	
@@ -121,6 +121,7 @@ public class NPC_Witch extends Entity {
 			dialogues[0][1] = "Need Sumthn";
 			
 			dialogues[1][0] = "WEEHU!";
+			dialogues[1][1] = null;
 		}
 
 	}
@@ -182,15 +183,11 @@ public class NPC_Witch extends Entity {
 			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield"));
 			gp.player.finishQuest(55, 85);
 		}
-		else {
-
+		dialogueSet++;
+		
+		if(dialogues[dialogueSet][0] == null) {
 			
-			dialogueSet++;
-			
-			if(dialogues[dialogueSet][0] == null) {
-				
-				dialogueSet = 0;
-			}
+			dialogueSet = 0;
 		}
 
 		

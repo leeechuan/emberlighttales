@@ -1084,7 +1084,7 @@ public class AssetSetter {
 		i++;
 		gp.obj[mapNum][i] = new OBJ_GrassRock(gp, 5);
 		gp.obj[mapNum][i].worldX = 87 * gp.tileSize;
-		gp.obj[mapNum][i].worldY = 62 * gp.tileSize;
+		gp.obj[mapNum][i].worldY = 63 * gp.tileSize;
 		i++;
 		gp.obj[mapNum][i] = new OBJ_GrassRock(gp, 4);
 		gp.obj[mapNum][i].worldX = 77 * gp.tileSize;
@@ -3418,7 +3418,7 @@ public class AssetSetter {
 		i++;
 		gp.iTile[mapNum][i] = new IT_Tree(gp, 32, 25, 11);
 		i++;
-		gp.iTile[mapNum][i] = new IT_Tree(gp, 40, 31, 11);
+		gp.iTile[mapNum][i] = new IT_Tree(gp, 40, 34, 11);
 		i++;
 		
 		//Gildenshore Houses

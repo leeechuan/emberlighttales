@@ -26,9 +26,9 @@ public class MOB_Orc_Lieutenant extends Entity {
 		speed = defaultSpeed;
 		maxLife = 120;
 		life = maxLife;
-		attack = 24;
+		attack = 18;
 		defense = 14;
-		exp = 30;
+		exp = 0;
 		knockBackPower = 5;
 		name = mobName;
 		sleep = true;
@@ -143,16 +143,20 @@ public class MOB_Orc_Lieutenant extends Entity {
 		Progress.updateStage(Progress.STAGE_ORC_LIEUTENANT_DEFEATED);
 		gp.qManager.progressQuest("Beneath Enemy Lines");
 		gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Beneath Enemy Lines"));
-		gp.player.finishQuest(20, 65);
+		
+    	gp.qManager.getQuestJournal().addQuest(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril"));
+    	gp.qManager.progressQuest("Sands of Peril");
+    	gp.pManager.addNotification("Journal Updated");
 
 		
 		//Restore previous music
 		gp.stopMusic();
 		gp.playMusic(21);
 		
-		gp.gameState = gp.cutsceneState;
-		gp.csManager.scenePhase = 0;
-		gp.csManager.sceneNum = gp.csManager.orcLieutenantDefeated;
+//		gp.gameState = gp.cutsceneState;
+//		gp.csManager.scenePhase = 0;
+//		gp.csManager.sceneNum = gp.csManager.orcLieutenantDefeated;
+		gp.player.finishQuest(20, 65);
 	}
 	public Color getParticleColor() {
 		Color color = new Color(25, 0, 50);

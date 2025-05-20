@@ -2,6 +2,7 @@ package object;
 
 import java.util.Random;
 
+import data.Progress;
 import entity.Entity;
 import main.emberlight.GamePanel;
 
@@ -31,17 +32,23 @@ public class OBJ_Bed extends Entity{
 	    Random rand = new Random();
 
 	    if (gp.currentMap == 21) {
-	        String[] restMessages = {
-	            "You drift into a deep slumber...\n[Progress saved]",
-	            "You feel warmth wrap around you as you\nsleep...\n[Progress saved]",
-	            "A quiet night passes.\nYou're refreshed and ready.\n[Progress saved]",
-	            "Dreams visit you as you rest.\n[Progress saved]",
-	            "You sleep peacefully until dawn.\n[Progress saved]",
-	            "Your back doesn't hurt for once.\nMiracles do happen.\n[Progress saved]",
-	            "You snored loud enough to scare\noff a mob.\n[Progress saved]",
-	            "You drooled a bit...\nBut no one's judging.\n[Progress saved]"
-	        };
-	        dialogues[0][0] = restMessages[rand.nextInt(restMessages.length)];
+	    	if(Progress.gameStage == Progress.STAGE_TUTORIAL) {
+	    		dialogues[0][0] = "I can't do another nap!";
+	    	}
+	    	else {
+		        String[] restMessages = {
+			            "You drift into a deep slumber...\n[Progress saved]",
+			            "You feel warmth wrap around you as you\nsleep...\n[Progress saved]",
+			            "A quiet night passes.\nYou're refreshed and ready.\n[Progress saved]",
+			            "Dreams visit you as you rest.\n[Progress saved]",
+			            "You sleep peacefully until dawn.\n[Progress saved]",
+			            "Your back doesn't hurt for once.\nMiracles do happen.\n[Progress saved]",
+			            "You snored loud enough to scare\noff a mob.\n[Progress saved]",
+			            "You drooled a bit...\nBut no one's judging.\n[Progress saved]"
+			        };
+			        dialogues[0][0] = restMessages[rand.nextInt(restMessages.length)];
+	    	}
+
 	    } else {
 	        String[] rudeMessages = {
 	            "Hey! That's not your bed.\nShow some manners!",
@@ -59,7 +66,7 @@ public class OBJ_Bed extends Entity{
 	public void interact() {
 		setDialogue();
 		startDialogue(this, 0);
-		if(gp.currentMap == 21) {
+		if(gp.currentMap == 21 && Progress.gameStage != Progress.STAGE_TUTORIAL) {
 			gp.eHandler.sleep();
 		}
 		

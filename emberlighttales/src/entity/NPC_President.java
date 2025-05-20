@@ -76,12 +76,16 @@ public class NPC_President extends Entity {
 			dialogues[0][2] = "One of my scouts spotted another orc camp\neast of here. If we want to stop this,\nwe need to know what they’re planning.";
 			dialogues[0][3] = "Go speak to Scout Rowan. He’s been tracking\ntheir movements and can point you\nto the camp’s location.";
 			dialogues[0][4] = "The sooner we hit them, the better...";
+			dialogues[0][5] = null;
 		}
 		else {
 			dialogues[0][0] = "Hello there!";		
 			dialogues[0][1] = "Need Sumthin?";
-
-			dialogues[1][0] = "Yes?";
+			dialogues[0][2] = null;
+			dialogues[0][3] = null;
+			dialogues[0][4] = null;
+			dialogues[0][5] = null;
+			
 		}
 
 	}
@@ -125,16 +129,22 @@ public class NPC_President extends Entity {
 	
 	public void speak() {
 		
-		if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril")) &&
-				(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 1  || 
-				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 3) &&
+		setDialogue();
+		facePlayer();
+		startDialogue(this, dialogueSet);
+		
+		if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril"))&&
+				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 1 &&
 				!gp.player.isGremlin) {
 			gp.qManager.progressQuest("Sands of Peril");
 			gp.pManager.addNotification("Journal Updated");
 		}
-//		setDialogue();
-		facePlayer();
-		startDialogue(this, dialogueSet);
+		else if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Sands of Peril"))&&
+				gp.qManager.getQuestJournal().getQuestByName("Sands of Peril").getCurrentStageIndex() == 3 &&
+				!gp.player.isGremlin) {
+			gp.qManager.progressQuest("Sands of Peril");
+			gp.pManager.addNotification("Journal Updated");
+		}
 		
 		dialogueSet++;
 		

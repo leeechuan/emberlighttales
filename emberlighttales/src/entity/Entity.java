@@ -729,7 +729,7 @@ public class Entity {
     		else { //Player
         		//Check mob collision with the updated worldX, worldY and solidArea
         		int mobIndex = gp.cChecker.checkEntity(this, gp.mob);
-        		int comboBonusDamage = (int)(attack * (1.0 + 0.25 * gp.player.comboStage)); // +25% per stage
+        		int comboBonusDamage = (int)(attack * (1.0 + 0.15 * gp.player.comboStage)); // +25% per stage
         		int comboBonusKnockback = 0;
 
         		if (currentWeapon.type == type_sword) {
@@ -786,7 +786,7 @@ public class Entity {
 //        		spriteNum = 0;
 //        		attackSpriteCounter = 0;
 //        		isAttacking = false;
-        	    if (gp.player.comboQueued && gp.player.comboStage < gp.player.maxComboStage) {
+        	    if (gp.player.comboQueued && gp.player.comboStage < gp.player.maxComboStage && !gp.player.isGremlin && gp.player.currentWeapon.type == type_sword) {
         	    	gp.player.comboStage++;
         	        attackSpriteCounter = 0;
         	        gp.player.comboQueued = false;
@@ -815,7 +815,11 @@ public class Entity {
 		if(gp.player.invincible == false) {
 			gp.playSE(3);
 			
-			int damage = attack - gp.player.defense;
+			Random rand = new Random();
+			double multiplier = 0.9 + rand.nextDouble() * 0.2; // 0.9 to 1.1
+
+			double mitigation = 1.0 - (gp.player.defense / (gp.player.defense + 50.0));
+			int damage = Math.max(1, (int)(attack * mitigation * multiplier));
 			
 			//Get an opposite direction of this attacker
 			String canBlockDirection = getOppositeDirection(direction);

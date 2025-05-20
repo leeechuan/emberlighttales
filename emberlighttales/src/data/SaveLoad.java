@@ -146,8 +146,9 @@ public class SaveLoad {
 	        // Load Game Progress
 	        Progress.gameStage = ds.gameStage;
 	        
-	     // Initialize Quests
+	        // Initialize Quests
 	        gp.qManager.initializeQuests();
+	        gp.qManager.getQuestJournal().resetQuestJournal();
 	        System.out.println("Quests Initialized");
 
 	        // Update quest states

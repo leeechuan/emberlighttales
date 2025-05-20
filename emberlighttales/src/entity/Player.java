@@ -732,6 +732,7 @@ public class Player extends Entity {
         if(keyH.godModeOn == false) {
             if(life <= 0) {
             	gp.gameState = gp.gameOverState;
+            	life = 1; //prevent multiple gameOverState;
             	gp.ui.commandNum = -1;
             	gp.stopMusic();
             	gp.playSE(9);
@@ -764,7 +765,8 @@ public class Player extends Entity {
         if (!isRolling) return;
 
         invincible = true;
-
+        gp.eHandler.checkEvent();
+        
         // Predict movement direction
         int dx = 0, dy = 0;
         if (keyH.upPressed) dy -= 1;
@@ -944,14 +946,14 @@ public class Player extends Entity {
     				setKnockBack(gp.mob[gp.currentMap][i], attacker, knockBackPower);
     			}
     			if(gp.mob[gp.currentMap][i].offBalance == true) {
-    				attack *= 3;
+    				attack *= 1.5;
     			}
     			int damage = attack - gp.mob[gp.currentMap][i].defense;
 
     			// Apply slight damage variation
     			Random rand = new Random();
     			double multiplier = 0.9 + rand.nextDouble() * 0.2; // Random between 0.9 and 1.1
-    			damage = (int)Math.round(damage * multiplier);
+    			damage = Math.max(1, (int)((attack * (1.0 - (defense / (defense + 50.0)))) * multiplier));
 
     			if(damage < 0) {
     			    damage = 0;
@@ -1104,7 +1106,7 @@ public class Player extends Entity {
             mana = maxMana;
     		
     		gp.playSE(5);
-    		gp.gameState = gp.dialogueState;
+//    		gp.gameState = gp.dialogueState;
     		setDialogue();
     		startDialogue(this, 0);
     	}

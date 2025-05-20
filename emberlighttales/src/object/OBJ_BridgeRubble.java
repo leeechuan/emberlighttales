@@ -48,9 +48,9 @@ public class OBJ_BridgeRubble extends Entity{
 		
 		if(gp.player.isGremlin) {
 			gp.qManager.progressQuest("Bound By Blood And Magic");
+			Progress.gameStage = Progress.STAGE_BRIDGE_RUBBLE_REMOVED;
 			gp.qManager.getQuestJournal().completeQuest(gp.qManager.getQuestJournal().getQuestByName("Bound By Blood And Magic"));
 			gp.player.finishQuest(15, 50);
-			Progress.gameStage = Progress.STAGE_BRIDGE_RUBBLE_REMOVED;
 		}
 	}
 	
