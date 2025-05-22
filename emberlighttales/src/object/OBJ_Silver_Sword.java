@@ -17,14 +17,14 @@ public class OBJ_Silver_Sword extends Entity{
         attackArea.width = 36;
         attackArea.height = 36;
         description = "[" + name + "]" + "\nElegant and light,\nbut poor knockback";
-        price = 100;
+        price = 180;
         knockBackPower = 1;
         motion1_duration = 5;
         motion2_duration = 12;
         motion3_duration = 16;
         motion4_duration = 20;
-        maxDurability = 50;
-        durability = 50;
+        maxDurability = 40;
+        durability = 40;
 	}
 
 }

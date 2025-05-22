@@ -24,7 +24,7 @@ public class MOB_Slime extends Entity {
 		name = "Slime";
 		defaultSpeed = 1;
 		speed = defaultSpeed;
-		maxLife = 30;
+		maxLife = 35;
 		life = maxLife;
 		attack = 5;
 		defense = 1;

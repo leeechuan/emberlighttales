@@ -20,7 +20,7 @@ public class OBJ_Suspicious_Juice extends Entity{
 		attackValue = 1;
 		description = "[" + name + "]" + "\nIt's radiating\npink.";
 		stackable = true;
-		
+		isQuestItem = true;
 	}
     public void setDialogue() {
     	

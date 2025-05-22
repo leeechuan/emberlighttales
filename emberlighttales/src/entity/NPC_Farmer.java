@@ -84,11 +84,19 @@ public class NPC_Farmer extends Entity {
 			dialogues[0][4] = "Oh, and if one of 'em follows you home...\nthat one's yours now.";
 		}
 		else {
-			dialogues[0][0] = "Hmmm...";		
-			dialogues[0][1] = "Hope it rains soon...";
-			dialogues[0][2] = null;
-			dialogues[0][3] = null;
-			dialogues[0][4] = null;
+			if(gp.player.isGremlin) {
+			    dialogues[0][0] = "Get outta my fields, you twisted thing!";
+				dialogues[0][1] = null;
+				dialogues[0][2] = null;
+				dialogues[0][3] = null;
+				dialogues[0][4] = null;
+			} else {
+			    dialogues[0][0] = "Crops been good this season.";
+				dialogues[0][1] = null;
+				dialogues[0][2] = null;
+				dialogues[0][3] = null;
+				dialogues[0][4] = null;
+			}
 		}
 	}
 	public void setAction() {

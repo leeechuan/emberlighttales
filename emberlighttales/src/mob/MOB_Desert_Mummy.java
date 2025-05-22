@@ -24,9 +24,9 @@ public class MOB_Desert_Mummy extends Entity {
 		boss = true;
 		defaultSpeed = 1;
 		speed = defaultSpeed;
-		maxLife = 140;
+		maxLife = 200;
 		life = maxLife;
-		attack = 20;
+		attack = 16;
 		defense = 16;
 		exp = 35;
 		knockBackPower = 3;

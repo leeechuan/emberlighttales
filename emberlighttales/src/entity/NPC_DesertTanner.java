@@ -56,7 +56,11 @@ public class NPC_DesertTanner extends Entity {
 	}
 	public void setDialogue() {
 
-		dialogues[0][0] = "What's up?";
+		if(gp.player.isGremlin) {
+		    dialogues[0][0] = "I don’t tan gremlin hide—but don’t test me!";
+		} else {
+		    dialogues[0][0] = "The sun does half my work for me.";
+		}
 	}
 	public void setAction() {
 		

@@ -79,13 +79,21 @@ public class NPC_President extends Entity {
 			dialogues[0][5] = null;
 		}
 		else {
-			dialogues[0][0] = "Hello there!";		
-			dialogues[0][1] = "Need Sumthin?";
-			dialogues[0][2] = null;
-			dialogues[0][3] = null;
-			dialogues[0][4] = null;
-			dialogues[0][5] = null;
-			
+			if(gp.player.isGremlin) {
+			    dialogues[0][0] = "You will not step foot in my town like that!";
+				dialogues[0][1] = "BEAST!";
+				dialogues[0][2] = null;
+				dialogues[0][3] = null;
+				dialogues[0][4] = null;
+				dialogues[0][5] = null;
+			} else {
+				dialogues[0][0] = "Hello there!";		
+				dialogues[0][1] = "Need Sumthin?";
+				dialogues[0][2] = null;
+				dialogues[0][3] = null;
+				dialogues[0][4] = null;
+				dialogues[0][5] = null;
+			}
 		}
 
 	}

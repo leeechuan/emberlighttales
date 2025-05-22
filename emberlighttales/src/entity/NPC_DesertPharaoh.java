@@ -72,9 +72,15 @@ public class NPC_DesertPharaoh extends Entity {
 			dialogues[0][2] = "Solara is in your debt.";
 		}
 		else {
-			dialogues[0][0] = "What do you need?";
-			dialogues[0][1] = null;
-			dialogues[0][2] = null;
+			if(gp.player.isGremlin) {
+			    dialogues[0][0] = "This form... is a curse. You shame the sacred sands!";
+				dialogues[0][1] = null;
+				dialogues[0][2] = null;
+			} else {
+			    dialogues[0][0] = "Speak, traveler. The desert hears all.";
+				dialogues[0][1] = null;
+				dialogues[0][2] = null;
+			}
 		}
 
 	}

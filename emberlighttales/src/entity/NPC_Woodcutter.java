@@ -56,10 +56,11 @@ public class NPC_Woodcutter extends Entity {
 	}
 	public void setDialogue() {
 		
-		dialogues[0][0] = "Busy day...";
-		dialogues[1][0] = "Gotta get to work!";
-
-		dialogues[1][0] = "What's up?";
+		if(gp.player.isGremlin) {
+		    dialogues[0][0] = "You better be gone before I raise my axe.";
+		} else {
+		    dialogues[0][0] = "Trees talk if you know how to listen.";
+		}
 	}
 	public void setAction() {
 		

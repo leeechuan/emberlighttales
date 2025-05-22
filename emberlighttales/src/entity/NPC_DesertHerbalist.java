@@ -76,11 +76,19 @@ public class NPC_DesertHerbalist extends Entity {
 			dialogues[0][4] = null;	
 		}
 		else {
-			dialogues[0][0] = "Yes?";
-			dialogues[0][1] = null;
-			dialogues[0][2] = null;	
-			dialogues[0][3] = null;
-			dialogues[0][4] = null;	
+			if(gp.player.isGremlin) {
+			    dialogues[0][0] = "Spirits protect me! Don’t come closer!";
+				dialogues[0][1] = null;
+				dialogues[0][2] = null;	
+				dialogues[0][3] = null;
+				dialogues[0][4] = null;	
+			} else {
+			    dialogues[0][0] = "A pinch of desert sage keeps the fever away.";
+				dialogues[0][1] = null;
+				dialogues[0][2] = null;	
+				dialogues[0][3] = null;
+				dialogues[0][4] = null;	
+			}
 		}
 
 	}

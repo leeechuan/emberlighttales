@@ -56,9 +56,11 @@ public class NPC_Fisherman extends Entity {
 	}
 	public void setDialogue() {
 		
-		dialogues[0][0] = "Need something?";
-
-		dialogues[1][0] = "Yes?";
+		if(gp.player.isGremlin) {
+		    dialogues[0][0] = "You’re scarin’ the fish, beast!";
+		} else {
+		    dialogues[0][0] = "Lake’s quiet today. Perfect for thinkin’.";
+		}
 	}
 	public void setAction() {
 		

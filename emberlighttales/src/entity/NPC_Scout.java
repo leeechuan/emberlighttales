@@ -67,10 +67,11 @@ public class NPC_Scout extends Entity {
 			dialogues[0][3] = "Stay low and keep your wits about you.";
 		}
 		else {
-			dialogues[0][0] = "I smell orc...";		
-			dialogues[0][1] = "You smell it too?";	
-			
-			dialogues[1][0] = "Yes?";
+			if(gp.player.isGremlin) {
+			    dialogues[0][0] = "You shouldn’t be this far out, gremlin!";
+			} else {
+			    dialogues[0][0] = "Tracks in the sand. We’re not alone.";
+			}
 		}
 	}
 	public void setAction() {

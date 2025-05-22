@@ -56,9 +56,15 @@ public class NPC_Son extends Entity {
 	}
 	public void setDialogue() {
 		
-		dialogues[0][0] = "Hey...umm...";		
-		dialogues[0][1] = "Thanks again for saving me miss...";
-		dialogues[0][2] = "I can't imagine how I would have gotten out\nif it wasnt for you...";
+		if(gp.player.isGremlin) {
+		    dialogues[0][0] = "*trembles* Are... are you going to eat me?";
+			dialogues[0][1] = null;
+			dialogues[0][2] = null;
+		} else {
+			dialogues[0][0] = "Hey...umm...";		
+			dialogues[0][1] = "Thanks again for saving me miss...";
+			dialogues[0][2] = "I can't imagine how I would have gotten out\nif it wasnt for you...";
+		}
 			
 	}
 	public void setAction() {

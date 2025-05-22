@@ -56,11 +56,11 @@ public class NPC_FirstLady extends Entity {
 	}
 	public void setDialogue() {
 		
-		dialogues[0][0] = "Hello there!";		
-		dialogues[0][1] = "Need Sumthin?";	
-		
-
-		dialogues[1][0] = "Yes?";
+		if(gp.player.isGremlin) {
+		    dialogues[0][0] = "AHHHHHHH! SOMEONE HELP!";
+		} else {
+		    dialogues[0][0] = "A pleasure to see you, dear.";
+		}
 	}
 	public void setAction() {
 		

@@ -24,12 +24,12 @@ public class MOB_Desert_Warrior extends Entity {
 		boss = false;
 		defaultSpeed = 1;
 		speed = defaultSpeed;
-		maxLife = 110;
+		maxLife = 100;
 		life = maxLife;
-		attack = 22;
-		defense = 11;
+		attack = 10;
+		defense = 14;
 		exp = 28;
-		knockBackPower = 3;
+		knockBackPower = 2;
 		name = mobName;
 //		sleep = true;
 

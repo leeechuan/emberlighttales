@@ -56,7 +56,11 @@ public class NPC_DesertBountyHunter extends Entity {
 	}
 	public void setDialogue() {
 
-		dialogues[0][0] = "You need something?";
+		if(gp.player.isGremlin) {
+		    dialogues[0][0] = "There’s a price on gremlin heads. Yours just went up.";
+		} else {
+		    dialogues[0][0] = "Keep your nose clean, stranger.";
+		}
 	}
 	public void setAction() {
 		

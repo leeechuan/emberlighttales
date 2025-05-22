@@ -56,7 +56,11 @@ public class NPC_DesertBirdHandler extends Entity {
 	}
 	public void setDialogue() {
 
-		dialogues[0][0] = "Have you seen my birds?";
+		if(gp.player.isGremlin) {
+		    dialogues[0][0] = "Back! You’ll scare the sandhawks!";
+		} else {
+		    dialogues[0][0] = "Have you seen that beautiful vulture?\nJust pass this lake!";
+		}
 	}
 	public void setAction() {
 		

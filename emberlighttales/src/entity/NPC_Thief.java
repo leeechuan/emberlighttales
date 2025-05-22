@@ -68,17 +68,19 @@ public class NPC_Thief extends Entity {
 		}
 		
 		else {
-			dialogues[0][0] = "What?";
-			dialogues[0][1] = "Don't speak to me...";
-			dialogues[0][2] = null;	
-			dialogues[0][3] = null;
-			dialogues[0][4] = null;	
-
-			dialogues[1][0] = "Do I know you?";
-			dialogues[1][1] = null;
-			dialogues[1][2] = null;	
-			dialogues[1][3] = null;
-			dialogues[1][4] = null;	
+			if(gp.player.isGremlin) {
+			    dialogues[0][0] = "Nice costume... but thats not gonna trick\nme...";
+				dialogues[1][1] = null;
+				dialogues[1][2] = null;	
+				dialogues[1][3] = null;
+				dialogues[1][4] = null;	
+			} else {
+			    dialogues[0][0] = "Keep your purse close, friend.";
+				dialogues[1][1] = null;
+				dialogues[1][2] = null;	
+				dialogues[1][3] = null;
+				dialogues[1][4] = null;	
+			}
 		}
 
 	}

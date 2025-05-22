@@ -97,9 +97,16 @@ public class NPC_Punk extends Entity {
 		    dialogues[0][2] = "No more 'experimental batches'.\nStrictly citrus from now on, promise.";
 		}
 		else {
-			dialogues[0][0] = "What you lookin' at...";		
-			dialogues[0][1] = "Leave me alone!";	
-			dialogues[0][2] = null;
+			if(gp.player.isGremlin) {
+			    dialogues[0][0] = "Whoa! You look wicked!";
+				dialogues[0][1] = "Don’t bite me though";	
+				dialogues[0][2] = null;
+			} else {
+				dialogues[0][0] = "What you lookin' at...";		
+				dialogues[0][1] = "Leave me alone!";	
+				dialogues[0][2] = null;
+			}
+
 		}
 
 	}

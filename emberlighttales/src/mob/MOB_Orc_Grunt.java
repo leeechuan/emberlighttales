@@ -27,9 +27,9 @@ public class MOB_Orc_Grunt extends Entity {
 		maxLife = 50;
 		life = maxLife;
 		attack = 8;
-		defense = 3;
-		exp = 6;
-		knockBackPower = 3;
+		defense = 5;
+		exp = 8;
+		knockBackPower = 2;
 		name = mobName;
 //		sleep = true;
 		

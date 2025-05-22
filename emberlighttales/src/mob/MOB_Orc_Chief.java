@@ -24,12 +24,12 @@ public class MOB_Orc_Chief extends Entity {
 		boss = true;
 		defaultSpeed = 1;
 		speed = defaultSpeed;
-		maxLife = 200;
+		maxLife = 350;
 		life = maxLife;
-		attack = 28;
+		attack = 18;
 		defense = 18;
 		exp = 50;
-		knockBackPower = 5;
+		knockBackPower = 3;
 		name = mobName;
 		sleep = true;
 		

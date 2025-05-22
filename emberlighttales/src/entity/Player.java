@@ -1282,7 +1282,15 @@ public class Player extends Entity {
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
         
-        if (isAttacking) {
+    	if (isRolling) {
+            switch (direction) {
+                case "up": image = backRolling[spriteNum]; break;
+                case "down": image = frontRolling[spriteNum]; break;
+                case "left": image = leftRolling[spriteNum]; break;
+                case "right": image = rightRolling[spriteNum]; break;
+            }
+    	}
+    	else if (isAttacking) {
         	if(isGremlin) {
             	switch (direction) {
 	            case "up": image = gremlinbackAttacking[spriteNum]; break;
@@ -1326,14 +1334,6 @@ public class Player extends Entity {
                 case "down": image = frontShooting[spriteNum]; break;
                 case "left": image = leftShooting[spriteNum]; break;
                 case "right": image = rightShooting[spriteNum]; break;
-            }
-    	}
-    	else if (isRolling) {
-            switch (direction) {
-                case "up": image = backRolling[spriteNum]; break;
-                case "down": image = frontRolling[spriteNum]; break;
-                case "left": image = leftRolling[spriteNum]; break;
-                case "right": image = rightRolling[spriteNum]; break;
             }
     	}
         else if (isWalking) {

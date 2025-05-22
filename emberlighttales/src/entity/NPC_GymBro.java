@@ -91,10 +91,17 @@ public class NPC_GymBro extends Entity {
 			dialogues[0][3] = "Come on, champ! I’m countin’\non you!";
 		}
 		else {
-			dialogues[0][0] = "Just hit my PR yesterday...";		
-			dialogues[0][1] = "Carried 10 chickens at once!";
-			dialogues[0][2] = null;
-			dialogues[0][3] = null;
+			if(gp.player.isGremlin) {
+			    dialogues[0][0] = "Gremlin or not—you want to lift?";
+				dialogues[0][1] = null;
+				dialogues[0][2] = null;
+				dialogues[0][3] = null;
+			} else {
+				dialogues[0][0] = "Just hit my PR yesterday...";		
+				dialogues[0][1] = "Carried 10 chickens at once!";
+				dialogues[0][2] = null;
+				dialogues[0][3] = null;
+			}
 		}
 	}
 	public void setAction() {

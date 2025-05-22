@@ -24,12 +24,12 @@ public class MOB_Orc_Second extends Entity {
 		boss = true;
 		defaultSpeed = 1;
 		speed = defaultSpeed;
-		maxLife = 130;
+		maxLife = 280;
 		life = maxLife;
-		attack = 26;
+		attack = 14;
 		defense = 15;
 		exp = 36;
-		knockBackPower = 5;
+		knockBackPower = 3;
 		name = mobName;
 		direction = "down";
 		sleep = true;

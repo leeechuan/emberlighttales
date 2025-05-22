@@ -74,14 +74,11 @@ public class NPC_Husband extends Entity {
 			dialogues[0][2] = "Cain can keep his jealous little hands\nto himself next time. Thank you!";
 		}
 		else {
-			dialogues[0][0] = "Hello there!";		
-			dialogues[0][1] = "Need Sumthin";	
-			dialogues[0][2] = null;
-			
-
-			dialogues[1][0] = "I used to be an adventurer like you...";		
-			dialogues[1][1] = null;
-			dialogues[1][2] = null;
+			if(gp.player.isGremlin) {
+			    dialogues[0][0] = "I—I don’t want trouble. Please leave.";
+			} else {
+			    dialogues[0][0] = "I used to be an adventurer like you...";	
+			}
 		}
 		
 

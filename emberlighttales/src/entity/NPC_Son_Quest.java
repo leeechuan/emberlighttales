@@ -61,6 +61,19 @@ public class NPC_Son_Quest extends Entity {
 			dialogues[0][4] = "Thanks for freeing me. Let’s just... not\nmake a big deal of this, yeah?";
 		}
 		else {
+			if(gp.player.isGremlin) {
+			    dialogues[0][0] = "*trembles* Are... are you going to eat me?";
+				dialogues[0][1] = null;
+				dialogues[0][2] = null;
+				dialogues[0][3] = null;
+				dialogues[0][4] = null;
+			} else {
+			    dialogues[0][0] = "You’re here to help, right?";
+				dialogues[0][1] = null;
+				dialogues[0][2] = null;
+				dialogues[0][3] = null;
+				dialogues[0][4] = null;
+			}
 //			if(onPath) {
 //				dialogues[0][0] = "Wait here?";		
 //				dialogues[0][1] = "Umm... Okay... But please be back soon!";

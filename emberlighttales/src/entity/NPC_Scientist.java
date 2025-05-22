@@ -85,17 +85,19 @@ public class NPC_Scientist extends Entity {
 			dialogues[0][4] = null;
 		}
 		else {
-			dialogues[0][0] = "Hmmm...";
-			dialogues[0][1] = "Oh! How long have you been staring\nat me?";	
-			dialogues[0][2] = null;
-			dialogues[0][3] = null;
-			dialogues[0][4] = null;
-			
-			dialogues[1][0] = "Yes?";		
-			dialogues[1][1] = "Chop chop I have work to do!";
-			dialogues[1][2] = null;
-			dialogues[1][3] = null;
-			dialogues[1][4] = null;
+			if(gp.player.isGremlin) {
+			    dialogues[0][0] = "Fascinating! You’re a living mutation!";
+				dialogues[0][1] = null;	
+				dialogues[0][2] = null;
+				dialogues[0][3] = null;
+				dialogues[0][4] = null;
+			} else {
+				dialogues[0][0] = "Hmmm...";
+				dialogues[0][1] = "Oh! How long have you been staring\nat me?";	
+				dialogues[0][2] = null;
+				dialogues[0][3] = null;
+				dialogues[0][4] = null;
+			}
 		}
 
 	}

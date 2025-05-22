@@ -89,9 +89,16 @@ public class NPC_Wife extends Entity {
 			dialogues[0][2] = "Thanks a bunch! Now... back to bed!";
 		}
 		else {
-			dialogues[0][0] = "Hehe!";		
-			dialogues[0][1] = "Good day!";
-			dialogues[0][2] = null;
+			if(gp.player.isGremlin) {
+			    dialogues[0][0] = "My stars! You poor soul—stay back!";
+				dialogues[0][1] = null;
+				dialogues[0][2] = null;
+			} else {
+				dialogues[0][0] = "Hehe!";		
+				dialogues[0][1] = "Good day!";
+				dialogues[0][2] = null;
+			}
+
 		}
 
 	}

@@ -21,7 +21,7 @@ public class MOB_Orc_Archer extends Entity {
 		name = "Orc Archer";
 		defaultSpeed = 1;
 		speed = defaultSpeed;
-		maxLife = 40;
+		maxLife = 50;
 		life = maxLife;
 		attack = 6;
 		defense = 2;

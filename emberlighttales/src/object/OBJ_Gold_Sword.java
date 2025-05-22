@@ -23,8 +23,8 @@ public class OBJ_Gold_Sword extends Entity{
         motion2_duration = 12;
         motion3_duration = 16;
         motion4_duration = 20;
-        maxDurability = 15;
-        durability = 15;
+        maxDurability = 10;
+        durability = 10;
 	}
 
 }

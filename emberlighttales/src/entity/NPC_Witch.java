@@ -117,11 +117,13 @@ public class NPC_Witch extends Entity {
 
 		} 
 		else {
-			dialogues[0][0] = "Hue hue!";	
-			dialogues[0][1] = "Need Sumthn";
-			
-			dialogues[1][0] = "WEEHU!";
-			dialogues[1][1] = null;
+			if(gp.player.isGremlin) {
+			    dialogues[0][0] = "Look at you now, my little masterpiece!";
+			    dialogues[0][1] = null;
+			} else {
+			    dialogues[0][0] = "Hue hue, you need somethin'?";
+			    dialogues[0][1] = null;
+			}
 		}
 
 	}

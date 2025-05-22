@@ -76,15 +76,17 @@ public class NPC_Elder extends Entity {
 			dialogues[0][3] = null;
 		}
 		else {
-			dialogues[0][0] = "Hmmm...";
-			dialogues[0][1] = "You're different... I can tell...";
-			dialogues[0][2] = null;
-			dialogues[0][3] = null;
-
-			dialogues[1][0] = "Yes?";
-			dialogues[1][1] = null;
-			dialogues[1][2] = null;
-			dialogues[1][3] = null;
+			if(gp.player.isGremlin) {
+			    dialogues[0][0] = "By the ancients... what have you become?";
+				dialogues[0][1] = null;
+				dialogues[0][2] = null;
+				dialogues[0][3] = null;
+			} else {
+			    dialogues[0][0] = "Wisdom takes time. And tea.";
+				dialogues[0][1] = null;
+				dialogues[0][2] = null;
+				dialogues[0][3] = null;
+			}
 		}
 
 
