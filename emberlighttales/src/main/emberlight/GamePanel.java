@@ -505,12 +505,26 @@ public class GamePanel extends JPanel implements Runnable{
 			long passed = drawEnd - drawStart;
 			g2.setFont(g2.getFont().deriveFont(Font.PLAIN,14));
 			g2.setColor(Color.white);
-			g2.drawString("Draw Time          : " + passed, 10, 400);
-			g2.drawString("Coordinates        : " + player.worldX + "," + player.worldY, 10, 420);
-			g2.drawString("Tile               : " + ((player.worldX + player.solidArea.x)/tileSize) + "," + ((player.worldY + player.solidArea.y)/tileSize), 10, 440);
-			g2.drawString("God Mode           : " + keyH.godModeOn, 10, 460);
-			g2.drawString("Game Stage         : " + Progress.gameStage, 10, 480);
-			g2.drawString("Time Speed         : " + eManager.lighting.timeSpeed, 10, 500);
+			g2.drawString("Draw Time          : " + passed, 10, 360);
+			g2.drawString("Coordinates        : " + player.worldX + "," + player.worldY, 10, 380);
+			g2.drawString("Tile               : " + ((player.worldX + player.solidArea.x)/tileSize) + "," + ((player.worldY + player.solidArea.y)/tileSize), 10, 400);
+			g2.drawString("God Mode           : " + keyH.godModeOn, 10, 420);
+			g2.drawString("Game Stage         : " + Progress.gameStage, 10, 440);
+			g2.drawString("Time Speed         : " + eManager.lighting.timeSpeed, 10, 460);
+			
+			// Particle debug info
+			g2.drawString("Particles (world) : " + particleList.size(), 10, 480);
+			g2.drawString("Particles (smoke) : " + player.smokeParticles.size(), 10, 500);
+
+			// Memory usage info
+			Runtime runtime = Runtime.getRuntime();
+			long usedMemory = (runtime.totalMemory() - runtime.freeMemory()) / (1024 * 1024);
+			long totalMemory = runtime.totalMemory() / (1024 * 1024);
+			long maxMemory = runtime.maxMemory() / (1024 * 1024);
+
+			g2.drawString("Memory Used       : " + usedMemory + " MB", 10, 520);
+			g2.drawString("Memory Total      : " + totalMemory + " MB", 10, 540);
+			g2.drawString("Memory Max        : " + maxMemory + " MB", 10, 560);
 			
 //			System.out.println("Draw Time: " + passed);
 		}

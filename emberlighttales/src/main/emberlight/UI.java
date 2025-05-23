@@ -32,6 +32,10 @@ import object.OBJ_SmallTorch;
 import quest.Quest;
 import quest.QuestStage;
 import entity.Entity;
+import entity.NPC_Desert_Trader;
+import entity.NPC_Merchant;
+import entity.NPC_Shopkeeper;
+import entity.NPC_Witch;
 import environment.LightSource;
 
 
@@ -465,7 +469,7 @@ public class UI {
 		    }
 		    
 		    // Draw version number on the bottom right
-		    String versionText = "Beta v1.2.3";
+		    String versionText = "Beta v1.2.4";
 		    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 10F));
 		    g2.setColor(Color.white);
 		    int versionX = gp.screenWidth - g2.getFontMetrics().stringWidth(versionText) - 10;
@@ -568,13 +572,15 @@ public class UI {
 				
 				//Mission handling
 				if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield"))&&
-						gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield").getCurrentStageIndex() == 0) {
+						gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield").getCurrentStageIndex() == 0 &&
+						npc.name == NPC_Witch.npcName) {
 					gp.qManager.progressQuest("Fissures in the Shield");
 					gp.pManager.addNotification("Journal Updated");
 					
 				}
 				else if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield"))&&
 						gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield").getCurrentStageIndex() == 2 &&
+						npc.name == NPC_Witch.npcName &&
 						gp.player.searchItemInInventory("Sunmire Glassroot") != 999) {
 					gp.qManager.progressQuest("Fissures in the Shield");
 					gp.pManager.addNotification("Quest Completed!");
@@ -586,12 +592,14 @@ public class UI {
 				//Mission handling (check if bought item)
 				if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield"))&&
 						gp.qManager.getQuestJournal().getQuestByName("Fissures in the Shield").getCurrentStageIndex() == 1 &&
+								npc.name == NPC_Desert_Trader.npcName &&
 						gp.player.searchItemInInventory("Sunmire Glassroot") != 999) {
 					gp.qManager.progressQuest("Fissures in the Shield");
 					gp.pManager.addNotification("Journal Updated");
 				}
 				else if(gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace"))&&
 						gp.qManager.getQuestJournal().getQuestByName("Seeds of Solace").getCurrentStageIndex() == 0 &&
+						npc.name == NPC_Shopkeeper.npcName &&
 						gp.player.searchItemInInventory("Sunflower Seed") != 999) {
 					gp.qManager.progressQuest("Seeds of Solace");
 					gp.pManager.addNotification("Journal Updated");
@@ -600,6 +608,7 @@ public class UI {
 						gp.qManager.getQuestJournal().getActiveQuests().contains(gp.qManager.getQuestJournal().getQuestByName("To Do List"))&&
 						gp.qManager.getQuestJournal().getQuestByName("To Do List").getCurrentStageIndex() == 2 &&
 						gp.player.searchItemInInventory("Corn Seed") != 999 &&
+						npc.name == NPC_Merchant.npcName &&
 						gp.player.inventory.get(gp.player.searchItemInInventory("Corn Seed")).amount >= 10 &&
 						!gp.player.isGremlin) {
 					gp.qManager.progressQuest("To Do List");
@@ -1374,7 +1383,7 @@ public class UI {
 		
 		//DRAW PRICE WINDOW
 		int itemIndex = getItemIndexOnSlot(npcSlotCol, npcSlotRow, npc.inventory.size());
-		if(itemIndex < npc.inventory.size()) {
+		if(itemIndex >= 0 && itemIndex < npc.inventory.size()) {
 			
 			x = (int)(gp.tileSize*5.5);
 			y = (int)(gp.tileSize*5.5);

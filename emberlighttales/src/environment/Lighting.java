@@ -33,16 +33,20 @@ public class Lighting {
     public Lighting(GamePanel gp) {
         this.gp = gp;
         gp.ui.lightSources = new ArrayList<>();
-        
         gp.ui.initWorldLightSources();
-
-        setLightSource();
+        
+        // Create the darkness filter once and reuse it
+        darknessFilter = new BufferedImage(gp.screenWidth, gp.screenHeight, BufferedImage.TYPE_INT_ARGB);
     }
 
     public void setLightSource() {
         // Create a new darkness filter image.
-        darknessFilter = new BufferedImage(gp.screenWidth, gp.screenHeight, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2 = darknessFilter.createGraphics();
+    	Graphics2D g2 = darknessFilter.createGraphics();
+
+    	// Clear the image before redrawing
+    	g2.setComposite(AlphaComposite.Clear);
+    	g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+    	g2.setComposite(AlphaComposite.SrcOver);
 
         // Fill the whole screen with darkness.
         if (gp.currentArea == gp.dungeon) {

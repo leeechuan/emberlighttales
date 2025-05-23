@@ -16,7 +16,7 @@ public class OBJ_Gold_Sword extends Entity{
         attackValue = 10;
         attackArea.width = 36;
         attackArea.height = 36;
-        description = "[" + name + "]" + "\nA lavish sword made\nof gold. Highly effective,\nbut not very durable.";
+        description = "[" + name + "]" + "\nA lavish sword made\nof gold. Effective,\nbut not durable.";
         price = 200;
         knockBackPower = 3;
         motion1_duration = 5;
