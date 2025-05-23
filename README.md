@@ -18,8 +18,8 @@ A fully custom 2D top-down action RPG written from scratch in Java — no game e
 ### 🌍 World & Content
 - **World Design:** Towns, dungeons, caves, and 20+ interiors
 - **NPCs:** 30+ with schedules, dialogue, and state-based reactions
-- **Bosses:** 5 handcrafted boss fights
-- **Quests:** 15+ main and side quests
+- **Bosses:** 5 boss fights
+- **Quests:** 15 main and side quests
 - **Enemies:** Varied enemy types with custom behavior and scaling difficulty
 
 ### 🧑‍🌾 Farming & Economy
@@ -37,15 +37,18 @@ A fully custom 2D top-down action RPG written from scratch in Java — no game e
 ## 🛠️ Built With
 
 - **Language:** Java
-- **Libraries:** Java 2D (AWT/Swing) for rendering and input
+- **Libraries:** Java 2D for rendering and input
 - **Tools:** Custom game loop, asset management, and tick-based update logic
 
 ---
 
 ## 🚀 Getting Started
 
-1. Clone the repo:
 
-   ```bash
-   git clone https://github.com/your-username/java-2d-rpg.git
-   cd java-2d-rpg
+1. Clone the repo
+
+2. Build and run:
+
+Use your preferred Java IDE (e.g. Eclipse) to compile into executable JAR
+
+Oracle JDK21 recommended.
