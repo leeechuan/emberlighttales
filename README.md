@@ -2,6 +2,8 @@
 
 A fully custom 2D top-down action RPG written from scratch in Java — no game engines used. This project was inspired by RyiSnow's tutorials and built to explore core game development systems like rendering, combat, AI, UI, and game progression.
 
+Demo: https://www.linkedin.com/posts/aleechuan_building-a-java-based-2d-rpg-from-scratch-activity-7332540998666936320-iHJ6?utm_source=share&utm_medium=member_desktop&rcm=ACoAADV191QBaJ8weZ7kZu5EsY7AQGTjlKXb1F4
+
 ## 🎮 Features
 
 ### 🧠 Core Systems
